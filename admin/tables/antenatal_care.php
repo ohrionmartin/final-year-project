@@ -4,9 +4,9 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			29th November, 2020
+	@build			30th November, 2020
 	@created		13th August, 2020
-	@package		eHealth Portal
+	@package		eClinic Portal
 	@subpackage		antenatal_care.php
 	@author			Oh Martin <https://vdm.io>	
 	@copyright		Copyright (C) 2015. All Rights Reserved
@@ -28,7 +28,7 @@ use Joomla\Utilities\ArrayHelper;
 /**
  * Antenatal_cares Table class
  */
-class Ehealth_portalTableAntenatal_care extends JTable
+class Eclinic_portalTableAntenatal_care extends JTable
 {
 	/**
 	 * Ensure the params and metadata in json encoded in the bind method
@@ -45,10 +45,10 @@ class Ehealth_portalTableAntenatal_care extends JTable
 	 */
 	function __construct(&$db) 
 	{
-		parent::__construct('#__ehealth_portal_antenatal_care', 'id', $db);
+		parent::__construct('#__eclinic_portal_antenatal_care', 'id', $db);
 
 		// [Interpretation 7717] Adding History Options
-		JTableObserverContenthistory::createObserver($this, array('typeAlias' => 'com_ehealth_portal.antenatal_care'));
+		JTableObserverContenthistory::createObserver($this, array('typeAlias' => 'com_eclinic_portal.antenatal_care'));
 	}	
  
 	public function bind($array, $ignore = '')
@@ -112,11 +112,11 @@ class Ehealth_portalTableAntenatal_care extends JTable
 		if (isset($this->alias))
 		{
 			// Verify that the alias is unique
-			$table = JTable::getInstance('antenatal_care', 'Ehealth_portalTable');
+			$table = JTable::getInstance('antenatal_care', 'Eclinic_portalTable');
 
 			if ($table->load(array('alias' => $this->alias)) && ($table->id != $this->id || $this->id == 0))
 			{
-				$this->setError(JText::_('COM_EHEALTH_PORTAL_ANTENATAL_CARE_ERROR_UNIQUE_ALIAS'));
+				$this->setError(JText::_('COM_ECLINIC_PORTAL_ANTENATAL_CARE_ERROR_UNIQUE_ALIAS'));
 				return false;
 			}
 		}
@@ -147,7 +147,7 @@ class Ehealth_portalTableAntenatal_care extends JTable
 			// Generate a valid alias
 			$this->generateAlias();
             
-			$table = JTable::getInstance('antenatal_care', 'ehealth_portalTable');
+			$table = JTable::getInstance('antenatal_care', 'eclinic_portalTable');
 
 			while ($table->load(array('alias' => $this->alias)) && ($table->id != $this->id || $this->id == 0))
 			{
@@ -196,7 +196,7 @@ class Ehealth_portalTableAntenatal_care extends JTable
 		// If we don't have any access rules set at this point just use an empty JAccessRules class
 		if (!$this->getRules())
 		{
-			$rules = $this->getDefaultAssetValues('com_ehealth_portal.antenatal_care.'.$this->id);
+			$rules = $this->getDefaultAssetValues('com_eclinic_portal.antenatal_care.'.$this->id);
 			$this->setRules($rules);
 		}
         
@@ -287,7 +287,7 @@ class Ehealth_portalTableAntenatal_care extends JTable
 	protected function _getAssetName()
 	{
 		$k = $this->_tbl_key;
-		return 'com_ehealth_portal.antenatal_care.'.(int) $this->$k;
+		return 'com_eclinic_portal.antenatal_care.'.(int) $this->$k;
 	}
 
 	/**
@@ -314,7 +314,7 @@ class Ehealth_portalTableAntenatal_care extends JTable
 	protected function _getAssetParentId(JTable $table = NULL, $id = NULL) 
 	{
 		$asset = JTable::getInstance('Asset');
-		$asset->loadByName('com_ehealth_portal');
+		$asset->loadByName('com_eclinic_portal');
 
 		return $asset->id;
 	}

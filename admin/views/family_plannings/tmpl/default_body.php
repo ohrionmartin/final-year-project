@@ -4,9 +4,9 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			29th November, 2020
+	@build			30th November, 2020
 	@created		13th August, 2020
-	@package		eHealth Portal
+	@package		eClinic Portal
 	@subpackage		default_body.php
 	@author			Oh Martin <https://vdm.io>	
 	@copyright		Copyright (C) 2015. All Rights Reserved
@@ -21,14 +21,14 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access'); 
 
-$edit = "index.php?option=com_ehealth_portal&view=family_plannings&task=family_planning.edit";
+$edit = "index.php?option=com_eclinic_portal&view=family_plannings&task=family_planning.edit";
 
 ?>
 <?php foreach ($this->items as $i => $item): ?>
 	<?php
 		$canCheckin = $this->user->authorise('core.manage', 'com_checkin') || $item->checked_out == $this->user->id || $item->checked_out == 0;
 		$userChkOut = JFactory::getUser($item->checked_out);
-		$canDo = Ehealth_portalHelper::getActions('family_planning',$item,'family_plannings');
+		$canDo = Eclinic_portalHelper::getActions('family_planning',$item,'family_plannings');
 	?>
 	<tr class="row<?php echo $i % 2; ?>">
 		<td class="order nowrap center hidden-phone">
@@ -80,8 +80,8 @@ $edit = "index.php?option=com_ehealth_portal&view=family_plannings&task=family_p
 		</td>
 		<td class="nowrap">
 			<div class="name">
-				<?php if ($this->user->authorise('core.edit', 'com_ehealth_portal.planning_type.' . (int)$item->diagnosis)): ?>
-					<a href="index.php?option=com_ehealth_portal&view=planning_types&task=planning_type.edit&id=<?php echo $item->diagnosis; ?>&return=<?php echo $this->return_here; ?>"><?php echo $this->escape($item->diagnosis_name); ?></a>
+				<?php if ($this->user->authorise('core.edit', 'com_eclinic_portal.planning_type.' . (int)$item->diagnosis)): ?>
+					<a href="index.php?option=com_eclinic_portal&view=planning_types&task=planning_type.edit&id=<?php echo $item->diagnosis; ?>&return=<?php echo $this->return_here; ?>"><?php echo $this->escape($item->diagnosis_name); ?></a>
 				<?php else: ?>
 					<?php echo $this->escape($item->diagnosis_name); ?>
 				<?php endif; ?>

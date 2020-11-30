@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form
-	addrulepath="/administrator/components/com_ehealth_portal/models/rules"
-	addfieldpath="/administrator/components/com_ehealth_portal/models/fields"
+	addrulepath="/administrator/components/com_eclinic_portal/models/rules"
+	addfieldpath="/administrator/components/com_eclinic_portal/models/fields"
 >
 	<fieldset name="details">
 		<!-- [Fields 636] Default Fields. -->
@@ -16,8 +16,8 @@
 		<field
 			name="created"
 			type="calendar"
-			label="COM_EHEALTH_PORTAL_HIV_COUNSELING_AND_TESTING_CREATED_DATE_LABEL"
-			description="COM_EHEALTH_PORTAL_HIV_COUNSELING_AND_TESTING_CREATED_DATE_DESC"
+			label="COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_CREATED_DATE_LABEL"
+			description="COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_CREATED_DATE_DESC"
 			size="22"
 			format="%Y-%m-%d %H:%M:%S"
 			filter="user_utc"
@@ -26,8 +26,8 @@
 		<field
 			name="created_by"
 			type="user"
-			label="COM_EHEALTH_PORTAL_HIV_COUNSELING_AND_TESTING_CREATED_BY_LABEL"
-			description="COM_EHEALTH_PORTAL_HIV_COUNSELING_AND_TESTING_CREATED_BY_DESC"
+			label="COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_CREATED_BY_LABEL"
+			description="COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_CREATED_BY_DESC"
 		/>
 		<!-- [Fields 700] Published Field. Type: List (joomla) -->
 		<field name="published" type="list" label="JSTATUS"
@@ -44,12 +44,12 @@
 		</field>
 		<!-- [Fields 727] Date Modified Field. Type: Calendar (joomla) -->
 		<field name="modified" type="calendar" class="readonly"
-			label="COM_EHEALTH_PORTAL_HIV_COUNSELING_AND_TESTING_MODIFIED_DATE_LABEL" description="COM_EHEALTH_PORTAL_HIV_COUNSELING_AND_TESTING_MODIFIED_DATE_DESC"
+			label="COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_MODIFIED_DATE_LABEL" description="COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_MODIFIED_DATE_DESC"
 			size="22" readonly="true" format="%Y-%m-%d %H:%M:%S" filter="user_utc" />
 		<!-- [Fields 742] User Modified Field. Type: User (joomla) -->
 		<field name="modified_by" type="user"
-			label="COM_EHEALTH_PORTAL_HIV_COUNSELING_AND_TESTING_MODIFIED_BY_LABEL"
-			description="COM_EHEALTH_PORTAL_HIV_COUNSELING_AND_TESTING_MODIFIED_BY_DESC"
+			label="COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_MODIFIED_BY_LABEL"
+			description="COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_MODIFIED_BY_DESC"
 			class="readonly"
 			readonly="true"
 			filter="unset"
@@ -67,7 +67,7 @@
 			name="ordering"
 			type="number"
 			class="inputbox validate-ordering"
-			label="COM_EHEALTH_PORTAL_HIV_COUNSELING_AND_TESTING_ORDERING_LABEL"
+			label="COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_ORDERING_LABEL"
 			description=""
 			default="0"
 			size="6"
@@ -78,8 +78,8 @@
 			name="version"
 			type="text"
 			class="readonly"
-			label="COM_EHEALTH_PORTAL_HIV_COUNSELING_AND_TESTING_VERSION_LABEL"
-			description="COM_EHEALTH_PORTAL_HIV_COUNSELING_AND_TESTING_VERSION_DESC"
+			label="COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_VERSION_LABEL"
+			description="COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_VERSION_DESC"
 			size="6"
 			readonly="true"
 			filter="unset"
@@ -89,31 +89,31 @@
 		<field
 			type="user"
 			name="patient"
-			label="COM_EHEALTH_PORTAL_HIV_COUNSELING_AND_TESTING_PATIENT_LABEL"
+			label="COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_PATIENT_LABEL"
 		/>
 		<!-- [Fields 1650] Counseling_type Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="counseling_type"
-			label="COM_EHEALTH_PORTAL_HIV_COUNSELING_AND_TESTING_COUNSELING_TYPE_LABEL"
+			label="COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_COUNSELING_TYPE_LABEL"
 			class="list_class"
 			multiple="false"
 			useglobal="false"
 			default="0">
 			<!-- [Fields 1913] Option Set. -->
 			<option value="0">
-				COM_EHEALTH_PORTAL_HIV_COUNSELING_AND_TESTING_INDIVIDUAL</option>
+				COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_INDIVIDUAL</option>
 			<option value="1">
-				COM_EHEALTH_PORTAL_HIV_COUNSELING_AND_TESTING_COUPLE</option>
+				COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_COUPLE</option>
 			<option value="2">
-				COM_EHEALTH_PORTAL_HIV_COUNSELING_AND_TESTING_MINOR</option>
+				COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_MINOR</option>
 		</field>
 		<!-- [Fields 2335] Testing_reason Field. Type: Testingreason. (custom) -->
 		<field
 			type="testingreason"
 			name="testing_reason"
-			label="COM_EHEALTH_PORTAL_HIV_COUNSELING_AND_TESTING_TESTING_REASON_LABEL"
-			description="COM_EHEALTH_PORTAL_HIV_COUNSELING_AND_TESTING_TESTING_REASON_DESCRIPTION"
+			label="COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_TESTING_REASON_LABEL"
+			description="COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_TESTING_REASON_DESCRIPTION"
 			class="list_class"
 			multiple="false"
 			default="0"
@@ -123,8 +123,8 @@
 		<field
 			type="list"
 			name="last_test_date"
-			label="COM_EHEALTH_PORTAL_HIV_COUNSELING_AND_TESTING_LAST_TEST_DATE_LABEL"
-			description="COM_EHEALTH_PORTAL_HIV_COUNSELING_AND_TESTING_LAST_TEST_DATE_DESCRIPTION"
+			label="COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_LAST_TEST_DATE_LABEL"
+			description="COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_LAST_TEST_DATE_DESCRIPTION"
 			class="list_class"
 			multiple="false"
 			required="true"
@@ -132,20 +132,20 @@
 			default="0">
 			<!-- [Fields 1913] Option Set. -->
 			<option value="0">
-				COM_EHEALTH_PORTAL_HIV_COUNSELING_AND_TESTING_ONESIX_MONTHS</option>
+				COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_ONESIX_MONTHS</option>
 			<option value="1">
-				COM_EHEALTH_PORTAL_HIV_COUNSELING_AND_TESTING_SEVENTWELVE_MONTHS</option>
+				COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_SEVENTWELVE_MONTHS</option>
 			<option value="2">
-				COM_EHEALTH_PORTAL_HIV_COUNSELING_AND_TESTING__YEAR</option>
+				COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING__YEAR</option>
 			<option value="3">
-				COM_EHEALTH_PORTAL_HIV_COUNSELING_AND_TESTING_NEVER</option>
+				COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_NEVER</option>
 		</field>
 		<!-- [Fields 1650] Prev_test_result Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="prev_test_result"
-			label="COM_EHEALTH_PORTAL_HIV_COUNSELING_AND_TESTING_PREV_TEST_RESULT_LABEL"
-			description="COM_EHEALTH_PORTAL_HIV_COUNSELING_AND_TESTING_PREV_TEST_RESULT_DESCRIPTION"
+			label="COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_PREV_TEST_RESULT_LABEL"
+			description="COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_PREV_TEST_RESULT_DESCRIPTION"
 			class="list_class"
 			multiple="false"
 			required="true"
@@ -153,20 +153,20 @@
 			default="0">
 			<!-- [Fields 1913] Option Set. -->
 			<option value="0">
-				COM_EHEALTH_PORTAL_HIV_COUNSELING_AND_TESTING_NEGATIVE</option>
+				COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_NEGATIVE</option>
 			<option value="1">
-				COM_EHEALTH_PORTAL_HIV_COUNSELING_AND_TESTING_POSITIVE</option>
+				COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_POSITIVE</option>
 			<option value="2">
-				COM_EHEALTH_PORTAL_HIV_COUNSELING_AND_TESTING_UNKNOWN</option>
+				COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_UNKNOWN</option>
 			<option value="3">
-				COM_EHEALTH_PORTAL_HIV_COUNSELING_AND_TESTING_NA</option>
+				COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_NA</option>
 		</field>
 		<!-- [Fields 1650] Test_result_one Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="test_result_one"
-			label="COM_EHEALTH_PORTAL_HIV_COUNSELING_AND_TESTING_TEST_RESULT_ONE_LABEL"
-			description="COM_EHEALTH_PORTAL_HIV_COUNSELING_AND_TESTING_TEST_RESULT_ONE_DESCRIPTION"
+			label="COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_TEST_RESULT_ONE_LABEL"
+			description="COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_TEST_RESULT_ONE_DESCRIPTION"
 			class="list_class"
 			multiple="false"
 			required="true"
@@ -174,18 +174,18 @@
 			default="0">
 			<!-- [Fields 1913] Option Set. -->
 			<option value="0">
-				COM_EHEALTH_PORTAL_HIV_COUNSELING_AND_TESTING_POSITIVE</option>
+				COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_POSITIVE</option>
 			<option value="1">
-				COM_EHEALTH_PORTAL_HIV_COUNSELING_AND_TESTING_NEGATIVE</option>
+				COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_NEGATIVE</option>
 			<option value="2">
-				COM_EHEALTH_PORTAL_HIV_COUNSELING_AND_TESTING_INCONCLUSIVE</option>
+				COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_INCONCLUSIVE</option>
 		</field>
 		<!-- [Fields 1650] Test_result_two Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="test_result_two"
-			label="COM_EHEALTH_PORTAL_HIV_COUNSELING_AND_TESTING_TEST_RESULT_TWO_LABEL"
-			description="COM_EHEALTH_PORTAL_HIV_COUNSELING_AND_TESTING_TEST_RESULT_TWO_DESCRIPTION"
+			label="COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_TEST_RESULT_TWO_LABEL"
+			description="COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_TEST_RESULT_TWO_DESCRIPTION"
 			class="list_class"
 			multiple="false"
 			required="true"
@@ -193,18 +193,18 @@
 			default="0">
 			<!-- [Fields 1913] Option Set. -->
 			<option value="0">
-				COM_EHEALTH_PORTAL_HIV_COUNSELING_AND_TESTING_POSITIVE</option>
+				COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_POSITIVE</option>
 			<option value="1">
-				COM_EHEALTH_PORTAL_HIV_COUNSELING_AND_TESTING_NEGATIVE</option>
+				COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_NEGATIVE</option>
 			<option value="2">
-				COM_EHEALTH_PORTAL_HIV_COUNSELING_AND_TESTING_INCONCLUSIVE</option>
+				COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_INCONCLUSIVE</option>
 		</field>
 		<!-- [Fields 1650] Final_test_result Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="final_test_result"
-			label="COM_EHEALTH_PORTAL_HIV_COUNSELING_AND_TESTING_FINAL_TEST_RESULT_LABEL"
-			description="COM_EHEALTH_PORTAL_HIV_COUNSELING_AND_TESTING_FINAL_TEST_RESULT_DESCRIPTION"
+			label="COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_FINAL_TEST_RESULT_LABEL"
+			description="COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_FINAL_TEST_RESULT_DESCRIPTION"
 			class="list_class"
 			multiple="false"
 			required="true"
@@ -212,28 +212,28 @@
 			default="0">
 			<!-- [Fields 1913] Option Set. -->
 			<option value="0">
-				COM_EHEALTH_PORTAL_HIV_COUNSELING_AND_TESTING_NEGATIVE</option>
+				COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_NEGATIVE</option>
 			<option value="1">
-				COM_EHEALTH_PORTAL_HIV_COUNSELING_AND_TESTING_POSITIVE</option>
+				COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_POSITIVE</option>
 			<option value="2">
-				COM_EHEALTH_PORTAL_HIV_COUNSELING_AND_TESTING_UNKNOWN</option>
+				COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_UNKNOWN</option>
 			<option value="3">
-				COM_EHEALTH_PORTAL_HIV_COUNSELING_AND_TESTING_NA</option>
+				COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_NA</option>
 		</field>
 		<!-- [Fields 1650] Eqa Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="eqa"
-			label="COM_EHEALTH_PORTAL_HIV_COUNSELING_AND_TESTING_EQA_LABEL"
+			label="COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_EQA_LABEL"
 			class="list_class"
 			multiple="false"
 			useglobal="false"
 			default="0">
 			<!-- [Fields 1913] Option Set. -->
 			<option value="0">
-				COM_EHEALTH_PORTAL_HIV_COUNSELING_AND_TESTING_YES</option>
+				COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_YES</option>
 			<option value="1">
-				COM_EHEALTH_PORTAL_HIV_COUNSELING_AND_TESTING_NO</option>
+				COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_NO</option>
 		</field>
 	</fieldset>
 	
@@ -254,7 +254,7 @@
 			filter="rules"
 			validate="rules"
 			class="inputbox"
-			component="com_ehealth_portal"
+			component="com_eclinic_portal"
 			section="hiv_counseling_and_testing"
 		/>
 	</fieldset>

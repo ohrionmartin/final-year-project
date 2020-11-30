@@ -4,9 +4,9 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			29th November, 2020
+	@build			30th November, 2020
 	@created		13th August, 2020
-	@package		eHealth Portal
+	@package		eClinic Portal
 	@subpackage		default_batch_body.php
 	@author			Oh Martin <https://vdm.io>	
 	@copyright		Copyright (C) 2015. All Rights Reserved
@@ -23,5 +23,5 @@ defined('_JEXEC') or die('Restricted access');
 
 ?>
 
-<p><?php echo JText::_('COM_EHEALTH_PORTAL_PAYMENTS_BATCH_TIP'); ?></p>
+<p><?php echo JText::_('COM_ECLINIC_PORTAL_PAYMENTS_BATCH_TIP'); ?></p>
 <?php echo $this->batchDisplay; ?>

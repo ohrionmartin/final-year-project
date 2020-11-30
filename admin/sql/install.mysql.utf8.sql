@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS `#__ehealth_portal_payment` (
+CREATE TABLE IF NOT EXISTS `#__eclinic_portal_payment` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	`asset_id` INT(10) unsigned NOT NULL DEFAULT 0 COMMENT 'FK to the #__assets table.',
 	`nonpay_reason` INT(11) NOT NULL DEFAULT 0,
@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `#__ehealth_portal_payment` (
 	KEY `idx_state` (`published`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
-CREATE TABLE IF NOT EXISTS `#__ehealth_portal_general_medical_check_up` (
+CREATE TABLE IF NOT EXISTS `#__eclinic_portal_general_medical_check_up` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	`asset_id` INT(10) unsigned NOT NULL DEFAULT 0 COMMENT 'FK to the #__assets table.',
 	`bmi` FLOAT(7) NULL DEFAULT 0,
@@ -71,7 +71,7 @@ CREATE TABLE IF NOT EXISTS `#__ehealth_portal_general_medical_check_up` (
 	KEY `idx_state` (`published`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
-CREATE TABLE IF NOT EXISTS `#__ehealth_portal_antenatal_care` (
+CREATE TABLE IF NOT EXISTS `#__eclinic_portal_antenatal_care` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	`asset_id` INT(10) unsigned NOT NULL DEFAULT 0 COMMENT 'FK to the #__assets table.',
 	`caesarean_sections` INT(7) NOT NULL DEFAULT 0,
@@ -107,7 +107,7 @@ CREATE TABLE IF NOT EXISTS `#__ehealth_portal_antenatal_care` (
 	KEY `idx_state` (`published`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
-CREATE TABLE IF NOT EXISTS `#__ehealth_portal_immunisation` (
+CREATE TABLE IF NOT EXISTS `#__eclinic_portal_immunisation` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	`asset_id` INT(10) unsigned NOT NULL DEFAULT 0 COMMENT 'FK to the #__assets table.',
 	`immunisation_type` INT(11) NOT NULL DEFAULT 0,
@@ -134,7 +134,7 @@ CREATE TABLE IF NOT EXISTS `#__ehealth_portal_immunisation` (
 	KEY `idx_state` (`published`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
-CREATE TABLE IF NOT EXISTS `#__ehealth_portal_vmmc` (
+CREATE TABLE IF NOT EXISTS `#__eclinic_portal_vmmc` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	`asset_id` INT(10) unsigned NOT NULL DEFAULT 0 COMMENT 'FK to the #__assets table.',
 	`are_you_circumcised` VARCHAR(255) NOT NULL DEFAULT '',
@@ -163,7 +163,7 @@ CREATE TABLE IF NOT EXISTS `#__ehealth_portal_vmmc` (
 	KEY `idx_state` (`published`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
-CREATE TABLE IF NOT EXISTS `#__ehealth_portal_prostate_and_testicular_cancer` (
+CREATE TABLE IF NOT EXISTS `#__eclinic_portal_prostate_and_testicular_cancer` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	`asset_id` INT(10) unsigned NOT NULL DEFAULT 0 COMMENT 'FK to the #__assets table.',
 	`patient` INT(11) NOT NULL DEFAULT 0,
@@ -201,7 +201,7 @@ CREATE TABLE IF NOT EXISTS `#__ehealth_portal_prostate_and_testicular_cancer` (
 	KEY `idx_state` (`published`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
-CREATE TABLE IF NOT EXISTS `#__ehealth_portal_tuberculosis` (
+CREATE TABLE IF NOT EXISTS `#__eclinic_portal_tuberculosis` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	`asset_id` INT(10) unsigned NOT NULL DEFAULT 0 COMMENT 'FK to the #__assets table.',
 	`blood_streaked_sputum` VARCHAR(255) NOT NULL DEFAULT '',
@@ -244,7 +244,7 @@ CREATE TABLE IF NOT EXISTS `#__ehealth_portal_tuberculosis` (
 	KEY `idx_state` (`published`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
-CREATE TABLE IF NOT EXISTS `#__ehealth_portal_hiv_counseling_and_testing` (
+CREATE TABLE IF NOT EXISTS `#__eclinic_portal_hiv_counseling_and_testing` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	`asset_id` INT(10) unsigned NOT NULL DEFAULT 0 COMMENT 'FK to the #__assets table.',
 	`counseling_type` VARCHAR(255) NOT NULL DEFAULT '',
@@ -276,7 +276,7 @@ CREATE TABLE IF NOT EXISTS `#__ehealth_portal_hiv_counseling_and_testing` (
 	KEY `idx_state` (`published`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
-CREATE TABLE IF NOT EXISTS `#__ehealth_portal_family_planning` (
+CREATE TABLE IF NOT EXISTS `#__eclinic_portal_family_planning` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	`asset_id` INT(10) unsigned NOT NULL DEFAULT 0 COMMENT 'FK to the #__assets table.',
 	`diagnosis` INT(11) NOT NULL DEFAULT 0,
@@ -301,7 +301,7 @@ CREATE TABLE IF NOT EXISTS `#__ehealth_portal_family_planning` (
 	KEY `idx_state` (`published`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
-CREATE TABLE IF NOT EXISTS `#__ehealth_portal_cervical_cancer` (
+CREATE TABLE IF NOT EXISTS `#__eclinic_portal_cervical_cancer` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	`asset_id` INT(10) unsigned NOT NULL DEFAULT 0 COMMENT 'FK to the #__assets table.',
 	`cc_periods` VARCHAR(255) NOT NULL DEFAULT '',
@@ -340,7 +340,7 @@ CREATE TABLE IF NOT EXISTS `#__ehealth_portal_cervical_cancer` (
 	KEY `idx_state` (`published`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
-CREATE TABLE IF NOT EXISTS `#__ehealth_portal_breast_cancer` (
+CREATE TABLE IF NOT EXISTS `#__eclinic_portal_breast_cancer` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	`asset_id` INT(10) unsigned NOT NULL DEFAULT 0 COMMENT 'FK to the #__assets table.',
 	`bc_abnormal_skin` VARCHAR(255) NOT NULL DEFAULT '',
@@ -385,7 +385,7 @@ CREATE TABLE IF NOT EXISTS `#__ehealth_portal_breast_cancer` (
 	KEY `idx_state` (`published`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
-CREATE TABLE IF NOT EXISTS `#__ehealth_portal_test` (
+CREATE TABLE IF NOT EXISTS `#__eclinic_portal_test` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	`asset_id` INT(10) unsigned NOT NULL DEFAULT 0 COMMENT 'FK to the #__assets table.',
 	`cholesterol_reading` INT(7) NOT NULL DEFAULT 0,
@@ -422,7 +422,7 @@ CREATE TABLE IF NOT EXISTS `#__ehealth_portal_test` (
 	KEY `idx_state` (`published`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
-CREATE TABLE IF NOT EXISTS `#__ehealth_portal_testing_reason` (
+CREATE TABLE IF NOT EXISTS `#__eclinic_portal_testing_reason` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	`asset_id` INT(10) unsigned NOT NULL DEFAULT 0 COMMENT 'FK to the #__assets table.',
 	`alias` CHAR(64) NOT NULL DEFAULT '',
@@ -450,7 +450,7 @@ CREATE TABLE IF NOT EXISTS `#__ehealth_portal_testing_reason` (
 	KEY `idx_state` (`published`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
-CREATE TABLE IF NOT EXISTS `#__ehealth_portal_counseling_type` (
+CREATE TABLE IF NOT EXISTS `#__eclinic_portal_counseling_type` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	`asset_id` INT(10) unsigned NOT NULL DEFAULT 0 COMMENT 'FK to the #__assets table.',
 	`alias` CHAR(64) NOT NULL DEFAULT '',
@@ -478,7 +478,7 @@ CREATE TABLE IF NOT EXISTS `#__ehealth_portal_counseling_type` (
 	KEY `idx_state` (`published`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
-CREATE TABLE IF NOT EXISTS `#__ehealth_portal_group_health_education_topic` (
+CREATE TABLE IF NOT EXISTS `#__eclinic_portal_group_health_education_topic` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	`asset_id` INT(10) unsigned NOT NULL DEFAULT 0 COMMENT 'FK to the #__assets table.',
 	`alias` CHAR(64) NOT NULL DEFAULT '',
@@ -506,7 +506,7 @@ CREATE TABLE IF NOT EXISTS `#__ehealth_portal_group_health_education_topic` (
 	KEY `idx_state` (`published`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
-CREATE TABLE IF NOT EXISTS `#__ehealth_portal_individual_health_education_topic` (
+CREATE TABLE IF NOT EXISTS `#__eclinic_portal_individual_health_education_topic` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	`asset_id` INT(10) unsigned NOT NULL DEFAULT 0 COMMENT 'FK to the #__assets table.',
 	`alias` CHAR(64) NOT NULL DEFAULT '',
@@ -534,7 +534,7 @@ CREATE TABLE IF NOT EXISTS `#__ehealth_portal_individual_health_education_topic`
 	KEY `idx_state` (`published`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
-CREATE TABLE IF NOT EXISTS `#__ehealth_portal_individual_health_education` (
+CREATE TABLE IF NOT EXISTS `#__eclinic_portal_individual_health_education` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	`asset_id` INT(10) unsigned NOT NULL DEFAULT 0 COMMENT 'FK to the #__assets table.',
 	`individual_health_edu` INT(11) NOT NULL DEFAULT 0,
@@ -559,7 +559,7 @@ CREATE TABLE IF NOT EXISTS `#__ehealth_portal_individual_health_education` (
 	KEY `idx_state` (`published`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
-CREATE TABLE IF NOT EXISTS `#__ehealth_portal_group_health_education` (
+CREATE TABLE IF NOT EXISTS `#__eclinic_portal_group_health_education` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	`asset_id` INT(10) unsigned NOT NULL DEFAULT 0 COMMENT 'FK to the #__assets table.',
 	`group_health_edu` INT(11) NOT NULL DEFAULT 0,
@@ -584,7 +584,7 @@ CREATE TABLE IF NOT EXISTS `#__ehealth_portal_group_health_education` (
 	KEY `idx_state` (`published`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
-CREATE TABLE IF NOT EXISTS `#__ehealth_portal_clinic` (
+CREATE TABLE IF NOT EXISTS `#__eclinic_portal_clinic` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	`asset_id` INT(10) unsigned NOT NULL DEFAULT 0 COMMENT 'FK to the #__assets table.',
 	`alias` CHAR(64) NOT NULL DEFAULT '',
@@ -613,7 +613,7 @@ CREATE TABLE IF NOT EXISTS `#__ehealth_portal_clinic` (
 	KEY `idx_state` (`published`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
-CREATE TABLE IF NOT EXISTS `#__ehealth_portal_foetal_engagement` (
+CREATE TABLE IF NOT EXISTS `#__eclinic_portal_foetal_engagement` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	`asset_id` INT(10) unsigned NOT NULL DEFAULT 0 COMMENT 'FK to the #__assets table.',
 	`alias` CHAR(64) NOT NULL DEFAULT '',
@@ -641,7 +641,7 @@ CREATE TABLE IF NOT EXISTS `#__ehealth_portal_foetal_engagement` (
 	KEY `idx_state` (`published`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
-CREATE TABLE IF NOT EXISTS `#__ehealth_portal_planning_type` (
+CREATE TABLE IF NOT EXISTS `#__eclinic_portal_planning_type` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	`asset_id` INT(10) unsigned NOT NULL DEFAULT 0 COMMENT 'FK to the #__assets table.',
 	`alias` CHAR(64) NOT NULL DEFAULT '',
@@ -669,7 +669,7 @@ CREATE TABLE IF NOT EXISTS `#__ehealth_portal_planning_type` (
 	KEY `idx_state` (`published`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
-CREATE TABLE IF NOT EXISTS `#__ehealth_portal_immunisation_type` (
+CREATE TABLE IF NOT EXISTS `#__eclinic_portal_immunisation_type` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	`asset_id` INT(10) unsigned NOT NULL DEFAULT 0 COMMENT 'FK to the #__assets table.',
 	`alias` CHAR(64) NOT NULL DEFAULT '',
@@ -697,7 +697,7 @@ CREATE TABLE IF NOT EXISTS `#__ehealth_portal_immunisation_type` (
 	KEY `idx_state` (`published`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
-CREATE TABLE IF NOT EXISTS `#__ehealth_portal_foetal_lie` (
+CREATE TABLE IF NOT EXISTS `#__eclinic_portal_foetal_lie` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	`asset_id` INT(10) unsigned NOT NULL DEFAULT 0 COMMENT 'FK to the #__assets table.',
 	`alias` CHAR(64) NOT NULL DEFAULT '',
@@ -725,7 +725,7 @@ CREATE TABLE IF NOT EXISTS `#__ehealth_portal_foetal_lie` (
 	KEY `idx_state` (`published`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
-CREATE TABLE IF NOT EXISTS `#__ehealth_portal_foetal_presentation` (
+CREATE TABLE IF NOT EXISTS `#__eclinic_portal_foetal_presentation` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	`asset_id` INT(10) unsigned NOT NULL DEFAULT 0 COMMENT 'FK to the #__assets table.',
 	`alias` CHAR(64) NOT NULL DEFAULT '',
@@ -753,7 +753,7 @@ CREATE TABLE IF NOT EXISTS `#__ehealth_portal_foetal_presentation` (
 	KEY `idx_state` (`published`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
-CREATE TABLE IF NOT EXISTS `#__ehealth_portal_nonpay_reason` (
+CREATE TABLE IF NOT EXISTS `#__eclinic_portal_nonpay_reason` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	`asset_id` INT(10) unsigned NOT NULL DEFAULT 0 COMMENT 'FK to the #__assets table.',
 	`alias` CHAR(64) NOT NULL DEFAULT '',
@@ -781,7 +781,7 @@ CREATE TABLE IF NOT EXISTS `#__ehealth_portal_nonpay_reason` (
 	KEY `idx_state` (`published`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
-CREATE TABLE IF NOT EXISTS `#__ehealth_portal_immunisation_vaccine_type` (
+CREATE TABLE IF NOT EXISTS `#__eclinic_portal_immunisation_vaccine_type` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	`asset_id` INT(10) unsigned NOT NULL DEFAULT 0 COMMENT 'FK to the #__assets table.',
 	`alias` CHAR(64) NOT NULL DEFAULT '',
@@ -809,7 +809,7 @@ CREATE TABLE IF NOT EXISTS `#__ehealth_portal_immunisation_vaccine_type` (
 	KEY `idx_state` (`published`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
-CREATE TABLE IF NOT EXISTS `#__ehealth_portal_payment_amount` (
+CREATE TABLE IF NOT EXISTS `#__eclinic_portal_payment_amount` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	`asset_id` INT(10) unsigned NOT NULL DEFAULT 0 COMMENT 'FK to the #__assets table.',
 	`alias` CHAR(64) NOT NULL DEFAULT '',
@@ -837,7 +837,7 @@ CREATE TABLE IF NOT EXISTS `#__ehealth_portal_payment_amount` (
 	KEY `idx_state` (`published`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
-CREATE TABLE IF NOT EXISTS `#__ehealth_portal_diagnosis_type` (
+CREATE TABLE IF NOT EXISTS `#__eclinic_portal_diagnosis_type` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	`asset_id` INT(10) unsigned NOT NULL DEFAULT 0 COMMENT 'FK to the #__assets table.',
 	`alias` CHAR(64) NOT NULL DEFAULT '',
@@ -865,7 +865,7 @@ CREATE TABLE IF NOT EXISTS `#__ehealth_portal_diagnosis_type` (
 	KEY `idx_state` (`published`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
-CREATE TABLE IF NOT EXISTS `#__ehealth_portal_payment_type` (
+CREATE TABLE IF NOT EXISTS `#__eclinic_portal_payment_type` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	`asset_id` INT(10) unsigned NOT NULL DEFAULT 0 COMMENT 'FK to the #__assets table.',
 	`alias` CHAR(64) NOT NULL DEFAULT '',
@@ -893,7 +893,7 @@ CREATE TABLE IF NOT EXISTS `#__ehealth_portal_payment_type` (
 	KEY `idx_state` (`published`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
-CREATE TABLE IF NOT EXISTS `#__ehealth_portal_medication` (
+CREATE TABLE IF NOT EXISTS `#__eclinic_portal_medication` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	`asset_id` INT(10) unsigned NOT NULL DEFAULT 0 COMMENT 'FK to the #__assets table.',
 	`alias` CHAR(64) NOT NULL DEFAULT '',
@@ -921,7 +921,7 @@ CREATE TABLE IF NOT EXISTS `#__ehealth_portal_medication` (
 	KEY `idx_state` (`published`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
-CREATE TABLE IF NOT EXISTS `#__ehealth_portal_site` (
+CREATE TABLE IF NOT EXISTS `#__eclinic_portal_site` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	`asset_id` INT(10) unsigned NOT NULL DEFAULT 0 COMMENT 'FK to the #__assets table.',
 	`alias` CHAR(64) NOT NULL DEFAULT '',

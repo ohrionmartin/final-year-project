@@ -4,10 +4,10 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			29th November, 2020
+	@build			30th November, 2020
 	@created		13th August, 2020
-	@package		eHealth Portal
-	@subpackage		ehealth_portal.php
+	@package		eClinic Portal
+	@subpackage		eclinic_portal.php
 	@author			Oh Martin <https://vdm.io>	
 	@copyright		Copyright (C) 2015. All Rights Reserved
 	@license		GNU/GPL Version 2 or later - http://www.gnu.org/licenses/gpl-2.0.html
@@ -22,9 +22,9 @@
 defined('_JEXEC') or die('Restricted access');
 
 /**
- * Ehealth_portal Model
+ * Eclinic_portal Model
  */
-class Ehealth_portalModelEhealth_portal extends JModelList
+class Eclinic_portalModelEclinic_portal extends JModelList
 {
 	public function getIcons()
 	{
@@ -141,7 +141,7 @@ class Ehealth_portalModelEhealth_portal extends JModelList
 		foreach($viewGroups as $group => $views)
 		{
 			$i = 0;
-			if (Ehealth_portalHelper::checkArray($views))
+			if (Eclinic_portalHelper::checkArray($views))
 			{
 				foreach($views as $view)
 				{
@@ -157,7 +157,7 @@ class Ehealth_portalModelEhealth_portal extends JModelList
 							$alt 		= $name;
 							$url 		= $url;
 							$image 		= $name . '.' . $type;
-							$name 		= 'COM_EHEALTH_PORTAL_DASHBOARD_' . Ehealth_portalHelper::safeString($name,'U');
+							$name 		= 'COM_ECLINIC_PORTAL_DASHBOARD_' . Eclinic_portalHelper::safeString($name,'U');
 						}
 					}
 					// internal views
@@ -179,10 +179,10 @@ class Ehealth_portalModelEhealth_portal extends JModelList
 							switch($action)
 							{
 								case 'add':
-									$url	= 'index.php?option=com_ehealth_portal&view=' . $name . '&layout=edit';
+									$url	= 'index.php?option=com_eclinic_portal&view=' . $name . '&layout=edit';
 									$image	= $name . '_' . $action.  '.' . $type;
 									$alt	= $name . '&nbsp;' . $action;
-									$name	= 'COM_EHEALTH_PORTAL_DASHBOARD_'.Ehealth_portalHelper::safeString($name,'U').'_ADD';
+									$name	= 'COM_ECLINIC_PORTAL_DASHBOARD_'.Eclinic_portalHelper::safeString($name,'U').'_ADD';
 									$add	= true;
 								break;
 								default:
@@ -194,12 +194,12 @@ class Ehealth_portalModelEhealth_portal extends JModelList
 									}
 									else
 									{
-										$extension = 'com_ehealth_portal.' . $name;
+										$extension = 'com_eclinic_portal.' . $name;
 									}
 									$url	= 'index.php?option=com_categories&view=categories&extension=' . $extension;
 									$image	= $name . '_' . $action . '.' . $type;
 									$alt	= $viewName . '&nbsp;' . $action;
-									$name	= 'COM_EHEALTH_PORTAL_DASHBOARD_' . Ehealth_portalHelper::safeString($name,'U') . '_' . Ehealth_portalHelper::safeString($action,'U');
+									$name	= 'COM_ECLINIC_PORTAL_DASHBOARD_' . Eclinic_portalHelper::safeString($name,'U') . '_' . Eclinic_portalHelper::safeString($action,'U');
 								break;
 							}
 						}
@@ -207,9 +207,9 @@ class Ehealth_portalModelEhealth_portal extends JModelList
 						{
 							$viewName 	= $name;
 							$alt 		= $name;
-							$url 		= 'index.php?option=com_ehealth_portal&view=' . $name;
+							$url 		= 'index.php?option=com_eclinic_portal&view=' . $name;
 							$image 		= $name . '.' . $type;
-							$name 		= 'COM_EHEALTH_PORTAL_DASHBOARD_' . Ehealth_portalHelper::safeString($name,'U');
+							$name 		= 'COM_ECLINIC_PORTAL_DASHBOARD_' . Eclinic_portalHelper::safeString($name,'U');
 							$hover		= false;
 						}
 					}
@@ -217,13 +217,13 @@ class Ehealth_portalModelEhealth_portal extends JModelList
 					{
 						$viewName 	= $view;
 						$alt 		= $view;
-						$url 		= 'index.php?option=com_ehealth_portal&view=' . $view;
+						$url 		= 'index.php?option=com_eclinic_portal&view=' . $view;
 						$image 		= $view . '.png';
 						$name 		= ucwords($view).'<br /><br />';
 						$hover		= false;
 					}
 					// first make sure the view access is set
-					if (Ehealth_portalHelper::checkArray($viewAccess))
+					if (Eclinic_portalHelper::checkArray($viewAccess))
 					{
 						// setup some defaults
 						$dashboard_add = false;
@@ -231,11 +231,11 @@ class Ehealth_portalModelEhealth_portal extends JModelList
 						$accessTo = '';
 						$accessAdd = '';
 						// access checking start
-						$accessCreate = (isset($viewAccess[$viewName.'.create'])) ? Ehealth_portalHelper::checkString($viewAccess[$viewName.'.create']):false;
-						$accessAccess = (isset($viewAccess[$viewName.'.access'])) ? Ehealth_portalHelper::checkString($viewAccess[$viewName.'.access']):false;
+						$accessCreate = (isset($viewAccess[$viewName.'.create'])) ? Eclinic_portalHelper::checkString($viewAccess[$viewName.'.create']):false;
+						$accessAccess = (isset($viewAccess[$viewName.'.access'])) ? Eclinic_portalHelper::checkString($viewAccess[$viewName.'.access']):false;
 						// set main controllers
-						$accessDashboard_add = (isset($viewAccess[$viewName.'.dashboard_add'])) ? Ehealth_portalHelper::checkString($viewAccess[$viewName.'.dashboard_add']):false;
-						$accessDashboard_list = (isset($viewAccess[$viewName.'.dashboard_list'])) ? Ehealth_portalHelper::checkString($viewAccess[$viewName.'.dashboard_list']):false;
+						$accessDashboard_add = (isset($viewAccess[$viewName.'.dashboard_add'])) ? Eclinic_portalHelper::checkString($viewAccess[$viewName.'.dashboard_add']):false;
+						$accessDashboard_list = (isset($viewAccess[$viewName.'.dashboard_list'])) ? Eclinic_portalHelper::checkString($viewAccess[$viewName.'.dashboard_list']):false;
 						// check for adding access
 						if ($add && $accessCreate)
 						{
@@ -253,16 +253,16 @@ class Ehealth_portalModelEhealth_portal extends JModelList
 						// set main access controllers
 						if ($accessDashboard_add)
 						{
-							$dashboard_add	= $user->authorise($viewAccess[$viewName.'.dashboard_add'], 'com_ehealth_portal');
+							$dashboard_add	= $user->authorise($viewAccess[$viewName.'.dashboard_add'], 'com_eclinic_portal');
 						}
 						if ($accessDashboard_list)
 						{
-							$dashboard_list = $user->authorise($viewAccess[$viewName.'.dashboard_list'], 'com_ehealth_portal');
+							$dashboard_list = $user->authorise($viewAccess[$viewName.'.dashboard_list'], 'com_eclinic_portal');
 						}
-						if (Ehealth_portalHelper::checkString($accessAdd) && Ehealth_portalHelper::checkString($accessTo))
+						if (Eclinic_portalHelper::checkString($accessAdd) && Eclinic_portalHelper::checkString($accessTo))
 						{
 							// check access
-							if($user->authorise($accessAdd, 'com_ehealth_portal') && $user->authorise($accessTo, 'com_ehealth_portal') && $dashboard_add)
+							if($user->authorise($accessAdd, 'com_eclinic_portal') && $user->authorise($accessTo, 'com_eclinic_portal') && $dashboard_add)
 							{
 								$icons[$group][$i]			= new StdClass;
 								$icons[$group][$i]->url 	= $url;
@@ -271,10 +271,10 @@ class Ehealth_portalModelEhealth_portal extends JModelList
 								$icons[$group][$i]->alt 	= $alt;
 							}
 						}
-						elseif (Ehealth_portalHelper::checkString($accessTo))
+						elseif (Eclinic_portalHelper::checkString($accessTo))
 						{
 							// check access
-							if($user->authorise($accessTo, 'com_ehealth_portal') && $dashboard_list)
+							if($user->authorise($accessTo, 'com_eclinic_portal') && $dashboard_list)
 							{
 								$icons[$group][$i]			= new StdClass;
 								$icons[$group][$i]->url 	= $url;
@@ -283,10 +283,10 @@ class Ehealth_portalModelEhealth_portal extends JModelList
 								$icons[$group][$i]->alt 	= $alt;
 							}
 						}
-						elseif (Ehealth_portalHelper::checkString($accessAdd))
+						elseif (Eclinic_portalHelper::checkString($accessAdd))
 						{
 							// check access
-							if($user->authorise($accessAdd, 'com_ehealth_portal') && $dashboard_add)
+							if($user->authorise($accessAdd, 'com_eclinic_portal') && $dashboard_add)
 							{
 								$icons[$group][$i]			= new StdClass;
 								$icons[$group][$i]->url 	= $url;

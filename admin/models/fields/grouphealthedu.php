@@ -4,9 +4,9 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			29th November, 2020
+	@build			30th November, 2020
 	@created		13th August, 2020
-	@package		eHealth Portal
+	@package		eClinic Portal
 	@subpackage		grouphealthedu.php
 	@author			Oh Martin <https://vdm.io>	
 	@copyright		Copyright (C) 2015. All Rights Reserved
@@ -26,7 +26,7 @@ jimport('joomla.form.helper');
 JFormHelper::loadFieldClass('list');
 
 /**
- * Grouphealthedu Form Field class for the Ehealth_portal component
+ * Grouphealthedu Form Field class for the Eclinic_portal component
  */
 class JFormFieldGrouphealthedu extends JFormFieldList
 {
@@ -88,18 +88,18 @@ class JFormFieldGrouphealthedu extends JFormFieldList
 			// [Fields 5467] get user object
 			$user = JFactory::getUser();
 			// [Fields 5470] only add if user allowed to create group_health_education_topic
-			if ($user->authorise('core.create', 'com_ehealth_portal') && $app->isAdmin()) // TODO for now only in admin area.
+			if ($user->authorise('core.create', 'com_eclinic_portal') && $app->isAdmin()) // TODO for now only in admin area.
 			{
 				// [Fields 5494] build Create button
-				$button[] = '<a id="'.$button_code_name.'Create" class="btn btn-small btn-success hasTooltip" title="'.JText::sprintf('COM_EHEALTH_PORTAL_CREATE_NEW_S', $button_label).'" style="border-radius: 0px 4px 4px 0px; padding: 4px 4px 4px 7px;"
-					href="index.php?option=com_ehealth_portal&amp;view=group_health_education_topic&amp;layout=edit'.$ref.'" >
+				$button[] = '<a id="'.$button_code_name.'Create" class="btn btn-small btn-success hasTooltip" title="'.JText::sprintf('COM_ECLINIC_PORTAL_CREATE_NEW_S', $button_label).'" style="border-radius: 0px 4px 4px 0px; padding: 4px 4px 4px 7px;"
+					href="index.php?option=com_eclinic_portal&amp;view=group_health_education_topic&amp;layout=edit'.$ref.'" >
 					<span class="icon-new icon-white"></span></a>';
 			}
 			// [Fields 5506] only add if user allowed to edit group_health_education_topic
-			if ($user->authorise('core.edit', 'com_ehealth_portal') && $app->isAdmin()) // TODO for now only in admin area.
+			if ($user->authorise('core.edit', 'com_eclinic_portal') && $app->isAdmin()) // TODO for now only in admin area.
 			{
 				// [Fields 5530] build edit button
-				$button[] = '<a id="'.$button_code_name.'Edit" class="btn btn-small hasTooltip" title="'.JText::sprintf('COM_EHEALTH_PORTAL_EDIT_S', $button_label).'" style="display: none; padding: 4px 4px 4px 7px;" href="#" >
+				$button[] = '<a id="'.$button_code_name.'Edit" class="btn btn-small hasTooltip" title="'.JText::sprintf('COM_ECLINIC_PORTAL_EDIT_S', $button_label).'" style="display: none; padding: 4px 4px 4px 7px;" href="#" >
 					<span class="icon-edit"></span></a>';
 				// [Fields 5538] build script
 				$script[] = "
@@ -118,7 +118,7 @@ class JFormFieldGrouphealthedu extends JFormFieldList
 							jQuery('#".$button_code_name."Create').hide();
 							// show edit button
 							jQuery('#".$button_code_name."Edit').show();
-							var url = 'index.php?option=com_ehealth_portal&view=group_health_education_topics&task=group_health_education_topic.edit&id='+value+'".$refJ."';
+							var url = 'index.php?option=com_eclinic_portal&view=group_health_education_topics&task=group_health_education_topic.edit&id='+value+'".$refJ."';
 							jQuery('#".$button_code_name."Edit').attr('href', url);
 						} else {
 							// show the create button
@@ -154,13 +154,13 @@ class JFormFieldGrouphealthedu extends JFormFieldList
 		$db = JFactory::getDBO();
 		$query = $db->getQuery(true);
 		$query->select($db->quoteName(array('a.id','a.name'),array('id','group_health_edu_name')));
-		$query->from($db->quoteName('#__ehealth_portal_group_health_education_topic', 'a'));
+		$query->from($db->quoteName('#__eclinic_portal_group_health_education_topic', 'a'));
 		$query->where($db->quoteName('a.published') . ' = 1');
 		$query->order('a.name ASC');
 		// Implement View Level Access (if set in table)
-		if (!$user->authorise('core.options', 'com_ehealth_portal'))
+		if (!$user->authorise('core.options', 'com_eclinic_portal'))
 		{
-			$columns = $db->getTableColumns('#__ehealth_portal_group_health_education_topic');
+			$columns = $db->getTableColumns('#__eclinic_portal_group_health_education_topic');
 			if(isset($columns['access']))
 			{
 				$groups = implode(',', $user->getAuthorisedViewLevels());

@@ -4,9 +4,9 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			29th November, 2020
+	@build			30th November, 2020
 	@created		13th August, 2020
-	@package		eHealth Portal
+	@package		eClinic Portal
 	@subpackage		clinic.php
 	@author			Oh Martin <https://vdm.io>	
 	@copyright		Copyright (C) 2015. All Rights Reserved
@@ -26,9 +26,9 @@ use Joomla\String\StringHelper;
 use Joomla\Utilities\ArrayHelper;
 
 /**
- * Ehealth_portal Clinic Model
+ * Eclinic_portal Clinic Model
  */
-class Ehealth_portalModelClinic extends JModelAdmin
+class Eclinic_portalModelClinic extends JModelAdmin
 {
 	/**
 	 * The tab layout fields array.
@@ -52,7 +52,7 @@ class Ehealth_portalModelClinic extends JModelAdmin
 	 * @var        string    The prefix to use with controller messages.
 	 * @since   1.6
 	 */
-	protected $text_prefix = 'COM_EHEALTH_PORTAL';
+	protected $text_prefix = 'COM_ECLINIC_PORTAL';
 
 	/**
 	 * The type alias for this content type.
@@ -60,7 +60,7 @@ class Ehealth_portalModelClinic extends JModelAdmin
 	 * @var      string
 	 * @since    3.2
 	 */
-	public $typeAlias = 'com_ehealth_portal.clinic';
+	public $typeAlias = 'com_eclinic_portal.clinic';
 
 	/**
 	 * Returns a Table object, always creating it
@@ -73,10 +73,10 @@ class Ehealth_portalModelClinic extends JModelAdmin
 	 *
 	 * @since   1.6
 	 */
-	public function getTable($type = 'clinic', $prefix = 'Ehealth_portalTable', $config = array())
+	public function getTable($type = 'clinic', $prefix = 'Eclinic_portalTable', $config = array())
 	{
 		// add table path for when model gets used from other component
-		$this->addTablePath(JPATH_ADMINISTRATOR . '/components/com_ehealth_portal/tables');
+		$this->addTablePath(JPATH_ADMINISTRATOR . '/components/com_eclinic_portal/tables');
 		// get instance of the table
 		return JTable::getInstance($type, $prefix, $config);
 	}
@@ -113,7 +113,7 @@ class Ehealth_portalModelClinic extends JModelAdmin
 			if (!empty($item->id))
 			{
 				$item->tags = new JHelperTags;
-				$item->tags->getTagIds($item->id, 'com_ehealth_portal.clinic');
+				$item->tags->getTagIds($item->id, 'com_eclinic_portal.clinic');
 			}
 		}
 
@@ -151,7 +151,7 @@ class Ehealth_portalModelClinic extends JModelAdmin
 		}
 
 		// [Interpretation 18377] Get the form.
-		$form = $this->loadForm('com_ehealth_portal.clinic', 'clinic', $options, $clear, $xpath);
+		$form = $this->loadForm('com_eclinic_portal.clinic', 'clinic', $options, $clear, $xpath);
 
 		if (empty($form))
 		{
@@ -175,8 +175,8 @@ class Ehealth_portalModelClinic extends JModelAdmin
 
 		// [Interpretation 18559] Check for existing item.
 		// [Interpretation 18561] Modify the form based on Edit State access controls.
-		if ($id != 0 && (!$user->authorise('core.edit.state', 'com_ehealth_portal.clinic.' . (int) $id))
-			|| ($id == 0 && !$user->authorise('core.edit.state', 'com_ehealth_portal')))
+		if ($id != 0 && (!$user->authorise('core.edit.state', 'com_eclinic_portal.clinic.' . (int) $id))
+			|| ($id == 0 && !$user->authorise('core.edit.state', 'com_eclinic_portal')))
 		{
 			// [Interpretation 18593] Disable fields for display.
 			$form->setFieldAttribute('ordering', 'disabled', 'true');
@@ -192,7 +192,7 @@ class Ehealth_portalModelClinic extends JModelAdmin
 			$form->setValue('created_by', null, $user->id);
 		}
 		// [Interpretation 18616] Modify the form based on Edit Creaded By access controls.
-		if (!$user->authorise('core.edit.created_by', 'com_ehealth_portal'))
+		if (!$user->authorise('core.edit.created_by', 'com_eclinic_portal'))
 		{
 			// [Interpretation 18643] Disable fields for display.
 			$form->setFieldAttribute('created_by', 'disabled', 'true');
@@ -202,7 +202,7 @@ class Ehealth_portalModelClinic extends JModelAdmin
 			$form->setFieldAttribute('created_by', 'filter', 'unset');
 		}
 		// [Interpretation 18656] Modify the form based on Edit Creaded Date access controls.
-		if (!$user->authorise('core.edit.created', 'com_ehealth_portal'))
+		if (!$user->authorise('core.edit.created', 'com_eclinic_portal'))
 		{
 			// [Interpretation 18682] Disable fields for display.
 			$form->setFieldAttribute('created', 'disabled', 'true');
@@ -210,8 +210,8 @@ class Ehealth_portalModelClinic extends JModelAdmin
 			$form->setFieldAttribute('created', 'filter', 'unset');
 		}
 		// [Interpretation 18808] Modify the form based on Edit Clinic Name access controls.
-		if ($id != 0 && (!$user->authorise('clinic.edit.clinic_name', 'com_ehealth_portal.clinic.' . (int) $id))
-			|| ($id == 0 && !$user->authorise('clinic.edit.clinic_name', 'com_ehealth_portal')))
+		if ($id != 0 && (!$user->authorise('clinic.edit.clinic_name', 'com_eclinic_portal.clinic.' . (int) $id))
+			|| ($id == 0 && !$user->authorise('clinic.edit.clinic_name', 'com_eclinic_portal')))
 		{
 			// [Interpretation 18819] Disable fields for display.
 			$form->setFieldAttribute('clinic_name', 'disabled', 'true');
@@ -227,8 +227,8 @@ class Ehealth_portalModelClinic extends JModelAdmin
 			}
 		}
 		// [Interpretation 18808] Modify the form based on Edit Description access controls.
-		if ($id != 0 && (!$user->authorise('clinic.edit.description', 'com_ehealth_portal.clinic.' . (int) $id))
-			|| ($id == 0 && !$user->authorise('clinic.edit.description', 'com_ehealth_portal')))
+		if ($id != 0 && (!$user->authorise('clinic.edit.description', 'com_eclinic_portal.clinic.' . (int) $id))
+			|| ($id == 0 && !$user->authorise('clinic.edit.description', 'com_eclinic_portal')))
 		{
 			// [Interpretation 18819] Disable fields for display.
 			$form->setFieldAttribute('description', 'disabled', 'true');
@@ -270,7 +270,7 @@ class Ehealth_portalModelClinic extends JModelAdmin
 	 */
 	public function getScript()
 	{
-		return 'administrator/components/com_ehealth_portal/models/forms/clinic.js';
+		return 'administrator/components/com_eclinic_portal/models/forms/clinic.js';
 	}
     
 	/**
@@ -293,7 +293,7 @@ class Ehealth_portalModelClinic extends JModelAdmin
 
 			$user = JFactory::getUser();
 			// [Interpretation 19114] The record has been set. Check the record permissions.
-			return $user->authorise('core.delete', 'com_ehealth_portal.clinic.' . (int) $record->id);
+			return $user->authorise('core.delete', 'com_eclinic_portal.clinic.' . (int) $record->id);
 		}
 		return false;
 	}
@@ -315,7 +315,7 @@ class Ehealth_portalModelClinic extends JModelAdmin
 		if ($recordId)
 		{
 			// [Interpretation 19238] The record has been set. Check the record permissions.
-			$permission = $user->authorise('core.edit.state', 'com_ehealth_portal.clinic.' . (int) $recordId);
+			$permission = $user->authorise('core.edit.state', 'com_eclinic_portal.clinic.' . (int) $recordId);
 			if (!$permission && !is_null($permission))
 			{
 				return false;
@@ -338,7 +338,7 @@ class Ehealth_portalModelClinic extends JModelAdmin
 	{
 		// [Interpretation 18989] Check specific edit permission then general edit permission.
 
-		return JFactory::getUser()->authorise('core.edit', 'com_ehealth_portal.clinic.'. ((int) isset($data[$key]) ? $data[$key] : 0)) or parent::allowEdit($data, $key);
+		return JFactory::getUser()->authorise('core.edit', 'com_eclinic_portal.clinic.'. ((int) isset($data[$key]) ? $data[$key] : 0)) or parent::allowEdit($data, $key);
 	}
     
 	/**
@@ -379,7 +379,7 @@ class Ehealth_portalModelClinic extends JModelAdmin
 				$db = JFactory::getDbo();
 				$query = $db->getQuery(true)
 					->select('MAX(ordering)')
-					->from($db->quoteName('#__ehealth_portal_clinic'));
+					->from($db->quoteName('#__eclinic_portal_clinic'));
 				$db->setQuery($query);
 				$max = $db->loadResult();
 
@@ -409,13 +409,13 @@ class Ehealth_portalModelClinic extends JModelAdmin
 	protected function loadFormData() 
 	{
 		// Check the session for previously entered form data.
-		$data = JFactory::getApplication()->getUserState('com_ehealth_portal.edit.clinic.data', array());
+		$data = JFactory::getApplication()->getUserState('com_eclinic_portal.edit.clinic.data', array());
 
 		if (empty($data))
 		{
 			$data = $this->getItem();
 			// run the perprocess of the data
-			$this->preprocessData('com_ehealth_portal.clinic', $data);
+			$this->preprocessData('com_eclinic_portal.clinic', $data);
 		}
 
 		return $data;
@@ -509,7 +509,7 @@ class Ehealth_portalModelClinic extends JModelAdmin
 		$this->tableClassName		= get_class($this->table);
 		$this->contentType		= new JUcmType;
 		$this->type			= $this->contentType->getTypeByTable($this->tableClassName);
-		$this->canDo			= Ehealth_portalHelper::getActions('clinic');
+		$this->canDo			= Eclinic_portalHelper::getActions('clinic');
 		$this->batchSet			= true;
 
 		if (!$this->canDo->get('core.batch'))
@@ -587,7 +587,7 @@ class Ehealth_portalModelClinic extends JModelAdmin
 			$this->user 		= JFactory::getUser();
 			$this->table 		= $this->getTable();
 			$this->tableClassName	= get_class($this->table);
-			$this->canDo		= Ehealth_portalHelper::getActions('clinic');
+			$this->canDo		= Eclinic_portalHelper::getActions('clinic');
 		}
 
 		if (!$this->canDo->get('core.create') || !$this->canDo->get('core.batch'))
@@ -646,7 +646,7 @@ class Ehealth_portalModelClinic extends JModelAdmin
 			list($this->table->clinic_name, $this->table->alias) = $this->_generateNewTitle($this->table->alias, $this->table->clinic_name);
 
 			// [Interpretation 9537] insert all set values
-			if (Ehealth_portalHelper::checkArray($values))
+			if (Eclinic_portalHelper::checkArray($values))
 			{
 				foreach ($values as $key => $value)
 				{
@@ -658,7 +658,7 @@ class Ehealth_portalModelClinic extends JModelAdmin
 			}
 
 			// [Interpretation 9552] update all unique fields
-			if (Ehealth_portalHelper::checkArray($uniqueFields))
+			if (Eclinic_portalHelper::checkArray($uniqueFields))
 			{
 				foreach ($uniqueFields as $uniqueField)
 				{
@@ -725,7 +725,7 @@ class Ehealth_portalModelClinic extends JModelAdmin
 			$this->user		= JFactory::getUser();
 			$this->table		= $this->getTable();
 			$this->tableClassName	= get_class($this->table);
-			$this->canDo		= Ehealth_portalHelper::getActions('clinic');
+			$this->canDo		= Eclinic_portalHelper::getActions('clinic');
 		}
 
 		if (!$this->canDo->get('core.edit') && !$this->canDo->get('core.batch'))
@@ -769,7 +769,7 @@ class Ehealth_portalModelClinic extends JModelAdmin
 			}
 
 			// [Interpretation 9166] insert all set values.
-			if (Ehealth_portalHelper::checkArray($values))
+			if (Eclinic_portalHelper::checkArray($values))
 			{
 				foreach ($values as $key => $value)
 				{
@@ -883,11 +883,11 @@ class Ehealth_portalModelClinic extends JModelAdmin
 					$data['alias'] = JFilterOutput::stringURLSafe($data['clinic_name']);
 				}
 
-				$table = JTable::getInstance('clinic', 'ehealth_portalTable');
+				$table = JTable::getInstance('clinic', 'eclinic_portalTable');
 
 				if ($table->load(array('alias' => $data['alias'])) && ($table->id != $data['id'] || $data['id'] == 0))
 				{
-					$msg = JText::_('COM_EHEALTH_PORTAL_CLINIC_SAVE_WARNING');
+					$msg = JText::_('COM_ECLINIC_PORTAL_CLINIC_SAVE_WARNING');
 				}
 
 				$data['alias'] = $this->_generateNewTitle($data['alias']);
@@ -904,7 +904,7 @@ class Ehealth_portalModelClinic extends JModelAdmin
 		{
 			// [Interpretation 9811] Automatic handling of other unique fields
 			$uniqueFields = $this->getUniqueFields();
-			if (Ehealth_portalHelper::checkArray($uniqueFields))
+			if (Eclinic_portalHelper::checkArray($uniqueFields))
 			{
 				foreach ($uniqueFields as $uniqueField)
 				{
@@ -962,7 +962,7 @@ class Ehealth_portalModelClinic extends JModelAdmin
 		while ($table->load(array('alias' => $alias)))
 		{
 			// [Interpretation 9866] Check if this is an array of titles
-			if (Ehealth_portalHelper::checkArray($title))
+			if (Eclinic_portalHelper::checkArray($title))
 			{
 				foreach($title as $nr => &$_title)
 				{
@@ -977,7 +977,7 @@ class Ehealth_portalModelClinic extends JModelAdmin
 			$alias = StringHelper::increment($alias, 'dash');
 		}
 		// [Interpretation 9888] Check if this is an array of titles
-		if (Ehealth_portalHelper::checkArray($title))
+		if (Eclinic_portalHelper::checkArray($title))
 		{
 			$title[] = $alias;
 			return $title;

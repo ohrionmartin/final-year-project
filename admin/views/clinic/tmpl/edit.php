@@ -4,9 +4,9 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			29th November, 2020
+	@build			30th November, 2020
 	@created		13th August, 2020
-	@package		eHealth Portal
+	@package		eClinic Portal
 	@subpackage		edit.php
 	@author			Oh Martin <https://vdm.io>	
 	@copyright		Copyright (C) 2015. All Rights Reserved
@@ -32,7 +32,7 @@ $componentParams = $this->params; // will be removed just use $this->params inst
 	// waiting spinner
 	var outerDiv = jQuery('body');
 	jQuery('<div id="loading"></div>')
-		.css("background", "rgba(255, 255, 255, .8) url('components/com_ehealth_portal/assets/images/import.gif') 50% 15% no-repeat")
+		.css("background", "rgba(255, 255, 255, .8) url('components/com_eclinic_portal/assets/images/import.gif') 50% 15% no-repeat")
 		.css("top", outerDiv.position().top - jQuery(window).scrollTop())
 		.css("left", outerDiv.position().left - jQuery(window).scrollLeft())
 		.css("width", outerDiv.width())
@@ -46,19 +46,19 @@ $componentParams = $this->params; // will be removed just use $this->params inst
 	jQuery('#loading').show();
 	// when page is ready remove and show
 	jQuery(window).load(function() {
-		jQuery('#ehealth_portal_loader').fadeIn('fast');
+		jQuery('#eclinic_portal_loader').fadeIn('fast');
 		jQuery('#loading').hide();
 	});
 </script>
-<div id="ehealth_portal_loader" style="display: none;">
-<form action="<?php echo JRoute::_('index.php?option=com_ehealth_portal&layout=edit&id='. (int) $this->item->id . $this->referral); ?>" method="post" name="adminForm" id="adminForm" class="form-validate" enctype="multipart/form-data">
+<div id="eclinic_portal_loader" style="display: none;">
+<form action="<?php echo JRoute::_('index.php?option=com_eclinic_portal&layout=edit&id='. (int) $this->item->id . $this->referral); ?>" method="post" name="adminForm" id="adminForm" class="form-validate" enctype="multipart/form-data">
 
 	<?php echo JLayoutHelper::render('clinic.details_above', $this); ?>
 <div class="form-horizontal">
 
 	<?php echo JHtml::_('bootstrap.startTabSet', 'clinicTab', array('active' => 'details')); ?>
 
-	<?php echo JHtml::_('bootstrap.addTab', 'clinicTab', 'details', JText::_('COM_EHEALTH_PORTAL_CLINIC_DETAILS', true)); ?>
+	<?php echo JHtml::_('bootstrap.addTab', 'clinicTab', 'details', JText::_('COM_ECLINIC_PORTAL_CLINIC_DETAILS', true)); ?>
 		<div class="row-fluid form-horizontal-desktop">
 		</div>
 		<div class="row-fluid form-horizontal-desktop">
@@ -73,7 +73,7 @@ $componentParams = $this->params; // will be removed just use $this->params inst
 	<?php echo JLayoutHelper::render('joomla.edit.params', $this); ?>
 
 	<?php if ($this->canDo->get('core.edit.created_by') || $this->canDo->get('core.edit.created') || $this->canDo->get('core.edit.state') || ($this->canDo->get('core.delete') && $this->canDo->get('core.edit.state'))) : ?>
-	<?php echo JHtml::_('bootstrap.addTab', 'clinicTab', 'publishing', JText::_('COM_EHEALTH_PORTAL_CLINIC_PUBLISHING', true)); ?>
+	<?php echo JHtml::_('bootstrap.addTab', 'clinicTab', 'publishing', JText::_('COM_ECLINIC_PORTAL_CLINIC_PUBLISHING', true)); ?>
 		<div class="row-fluid form-horizontal-desktop">
 			<div class="span6">
 				<?php echo JLayoutHelper::render('clinic.publishing', $this); ?>
@@ -86,7 +86,7 @@ $componentParams = $this->params; // will be removed just use $this->params inst
 	<?php endif; ?>
 
 	<?php if ($this->canDo->get('core.admin')) : ?>
-	<?php echo JHtml::_('bootstrap.addTab', 'clinicTab', 'permissions', JText::_('COM_EHEALTH_PORTAL_CLINIC_PERMISSION', true)); ?>
+	<?php echo JHtml::_('bootstrap.addTab', 'clinicTab', 'permissions', JText::_('COM_ECLINIC_PORTAL_CLINIC_PERMISSION', true)); ?>
 		<div class="row-fluid form-horizontal-desktop">
 			<div class="span12">
 				<fieldset class="adminform">

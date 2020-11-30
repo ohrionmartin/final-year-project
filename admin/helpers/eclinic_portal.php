@@ -4,10 +4,10 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			29th November, 2020
+	@build			30th November, 2020
 	@created		13th August, 2020
-	@package		eHealth Portal
-	@subpackage		ehealth_portal.php
+	@package		eClinic Portal
+	@subpackage		eclinic_portal.php
 	@author			Oh Martin <https://vdm.io>	
 	@copyright		Copyright (C) 2015. All Rights Reserved
 	@license		GNU/GPL Version 2 or later - http://www.gnu.org/licenses/gpl-2.0.html
@@ -30,9 +30,9 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 /**
- * Ehealth_portal component helper.
+ * Eclinic_portal component helper.
  */
-abstract class Ehealth_portalHelper
+abstract class Eclinic_portalHelper
 {
 	/**
 	 * Composer Switch
@@ -73,7 +73,7 @@ abstract class Ehealth_portalHelper
 	 */
 	public static function manifest()
 	{
-		$manifestUrl = JPATH_ADMINISTRATOR."/components/com_ehealth_portal/ehealth_portal.xml";
+		$manifestUrl = JPATH_ADMINISTRATOR."/components/com_eclinic_portal/eclinic_portal.xml";
 		return simplexml_load_file($manifestUrl);
 	}
 
@@ -101,7 +101,7 @@ abstract class Ehealth_portalHelper
 	public static function getContributors()
 	{
 		// get params
-		$params	= JComponentHelper::getParams('com_ehealth_portal');
+		$params	= JComponentHelper::getParams('com_eclinic_portal');
 		// start contributors array
 		$contributors = array();
 		// get all Contributors (max 20)
@@ -149,58 +149,58 @@ abstract class Ehealth_portalHelper
 		// load user for access menus
 		$user = JFactory::getUser();
 		// load the submenus to sidebar
-		JHtmlSidebar::addEntry(JText::_('COM_EHEALTH_PORTAL_SUBMENU_DASHBOARD'), 'index.php?option=com_ehealth_portal&view=ehealth_portal', $submenu === 'ehealth_portal');
-		if ($user->authorise('payment.access', 'com_ehealth_portal') && $user->authorise('payment.submenu', 'com_ehealth_portal'))
+		JHtmlSidebar::addEntry(JText::_('COM_ECLINIC_PORTAL_SUBMENU_DASHBOARD'), 'index.php?option=com_eclinic_portal&view=eclinic_portal', $submenu === 'eclinic_portal');
+		if ($user->authorise('payment.access', 'com_eclinic_portal') && $user->authorise('payment.submenu', 'com_eclinic_portal'))
 		{
-			JHtmlSidebar::addEntry(JText::_('COM_EHEALTH_PORTAL_SUBMENU_PAYMENTS'), 'index.php?option=com_ehealth_portal&view=payments', $submenu === 'payments');
+			JHtmlSidebar::addEntry(JText::_('COM_ECLINIC_PORTAL_SUBMENU_PAYMENTS'), 'index.php?option=com_eclinic_portal&view=payments', $submenu === 'payments');
 		}
-		if ($user->authorise('general_medical_check_up.access', 'com_ehealth_portal') && $user->authorise('general_medical_check_up.submenu', 'com_ehealth_portal'))
+		if ($user->authorise('general_medical_check_up.access', 'com_eclinic_portal') && $user->authorise('general_medical_check_up.submenu', 'com_eclinic_portal'))
 		{
-			JHtmlSidebar::addEntry(JText::_('COM_EHEALTH_PORTAL_SUBMENU_GENERAL_MEDICAL_CHECK_UPS'), 'index.php?option=com_ehealth_portal&view=general_medical_check_ups', $submenu === 'general_medical_check_ups');
+			JHtmlSidebar::addEntry(JText::_('COM_ECLINIC_PORTAL_SUBMENU_GENERAL_MEDICAL_CHECK_UPS'), 'index.php?option=com_eclinic_portal&view=general_medical_check_ups', $submenu === 'general_medical_check_ups');
 		}
-		if ($user->authorise('antenatal_care.access', 'com_ehealth_portal') && $user->authorise('antenatal_care.submenu', 'com_ehealth_portal'))
+		if ($user->authorise('antenatal_care.access', 'com_eclinic_portal') && $user->authorise('antenatal_care.submenu', 'com_eclinic_portal'))
 		{
-			JHtmlSidebar::addEntry(JText::_('COM_EHEALTH_PORTAL_SUBMENU_ANTENATAL_CARES'), 'index.php?option=com_ehealth_portal&view=antenatal_cares', $submenu === 'antenatal_cares');
+			JHtmlSidebar::addEntry(JText::_('COM_ECLINIC_PORTAL_SUBMENU_ANTENATAL_CARES'), 'index.php?option=com_eclinic_portal&view=antenatal_cares', $submenu === 'antenatal_cares');
 		}
-		if ($user->authorise('immunisation.access', 'com_ehealth_portal') && $user->authorise('immunisation.submenu', 'com_ehealth_portal'))
+		if ($user->authorise('immunisation.access', 'com_eclinic_portal') && $user->authorise('immunisation.submenu', 'com_eclinic_portal'))
 		{
-			JHtmlSidebar::addEntry(JText::_('COM_EHEALTH_PORTAL_SUBMENU_IMMUNISATIONS'), 'index.php?option=com_ehealth_portal&view=immunisations', $submenu === 'immunisations');
+			JHtmlSidebar::addEntry(JText::_('COM_ECLINIC_PORTAL_SUBMENU_IMMUNISATIONS'), 'index.php?option=com_eclinic_portal&view=immunisations', $submenu === 'immunisations');
 		}
-		if ($user->authorise('vmmc.access', 'com_ehealth_portal') && $user->authorise('vmmc.submenu', 'com_ehealth_portal'))
+		if ($user->authorise('vmmc.access', 'com_eclinic_portal') && $user->authorise('vmmc.submenu', 'com_eclinic_portal'))
 		{
-			JHtmlSidebar::addEntry(JText::_('COM_EHEALTH_PORTAL_SUBMENU_VMMCS'), 'index.php?option=com_ehealth_portal&view=vmmcs', $submenu === 'vmmcs');
+			JHtmlSidebar::addEntry(JText::_('COM_ECLINIC_PORTAL_SUBMENU_VMMCS'), 'index.php?option=com_eclinic_portal&view=vmmcs', $submenu === 'vmmcs');
 		}
-		if ($user->authorise('prostate_and_testicular_cancer.access', 'com_ehealth_portal') && $user->authorise('prostate_and_testicular_cancer.submenu', 'com_ehealth_portal'))
+		if ($user->authorise('prostate_and_testicular_cancer.access', 'com_eclinic_portal') && $user->authorise('prostate_and_testicular_cancer.submenu', 'com_eclinic_portal'))
 		{
-			JHtmlSidebar::addEntry(JText::_('COM_EHEALTH_PORTAL_SUBMENU_PROSTATE_AND_TESTICULAR_CANCERS'), 'index.php?option=com_ehealth_portal&view=prostate_and_testicular_cancers', $submenu === 'prostate_and_testicular_cancers');
+			JHtmlSidebar::addEntry(JText::_('COM_ECLINIC_PORTAL_SUBMENU_PROSTATE_AND_TESTICULAR_CANCERS'), 'index.php?option=com_eclinic_portal&view=prostate_and_testicular_cancers', $submenu === 'prostate_and_testicular_cancers');
 		}
-		if ($user->authorise('tuberculosis.access', 'com_ehealth_portal') && $user->authorise('tuberculosis.submenu', 'com_ehealth_portal'))
+		if ($user->authorise('tuberculosis.access', 'com_eclinic_portal') && $user->authorise('tuberculosis.submenu', 'com_eclinic_portal'))
 		{
-			JHtmlSidebar::addEntry(JText::_('COM_EHEALTH_PORTAL_SUBMENU_TUBERCULOSES'), 'index.php?option=com_ehealth_portal&view=tuberculoses', $submenu === 'tuberculoses');
+			JHtmlSidebar::addEntry(JText::_('COM_ECLINIC_PORTAL_SUBMENU_TUBERCULOSES'), 'index.php?option=com_eclinic_portal&view=tuberculoses', $submenu === 'tuberculoses');
 		}
-		if ($user->authorise('hiv_counseling_and_testing.access', 'com_ehealth_portal') && $user->authorise('hiv_counseling_and_testing.submenu', 'com_ehealth_portal'))
+		if ($user->authorise('hiv_counseling_and_testing.access', 'com_eclinic_portal') && $user->authorise('hiv_counseling_and_testing.submenu', 'com_eclinic_portal'))
 		{
-			JHtmlSidebar::addEntry(JText::_('COM_EHEALTH_PORTAL_SUBMENU_HIV_COUNSELINGS_AND_TESTINGS'), 'index.php?option=com_ehealth_portal&view=hiv_counselings_and_testings', $submenu === 'hiv_counselings_and_testings');
+			JHtmlSidebar::addEntry(JText::_('COM_ECLINIC_PORTAL_SUBMENU_HIV_COUNSELINGS_AND_TESTINGS'), 'index.php?option=com_eclinic_portal&view=hiv_counselings_and_testings', $submenu === 'hiv_counselings_and_testings');
 		}
-		if ($user->authorise('family_planning.access', 'com_ehealth_portal') && $user->authorise('family_planning.submenu', 'com_ehealth_portal'))
+		if ($user->authorise('family_planning.access', 'com_eclinic_portal') && $user->authorise('family_planning.submenu', 'com_eclinic_portal'))
 		{
-			JHtmlSidebar::addEntry(JText::_('COM_EHEALTH_PORTAL_SUBMENU_FAMILY_PLANNINGS'), 'index.php?option=com_ehealth_portal&view=family_plannings', $submenu === 'family_plannings');
+			JHtmlSidebar::addEntry(JText::_('COM_ECLINIC_PORTAL_SUBMENU_FAMILY_PLANNINGS'), 'index.php?option=com_eclinic_portal&view=family_plannings', $submenu === 'family_plannings');
 		}
-		if ($user->authorise('cervical_cancer.access', 'com_ehealth_portal') && $user->authorise('cervical_cancer.submenu', 'com_ehealth_portal'))
+		if ($user->authorise('cervical_cancer.access', 'com_eclinic_portal') && $user->authorise('cervical_cancer.submenu', 'com_eclinic_portal'))
 		{
-			JHtmlSidebar::addEntry(JText::_('COM_EHEALTH_PORTAL_SUBMENU_CERVICAL_CANCERS'), 'index.php?option=com_ehealth_portal&view=cervical_cancers', $submenu === 'cervical_cancers');
+			JHtmlSidebar::addEntry(JText::_('COM_ECLINIC_PORTAL_SUBMENU_CERVICAL_CANCERS'), 'index.php?option=com_eclinic_portal&view=cervical_cancers', $submenu === 'cervical_cancers');
 		}
-		if ($user->authorise('breast_cancer.access', 'com_ehealth_portal') && $user->authorise('breast_cancer.submenu', 'com_ehealth_portal'))
+		if ($user->authorise('breast_cancer.access', 'com_eclinic_portal') && $user->authorise('breast_cancer.submenu', 'com_eclinic_portal'))
 		{
-			JHtmlSidebar::addEntry(JText::_('COM_EHEALTH_PORTAL_SUBMENU_BREAST_CANCERS'), 'index.php?option=com_ehealth_portal&view=breast_cancers', $submenu === 'breast_cancers');
+			JHtmlSidebar::addEntry(JText::_('COM_ECLINIC_PORTAL_SUBMENU_BREAST_CANCERS'), 'index.php?option=com_eclinic_portal&view=breast_cancers', $submenu === 'breast_cancers');
 		}
-		if ($user->authorise('test.access', 'com_ehealth_portal') && $user->authorise('test.submenu', 'com_ehealth_portal'))
+		if ($user->authorise('test.access', 'com_eclinic_portal') && $user->authorise('test.submenu', 'com_eclinic_portal'))
 		{
-			JHtmlSidebar::addEntry(JText::_('COM_EHEALTH_PORTAL_SUBMENU_TESTS'), 'index.php?option=com_ehealth_portal&view=tests', $submenu === 'tests');
+			JHtmlSidebar::addEntry(JText::_('COM_ECLINIC_PORTAL_SUBMENU_TESTS'), 'index.php?option=com_eclinic_portal&view=tests', $submenu === 'tests');
 		}
-		if ($user->authorise('medication.access', 'com_ehealth_portal') && $user->authorise('medication.submenu', 'com_ehealth_portal'))
+		if ($user->authorise('medication.access', 'com_eclinic_portal') && $user->authorise('medication.submenu', 'com_eclinic_portal'))
 		{
-			JHtmlSidebar::addEntry(JText::_('COM_EHEALTH_PORTAL_SUBMENU_MEDICATIONS'), 'index.php?option=com_ehealth_portal&view=medications', $submenu === 'medications');
+			JHtmlSidebar::addEntry(JText::_('COM_ECLINIC_PORTAL_SUBMENU_MEDICATIONS'), 'index.php?option=com_eclinic_portal&view=medications', $submenu === 'medications');
 		}
 	}
 
@@ -436,7 +436,7 @@ abstract class Ehealth_portalHelper
 	 * @return  mix string/int/float
 	 *
 	 */
-	public static function getVar($table, $where = null, $whereString = 'user', $what = 'id', $operator = '=', $main = 'ehealth_portal')
+	public static function getVar($table, $where = null, $whereString = 'user', $what = 'id', $operator = '=', $main = 'eclinic_portal')
 	{
 		if(!$where)
 		{
@@ -490,7 +490,7 @@ abstract class Ehealth_portalHelper
 	 * @return  array
 	 *
 	 */
-	public static function getVars($table, $where = null, $whereString = 'user', $what = 'id', $operator = 'IN', $main = 'ehealth_portal', $unique = true)
+	public static function getVars($table, $where = null, $whereString = 'user', $what = 'id', $operator = 'IN', $main = 'eclinic_portal', $unique = true)
 	{
 		if(!$where)
 		{
@@ -603,7 +603,7 @@ abstract class Ehealth_portalHelper
 		$db = JFactory::getDbo();
 		$query = $db->getQuery(true);
 		$query->select(array('a.published'));
-		$query->from('#__ehealth_portal_'.$type.' AS a');
+		$query->from('#__eclinic_portal_'.$type.' AS a');
 		$query->where('a.id = '. (int) $id);
 		$query->where('a.published = 1');
 		$db->setQuery($query);
@@ -646,7 +646,7 @@ abstract class Ehealth_portalHelper
 	 * @return  object   The JObject of permission/authorised actions
 	 * 
 	 */
-	public static function getActions($view, &$record = null, $views = null, $target = null, $component = 'ehealth_portal', $user = 'null')
+	public static function getActions($view, &$record = null, $views = null, $target = null, $component = 'eclinic_portal', $user = 'null')
 	{
 		// load the user if not given
 		if (!self::checkObject($user))
@@ -834,7 +834,7 @@ abstract class Ehealth_portalHelper
 	/**
 	 * Get any component's model
 	 */
-	public static function getModel($name, $path = JPATH_COMPONENT_ADMINISTRATOR, $Component = 'Ehealth_portal', $config = array())
+	public static function getModel($name, $path = JPATH_COMPONENT_ADMINISTRATOR, $Component = 'Eclinic_portal', $config = array())
 	{
 		// fix the name
 		$name = self::safeString($name);
@@ -885,10 +885,10 @@ abstract class Ehealth_portalHelper
 	public static function setAsset($id, $table, $inherit = true)
 	{
 		$parent = JTable::getInstance('Asset');
-		$parent->loadByName('com_ehealth_portal');
+		$parent->loadByName('com_eclinic_portal');
 		
 		$parentId = $parent->id;
-		$name     = 'com_ehealth_portal.'.$table.'.'.$id;
+		$name     = 'com_eclinic_portal.'.$table.'.'.$id;
 		$title    = '';
 
 		$asset = JTable::getInstance('Asset');
@@ -914,7 +914,7 @@ abstract class Ehealth_portalHelper
 			$asset->name      = $name;
 			$asset->title     = $title;
 			// get the default asset rules
-			$rules = self::getDefaultAssetRules('com_ehealth_portal', $table, $inherit);
+			$rules = self::getDefaultAssetRules('com_eclinic_portal', $table, $inherit);
 			if ($rules instanceof JAccessRules)
 			{
 				$asset->rules = (string) $rules;
@@ -935,7 +935,7 @@ abstract class Ehealth_portalHelper
 				$object->asset_id = (int) $asset->id;
 
 				// Update their asset_id to link to the asset table.
-				return JFactory::getDbo()->updateObject('#__ehealth_portal_'.$table, $object, 'id');
+				return JFactory::getDbo()->updateObject('#__eclinic_portal_'.$table, $object, 'id');
 			}
 		}
 		return false;
@@ -1472,7 +1472,7 @@ abstract class Ehealth_portalHelper
 		if (!self::checkString(self::$langTag))
 		{
 			// get global value
-			self::$langTag = JComponentHelper::getParams('com_ehealth_portal')->get('language', 'en-GB');
+			self::$langTag = JComponentHelper::getParams('com_eclinic_portal')->get('language', 'en-GB');
 		}
 		// Transliterate on the language requested
 		$lang = Language::getInstance(self::$langTag);

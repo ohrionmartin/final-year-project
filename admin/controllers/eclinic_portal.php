@@ -4,10 +4,10 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			29th November, 2020
+	@build			30th November, 2020
 	@created		13th August, 2020
-	@package		eHealth Portal
-	@subpackage		ehealth_portal.php
+	@package		eClinic Portal
+	@subpackage		eclinic_portal.php
 	@author			Oh Martin <https://vdm.io>	
 	@copyright		Copyright (C) 2015. All Rights Reserved
 	@license		GNU/GPL Version 2 or later - http://www.gnu.org/licenses/gpl-2.0.html
@@ -22,9 +22,9 @@
 defined('_JEXEC') or die('Restricted access');
 
 /**
- * Ehealth_portal Controller
+ * Eclinic_portal Controller
  */
-class Ehealth_portalControllerEhealth_portal extends JControllerAdmin
+class Eclinic_portalControllerEclinic_portal extends JControllerAdmin
 {
 
 }

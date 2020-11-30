@@ -4,9 +4,9 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			29th November, 2020
+	@build			30th November, 2020
 	@created		13th August, 2020
-	@package		eHealth Portal
+	@package		eClinic Portal
 	@subpackage		default.php
 	@author			Oh Martin <https://vdm.io>	
 	@copyright		Copyright (C) 2015. All Rights Reserved
@@ -29,7 +29,7 @@ JHtml::_('formbehavior.chosen', 'select');
 
 if ($this->saveOrder)
 {
-	$saveOrderingUrl = 'index.php?option=com_ehealth_portal&task=sites.saveOrderAjax&tmpl=component';
+	$saveOrderingUrl = 'index.php?option=com_eclinic_portal&task=sites.saveOrderAjax&tmpl=component';
 	JHtml::_('sortablelist.sortable', 'siteList', 'adminForm', strtolower($this->listDirn), $saveOrderingUrl);
 }
 
@@ -51,7 +51,7 @@ if ($this->saveOrder)
 		Joomla.tableOrdering(order, dirn, '');
 	}
 </script>
-<form action="<?php echo JRoute::_('index.php?option=com_ehealth_portal&view=sites'); ?>" method="post" name="adminForm" id="adminForm">
+<form action="<?php echo JRoute::_('index.php?option=com_eclinic_portal&view=sites'); ?>" method="post" name="adminForm" id="adminForm">
 <?php if(!empty( $this->sidebar)): ?>
 	<div id="j-sidebar-container" class="span2">
 		<?php echo $this->sidebar; ?>
@@ -78,7 +78,7 @@ if ($this->saveOrder)
                 'bootstrap.renderModal',
                 'collapseModal',
                 array(
-                    'title' => JText::_('COM_EHEALTH_PORTAL_SITES_BATCH_OPTIONS'),
+                    'title' => JText::_('COM_ECLINIC_PORTAL_SITES_BATCH_OPTIONS'),
                     'footer' => $this->loadTemplate('batch_footer')
                 ),
                 $this->loadTemplate('batch_body')

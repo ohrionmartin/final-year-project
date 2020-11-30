@@ -4,9 +4,9 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			29th November, 2020
+	@build			30th November, 2020
 	@created		13th August, 2020
-	@package		eHealth Portal
+	@package		eClinic Portal
 	@subpackage		immunisation.php
 	@author			Oh Martin <https://vdm.io>	
 	@copyright		Copyright (C) 2015. All Rights Reserved
@@ -26,7 +26,7 @@ use Joomla\Utilities\ArrayHelper;
 /**
  * Immunisation Controller
  */
-class Ehealth_portalControllerImmunisation extends JControllerForm
+class Eclinic_portalControllerImmunisation extends JControllerForm
 {
 	/**
 	 * Current or most recently performed task.
@@ -64,7 +64,7 @@ class Ehealth_portalControllerImmunisation extends JControllerForm
 		// [Interpretation 17943] Get user object.
 		$user = JFactory::getUser();
 		// [Interpretation 17957] Access check.
-		$access = $user->authorise('immunisation.access', 'com_ehealth_portal');
+		$access = $user->authorise('immunisation.access', 'com_eclinic_portal');
 		if (!$access)
 		{
 			return false;
@@ -95,10 +95,10 @@ class Ehealth_portalControllerImmunisation extends JControllerForm
 		if ($recordId)
 		{
 			// [Interpretation 18232] The record has been set. Check the record permissions.
-			$permission = $user->authorise('core.edit', 'com_ehealth_portal.immunisation.' . (int) $recordId);
+			$permission = $user->authorise('core.edit', 'com_eclinic_portal.immunisation.' . (int) $recordId);
 			if (!$permission)
 			{
-				if ($user->authorise('core.edit.own', 'com_ehealth_portal.immunisation.' . $recordId))
+				if ($user->authorise('core.edit.own', 'com_eclinic_portal.immunisation.' . $recordId))
 				{
 					// [Interpretation 18280] Now test the owner is the user.
 					$ownerId = (int) isset($data['created_by']) ? $data['created_by'] : 0;
@@ -117,7 +117,7 @@ class Ehealth_portalControllerImmunisation extends JControllerForm
 					// [Interpretation 18296] If the owner matches 'me' then allow.
 					if ($ownerId == $user->id)
 					{
-						if ($user->authorise('core.edit.own', 'com_ehealth_portal'))
+						if ($user->authorise('core.edit.own', 'com_eclinic_portal'))
 						{
 							return true;
 						}
@@ -179,7 +179,7 @@ class Ehealth_portalControllerImmunisation extends JControllerForm
 		$model = $this->getModel('Immunisation', '', array());
 
 		// Preset the redirect
-		$this->setRedirect(JRoute::_('index.php?option=com_ehealth_portal&view=immunisations' . $this->getRedirectToListAppend(), false));
+		$this->setRedirect(JRoute::_('index.php?option=com_eclinic_portal&view=immunisations' . $this->getRedirectToListAppend(), false));
 
 		return parent::batch($model);
 	}

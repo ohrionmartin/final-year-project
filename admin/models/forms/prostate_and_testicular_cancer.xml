@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form
-	addrulepath="/administrator/components/com_ehealth_portal/models/rules"
-	addfieldpath="/administrator/components/com_ehealth_portal/models/fields"
+	addrulepath="/administrator/components/com_eclinic_portal/models/rules"
+	addfieldpath="/administrator/components/com_eclinic_portal/models/fields"
 >
 	<fieldset name="details">
 		<!-- [Fields 636] Default Fields. -->
@@ -16,8 +16,8 @@
 		<field
 			name="created"
 			type="calendar"
-			label="COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_CREATED_DATE_LABEL"
-			description="COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_CREATED_DATE_DESC"
+			label="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_CREATED_DATE_LABEL"
+			description="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_CREATED_DATE_DESC"
 			size="22"
 			format="%Y-%m-%d %H:%M:%S"
 			filter="user_utc"
@@ -26,8 +26,8 @@
 		<field
 			name="created_by"
 			type="user"
-			label="COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_CREATED_BY_LABEL"
-			description="COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_CREATED_BY_DESC"
+			label="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_CREATED_BY_LABEL"
+			description="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_CREATED_BY_DESC"
 		/>
 		<!-- [Fields 700] Published Field. Type: List (joomla) -->
 		<field name="published" type="list" label="JSTATUS"
@@ -44,12 +44,12 @@
 		</field>
 		<!-- [Fields 727] Date Modified Field. Type: Calendar (joomla) -->
 		<field name="modified" type="calendar" class="readonly"
-			label="COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_MODIFIED_DATE_LABEL" description="COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_MODIFIED_DATE_DESC"
+			label="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_MODIFIED_DATE_LABEL" description="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_MODIFIED_DATE_DESC"
 			size="22" readonly="true" format="%Y-%m-%d %H:%M:%S" filter="user_utc" />
 		<!-- [Fields 742] User Modified Field. Type: User (joomla) -->
 		<field name="modified_by" type="user"
-			label="COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_MODIFIED_BY_LABEL"
-			description="COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_MODIFIED_BY_DESC"
+			label="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_MODIFIED_BY_LABEL"
+			description="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_MODIFIED_BY_DESC"
 			class="readonly"
 			readonly="true"
 			filter="unset"
@@ -67,7 +67,7 @@
 			name="ordering"
 			type="number"
 			class="inputbox validate-ordering"
-			label="COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_ORDERING_LABEL"
+			label="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_ORDERING_LABEL"
 			description=""
 			default="0"
 			size="6"
@@ -78,8 +78,8 @@
 			name="version"
 			type="text"
 			class="readonly"
-			label="COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_VERSION_LABEL"
-			description="COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_VERSION_DESC"
+			label="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_VERSION_LABEL"
+			description="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_VERSION_DESC"
 			size="6"
 			readonly="true"
 			filter="unset"
@@ -89,14 +89,14 @@
 		<field
 			type="user"
 			name="patient"
-			label="COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_PATIENT_LABEL"
+			label="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_PATIENT_LABEL"
 		/>
 		<!-- [Fields 1650] Ptc_age Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="ptc_age"
-			label="COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_PTC_AGE_LABEL"
-			description="COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_PTC_AGE_DESCRIPTION"
+			label="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_PTC_AGE_LABEL"
+			description="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_PTC_AGE_DESCRIPTION"
 			class="list_class"
 			multiple="false"
 			required="true"
@@ -104,16 +104,16 @@
 			default="0">
 			<!-- [Fields 1913] Option Set. -->
 			<option value="0">
-				COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_YES</option>
+				COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_YES</option>
 			<option value="1">
-				COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_NO</option>
+				COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_NO</option>
 		</field>
 		<!-- [Fields 1650] Ptc_fam_history Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="ptc_fam_history"
-			label="COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_PTC_FAM_HISTORY_LABEL"
-			description="COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_PTC_FAM_HISTORY_DESCRIPTION"
+			label="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_PTC_FAM_HISTORY_LABEL"
+			description="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_PTC_FAM_HISTORY_DESCRIPTION"
 			class="list_class"
 			multiple="false"
 			required="true"
@@ -121,16 +121,16 @@
 			default="0">
 			<!-- [Fields 1913] Option Set. -->
 			<option value="0">
-				COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_YES</option>
+				COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_YES</option>
 			<option value="1">
-				COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_NO</option>
+				COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_NO</option>
 		</field>
 		<!-- [Fields 1650] Ptc_diet Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="ptc_diet"
-			label="COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_PTC_DIET_LABEL"
-			description="COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_PTC_DIET_DESCRIPTION"
+			label="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_PTC_DIET_LABEL"
+			description="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_PTC_DIET_DESCRIPTION"
 			class="list_class"
 			multiple="false"
 			required="true"
@@ -138,16 +138,16 @@
 			default="0">
 			<!-- [Fields 1913] Option Set. -->
 			<option value="0">
-				COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_YES</option>
+				COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_YES</option>
 			<option value="1">
-				COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_NO</option>
+				COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_NO</option>
 		</field>
 		<!-- [Fields 1650] Ptc_phy_activity Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="ptc_phy_activity"
-			label="COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_PTC_PHY_ACTIVITY_LABEL"
-			description="COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_PTC_PHY_ACTIVITY_DESCRIPTION"
+			label="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_PTC_PHY_ACTIVITY_LABEL"
+			description="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_PTC_PHY_ACTIVITY_DESCRIPTION"
 			class="list_class"
 			multiple="false"
 			required="true"
@@ -155,16 +155,16 @@
 			default="0">
 			<!-- [Fields 1913] Option Set. -->
 			<option value="0">
-				COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_YES</option>
+				COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_YES</option>
 			<option value="1">
-				COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_NO</option>
+				COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_NO</option>
 		</field>
 		<!-- [Fields 1650] Ptc_overweight Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="ptc_overweight"
-			label="COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_PTC_OVERWEIGHT_LABEL"
-			description="COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_PTC_OVERWEIGHT_DESCRIPTION"
+			label="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_PTC_OVERWEIGHT_LABEL"
+			description="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_PTC_OVERWEIGHT_DESCRIPTION"
 			class="list_class"
 			multiple="false"
 			required="true"
@@ -172,16 +172,16 @@
 			default="0">
 			<!-- [Fields 1913] Option Set. -->
 			<option value="0">
-				COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_YES</option>
+				COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_YES</option>
 			<option value="1">
-				COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_NO</option>
+				COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_NO</option>
 		</field>
 		<!-- [Fields 1650] Ptc_urinate Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="ptc_urinate"
-			label="COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_PTC_URINATE_LABEL"
-			description="COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_PTC_URINATE_DESCRIPTION"
+			label="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_PTC_URINATE_LABEL"
+			description="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_PTC_URINATE_DESCRIPTION"
 			class="list_class"
 			multiple="false"
 			required="true"
@@ -189,16 +189,16 @@
 			default="0">
 			<!-- [Fields 1913] Option Set. -->
 			<option value="0">
-				COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_YES</option>
+				COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_YES</option>
 			<option value="1">
-				COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_NO</option>
+				COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_NO</option>
 		</field>
 		<!-- [Fields 1650] Ptc_urine_freq Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="ptc_urine_freq"
-			label="COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_PTC_URINE_FREQ_LABEL"
-			description="COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_PTC_URINE_FREQ_DESCRIPTION"
+			label="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_PTC_URINE_FREQ_LABEL"
+			description="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_PTC_URINE_FREQ_DESCRIPTION"
 			class="list_class"
 			multiple="false"
 			required="true"
@@ -206,93 +206,93 @@
 			default="0">
 			<!-- [Fields 1913] Option Set. -->
 			<option value="0">
-				COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_YES</option>
+				COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_YES</option>
 			<option value="1">
-				COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_NO</option>
+				COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_NO</option>
 		</field>
 		<!-- [Fields 1937] Txt_ptc_urine_freq Field. Type: Textarea. (joomla) -->
 		<field
 			type="textarea"
 			name="txt_ptc_urine_freq"
-			label="COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_TXT_PTC_URINE_FREQ_LABEL"
+			label="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_TXT_PTC_URINE_FREQ_LABEL"
 			rows="5"
 			cols="20"
-			description="COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_TXT_PTC_URINE_FREQ_DESCRIPTION"
+			description="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_TXT_PTC_URINE_FREQ_DESCRIPTION"
 			class="text_area span12"
 			filter="HTML"
-			hint="COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_TXT_PTC_URINE_FREQ_HINT"
+			hint="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_TXT_PTC_URINE_FREQ_HINT"
 		/>
 		<!-- [Fields 1937] Txt_ptc_urinate Field. Type: Textarea. (joomla) -->
 		<field
 			type="textarea"
 			name="txt_ptc_urinate"
-			label="COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_TXT_PTC_URINATE_LABEL"
+			label="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_TXT_PTC_URINATE_LABEL"
 			rows="5"
 			cols="20"
-			description="COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_TXT_PTC_URINATE_DESCRIPTION"
+			description="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_TXT_PTC_URINATE_DESCRIPTION"
 			class="text_area span12"
 			filter="HTML"
-			hint="COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_TXT_PTC_URINATE_HINT"
+			hint="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_TXT_PTC_URINATE_HINT"
 		/>
 		<!-- [Fields 1937] Txt_ptc_overweight Field. Type: Textarea. (joomla) -->
 		<field
 			type="textarea"
 			name="txt_ptc_overweight"
-			label="COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_TXT_PTC_OVERWEIGHT_LABEL"
+			label="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_TXT_PTC_OVERWEIGHT_LABEL"
 			rows="5"
 			cols="20"
-			description="COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_TXT_PTC_OVERWEIGHT_DESCRIPTION"
+			description="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_TXT_PTC_OVERWEIGHT_DESCRIPTION"
 			class="text_area span12"
 			filter="HTML"
-			hint="COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_TXT_PTC_OVERWEIGHT_HINT"
+			hint="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_TXT_PTC_OVERWEIGHT_HINT"
 		/>
 		<!-- [Fields 1937] Txt_ptc_phy_activity Field. Type: Textarea. (joomla) -->
 		<field
 			type="textarea"
 			name="txt_ptc_phy_activity"
-			label="COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_TXT_PTC_PHY_ACTIVITY_LABEL"
+			label="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_TXT_PTC_PHY_ACTIVITY_LABEL"
 			rows="5"
 			cols="20"
-			description="COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_TXT_PTC_PHY_ACTIVITY_DESCRIPTION"
+			description="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_TXT_PTC_PHY_ACTIVITY_DESCRIPTION"
 			class="text_area span12"
 			filter="HTML"
-			hint="COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_TXT_PTC_PHY_ACTIVITY_HINT"
+			hint="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_TXT_PTC_PHY_ACTIVITY_HINT"
 		/>
 		<!-- [Fields 1937] Txt_ptc_diet Field. Type: Textarea. (joomla) -->
 		<field
 			type="textarea"
 			name="txt_ptc_diet"
-			label="COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_TXT_PTC_DIET_LABEL"
+			label="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_TXT_PTC_DIET_LABEL"
 			rows="5"
 			cols="20"
-			description="COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_TXT_PTC_DIET_DESCRIPTION"
+			description="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_TXT_PTC_DIET_DESCRIPTION"
 			class="text_area span12"
 			filter="HTML"
-			hint="COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_TXT_PTC_DIET_HINT"
+			hint="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_TXT_PTC_DIET_HINT"
 		/>
 		<!-- [Fields 1937] Txt_ptc_fam_history Field. Type: Textarea. (joomla) -->
 		<field
 			type="textarea"
 			name="txt_ptc_fam_history"
-			label="COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_TXT_PTC_FAM_HISTORY_LABEL"
+			label="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_TXT_PTC_FAM_HISTORY_LABEL"
 			rows="5"
 			cols="20"
-			description="COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_TXT_PTC_FAM_HISTORY_DESCRIPTION"
+			description="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_TXT_PTC_FAM_HISTORY_DESCRIPTION"
 			class="text_area span12"
 			filter="HTML"
-			hint="COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_TXT_PTC_FAM_HISTORY_HINT"
+			hint="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_TXT_PTC_FAM_HISTORY_HINT"
 		/>
 		<!-- [Fields 1937] Txt_ptc_age Field. Type: Textarea. (joomla) -->
 		<field
 			type="textarea"
 			name="txt_ptc_age"
-			label="COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_TXT_PTC_AGE_LABEL"
+			label="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_TXT_PTC_AGE_LABEL"
 			rows="5"
 			cols="20"
-			description="COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_TXT_PTC_AGE_DESCRIPTION"
+			description="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_TXT_PTC_AGE_DESCRIPTION"
 			class="text_area span12"
 			filter="HTML"
-			hint="COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_TXT_PTC_AGE_HINT"
+			hint="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_TXT_PTC_AGE_HINT"
 		/>
 	</fieldset>
 	
@@ -313,7 +313,7 @@
 			filter="rules"
 			validate="rules"
 			class="inputbox"
-			component="com_ehealth_portal"
+			component="com_eclinic_portal"
 			section="prostate_and_testicular_cancer"
 		/>
 	</fieldset>

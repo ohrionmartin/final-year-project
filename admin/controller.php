@@ -4,9 +4,9 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			29th November, 2020
+	@build			30th November, 2020
 	@created		13th August, 2020
-	@package		eHealth Portal
+	@package		eClinic Portal
 	@subpackage		controller.php
 	@author			Oh Martin <https://vdm.io>	
 	@copyright		Copyright (C) 2015. All Rights Reserved
@@ -24,9 +24,9 @@ defined('_JEXEC') or die('Restricted access');
 use Joomla\Utilities\ArrayHelper;
 
 /**
- * General Controller of Ehealth_portal component
+ * General Controller of Eclinic_portal component
  */
-class Ehealth_portalController extends JControllerLegacy
+class Eclinic_portalController extends JControllerLegacy
 {
 	/**
 	 * Constructor.
@@ -40,7 +40,7 @@ class Ehealth_portalController extends JControllerLegacy
 	public function __construct($config = array())
 	{
 		// set the default view
-		$config['default_view'] = 'ehealth_portal';
+		$config['default_view'] = 'eclinic_portal';
 
 		parent::__construct($config);
 	}
@@ -53,15 +53,15 @@ class Ehealth_portalController extends JControllerLegacy
 	function display($cachable = false, $urlparams = false)
 	{
 		// set default view if not set
-		$view   = $this->input->getCmd('view', 'ehealth_portal');
+		$view   = $this->input->getCmd('view', 'eclinic_portal');
 		$data	= $this->getViewRelation($view);
 		$layout	= $this->input->get('layout', null, 'WORD');
 		$id    	= $this->input->getInt('id');
 
 		// Check for edit form.
-		if(Ehealth_portalHelper::checkArray($data))
+		if(Eclinic_portalHelper::checkArray($data))
 		{
-			if ($data['edit'] && $layout == 'edit' && !$this->checkEditId('com_ehealth_portal.edit.'.$data['view'], $id))
+			if ($data['edit'] && $layout == 'edit' && !$this->checkEditId('com_eclinic_portal.edit.'.$data['view'], $id))
 			{
 				// Somehow the person just went to the form - we don't allow that.
 				$this->setError(JText::sprintf('JLIB_APPLICATION_ERROR_UNHELD_ID', $id));
@@ -70,21 +70,21 @@ class Ehealth_portalController extends JControllerLegacy
 				$ref 	= $this->input->getCmd('ref', 0);
 				$refid 	= $this->input->getInt('refid', 0);
 				// set redirect
-				if ($refid > 0 && Ehealth_portalHelper::checkString($ref))
+				if ($refid > 0 && Eclinic_portalHelper::checkString($ref))
 				{
 					// redirect to item of ref
-					$this->setRedirect(JRoute::_('index.php?option=com_ehealth_portal&view='.(string)$ref.'&layout=edit&id='.(int)$refid, false));
+					$this->setRedirect(JRoute::_('index.php?option=com_eclinic_portal&view='.(string)$ref.'&layout=edit&id='.(int)$refid, false));
 				}
-				elseif (Ehealth_portalHelper::checkString($ref))
+				elseif (Eclinic_portalHelper::checkString($ref))
 				{
 
 					// redirect to ref
-					$this->setRedirect(JRoute::_('index.php?option=com_ehealth_portal&view='.(string)$ref, false));
+					$this->setRedirect(JRoute::_('index.php?option=com_eclinic_portal&view='.(string)$ref, false));
 				}
 				else
 				{
 					// normal redirect back to the list view
-					$this->setRedirect(JRoute::_('index.php?option=com_ehealth_portal&view='.$data['views'], false));
+					$this->setRedirect(JRoute::_('index.php?option=com_eclinic_portal&view='.$data['views'], false));
 				}
 
 				return false;
@@ -97,7 +97,7 @@ class Ehealth_portalController extends JControllerLegacy
 	protected function getViewRelation($view)
 	{
 		// check the we have a value
-		if (Ehealth_portalHelper::checkString($view))
+		if (Eclinic_portalHelper::checkString($view))
 		{
 			// the view relationships
 			$views = array(

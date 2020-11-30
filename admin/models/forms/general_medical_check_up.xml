@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form
-	addrulepath="/administrator/components/com_ehealth_portal/models/rules"
-	addfieldpath="/administrator/components/com_ehealth_portal/models/fields"
+	addrulepath="/administrator/components/com_eclinic_portal/models/rules"
+	addfieldpath="/administrator/components/com_eclinic_portal/models/fields"
 >
 	<fieldset name="details">
 		<!-- [Fields 636] Default Fields. -->
@@ -16,8 +16,8 @@
 		<field
 			name="created"
 			type="calendar"
-			label="COM_EHEALTH_PORTAL_GENERAL_MEDICAL_CHECK_UP_CREATED_DATE_LABEL"
-			description="COM_EHEALTH_PORTAL_GENERAL_MEDICAL_CHECK_UP_CREATED_DATE_DESC"
+			label="COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_CREATED_DATE_LABEL"
+			description="COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_CREATED_DATE_DESC"
 			size="22"
 			format="%Y-%m-%d %H:%M:%S"
 			filter="user_utc"
@@ -26,8 +26,8 @@
 		<field
 			name="created_by"
 			type="user"
-			label="COM_EHEALTH_PORTAL_GENERAL_MEDICAL_CHECK_UP_CREATED_BY_LABEL"
-			description="COM_EHEALTH_PORTAL_GENERAL_MEDICAL_CHECK_UP_CREATED_BY_DESC"
+			label="COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_CREATED_BY_LABEL"
+			description="COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_CREATED_BY_DESC"
 		/>
 		<!-- [Fields 700] Published Field. Type: List (joomla) -->
 		<field name="published" type="list" label="JSTATUS"
@@ -44,12 +44,12 @@
 		</field>
 		<!-- [Fields 727] Date Modified Field. Type: Calendar (joomla) -->
 		<field name="modified" type="calendar" class="readonly"
-			label="COM_EHEALTH_PORTAL_GENERAL_MEDICAL_CHECK_UP_MODIFIED_DATE_LABEL" description="COM_EHEALTH_PORTAL_GENERAL_MEDICAL_CHECK_UP_MODIFIED_DATE_DESC"
+			label="COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_MODIFIED_DATE_LABEL" description="COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_MODIFIED_DATE_DESC"
 			size="22" readonly="true" format="%Y-%m-%d %H:%M:%S" filter="user_utc" />
 		<!-- [Fields 742] User Modified Field. Type: User (joomla) -->
 		<field name="modified_by" type="user"
-			label="COM_EHEALTH_PORTAL_GENERAL_MEDICAL_CHECK_UP_MODIFIED_BY_LABEL"
-			description="COM_EHEALTH_PORTAL_GENERAL_MEDICAL_CHECK_UP_MODIFIED_BY_DESC"
+			label="COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_MODIFIED_BY_LABEL"
+			description="COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_MODIFIED_BY_DESC"
 			class="readonly"
 			readonly="true"
 			filter="unset"
@@ -67,7 +67,7 @@
 			name="ordering"
 			type="number"
 			class="inputbox validate-ordering"
-			label="COM_EHEALTH_PORTAL_GENERAL_MEDICAL_CHECK_UP_ORDERING_LABEL"
+			label="COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_ORDERING_LABEL"
 			description=""
 			default="0"
 			size="6"
@@ -78,8 +78,8 @@
 			name="version"
 			type="text"
 			class="readonly"
-			label="COM_EHEALTH_PORTAL_GENERAL_MEDICAL_CHECK_UP_VERSION_LABEL"
-			description="COM_EHEALTH_PORTAL_GENERAL_MEDICAL_CHECK_UP_VERSION_DESC"
+			label="COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_VERSION_LABEL"
+			description="COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_VERSION_DESC"
 			size="6"
 			readonly="true"
 			filter="unset"
@@ -89,14 +89,14 @@
 		<field
 			type="user"
 			name="patient"
-			label="COM_EHEALTH_PORTAL_GENERAL_MEDICAL_CHECK_UP_PATIENT_LABEL"
+			label="COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_PATIENT_LABEL"
 		/>
 		<!-- [Fields 1937] Bp_diastolic_one Field. Type: Number. (joomla) -->
 		<field
 			type="number"
 			name="bp_diastolic_one"
-			label="COM_EHEALTH_PORTAL_GENERAL_MEDICAL_CHECK_UP_BP_DIASTOLIC_ONE_LABEL"
-			description="COM_EHEALTH_PORTAL_GENERAL_MEDICAL_CHECK_UP_BP_DIASTOLIC_ONE_DESCRIPTION"
+			label="COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_BP_DIASTOLIC_ONE_LABEL"
+			description="COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_BP_DIASTOLIC_ONE_DESCRIPTION"
 			class="text_area"
 			min="1"
 			max="400"
@@ -106,8 +106,8 @@
 		<field
 			type="number"
 			name="bp_systolic_one"
-			label="COM_EHEALTH_PORTAL_GENERAL_MEDICAL_CHECK_UP_BP_SYSTOLIC_ONE_LABEL"
-			description="COM_EHEALTH_PORTAL_GENERAL_MEDICAL_CHECK_UP_BP_SYSTOLIC_ONE_DESCRIPTION"
+			label="COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_BP_SYSTOLIC_ONE_LABEL"
+			description="COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_BP_SYSTOLIC_ONE_DESCRIPTION"
 			class="text_area"
 			min="1"
 			max="400"
@@ -117,8 +117,8 @@
 		<field
 			type="number"
 			name="temp_one"
-			label="COM_EHEALTH_PORTAL_GENERAL_MEDICAL_CHECK_UP_TEMP_ONE_LABEL"
-			description="COM_EHEALTH_PORTAL_GENERAL_MEDICAL_CHECK_UP_TEMP_ONE_DESCRIPTION"
+			label="COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_TEMP_ONE_LABEL"
+			description="COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_TEMP_ONE_DESCRIPTION"
 			class="text_area"
 			min="0"
 			max="150"
@@ -128,7 +128,7 @@
 		<field
 			type="number"
 			name="weight"
-			label="COM_EHEALTH_PORTAL_GENERAL_MEDICAL_CHECK_UP_WEIGHT_LABEL"
+			label="COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_WEIGHT_LABEL"
 			class="text_area"
 			required="true"
 			min="0"
@@ -139,8 +139,8 @@
 		<field
 			type="number"
 			name="pulse"
-			label="COM_EHEALTH_PORTAL_GENERAL_MEDICAL_CHECK_UP_PULSE_LABEL"
-			description="COM_EHEALTH_PORTAL_GENERAL_MEDICAL_CHECK_UP_PULSE_DESCRIPTION"
+			label="COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_PULSE_LABEL"
+			description="COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_PULSE_DESCRIPTION"
 			class="text_area"
 			min="1"
 			max="300"
@@ -150,19 +150,19 @@
 		<field
 			type="checkbox"
 			name="chronic_medication"
-			label="COM_EHEALTH_PORTAL_GENERAL_MEDICAL_CHECK_UP_CHRONIC_MEDICATION_LABEL"
+			label="COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_CHRONIC_MEDICATION_LABEL"
 			value="1"
 			default="0"
 			required="false"
-			description="COM_EHEALTH_PORTAL_GENERAL_MEDICAL_CHECK_UP_CHRONIC_MEDICATION_DESCRIPTION"
+			description="COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_CHRONIC_MEDICATION_DESCRIPTION"
 			class="inputbox"
 		/>
 		<!-- [Fields 1937] Bp_diastolic_two Field. Type: Number. (joomla) -->
 		<field
 			type="number"
 			name="bp_diastolic_two"
-			label="COM_EHEALTH_PORTAL_GENERAL_MEDICAL_CHECK_UP_BP_DIASTOLIC_TWO_LABEL"
-			description="COM_EHEALTH_PORTAL_GENERAL_MEDICAL_CHECK_UP_BP_DIASTOLIC_TWO_DESCRIPTION"
+			label="COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_BP_DIASTOLIC_TWO_LABEL"
+			description="COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_BP_DIASTOLIC_TWO_DESCRIPTION"
 			class="text_area"
 			min="1"
 			max="400"
@@ -172,8 +172,8 @@
 		<field
 			type="number"
 			name="bp_systolic_two"
-			label="COM_EHEALTH_PORTAL_GENERAL_MEDICAL_CHECK_UP_BP_SYSTOLIC_TWO_LABEL"
-			description="COM_EHEALTH_PORTAL_GENERAL_MEDICAL_CHECK_UP_BP_SYSTOLIC_TWO_DESCRIPTION"
+			label="COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_BP_SYSTOLIC_TWO_LABEL"
+			description="COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_BP_SYSTOLIC_TWO_DESCRIPTION"
 			class="text_area"
 			min="1"
 			max="400"
@@ -183,8 +183,8 @@
 		<field
 			type="number"
 			name="temp_two"
-			label="COM_EHEALTH_PORTAL_GENERAL_MEDICAL_CHECK_UP_TEMP_TWO_LABEL"
-			description="COM_EHEALTH_PORTAL_GENERAL_MEDICAL_CHECK_UP_TEMP_TWO_DESCRIPTION"
+			label="COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_TEMP_TWO_LABEL"
+			description="COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_TEMP_TWO_DESCRIPTION"
 			class="text_area"
 			min="0"
 			max="150"
@@ -194,7 +194,7 @@
 		<field
 			type="number"
 			name="height"
-			label="COM_EHEALTH_PORTAL_GENERAL_MEDICAL_CHECK_UP_HEIGHT_LABEL"
+			label="COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_HEIGHT_LABEL"
 			class="text_area"
 			required="true"
 			min="0"
@@ -205,10 +205,10 @@
 		<field
 			type="text"
 			name="bmi"
-			label="COM_EHEALTH_PORTAL_GENERAL_MEDICAL_CHECK_UP_BMI_LABEL"
+			label="COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_BMI_LABEL"
 			size="10"
 			maxlength="20"
-			description="COM_EHEALTH_PORTAL_GENERAL_MEDICAL_CHECK_UP_BMI_DESCRIPTION"
+			description="COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_BMI_DESCRIPTION"
 			class="text_area"
 			readonly="true"
 			disabled="false"
@@ -219,44 +219,44 @@
 		<field
 			type="textarea"
 			name="complaint"
-			label="COM_EHEALTH_PORTAL_GENERAL_MEDICAL_CHECK_UP_COMPLAINT_LABEL"
+			label="COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_COMPLAINT_LABEL"
 			rows="5"
 			cols="20"
-			description="COM_EHEALTH_PORTAL_GENERAL_MEDICAL_CHECK_UP_COMPLAINT_DESCRIPTION"
+			description="COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_COMPLAINT_DESCRIPTION"
 			class="text_area span12"
 			filter="HTML"
-			hint="COM_EHEALTH_PORTAL_GENERAL_MEDICAL_CHECK_UP_COMPLAINT_HINT"
+			hint="COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_COMPLAINT_HINT"
 		/>
 		<!-- [Fields 1937] Investigations Field. Type: Textarea. (joomla) -->
 		<field
 			type="textarea"
 			name="investigations"
-			label="COM_EHEALTH_PORTAL_GENERAL_MEDICAL_CHECK_UP_INVESTIGATIONS_LABEL"
+			label="COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_INVESTIGATIONS_LABEL"
 			rows="5"
 			cols="20"
-			description="COM_EHEALTH_PORTAL_GENERAL_MEDICAL_CHECK_UP_INVESTIGATIONS_DESCRIPTION"
+			description="COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_INVESTIGATIONS_DESCRIPTION"
 			class="text_area span12"
 			filter="HTML"
-			hint="COM_EHEALTH_PORTAL_GENERAL_MEDICAL_CHECK_UP_INVESTIGATIONS_HINT"
+			hint="COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_INVESTIGATIONS_HINT"
 		/>
 		<!-- [Fields 1937] Notes Field. Type: Textarea. (joomla) -->
 		<field
 			type="textarea"
 			name="notes"
-			label="COM_EHEALTH_PORTAL_GENERAL_MEDICAL_CHECK_UP_NOTES_LABEL"
+			label="COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_NOTES_LABEL"
 			rows="5"
 			cols="20"
-			description="COM_EHEALTH_PORTAL_GENERAL_MEDICAL_CHECK_UP_NOTES_DESCRIPTION"
+			description="COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_NOTES_DESCRIPTION"
 			class="text_area span12"
 			filter="HTML"
-			hint="COM_EHEALTH_PORTAL_GENERAL_MEDICAL_CHECK_UP_NOTES_HINT"
+			hint="COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_NOTES_HINT"
 		/>
 		<!-- [Fields 2335] Diagnosis Field. Type: Diagnosis. (custom) -->
 		<field
 			type="diagnosis"
 			name="diagnosis"
-			label="COM_EHEALTH_PORTAL_GENERAL_MEDICAL_CHECK_UP_DIAGNOSIS_LABEL"
-			description="COM_EHEALTH_PORTAL_GENERAL_MEDICAL_CHECK_UP_DIAGNOSIS_DESCRIPTION"
+			label="COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_DIAGNOSIS_LABEL"
+			description="COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_DIAGNOSIS_DESCRIPTION"
 			class="list_class"
 			multiple="false"
 			default="0"
@@ -266,25 +266,25 @@
 		<field
 			type="user"
 			name="referred_to"
-			label="COM_EHEALTH_PORTAL_GENERAL_MEDICAL_CHECK_UP_REFERRED_TO_LABEL"
+			label="COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_REFERRED_TO_LABEL"
 		/>
 		<!-- [Fields 1937] Reason Field. Type: Textarea. (joomla) -->
 		<field
 			type="textarea"
 			name="reason"
-			label="COM_EHEALTH_PORTAL_GENERAL_MEDICAL_CHECK_UP_REASON_LABEL"
+			label="COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_REASON_LABEL"
 			rows="5"
 			cols="20"
-			description="COM_EHEALTH_PORTAL_GENERAL_MEDICAL_CHECK_UP_REASON_DESCRIPTION"
+			description="COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_REASON_DESCRIPTION"
 			class="text_area span12"
 			filter="HTML"
-			hint="COM_EHEALTH_PORTAL_GENERAL_MEDICAL_CHECK_UP_REASON_HINT"
+			hint="COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_REASON_HINT"
 		/>
 		<!-- [Fields 2144] Dispensing Field. Type: Subform. (joomla) -->
 		<field
 			type="subform"
 			name="dispensing"
-			label="COM_EHEALTH_PORTAL_GENERAL_MEDICAL_CHECK_UP_DISPENSING_LABEL"
+			label="COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_DISPENSING_LABEL"
 			layout="joomla.form.field.subform.repeatable-table"
 			multiple="true"
 			buttons="add,remove,move"
@@ -296,8 +296,8 @@
 				<field
 					type="medication"
 					name="medication"
-					label="COM_EHEALTH_PORTAL_GENERAL_MEDICAL_CHECK_UP_MEDICATION_LABEL"
-					description="COM_EHEALTH_PORTAL_GENERAL_MEDICAL_CHECK_UP_MEDICATION_DESCRIPTION"
+					label="COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_MEDICATION_LABEL"
+					description="COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_MEDICATION_DESCRIPTION"
 					class="list_class"
 					multiple="false"
 					default="0"
@@ -307,7 +307,7 @@
 				<field
 					type="number"
 					name="quantity"
-					label="COM_EHEALTH_PORTAL_GENERAL_MEDICAL_CHECK_UP_QUANTITY_LABEL"
+					label="COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_QUANTITY_LABEL"
 					class="text_area"
 					required="true"
 					min="1"
@@ -318,13 +318,13 @@
 				<field
 					type="textarea"
 					name="instructions"
-					label="COM_EHEALTH_PORTAL_GENERAL_MEDICAL_CHECK_UP_INSTRUCTIONS_LABEL"
+					label="COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_INSTRUCTIONS_LABEL"
 					rows="5"
 					cols="20"
-					description="COM_EHEALTH_PORTAL_GENERAL_MEDICAL_CHECK_UP_INSTRUCTIONS_DESCRIPTION"
+					description="COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_INSTRUCTIONS_DESCRIPTION"
 					class="text_area span12"
 					filter="HTML"
-					hint="COM_EHEALTH_PORTAL_GENERAL_MEDICAL_CHECK_UP_INSTRUCTIONS_HINT"
+					hint="COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_INSTRUCTIONS_HINT"
 				/>
 			</form>
 		</field>
@@ -347,7 +347,7 @@
 			filter="rules"
 			validate="rules"
 			class="inputbox"
-			component="com_ehealth_portal"
+			component="com_eclinic_portal"
 			section="general_medical_check_up"
 		/>
 	</fieldset>

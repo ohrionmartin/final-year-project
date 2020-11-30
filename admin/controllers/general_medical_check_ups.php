@@ -4,9 +4,9 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			29th November, 2020
+	@build			30th November, 2020
 	@created		13th August, 2020
-	@package		eHealth Portal
+	@package		eClinic Portal
 	@subpackage		general_medical_check_ups.php
 	@author			Oh Martin <https://vdm.io>	
 	@copyright		Copyright (C) 2015. All Rights Reserved
@@ -26,7 +26,7 @@ use Joomla\Utilities\ArrayHelper;
 /**
  * General_medical_check_ups Controller
  */
-class Ehealth_portalControllerGeneral_medical_check_ups extends JControllerAdmin
+class Eclinic_portalControllerGeneral_medical_check_ups extends JControllerAdmin
 {
 	/**
 	 * The prefix to use with controller messages.
@@ -34,7 +34,7 @@ class Ehealth_portalControllerGeneral_medical_check_ups extends JControllerAdmin
 	 * @var    string
 	 * @since  1.6
 	 */
-	protected $text_prefix = 'COM_EHEALTH_PORTAL_GENERAL_MEDICAL_CHECK_UPS';
+	protected $text_prefix = 'COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UPS';
 
 	/**
 	 * Method to get a model object, loading it if required.
@@ -47,7 +47,7 @@ class Ehealth_portalControllerGeneral_medical_check_ups extends JControllerAdmin
 	 *
 	 * @since   1.6
 	 */
-	public function getModel($name = 'General_medical_check_up', $prefix = 'Ehealth_portalModel', $config = array('ignore_request' => true))
+	public function getModel($name = 'General_medical_check_up', $prefix = 'Eclinic_portalModel', $config = array('ignore_request' => true))
 	{
 		return parent::getModel($name, $prefix, $config);
 	}
@@ -58,7 +58,7 @@ class Ehealth_portalControllerGeneral_medical_check_ups extends JControllerAdmin
 		JSession::checkToken() or die(JText::_('JINVALID_TOKEN'));
 		// [Interpretation 14748] check if export is allowed for this user.
 		$user = JFactory::getUser();
-		if ($user->authorise('general_medical_check_up.export', 'com_ehealth_portal') && $user->authorise('core.export', 'com_ehealth_portal'))
+		if ($user->authorise('general_medical_check_up.export', 'com_eclinic_portal') && $user->authorise('core.export', 'com_eclinic_portal'))
 		{
 			// [Interpretation 14757] Get the input
 			$input = JFactory::getApplication()->input;
@@ -69,16 +69,16 @@ class Ehealth_portalControllerGeneral_medical_check_ups extends JControllerAdmin
 			$model = $this->getModel('General_medical_check_ups');
 			// [Interpretation 14771] get the data to export
 			$data = $model->getExportData($pks);
-			if (Ehealth_portalHelper::checkArray($data))
+			if (Eclinic_portalHelper::checkArray($data))
 			{
 				// [Interpretation 14779] now set the data to the spreadsheet
 				$date = JFactory::getDate();
-				Ehealth_portalHelper::xls($data,'General_medical_check_ups_'.$date->format('jS_F_Y'),'General medical check ups exported ('.$date->format('jS F, Y').')','general medical check ups');
+				Eclinic_portalHelper::xls($data,'General_medical_check_ups_'.$date->format('jS_F_Y'),'General medical check ups exported ('.$date->format('jS F, Y').')','general medical check ups');
 			}
 		}
 		// [Interpretation 14792] Redirect to the list screen with error.
-		$message = JText::_('COM_EHEALTH_PORTAL_EXPORT_FAILED');
-		$this->setRedirect(JRoute::_('index.php?option=com_ehealth_portal&view=general_medical_check_ups', false), $message, 'error');
+		$message = JText::_('COM_ECLINIC_PORTAL_EXPORT_FAILED');
+		$this->setRedirect(JRoute::_('index.php?option=com_eclinic_portal&view=general_medical_check_ups', false), $message, 'error');
 		return;
 	}
 
@@ -89,13 +89,13 @@ class Ehealth_portalControllerGeneral_medical_check_ups extends JControllerAdmin
 		JSession::checkToken() or die(JText::_('JINVALID_TOKEN'));
 		// [Interpretation 14811] check if import is allowed for this user.
 		$user = JFactory::getUser();
-		if ($user->authorise('general_medical_check_up.import', 'com_ehealth_portal') && $user->authorise('core.import', 'com_ehealth_portal'))
+		if ($user->authorise('general_medical_check_up.import', 'com_eclinic_portal') && $user->authorise('core.import', 'com_eclinic_portal'))
 		{
 			// [Interpretation 14820] Get the import model
 			$model = $this->getModel('General_medical_check_ups');
 			// [Interpretation 14825] get the headers to import
 			$headers = $model->getExImPortHeaders();
-			if (Ehealth_portalHelper::checkObject($headers))
+			if (Eclinic_portalHelper::checkObject($headers))
 			{
 				// [Interpretation 14833] Load headers to session.
 				$session = JFactory::getSession();
@@ -104,14 +104,14 @@ class Ehealth_portalControllerGeneral_medical_check_ups extends JControllerAdmin
 				$session->set('backto_VDM_IMPORT', 'general_medical_check_ups');
 				$session->set('dataType_VDM_IMPORTINTO', 'general_medical_check_up');
 				// [Interpretation 14844] Redirect to import view.
-				$message = JText::_('COM_EHEALTH_PORTAL_IMPORT_SELECT_FILE_FOR_GENERAL_MEDICAL_CHECK_UPS');
-				$this->setRedirect(JRoute::_('index.php?option=com_ehealth_portal&view=import', false), $message);
+				$message = JText::_('COM_ECLINIC_PORTAL_IMPORT_SELECT_FILE_FOR_GENERAL_MEDICAL_CHECK_UPS');
+				$this->setRedirect(JRoute::_('index.php?option=com_eclinic_portal&view=import', false), $message);
 				return;
 			}
 		}
 		// [Interpretation 14875] Redirect to the list screen with error.
-		$message = JText::_('COM_EHEALTH_PORTAL_IMPORT_FAILED');
-		$this->setRedirect(JRoute::_('index.php?option=com_ehealth_portal&view=general_medical_check_ups', false), $message, 'error');
+		$message = JText::_('COM_ECLINIC_PORTAL_IMPORT_FAILED');
+		$this->setRedirect(JRoute::_('index.php?option=com_eclinic_portal&view=general_medical_check_ups', false), $message, 'error');
 		return;
 	}
 }

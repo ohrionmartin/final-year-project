@@ -4,9 +4,9 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			29th November, 2020
+	@build			30th November, 2020
 	@created		13th August, 2020
-	@package		eHealth Portal
+	@package		eClinic Portal
 	@subpackage		default_body.php
 	@author			Oh Martin <https://vdm.io>	
 	@copyright		Copyright (C) 2015. All Rights Reserved
@@ -21,14 +21,14 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access'); 
 
-$edit = "index.php?option=com_ehealth_portal&view=foetal_lies&task=foetal_lie.edit";
+$edit = "index.php?option=com_eclinic_portal&view=foetal_lies&task=foetal_lie.edit";
 
 ?>
 <?php foreach ($this->items as $i => $item): ?>
 	<?php
 		$canCheckin = $this->user->authorise('core.manage', 'com_checkin') || $item->checked_out == $this->user->id || $item->checked_out == 0;
 		$userChkOut = JFactory::getUser($item->checked_out);
-		$canDo = Ehealth_portalHelper::getActions('foetal_lie',$item,'foetal_lies');
+		$canDo = Eclinic_portalHelper::getActions('foetal_lie',$item,'foetal_lies');
 	?>
 	<tr class="row<?php echo $i % 2; ?>">
 		<td class="order nowrap center hidden-phone">

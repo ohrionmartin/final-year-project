@@ -4,9 +4,9 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			29th November, 2020
+	@build			30th November, 2020
 	@created		13th August, 2020
-	@package		eHealth Portal
+	@package		eClinic Portal
 	@subpackage		medication.php
 	@author			Oh Martin <https://vdm.io>	
 	@copyright		Copyright (C) 2015. All Rights Reserved
@@ -26,7 +26,7 @@ jimport('joomla.form.helper');
 JFormHelper::loadFieldClass('list');
 
 /**
- * Medication Form Field class for the Ehealth_portal component
+ * Medication Form Field class for the Eclinic_portal component
  */
 class JFormFieldMedication extends JFormFieldList
 {
@@ -50,13 +50,13 @@ class JFormFieldMedication extends JFormFieldList
 		$db = JFactory::getDBO();
 		$query = $db->getQuery(true);
 		$query->select($db->quoteName(array('a.id','a.name'),array('id','medication_name')));
-		$query->from($db->quoteName('#__ehealth_portal_medication', 'a'));
+		$query->from($db->quoteName('#__eclinic_portal_medication', 'a'));
 		$query->where($db->quoteName('a.published') . ' = 1');
 		$query->order('a.name ASC');
 		// Implement View Level Access (if set in table)
-		if (!$user->authorise('core.options', 'com_ehealth_portal'))
+		if (!$user->authorise('core.options', 'com_eclinic_portal'))
 		{
-			$columns = $db->getTableColumns('#__ehealth_portal_medication');
+			$columns = $db->getTableColumns('#__eclinic_portal_medication');
 			if(isset($columns['access']))
 			{
 				$groups = implode(',', $user->getAuthorisedViewLevels());

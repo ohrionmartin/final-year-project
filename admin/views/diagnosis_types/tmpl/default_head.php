@@ -4,9 +4,9 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			29th November, 2020
+	@build			30th November, 2020
 	@created		13th August, 2020
-	@package		eHealth Portal
+	@package		eClinic Portal
 	@subpackage		default_head.php
 	@author			Oh Martin <https://vdm.io>	
 	@copyright		Copyright (C) 2015. All Rights Reserved
@@ -39,21 +39,21 @@ defined('_JEXEC') or die('Restricted access');
 		</th>
 	<?php endif; ?>
 	<th class="nowrap" >
-			<?php echo JHtml::_('grid.sort', 'COM_EHEALTH_PORTAL_DIAGNOSIS_TYPE_NAME_LABEL', 'a.name', $this->listDirn, $this->listOrder); ?>
+			<?php echo JHtml::_('grid.sort', 'COM_ECLINIC_PORTAL_DIAGNOSIS_TYPE_NAME_LABEL', 'a.name', $this->listDirn, $this->listOrder); ?>
 	</th>
 	<th class="nowrap hidden-phone" >
-			<?php echo JHtml::_('grid.sort', 'COM_EHEALTH_PORTAL_DIAGNOSIS_TYPE_DESCRIPTION_LABEL', 'a.description', $this->listDirn, $this->listOrder); ?>
+			<?php echo JHtml::_('grid.sort', 'COM_ECLINIC_PORTAL_DIAGNOSIS_TYPE_DESCRIPTION_LABEL', 'a.description', $this->listDirn, $this->listOrder); ?>
 	</th>
 	<?php if ($this->canState): ?>
 		<th width="10" class="nowrap center" >
-			<?php echo JHtml::_('grid.sort', 'COM_EHEALTH_PORTAL_DIAGNOSIS_TYPE_STATUS', 'a.published', $this->listDirn, $this->listOrder); ?>
+			<?php echo JHtml::_('grid.sort', 'COM_ECLINIC_PORTAL_DIAGNOSIS_TYPE_STATUS', 'a.published', $this->listDirn, $this->listOrder); ?>
 		</th>
 	<?php else: ?>
 		<th width="10" class="nowrap center" >
-			<?php echo JText::_('COM_EHEALTH_PORTAL_DIAGNOSIS_TYPE_STATUS'); ?>
+			<?php echo JText::_('COM_ECLINIC_PORTAL_DIAGNOSIS_TYPE_STATUS'); ?>
 		</th>
 	<?php endif; ?>
 	<th width="5" class="nowrap center hidden-phone" >
-			<?php echo JHtml::_('grid.sort', 'COM_EHEALTH_PORTAL_DIAGNOSIS_TYPE_ID', 'a.id', $this->listDirn, $this->listOrder); ?>
+			<?php echo JHtml::_('grid.sort', 'COM_ECLINIC_PORTAL_DIAGNOSIS_TYPE_ID', 'a.id', $this->listDirn, $this->listOrder); ?>
 	</th>
 </tr>

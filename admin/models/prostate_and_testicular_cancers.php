@@ -4,9 +4,9 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			29th November, 2020
+	@build			30th November, 2020
 	@created		13th August, 2020
-	@package		eHealth Portal
+	@package		eClinic Portal
 	@subpackage		prostate_and_testicular_cancers.php
 	@author			Oh Martin <https://vdm.io>	
 	@copyright		Copyright (C) 2015. All Rights Reserved
@@ -26,7 +26,7 @@ use Joomla\Utilities\ArrayHelper;
 /**
  * Prostate_and_testicular_cancers Model
  */
-class Ehealth_portalModelProstate_and_testicular_cancers extends JModelList
+class Eclinic_portalModelProstate_and_testicular_cancers extends JModelList
 {
 	public function __construct($config = array())
 	{
@@ -98,7 +98,7 @@ class Ehealth_portalModelProstate_and_testicular_cancers extends JModelList
 		$items = parent::getItems();
 
 		// [Interpretation 21022] set selection value to a translatable value
-		if (Ehealth_portalHelper::checkArray($items))
+		if (Eclinic_portalHelper::checkArray($items))
 		{
 			foreach ($items as $nr => &$item)
 			{
@@ -135,11 +135,11 @@ class Ehealth_portalModelProstate_and_testicular_cancers extends JModelList
 		if ($name === 'ptc_age')
 		{
 			$ptc_ageArray = array(
-				0 => 'COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_YES',
-				1 => 'COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_NO'
+				0 => 'COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_YES',
+				1 => 'COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_NO'
 			);
 			// [Interpretation 21113] Now check if value is found in this array
-			if (isset($ptc_ageArray[$value]) && Ehealth_portalHelper::checkString($ptc_ageArray[$value]))
+			if (isset($ptc_ageArray[$value]) && Eclinic_portalHelper::checkString($ptc_ageArray[$value]))
 			{
 				return $ptc_ageArray[$value];
 			}
@@ -148,11 +148,11 @@ class Ehealth_portalModelProstate_and_testicular_cancers extends JModelList
 		if ($name === 'ptc_fam_history')
 		{
 			$ptc_fam_historyArray = array(
-				0 => 'COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_YES',
-				1 => 'COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_NO'
+				0 => 'COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_YES',
+				1 => 'COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_NO'
 			);
 			// [Interpretation 21113] Now check if value is found in this array
-			if (isset($ptc_fam_historyArray[$value]) && Ehealth_portalHelper::checkString($ptc_fam_historyArray[$value]))
+			if (isset($ptc_fam_historyArray[$value]) && Eclinic_portalHelper::checkString($ptc_fam_historyArray[$value]))
 			{
 				return $ptc_fam_historyArray[$value];
 			}
@@ -161,11 +161,11 @@ class Ehealth_portalModelProstate_and_testicular_cancers extends JModelList
 		if ($name === 'ptc_diet')
 		{
 			$ptc_dietArray = array(
-				0 => 'COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_YES',
-				1 => 'COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_NO'
+				0 => 'COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_YES',
+				1 => 'COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_NO'
 			);
 			// [Interpretation 21113] Now check if value is found in this array
-			if (isset($ptc_dietArray[$value]) && Ehealth_portalHelper::checkString($ptc_dietArray[$value]))
+			if (isset($ptc_dietArray[$value]) && Eclinic_portalHelper::checkString($ptc_dietArray[$value]))
 			{
 				return $ptc_dietArray[$value];
 			}
@@ -174,11 +174,11 @@ class Ehealth_portalModelProstate_and_testicular_cancers extends JModelList
 		if ($name === 'ptc_phy_activity')
 		{
 			$ptc_phy_activityArray = array(
-				0 => 'COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_YES',
-				1 => 'COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_NO'
+				0 => 'COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_YES',
+				1 => 'COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_NO'
 			);
 			// [Interpretation 21113] Now check if value is found in this array
-			if (isset($ptc_phy_activityArray[$value]) && Ehealth_portalHelper::checkString($ptc_phy_activityArray[$value]))
+			if (isset($ptc_phy_activityArray[$value]) && Eclinic_portalHelper::checkString($ptc_phy_activityArray[$value]))
 			{
 				return $ptc_phy_activityArray[$value];
 			}
@@ -187,11 +187,11 @@ class Ehealth_portalModelProstate_and_testicular_cancers extends JModelList
 		if ($name === 'ptc_overweight')
 		{
 			$ptc_overweightArray = array(
-				0 => 'COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_YES',
-				1 => 'COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_NO'
+				0 => 'COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_YES',
+				1 => 'COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_NO'
 			);
 			// [Interpretation 21113] Now check if value is found in this array
-			if (isset($ptc_overweightArray[$value]) && Ehealth_portalHelper::checkString($ptc_overweightArray[$value]))
+			if (isset($ptc_overweightArray[$value]) && Eclinic_portalHelper::checkString($ptc_overweightArray[$value]))
 			{
 				return $ptc_overweightArray[$value];
 			}
@@ -200,11 +200,11 @@ class Ehealth_portalModelProstate_and_testicular_cancers extends JModelList
 		if ($name === 'ptc_urinate')
 		{
 			$ptc_urinateArray = array(
-				0 => 'COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_YES',
-				1 => 'COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_NO'
+				0 => 'COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_YES',
+				1 => 'COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_NO'
 			);
 			// [Interpretation 21113] Now check if value is found in this array
-			if (isset($ptc_urinateArray[$value]) && Ehealth_portalHelper::checkString($ptc_urinateArray[$value]))
+			if (isset($ptc_urinateArray[$value]) && Eclinic_portalHelper::checkString($ptc_urinateArray[$value]))
 			{
 				return $ptc_urinateArray[$value];
 			}
@@ -213,11 +213,11 @@ class Ehealth_portalModelProstate_and_testicular_cancers extends JModelList
 		if ($name === 'ptc_urine_freq')
 		{
 			$ptc_urine_freqArray = array(
-				0 => 'COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_YES',
-				1 => 'COM_EHEALTH_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_NO'
+				0 => 'COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_YES',
+				1 => 'COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_NO'
 			);
 			// [Interpretation 21113] Now check if value is found in this array
-			if (isset($ptc_urine_freqArray[$value]) && Ehealth_portalHelper::checkString($ptc_urine_freqArray[$value]))
+			if (isset($ptc_urine_freqArray[$value]) && Eclinic_portalHelper::checkString($ptc_urine_freqArray[$value]))
 			{
 				return $ptc_urine_freqArray[$value];
 			}
@@ -241,8 +241,8 @@ class Ehealth_portalModelProstate_and_testicular_cancers extends JModelList
 		// [Interpretation 15049] Select some fields
 		$query->select('a.*');
 
-		// [Interpretation 15059] From the ehealth_portal_item table
-		$query->from($db->quoteName('#__ehealth_portal_prostate_and_testicular_cancer', 'a'));
+		// [Interpretation 15059] From the eclinic_portal_item table
+		$query->from($db->quoteName('#__eclinic_portal_prostate_and_testicular_cancer', 'a'));
 
 		// [Interpretation 15078] Filter by published state
 		$published = $this->getState('filter.published');
@@ -264,7 +264,7 @@ class Ehealth_portalModelProstate_and_testicular_cancers extends JModelList
 			$query->where('a.access = ' . (int) $access);
 		}
 		// [Interpretation 15112] Implement View Level Access
-		if (!$user->authorise('core.options', 'com_ehealth_portal'))
+		if (!$user->authorise('core.options', 'com_eclinic_portal'))
 		{
 			$groups = implode(',', $user->getAuthorisedViewLevels());
 			$query->where('a.access IN (' . $groups . ')');
@@ -312,12 +312,12 @@ class Ehealth_portalModelProstate_and_testicular_cancers extends JModelList
 	public function getExportData($pks, $user = null)
 	{
 		// [Interpretation 14499] setup the query
-		if (($pks_size = Ehealth_portalHelper::checkArray($pks)) !== false || 'bulk' === $pks)
+		if (($pks_size = Eclinic_portalHelper::checkArray($pks)) !== false || 'bulk' === $pks)
 		{
 			// [Interpretation 14505] Set a value to know this is export method. (USE IN CUSTOM CODE TO ALTER OUTCOME)
 			$_export = true;
 			// [Interpretation 14510] Get the user object if not set.
-			if (!isset($user) || !Ehealth_portalHelper::checkObject($user))
+			if (!isset($user) || !Eclinic_portalHelper::checkObject($user))
 			{
 				$user = JFactory::getUser();
 			}
@@ -328,8 +328,8 @@ class Ehealth_portalModelProstate_and_testicular_cancers extends JModelList
 			// [Interpretation 14524] Select some fields
 			$query->select('a.*');
 
-			// [Interpretation 14528] From the ehealth_portal_prostate_and_testicular_cancer table
-			$query->from($db->quoteName('#__ehealth_portal_prostate_and_testicular_cancer', 'a'));
+			// [Interpretation 14528] From the eclinic_portal_prostate_and_testicular_cancer table
+			$query->from($db->quoteName('#__eclinic_portal_prostate_and_testicular_cancer', 'a'));
 			// [Interpretation 14535] The bulk export path
 			if ('bulk' === $pks)
 			{
@@ -349,7 +349,7 @@ class Ehealth_portalModelProstate_and_testicular_cancers extends JModelList
 				$query->where('a.id IN (' . implode(',',$pks) . ')');
 			}
 			// [Interpretation 14611] Implement View Level Access
-			if (!$user->authorise('core.options', 'com_ehealth_portal'))
+			if (!$user->authorise('core.options', 'com_eclinic_portal'))
 			{
 				$groups = implode(',', $user->getAuthorisedViewLevels());
 				$query->where('a.access IN (' . $groups . ')');
@@ -366,7 +366,7 @@ class Ehealth_portalModelProstate_and_testicular_cancers extends JModelList
 				$items = $db->loadObjectList();
 
 				// [Interpretation 20714] Set values to display correctly.
-				if (Ehealth_portalHelper::checkArray($items))
+				if (Eclinic_portalHelper::checkArray($items))
 				{
 					foreach ($items as $nr => &$item)
 					{
@@ -378,7 +378,7 @@ class Ehealth_portalModelProstate_and_testicular_cancers extends JModelList
 				}
 				// [Interpretation 20871] Add headers to items array.
 				$headers = $this->getExImPortHeaders();
-				if (Ehealth_portalHelper::checkObject($headers))
+				if (Eclinic_portalHelper::checkObject($headers))
 				{
 					array_unshift($items,$headers);
 				}
@@ -398,8 +398,8 @@ class Ehealth_portalModelProstate_and_testicular_cancers extends JModelList
 		// Get a db connection.
 		$db = JFactory::getDbo();
 		// get the columns
-		$columns = $db->getTableColumns("#__ehealth_portal_prostate_and_testicular_cancer");
-		if (Ehealth_portalHelper::checkArray($columns))
+		$columns = $db->getTableColumns("#__eclinic_portal_prostate_and_testicular_cancer");
+		if (Eclinic_portalHelper::checkArray($columns))
 		{
 			// remove the headers you don't import/export.
 			unset($columns['asset_id']);
@@ -444,7 +444,7 @@ class Ehealth_portalModelProstate_and_testicular_cancers extends JModelList
 	protected function checkInNow()
 	{
 		// [Interpretation 20196] Get set check in time
-		$time = JComponentHelper::getParams('com_ehealth_portal')->get('check_in');
+		$time = JComponentHelper::getParams('com_eclinic_portal')->get('check_in');
 
 		if ($time)
 		{
@@ -454,7 +454,7 @@ class Ehealth_portalModelProstate_and_testicular_cancers extends JModelList
 			// [Interpretation 20207] reset query
 			$query = $db->getQuery(true);
 			$query->select('*');
-			$query->from($db->quoteName('#__ehealth_portal_prostate_and_testicular_cancer'));
+			$query->from($db->quoteName('#__eclinic_portal_prostate_and_testicular_cancer'));
 			$db->setQuery($query);
 			$db->execute();
 			if ($db->getNumRows())
@@ -477,7 +477,7 @@ class Ehealth_portalModelProstate_and_testicular_cancers extends JModelList
 				);
 
 				// [Interpretation 20244] Check table
-				$query->update($db->quoteName('#__ehealth_portal_prostate_and_testicular_cancer'))->set($fields)->where($conditions); 
+				$query->update($db->quoteName('#__eclinic_portal_prostate_and_testicular_cancer'))->set($fields)->where($conditions); 
 
 				$db->setQuery($query);
 

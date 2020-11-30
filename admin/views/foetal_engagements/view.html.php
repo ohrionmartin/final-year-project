@@ -4,9 +4,9 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			29th November, 2020
+	@build			30th November, 2020
 	@created		13th August, 2020
-	@package		eHealth Portal
+	@package		eClinic Portal
 	@subpackage		view.html.php
 	@author			Oh Martin <https://vdm.io>	
 	@copyright		Copyright (C) 2015. All Rights Reserved
@@ -22,9 +22,9 @@
 defined('_JEXEC') or die('Restricted access');
 
 /**
- * Ehealth_portal View class for the Foetal_engagements
+ * Eclinic_portal View class for the Foetal_engagements
  */
-class Ehealth_portalViewFoetal_engagements extends JViewLegacy
+class Eclinic_portalViewFoetal_engagements extends JViewLegacy
 {
 	/**
 	 * Foetal_engagements view display method
@@ -35,7 +35,7 @@ class Ehealth_portalViewFoetal_engagements extends JViewLegacy
 		if ($this->getLayout() !== 'modal')
 		{
 			// Include helper submenu
-			Ehealth_portalHelper::addSubmenu('foetal_engagements');
+			Eclinic_portalHelper::addSubmenu('foetal_engagements');
 		}
 
 		// Assign data to the view
@@ -50,7 +50,7 @@ class Ehealth_portalViewFoetal_engagements extends JViewLegacy
 		// set the return here value
 		$this->return_here = urlencode(base64_encode((string) JUri::getInstance()));
 		// get global action permissions
-		$this->canDo = Ehealth_portalHelper::getActions('foetal_engagement');
+		$this->canDo = Eclinic_portalHelper::getActions('foetal_engagement');
 		$this->canEdit = $this->canDo->get('core.edit');
 		$this->canState = $this->canDo->get('core.edit.state');
 		$this->canCreate = $this->canDo->get('core.create');
@@ -87,8 +87,8 @@ class Ehealth_portalViewFoetal_engagements extends JViewLegacy
 	 */
 	protected function addToolBar()
 	{
-		JToolBarHelper::title(JText::_('COM_EHEALTH_PORTAL_FOETAL_ENGAGEMENTS'), 'joomla');
-		JHtmlSidebar::setAction('index.php?option=com_ehealth_portal&view=foetal_engagements');
+		JToolBarHelper::title(JText::_('COM_ECLINIC_PORTAL_FOETAL_ENGAGEMENTS'), 'joomla');
+		JHtmlSidebar::setAction('index.php?option=com_eclinic_portal&view=foetal_engagements');
 		JFormHelper::addFieldPath(JPATH_COMPONENT . '/models/fields');
 
 		if ($this->canCreate)
@@ -97,7 +97,7 @@ class Ehealth_portalViewFoetal_engagements extends JViewLegacy
 		}
 
 		// Only load if there are items
-		if (Ehealth_portalHelper::checkArray($this->items))
+		if (Eclinic_portalHelper::checkArray($this->items))
 		{
 			if ($this->canEdit)
 			{
@@ -141,26 +141,26 @@ class Ehealth_portalViewFoetal_engagements extends JViewLegacy
 
 			if ($this->canDo->get('core.export') && $this->canDo->get('foetal_engagement.export'))
 			{
-				JToolBarHelper::custom('foetal_engagements.exportData', 'download', '', 'COM_EHEALTH_PORTAL_EXPORT_DATA', true);
+				JToolBarHelper::custom('foetal_engagements.exportData', 'download', '', 'COM_ECLINIC_PORTAL_EXPORT_DATA', true);
 			}
 		}
 
 		if ($this->canDo->get('core.import') && $this->canDo->get('foetal_engagement.import'))
 		{
-			JToolBarHelper::custom('foetal_engagements.importData', 'upload', '', 'COM_EHEALTH_PORTAL_IMPORT_DATA', false);
+			JToolBarHelper::custom('foetal_engagements.importData', 'upload', '', 'COM_ECLINIC_PORTAL_IMPORT_DATA', false);
 		}
 
 		// set help url for this view if found
-		$help_url = Ehealth_portalHelper::getHelpUrl('foetal_engagements');
-		if (Ehealth_portalHelper::checkString($help_url))
+		$help_url = Eclinic_portalHelper::getHelpUrl('foetal_engagements');
+		if (Eclinic_portalHelper::checkString($help_url))
 		{
-				JToolbarHelper::help('COM_EHEALTH_PORTAL_HELP_MANAGER', false, $help_url);
+				JToolbarHelper::help('COM_ECLINIC_PORTAL_HELP_MANAGER', false, $help_url);
 		}
 
 		// add the options comp button
 		if ($this->canDo->get('core.admin') || $this->canDo->get('core.options'))
 		{
-			JToolBarHelper::preferences('com_ehealth_portal');
+			JToolBarHelper::preferences('com_eclinic_portal');
 		}
 
 		if ($this->canState)
@@ -174,7 +174,7 @@ class Ehealth_portalViewFoetal_engagements extends JViewLegacy
 			if ($this->canBatch)
 			{
 				JHtmlBatch_::addListSelection(
-					JText::_('COM_EHEALTH_PORTAL_KEEP_ORIGINAL_STATE'),
+					JText::_('COM_ECLINIC_PORTAL_KEEP_ORIGINAL_STATE'),
 					'batch[published]',
 					JHtml::_('select.options', JHtml::_('jgrid.publishedOptions', array('all' => false)), 'value', 'text', '', true)
 				);
@@ -190,7 +190,7 @@ class Ehealth_portalViewFoetal_engagements extends JViewLegacy
 		if ($this->canBatch && $this->canCreate && $this->canEdit)
 		{
 			JHtmlBatch_::addListSelection(
-				JText::_('COM_EHEALTH_PORTAL_KEEP_ORIGINAL_ACCESS'),
+				JText::_('COM_ECLINIC_PORTAL_KEEP_ORIGINAL_ACCESS'),
 				'batch[access]',
 				JHtml::_('select.options', JHtml::_('access.assetgroups'), 'value', 'text')
 			);
@@ -208,8 +208,8 @@ class Ehealth_portalViewFoetal_engagements extends JViewLegacy
 		{
 			$this->document = JFactory::getDocument();
 		}
-		$this->document->setTitle(JText::_('COM_EHEALTH_PORTAL_FOETAL_ENGAGEMENTS'));
-		$this->document->addStyleSheet(JURI::root() . "administrator/components/com_ehealth_portal/assets/css/foetal_engagements.css", (Ehealth_portalHelper::jVersion()->isCompatible('3.8.0')) ? array('version' => 'auto') : 'text/css');
+		$this->document->setTitle(JText::_('COM_ECLINIC_PORTAL_FOETAL_ENGAGEMENTS'));
+		$this->document->addStyleSheet(JURI::root() . "administrator/components/com_eclinic_portal/assets/css/foetal_engagements.css", (Eclinic_portalHelper::jVersion()->isCompatible('3.8.0')) ? array('version' => 'auto') : 'text/css');
 	}
 
 	/**
@@ -224,10 +224,10 @@ class Ehealth_portalViewFoetal_engagements extends JViewLegacy
 		if(strlen($var) > 50)
 		{
 			// use the helper htmlEscape method instead and shorten the string
-			return Ehealth_portalHelper::htmlEscape($var, $this->_charset, true);
+			return Eclinic_portalHelper::htmlEscape($var, $this->_charset, true);
 		}
 		// use the helper htmlEscape method instead.
-		return Ehealth_portalHelper::htmlEscape($var, $this->_charset);
+		return Eclinic_portalHelper::htmlEscape($var, $this->_charset);
 	}
 
 	/**
@@ -240,8 +240,8 @@ class Ehealth_portalViewFoetal_engagements extends JViewLegacy
 		return array(
 			'ordering' => JText::_('JGRID_HEADING_ORDERING'),
 			'a.published' => JText::_('JSTATUS'),
-			'a.name' => JText::_('COM_EHEALTH_PORTAL_FOETAL_ENGAGEMENT_NAME_LABEL'),
-			'a.description' => JText::_('COM_EHEALTH_PORTAL_FOETAL_ENGAGEMENT_DESCRIPTION_LABEL'),
+			'a.name' => JText::_('COM_ECLINIC_PORTAL_FOETAL_ENGAGEMENT_NAME_LABEL'),
+			'a.description' => JText::_('COM_ECLINIC_PORTAL_FOETAL_ENGAGEMENT_DESCRIPTION_LABEL'),
 			'a.id' => JText::_('JGRID_HEADING_ID')
 		);
 	}

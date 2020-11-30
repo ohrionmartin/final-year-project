@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form
-	addrulepath="/administrator/components/com_ehealth_portal/models/rules"
-	addfieldpath="/administrator/components/com_ehealth_portal/models/fields"
+	addrulepath="/administrator/components/com_eclinic_portal/models/rules"
+	addfieldpath="/administrator/components/com_eclinic_portal/models/fields"
 >
 	<fieldset name="details">
 		<!-- [Fields 636] Default Fields. -->
@@ -16,8 +16,8 @@
 		<field
 			name="created"
 			type="calendar"
-			label="COM_EHEALTH_PORTAL_CERVICAL_CANCER_CREATED_DATE_LABEL"
-			description="COM_EHEALTH_PORTAL_CERVICAL_CANCER_CREATED_DATE_DESC"
+			label="COM_ECLINIC_PORTAL_CERVICAL_CANCER_CREATED_DATE_LABEL"
+			description="COM_ECLINIC_PORTAL_CERVICAL_CANCER_CREATED_DATE_DESC"
 			size="22"
 			format="%Y-%m-%d %H:%M:%S"
 			filter="user_utc"
@@ -26,8 +26,8 @@
 		<field
 			name="created_by"
 			type="user"
-			label="COM_EHEALTH_PORTAL_CERVICAL_CANCER_CREATED_BY_LABEL"
-			description="COM_EHEALTH_PORTAL_CERVICAL_CANCER_CREATED_BY_DESC"
+			label="COM_ECLINIC_PORTAL_CERVICAL_CANCER_CREATED_BY_LABEL"
+			description="COM_ECLINIC_PORTAL_CERVICAL_CANCER_CREATED_BY_DESC"
 		/>
 		<!-- [Fields 700] Published Field. Type: List (joomla) -->
 		<field name="published" type="list" label="JSTATUS"
@@ -44,12 +44,12 @@
 		</field>
 		<!-- [Fields 727] Date Modified Field. Type: Calendar (joomla) -->
 		<field name="modified" type="calendar" class="readonly"
-			label="COM_EHEALTH_PORTAL_CERVICAL_CANCER_MODIFIED_DATE_LABEL" description="COM_EHEALTH_PORTAL_CERVICAL_CANCER_MODIFIED_DATE_DESC"
+			label="COM_ECLINIC_PORTAL_CERVICAL_CANCER_MODIFIED_DATE_LABEL" description="COM_ECLINIC_PORTAL_CERVICAL_CANCER_MODIFIED_DATE_DESC"
 			size="22" readonly="true" format="%Y-%m-%d %H:%M:%S" filter="user_utc" />
 		<!-- [Fields 742] User Modified Field. Type: User (joomla) -->
 		<field name="modified_by" type="user"
-			label="COM_EHEALTH_PORTAL_CERVICAL_CANCER_MODIFIED_BY_LABEL"
-			description="COM_EHEALTH_PORTAL_CERVICAL_CANCER_MODIFIED_BY_DESC"
+			label="COM_ECLINIC_PORTAL_CERVICAL_CANCER_MODIFIED_BY_LABEL"
+			description="COM_ECLINIC_PORTAL_CERVICAL_CANCER_MODIFIED_BY_DESC"
 			class="readonly"
 			readonly="true"
 			filter="unset"
@@ -67,7 +67,7 @@
 			name="ordering"
 			type="number"
 			class="inputbox validate-ordering"
-			label="COM_EHEALTH_PORTAL_CERVICAL_CANCER_ORDERING_LABEL"
+			label="COM_ECLINIC_PORTAL_CERVICAL_CANCER_ORDERING_LABEL"
 			description=""
 			default="0"
 			size="6"
@@ -78,8 +78,8 @@
 			name="version"
 			type="text"
 			class="readonly"
-			label="COM_EHEALTH_PORTAL_CERVICAL_CANCER_VERSION_LABEL"
-			description="COM_EHEALTH_PORTAL_CERVICAL_CANCER_VERSION_DESC"
+			label="COM_ECLINIC_PORTAL_CERVICAL_CANCER_VERSION_LABEL"
+			description="COM_ECLINIC_PORTAL_CERVICAL_CANCER_VERSION_DESC"
 			size="6"
 			readonly="true"
 			filter="unset"
@@ -89,14 +89,14 @@
 		<field
 			type="user"
 			name="patient"
-			label="COM_EHEALTH_PORTAL_CERVICAL_CANCER_PATIENT_LABEL"
+			label="COM_ECLINIC_PORTAL_CERVICAL_CANCER_PATIENT_LABEL"
 		/>
 		<!-- [Fields 1650] Cc_viginal_bleeding Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="cc_viginal_bleeding"
-			label="COM_EHEALTH_PORTAL_CERVICAL_CANCER_CC_VIGINAL_BLEEDING_LABEL"
-			description="COM_EHEALTH_PORTAL_CERVICAL_CANCER_CC_VIGINAL_BLEEDING_DESCRIPTION"
+			label="COM_ECLINIC_PORTAL_CERVICAL_CANCER_CC_VIGINAL_BLEEDING_LABEL"
+			description="COM_ECLINIC_PORTAL_CERVICAL_CANCER_CC_VIGINAL_BLEEDING_DESCRIPTION"
 			class="list_class"
 			multiple="false"
 			required="true"
@@ -104,16 +104,16 @@
 			default="0">
 			<!-- [Fields 1913] Option Set. -->
 			<option value="0">
-				COM_EHEALTH_PORTAL_CERVICAL_CANCER_YES</option>
+				COM_ECLINIC_PORTAL_CERVICAL_CANCER_YES</option>
 			<option value="1">
-				COM_EHEALTH_PORTAL_CERVICAL_CANCER_NO</option>
+				COM_ECLINIC_PORTAL_CERVICAL_CANCER_NO</option>
 		</field>
 		<!-- [Fields 1650] Cc_v_discharge Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="cc_v_discharge"
-			label="COM_EHEALTH_PORTAL_CERVICAL_CANCER_CC_V_DISCHARGE_LABEL"
-			description="COM_EHEALTH_PORTAL_CERVICAL_CANCER_CC_V_DISCHARGE_DESCRIPTION"
+			label="COM_ECLINIC_PORTAL_CERVICAL_CANCER_CC_V_DISCHARGE_LABEL"
+			description="COM_ECLINIC_PORTAL_CERVICAL_CANCER_CC_V_DISCHARGE_DESCRIPTION"
 			class="list_class"
 			multiple="false"
 			required="true"
@@ -121,16 +121,16 @@
 			default="0">
 			<!-- [Fields 1913] Option Set. -->
 			<option value="0">
-				COM_EHEALTH_PORTAL_CERVICAL_CANCER_YES</option>
+				COM_ECLINIC_PORTAL_CERVICAL_CANCER_YES</option>
 			<option value="1">
-				COM_EHEALTH_PORTAL_CERVICAL_CANCER_NO</option>
+				COM_ECLINIC_PORTAL_CERVICAL_CANCER_NO</option>
 		</field>
 		<!-- [Fields 1650] Cc_periods Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="cc_periods"
-			label="COM_EHEALTH_PORTAL_CERVICAL_CANCER_CC_PERIODS_LABEL"
-			description="COM_EHEALTH_PORTAL_CERVICAL_CANCER_CC_PERIODS_DESCRIPTION"
+			label="COM_ECLINIC_PORTAL_CERVICAL_CANCER_CC_PERIODS_LABEL"
+			description="COM_ECLINIC_PORTAL_CERVICAL_CANCER_CC_PERIODS_DESCRIPTION"
 			class="list_class"
 			multiple="false"
 			required="true"
@@ -138,16 +138,16 @@
 			default="0">
 			<!-- [Fields 1913] Option Set. -->
 			<option value="0">
-				COM_EHEALTH_PORTAL_CERVICAL_CANCER_YES</option>
+				COM_ECLINIC_PORTAL_CERVICAL_CANCER_YES</option>
 			<option value="1">
-				COM_EHEALTH_PORTAL_CERVICAL_CANCER_NO</option>
+				COM_ECLINIC_PORTAL_CERVICAL_CANCER_NO</option>
 		</field>
 		<!-- [Fields 1650] Cc_smoking Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="cc_smoking"
-			label="COM_EHEALTH_PORTAL_CERVICAL_CANCER_CC_SMOKING_LABEL"
-			description="COM_EHEALTH_PORTAL_CERVICAL_CANCER_CC_SMOKING_DESCRIPTION"
+			label="COM_ECLINIC_PORTAL_CERVICAL_CANCER_CC_SMOKING_LABEL"
+			description="COM_ECLINIC_PORTAL_CERVICAL_CANCER_CC_SMOKING_DESCRIPTION"
 			class="list_class"
 			multiple="false"
 			required="true"
@@ -155,16 +155,16 @@
 			default="0">
 			<!-- [Fields 1913] Option Set. -->
 			<option value="0">
-				COM_EHEALTH_PORTAL_CERVICAL_CANCER_YES</option>
+				COM_ECLINIC_PORTAL_CERVICAL_CANCER_YES</option>
 			<option value="1">
-				COM_EHEALTH_PORTAL_CERVICAL_CANCER_NO</option>
+				COM_ECLINIC_PORTAL_CERVICAL_CANCER_NO</option>
 		</field>
 		<!-- [Fields 1650] Cc_sex_actve Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="cc_sex_actve"
-			label="COM_EHEALTH_PORTAL_CERVICAL_CANCER_CC_SEX_ACTVE_LABEL"
-			description="COM_EHEALTH_PORTAL_CERVICAL_CANCER_CC_SEX_ACTVE_DESCRIPTION"
+			label="COM_ECLINIC_PORTAL_CERVICAL_CANCER_CC_SEX_ACTVE_LABEL"
+			description="COM_ECLINIC_PORTAL_CERVICAL_CANCER_CC_SEX_ACTVE_DESCRIPTION"
 			class="list_class"
 			multiple="false"
 			required="true"
@@ -172,16 +172,16 @@
 			default="0">
 			<!-- [Fields 1913] Option Set. -->
 			<option value="0">
-				COM_EHEALTH_PORTAL_CERVICAL_CANCER_YES</option>
+				COM_ECLINIC_PORTAL_CERVICAL_CANCER_YES</option>
 			<option value="1">
-				COM_EHEALTH_PORTAL_CERVICAL_CANCER_NO</option>
+				COM_ECLINIC_PORTAL_CERVICAL_CANCER_NO</option>
 		</field>
 		<!-- [Fields 1650] Cc_sex_partner Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="cc_sex_partner"
-			label="COM_EHEALTH_PORTAL_CERVICAL_CANCER_CC_SEX_PARTNER_LABEL"
-			description="COM_EHEALTH_PORTAL_CERVICAL_CANCER_CC_SEX_PARTNER_DESCRIPTION"
+			label="COM_ECLINIC_PORTAL_CERVICAL_CANCER_CC_SEX_PARTNER_LABEL"
+			description="COM_ECLINIC_PORTAL_CERVICAL_CANCER_CC_SEX_PARTNER_DESCRIPTION"
 			class="list_class"
 			multiple="false"
 			required="true"
@@ -189,16 +189,16 @@
 			default="0">
 			<!-- [Fields 1913] Option Set. -->
 			<option value="0">
-				COM_EHEALTH_PORTAL_CERVICAL_CANCER_YES</option>
+				COM_ECLINIC_PORTAL_CERVICAL_CANCER_YES</option>
 			<option value="1">
-				COM_EHEALTH_PORTAL_CERVICAL_CANCER_NO</option>
+				COM_ECLINIC_PORTAL_CERVICAL_CANCER_NO</option>
 		</field>
 		<!-- [Fields 1650] Pap_smear_collection Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="pap_smear_collection"
-			label="COM_EHEALTH_PORTAL_CERVICAL_CANCER_PAP_SMEAR_COLLECTION_LABEL"
-			description="COM_EHEALTH_PORTAL_CERVICAL_CANCER_PAP_SMEAR_COLLECTION_DESCRIPTION"
+			label="COM_ECLINIC_PORTAL_CERVICAL_CANCER_PAP_SMEAR_COLLECTION_LABEL"
+			description="COM_ECLINIC_PORTAL_CERVICAL_CANCER_PAP_SMEAR_COLLECTION_DESCRIPTION"
 			class="list_class"
 			multiple="false"
 			required="true"
@@ -206,16 +206,16 @@
 			default="0">
 			<!-- [Fields 1913] Option Set. -->
 			<option value="0">
-				COM_EHEALTH_PORTAL_CERVICAL_CANCER_YES</option>
+				COM_ECLINIC_PORTAL_CERVICAL_CANCER_YES</option>
 			<option value="1">
-				COM_EHEALTH_PORTAL_CERVICAL_CANCER_NO</option>
+				COM_ECLINIC_PORTAL_CERVICAL_CANCER_NO</option>
 		</field>
 		<!-- [Fields 1650] Cc_result Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="cc_result"
-			label="COM_EHEALTH_PORTAL_CERVICAL_CANCER_CC_RESULT_LABEL"
-			description="COM_EHEALTH_PORTAL_CERVICAL_CANCER_CC_RESULT_DESCRIPTION"
+			label="COM_ECLINIC_PORTAL_CERVICAL_CANCER_CC_RESULT_LABEL"
+			description="COM_ECLINIC_PORTAL_CERVICAL_CANCER_CC_RESULT_DESCRIPTION"
 			class="list_class"
 			multiple="false"
 			required="true"
@@ -223,100 +223,100 @@
 			default="0">
 			<!-- [Fields 1913] Option Set. -->
 			<option value="0">
-				COM_EHEALTH_PORTAL_CERVICAL_CANCER_POSITIVE</option>
+				COM_ECLINIC_PORTAL_CERVICAL_CANCER_POSITIVE</option>
 			<option value="1">
-				COM_EHEALTH_PORTAL_CERVICAL_CANCER_NEGATIVE</option>
+				COM_ECLINIC_PORTAL_CERVICAL_CANCER_NEGATIVE</option>
 			<option value="2">
-				COM_EHEALTH_PORTAL_CERVICAL_CANCER_INCONCLUSIVE</option>
+				COM_ECLINIC_PORTAL_CERVICAL_CANCER_INCONCLUSIVE</option>
 		</field>
 		<!-- [Fields 1937] Cc_reason Field. Type: Text. (joomla) -->
 		<field
 			type="text"
 			name="cc_reason"
-			label="COM_EHEALTH_PORTAL_CERVICAL_CANCER_CC_REASON_LABEL"
+			label="COM_ECLINIC_PORTAL_CERVICAL_CANCER_CC_REASON_LABEL"
 			size="10"
 			maxlength="150"
-			description="COM_EHEALTH_PORTAL_CERVICAL_CANCER_CC_REASON_DESCRIPTION"
+			description="COM_ECLINIC_PORTAL_CERVICAL_CANCER_CC_REASON_DESCRIPTION"
 			class="text_area"
 			readonly="false"
 			disabled="false"
 			required="false"
 			filter="STRING"
-			message="COM_EHEALTH_PORTAL_CERVICAL_CANCER_CC_REASON_MESSAGE"
-			hint="COM_EHEALTH_PORTAL_CERVICAL_CANCER_CC_REASON_HINT"
+			message="COM_ECLINIC_PORTAL_CERVICAL_CANCER_CC_REASON_MESSAGE"
+			hint="COM_ECLINIC_PORTAL_CERVICAL_CANCER_CC_REASON_HINT"
 			autocomplete="on"
 		/>
 		<!-- [Fields 1937] Txt_cc_sex_partner Field. Type: Textarea. (joomla) -->
 		<field
 			type="textarea"
 			name="txt_cc_sex_partner"
-			label="COM_EHEALTH_PORTAL_CERVICAL_CANCER_TXT_CC_SEX_PARTNER_LABEL"
+			label="COM_ECLINIC_PORTAL_CERVICAL_CANCER_TXT_CC_SEX_PARTNER_LABEL"
 			rows="5"
 			cols="20"
-			description="COM_EHEALTH_PORTAL_CERVICAL_CANCER_TXT_CC_SEX_PARTNER_DESCRIPTION"
+			description="COM_ECLINIC_PORTAL_CERVICAL_CANCER_TXT_CC_SEX_PARTNER_DESCRIPTION"
 			class="text_area span12"
 			filter="HTML"
-			hint="COM_EHEALTH_PORTAL_CERVICAL_CANCER_TXT_CC_SEX_PARTNER_HINT"
+			hint="COM_ECLINIC_PORTAL_CERVICAL_CANCER_TXT_CC_SEX_PARTNER_HINT"
 		/>
 		<!-- [Fields 1937] Txt_cc_sex_actve Field. Type: Textarea. (joomla) -->
 		<field
 			type="textarea"
 			name="txt_cc_sex_actve"
-			label="COM_EHEALTH_PORTAL_CERVICAL_CANCER_TXT_CC_SEX_ACTVE_LABEL"
+			label="COM_ECLINIC_PORTAL_CERVICAL_CANCER_TXT_CC_SEX_ACTVE_LABEL"
 			rows="5"
 			cols="20"
-			description="COM_EHEALTH_PORTAL_CERVICAL_CANCER_TXT_CC_SEX_ACTVE_DESCRIPTION"
+			description="COM_ECLINIC_PORTAL_CERVICAL_CANCER_TXT_CC_SEX_ACTVE_DESCRIPTION"
 			class="text_area span12"
 			filter="HTML"
-			hint="COM_EHEALTH_PORTAL_CERVICAL_CANCER_TXT_CC_SEX_ACTVE_HINT"
+			hint="COM_ECLINIC_PORTAL_CERVICAL_CANCER_TXT_CC_SEX_ACTVE_HINT"
 		/>
 		<!-- [Fields 1937] Txt_cc_smoking Field. Type: Textarea. (joomla) -->
 		<field
 			type="textarea"
 			name="txt_cc_smoking"
-			label="COM_EHEALTH_PORTAL_CERVICAL_CANCER_TXT_CC_SMOKING_LABEL"
+			label="COM_ECLINIC_PORTAL_CERVICAL_CANCER_TXT_CC_SMOKING_LABEL"
 			rows="5"
 			cols="20"
-			description="COM_EHEALTH_PORTAL_CERVICAL_CANCER_TXT_CC_SMOKING_DESCRIPTION"
+			description="COM_ECLINIC_PORTAL_CERVICAL_CANCER_TXT_CC_SMOKING_DESCRIPTION"
 			class="text_area span12"
 			filter="HTML"
-			hint="COM_EHEALTH_PORTAL_CERVICAL_CANCER_TXT_CC_SMOKING_HINT"
+			hint="COM_ECLINIC_PORTAL_CERVICAL_CANCER_TXT_CC_SMOKING_HINT"
 		/>
 		<!-- [Fields 1937] Txt_cc_periods Field. Type: Textarea. (joomla) -->
 		<field
 			type="textarea"
 			name="txt_cc_periods"
-			label="COM_EHEALTH_PORTAL_CERVICAL_CANCER_TXT_CC_PERIODS_LABEL"
+			label="COM_ECLINIC_PORTAL_CERVICAL_CANCER_TXT_CC_PERIODS_LABEL"
 			rows="5"
 			cols="20"
-			description="COM_EHEALTH_PORTAL_CERVICAL_CANCER_TXT_CC_PERIODS_DESCRIPTION"
+			description="COM_ECLINIC_PORTAL_CERVICAL_CANCER_TXT_CC_PERIODS_DESCRIPTION"
 			class="text_area span12"
 			filter="HTML"
-			hint="COM_EHEALTH_PORTAL_CERVICAL_CANCER_TXT_CC_PERIODS_HINT"
+			hint="COM_ECLINIC_PORTAL_CERVICAL_CANCER_TXT_CC_PERIODS_HINT"
 		/>
 		<!-- [Fields 1937] Txt_cc_v_discharge Field. Type: Textarea. (joomla) -->
 		<field
 			type="textarea"
 			name="txt_cc_v_discharge"
-			label="COM_EHEALTH_PORTAL_CERVICAL_CANCER_TXT_CC_V_DISCHARGE_LABEL"
+			label="COM_ECLINIC_PORTAL_CERVICAL_CANCER_TXT_CC_V_DISCHARGE_LABEL"
 			rows="5"
 			cols="20"
-			description="COM_EHEALTH_PORTAL_CERVICAL_CANCER_TXT_CC_V_DISCHARGE_DESCRIPTION"
+			description="COM_ECLINIC_PORTAL_CERVICAL_CANCER_TXT_CC_V_DISCHARGE_DESCRIPTION"
 			class="text_area span12"
 			filter="HTML"
-			hint="COM_EHEALTH_PORTAL_CERVICAL_CANCER_TXT_CC_V_DISCHARGE_HINT"
+			hint="COM_ECLINIC_PORTAL_CERVICAL_CANCER_TXT_CC_V_DISCHARGE_HINT"
 		/>
 		<!-- [Fields 1937] Txt_cc_viginal_bleeding Field. Type: Textarea. (joomla) -->
 		<field
 			type="textarea"
 			name="txt_cc_viginal_bleeding"
-			label="COM_EHEALTH_PORTAL_CERVICAL_CANCER_TXT_CC_VIGINAL_BLEEDING_LABEL"
+			label="COM_ECLINIC_PORTAL_CERVICAL_CANCER_TXT_CC_VIGINAL_BLEEDING_LABEL"
 			rows="5"
 			cols="20"
-			description="COM_EHEALTH_PORTAL_CERVICAL_CANCER_TXT_CC_VIGINAL_BLEEDING_DESCRIPTION"
+			description="COM_ECLINIC_PORTAL_CERVICAL_CANCER_TXT_CC_VIGINAL_BLEEDING_DESCRIPTION"
 			class="text_area span12"
 			filter="HTML"
-			hint="COM_EHEALTH_PORTAL_CERVICAL_CANCER_TXT_CC_VIGINAL_BLEEDING_HINT"
+			hint="COM_ECLINIC_PORTAL_CERVICAL_CANCER_TXT_CC_VIGINAL_BLEEDING_HINT"
 		/>
 	</fieldset>
 	
@@ -337,7 +337,7 @@
 			filter="rules"
 			validate="rules"
 			class="inputbox"
-			component="com_ehealth_portal"
+			component="com_eclinic_portal"
 			section="cervical_cancer"
 		/>
 	</fieldset>

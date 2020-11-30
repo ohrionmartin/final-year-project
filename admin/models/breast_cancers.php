@@ -4,9 +4,9 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			29th November, 2020
+	@build			30th November, 2020
 	@created		13th August, 2020
-	@package		eHealth Portal
+	@package		eClinic Portal
 	@subpackage		breast_cancers.php
 	@author			Oh Martin <https://vdm.io>	
 	@copyright		Copyright (C) 2015. All Rights Reserved
@@ -26,7 +26,7 @@ use Joomla\Utilities\ArrayHelper;
 /**
  * Breast_cancers Model
  */
-class Ehealth_portalModelBreast_cancers extends JModelList
+class Eclinic_portalModelBreast_cancers extends JModelList
 {
 	public function __construct($config = array())
 	{
@@ -98,7 +98,7 @@ class Ehealth_portalModelBreast_cancers extends JModelList
 		$items = parent::getItems();
 
 		// [Interpretation 21022] set selection value to a translatable value
-		if (Ehealth_portalHelper::checkArray($items))
+		if (Eclinic_portalHelper::checkArray($items))
 		{
 			foreach ($items as $nr => &$item)
 			{
@@ -149,11 +149,11 @@ class Ehealth_portalModelBreast_cancers extends JModelList
 		if ($name === 'bc_age_range')
 		{
 			$bc_age_rangeArray = array(
-				0 => 'COM_EHEALTH_PORTAL_BREAST_CANCER_YES',
-				1 => 'COM_EHEALTH_PORTAL_BREAST_CANCER_NO'
+				0 => 'COM_ECLINIC_PORTAL_BREAST_CANCER_YES',
+				1 => 'COM_ECLINIC_PORTAL_BREAST_CANCER_NO'
 			);
 			// [Interpretation 21113] Now check if value is found in this array
-			if (isset($bc_age_rangeArray[$value]) && Ehealth_portalHelper::checkString($bc_age_rangeArray[$value]))
+			if (isset($bc_age_rangeArray[$value]) && Eclinic_portalHelper::checkString($bc_age_rangeArray[$value]))
 			{
 				return $bc_age_rangeArray[$value];
 			}
@@ -162,11 +162,11 @@ class Ehealth_portalModelBreast_cancers extends JModelList
 		if ($name === 'bc_family_history')
 		{
 			$bc_family_historyArray = array(
-				0 => 'COM_EHEALTH_PORTAL_BREAST_CANCER_YES',
-				1 => 'COM_EHEALTH_PORTAL_BREAST_CANCER_NO'
+				0 => 'COM_ECLINIC_PORTAL_BREAST_CANCER_YES',
+				1 => 'COM_ECLINIC_PORTAL_BREAST_CANCER_NO'
 			);
 			// [Interpretation 21113] Now check if value is found in this array
-			if (isset($bc_family_historyArray[$value]) && Ehealth_portalHelper::checkString($bc_family_historyArray[$value]))
+			if (isset($bc_family_historyArray[$value]) && Eclinic_portalHelper::checkString($bc_family_historyArray[$value]))
 			{
 				return $bc_family_historyArray[$value];
 			}
@@ -175,13 +175,13 @@ class Ehealth_portalModelBreast_cancers extends JModelList
 		if ($name === 'bc_race')
 		{
 			$bc_raceArray = array(
-				0 => 'COM_EHEALTH_PORTAL_BREAST_CANCER_WHITE',
-				1 => 'COM_EHEALTH_PORTAL_BREAST_CANCER_COLOURED',
-				2 => 'COM_EHEALTH_PORTAL_BREAST_CANCER_BLACK',
-				3 => 'COM_EHEALTH_PORTAL_BREAST_CANCER_ASIAN'
+				0 => 'COM_ECLINIC_PORTAL_BREAST_CANCER_WHITE',
+				1 => 'COM_ECLINIC_PORTAL_BREAST_CANCER_COLOURED',
+				2 => 'COM_ECLINIC_PORTAL_BREAST_CANCER_BLACK',
+				3 => 'COM_ECLINIC_PORTAL_BREAST_CANCER_ASIAN'
 			);
 			// [Interpretation 21113] Now check if value is found in this array
-			if (isset($bc_raceArray[$value]) && Ehealth_portalHelper::checkString($bc_raceArray[$value]))
+			if (isset($bc_raceArray[$value]) && Eclinic_portalHelper::checkString($bc_raceArray[$value]))
 			{
 				return $bc_raceArray[$value];
 			}
@@ -190,11 +190,11 @@ class Ehealth_portalModelBreast_cancers extends JModelList
 		if ($name === 'bc_breastfeeding')
 		{
 			$bc_breastfeedingArray = array(
-				0 => 'COM_EHEALTH_PORTAL_BREAST_CANCER_YES',
-				1 => 'COM_EHEALTH_PORTAL_BREAST_CANCER_NO'
+				0 => 'COM_ECLINIC_PORTAL_BREAST_CANCER_YES',
+				1 => 'COM_ECLINIC_PORTAL_BREAST_CANCER_NO'
 			);
 			// [Interpretation 21113] Now check if value is found in this array
-			if (isset($bc_breastfeedingArray[$value]) && Ehealth_portalHelper::checkString($bc_breastfeedingArray[$value]))
+			if (isset($bc_breastfeedingArray[$value]) && Eclinic_portalHelper::checkString($bc_breastfeedingArray[$value]))
 			{
 				return $bc_breastfeedingArray[$value];
 			}
@@ -203,11 +203,11 @@ class Ehealth_portalModelBreast_cancers extends JModelList
 		if ($name === 'bc_preg_age')
 		{
 			$bc_preg_ageArray = array(
-				0 => 'COM_EHEALTH_PORTAL_BREAST_CANCER_THIRTY_YEARS',
-				1 => 'COM_EHEALTH_PORTAL_BREAST_CANCER_THIRTY_YEARS'
+				0 => 'COM_ECLINIC_PORTAL_BREAST_CANCER_THIRTY_YEARS',
+				1 => 'COM_ECLINIC_PORTAL_BREAST_CANCER_THIRTY_YEARS'
 			);
 			// [Interpretation 21113] Now check if value is found in this array
-			if (isset($bc_preg_ageArray[$value]) && Ehealth_portalHelper::checkString($bc_preg_ageArray[$value]))
+			if (isset($bc_preg_ageArray[$value]) && Eclinic_portalHelper::checkString($bc_preg_ageArray[$value]))
 			{
 				return $bc_preg_ageArray[$value];
 			}
@@ -216,11 +216,11 @@ class Ehealth_portalModelBreast_cancers extends JModelList
 		if ($name === 'bc_history_hrt')
 		{
 			$bc_history_hrtArray = array(
-				0 => 'COM_EHEALTH_PORTAL_BREAST_CANCER_YES',
-				1 => 'COM_EHEALTH_PORTAL_BREAST_CANCER_NO'
+				0 => 'COM_ECLINIC_PORTAL_BREAST_CANCER_YES',
+				1 => 'COM_ECLINIC_PORTAL_BREAST_CANCER_NO'
 			);
 			// [Interpretation 21113] Now check if value is found in this array
-			if (isset($bc_history_hrtArray[$value]) && Ehealth_portalHelper::checkString($bc_history_hrtArray[$value]))
+			if (isset($bc_history_hrtArray[$value]) && Eclinic_portalHelper::checkString($bc_history_hrtArray[$value]))
 			{
 				return $bc_history_hrtArray[$value];
 			}
@@ -229,11 +229,11 @@ class Ehealth_portalModelBreast_cancers extends JModelList
 		if ($name === 'bc_reg_exercise')
 		{
 			$bc_reg_exerciseArray = array(
-				0 => 'COM_EHEALTH_PORTAL_BREAST_CANCER_YES',
-				1 => 'COM_EHEALTH_PORTAL_BREAST_CANCER_NO'
+				0 => 'COM_ECLINIC_PORTAL_BREAST_CANCER_YES',
+				1 => 'COM_ECLINIC_PORTAL_BREAST_CANCER_NO'
 			);
 			// [Interpretation 21113] Now check if value is found in this array
-			if (isset($bc_reg_exerciseArray[$value]) && Ehealth_portalHelper::checkString($bc_reg_exerciseArray[$value]))
+			if (isset($bc_reg_exerciseArray[$value]) && Eclinic_portalHelper::checkString($bc_reg_exerciseArray[$value]))
 			{
 				return $bc_reg_exerciseArray[$value];
 			}
@@ -242,11 +242,11 @@ class Ehealth_portalModelBreast_cancers extends JModelList
 		if ($name === 'bc_overweight')
 		{
 			$bc_overweightArray = array(
-				0 => 'COM_EHEALTH_PORTAL_BREAST_CANCER_YES',
-				1 => 'COM_EHEALTH_PORTAL_BREAST_CANCER_NO'
+				0 => 'COM_ECLINIC_PORTAL_BREAST_CANCER_YES',
+				1 => 'COM_ECLINIC_PORTAL_BREAST_CANCER_NO'
 			);
 			// [Interpretation 21113] Now check if value is found in this array
-			if (isset($bc_overweightArray[$value]) && Ehealth_portalHelper::checkString($bc_overweightArray[$value]))
+			if (isset($bc_overweightArray[$value]) && Eclinic_portalHelper::checkString($bc_overweightArray[$value]))
 			{
 				return $bc_overweightArray[$value];
 			}
@@ -255,11 +255,11 @@ class Ehealth_portalModelBreast_cancers extends JModelList
 		if ($name === 'bc_lump_near_breast')
 		{
 			$bc_lump_near_breastArray = array(
-				0 => 'COM_EHEALTH_PORTAL_BREAST_CANCER_YES',
-				1 => 'COM_EHEALTH_PORTAL_BREAST_CANCER_NO'
+				0 => 'COM_ECLINIC_PORTAL_BREAST_CANCER_YES',
+				1 => 'COM_ECLINIC_PORTAL_BREAST_CANCER_NO'
 			);
 			// [Interpretation 21113] Now check if value is found in this array
-			if (isset($bc_lump_near_breastArray[$value]) && Ehealth_portalHelper::checkString($bc_lump_near_breastArray[$value]))
+			if (isset($bc_lump_near_breastArray[$value]) && Eclinic_portalHelper::checkString($bc_lump_near_breastArray[$value]))
 			{
 				return $bc_lump_near_breastArray[$value];
 			}
@@ -268,11 +268,11 @@ class Ehealth_portalModelBreast_cancers extends JModelList
 		if ($name === 'bc_dimpling')
 		{
 			$bc_dimplingArray = array(
-				0 => 'COM_EHEALTH_PORTAL_BREAST_CANCER_YES',
-				1 => 'COM_EHEALTH_PORTAL_BREAST_CANCER_NO'
+				0 => 'COM_ECLINIC_PORTAL_BREAST_CANCER_YES',
+				1 => 'COM_ECLINIC_PORTAL_BREAST_CANCER_NO'
 			);
 			// [Interpretation 21113] Now check if value is found in this array
-			if (isset($bc_dimplingArray[$value]) && Ehealth_portalHelper::checkString($bc_dimplingArray[$value]))
+			if (isset($bc_dimplingArray[$value]) && Eclinic_portalHelper::checkString($bc_dimplingArray[$value]))
 			{
 				return $bc_dimplingArray[$value];
 			}
@@ -281,11 +281,11 @@ class Ehealth_portalModelBreast_cancers extends JModelList
 		if ($name === 'bc_inward_nipple')
 		{
 			$bc_inward_nippleArray = array(
-				0 => 'COM_EHEALTH_PORTAL_BREAST_CANCER_YES',
-				1 => 'COM_EHEALTH_PORTAL_BREAST_CANCER_NO'
+				0 => 'COM_ECLINIC_PORTAL_BREAST_CANCER_YES',
+				1 => 'COM_ECLINIC_PORTAL_BREAST_CANCER_NO'
 			);
 			// [Interpretation 21113] Now check if value is found in this array
-			if (isset($bc_inward_nippleArray[$value]) && Ehealth_portalHelper::checkString($bc_inward_nippleArray[$value]))
+			if (isset($bc_inward_nippleArray[$value]) && Eclinic_portalHelper::checkString($bc_inward_nippleArray[$value]))
 			{
 				return $bc_inward_nippleArray[$value];
 			}
@@ -294,11 +294,11 @@ class Ehealth_portalModelBreast_cancers extends JModelList
 		if ($name === 'bc_nipple_discharge')
 		{
 			$bc_nipple_dischargeArray = array(
-				0 => 'COM_EHEALTH_PORTAL_BREAST_CANCER_YES',
-				1 => 'COM_EHEALTH_PORTAL_BREAST_CANCER_NO'
+				0 => 'COM_ECLINIC_PORTAL_BREAST_CANCER_YES',
+				1 => 'COM_ECLINIC_PORTAL_BREAST_CANCER_NO'
 			);
 			// [Interpretation 21113] Now check if value is found in this array
-			if (isset($bc_nipple_dischargeArray[$value]) && Ehealth_portalHelper::checkString($bc_nipple_dischargeArray[$value]))
+			if (isset($bc_nipple_dischargeArray[$value]) && Eclinic_portalHelper::checkString($bc_nipple_dischargeArray[$value]))
 			{
 				return $bc_nipple_dischargeArray[$value];
 			}
@@ -307,11 +307,11 @@ class Ehealth_portalModelBreast_cancers extends JModelList
 		if ($name === 'bc_abnormal_skin')
 		{
 			$bc_abnormal_skinArray = array(
-				0 => 'COM_EHEALTH_PORTAL_BREAST_CANCER_YES',
-				1 => 'COM_EHEALTH_PORTAL_BREAST_CANCER_NO'
+				0 => 'COM_ECLINIC_PORTAL_BREAST_CANCER_YES',
+				1 => 'COM_ECLINIC_PORTAL_BREAST_CANCER_NO'
 			);
 			// [Interpretation 21113] Now check if value is found in this array
-			if (isset($bc_abnormal_skinArray[$value]) && Ehealth_portalHelper::checkString($bc_abnormal_skinArray[$value]))
+			if (isset($bc_abnormal_skinArray[$value]) && Eclinic_portalHelper::checkString($bc_abnormal_skinArray[$value]))
 			{
 				return $bc_abnormal_skinArray[$value];
 			}
@@ -320,11 +320,11 @@ class Ehealth_portalModelBreast_cancers extends JModelList
 		if ($name === 'bc_breast_shape')
 		{
 			$bc_breast_shapeArray = array(
-				0 => 'COM_EHEALTH_PORTAL_BREAST_CANCER_YES',
-				1 => 'COM_EHEALTH_PORTAL_BREAST_CANCER_NO'
+				0 => 'COM_ECLINIC_PORTAL_BREAST_CANCER_YES',
+				1 => 'COM_ECLINIC_PORTAL_BREAST_CANCER_NO'
 			);
 			// [Interpretation 21113] Now check if value is found in this array
-			if (isset($bc_breast_shapeArray[$value]) && Ehealth_portalHelper::checkString($bc_breast_shapeArray[$value]))
+			if (isset($bc_breast_shapeArray[$value]) && Eclinic_portalHelper::checkString($bc_breast_shapeArray[$value]))
 			{
 				return $bc_breast_shapeArray[$value];
 			}
@@ -348,8 +348,8 @@ class Ehealth_portalModelBreast_cancers extends JModelList
 		// [Interpretation 15049] Select some fields
 		$query->select('a.*');
 
-		// [Interpretation 15059] From the ehealth_portal_item table
-		$query->from($db->quoteName('#__ehealth_portal_breast_cancer', 'a'));
+		// [Interpretation 15059] From the eclinic_portal_item table
+		$query->from($db->quoteName('#__eclinic_portal_breast_cancer', 'a'));
 
 		// [Interpretation 15078] Filter by published state
 		$published = $this->getState('filter.published');
@@ -371,7 +371,7 @@ class Ehealth_portalModelBreast_cancers extends JModelList
 			$query->where('a.access = ' . (int) $access);
 		}
 		// [Interpretation 15112] Implement View Level Access
-		if (!$user->authorise('core.options', 'com_ehealth_portal'))
+		if (!$user->authorise('core.options', 'com_eclinic_portal'))
 		{
 			$groups = implode(',', $user->getAuthorisedViewLevels());
 			$query->where('a.access IN (' . $groups . ')');
@@ -419,12 +419,12 @@ class Ehealth_portalModelBreast_cancers extends JModelList
 	public function getExportData($pks, $user = null)
 	{
 		// [Interpretation 14499] setup the query
-		if (($pks_size = Ehealth_portalHelper::checkArray($pks)) !== false || 'bulk' === $pks)
+		if (($pks_size = Eclinic_portalHelper::checkArray($pks)) !== false || 'bulk' === $pks)
 		{
 			// [Interpretation 14505] Set a value to know this is export method. (USE IN CUSTOM CODE TO ALTER OUTCOME)
 			$_export = true;
 			// [Interpretation 14510] Get the user object if not set.
-			if (!isset($user) || !Ehealth_portalHelper::checkObject($user))
+			if (!isset($user) || !Eclinic_portalHelper::checkObject($user))
 			{
 				$user = JFactory::getUser();
 			}
@@ -435,8 +435,8 @@ class Ehealth_portalModelBreast_cancers extends JModelList
 			// [Interpretation 14524] Select some fields
 			$query->select('a.*');
 
-			// [Interpretation 14528] From the ehealth_portal_breast_cancer table
-			$query->from($db->quoteName('#__ehealth_portal_breast_cancer', 'a'));
+			// [Interpretation 14528] From the eclinic_portal_breast_cancer table
+			$query->from($db->quoteName('#__eclinic_portal_breast_cancer', 'a'));
 			// [Interpretation 14535] The bulk export path
 			if ('bulk' === $pks)
 			{
@@ -456,7 +456,7 @@ class Ehealth_portalModelBreast_cancers extends JModelList
 				$query->where('a.id IN (' . implode(',',$pks) . ')');
 			}
 			// [Interpretation 14611] Implement View Level Access
-			if (!$user->authorise('core.options', 'com_ehealth_portal'))
+			if (!$user->authorise('core.options', 'com_eclinic_portal'))
 			{
 				$groups = implode(',', $user->getAuthorisedViewLevels());
 				$query->where('a.access IN (' . $groups . ')');
@@ -473,7 +473,7 @@ class Ehealth_portalModelBreast_cancers extends JModelList
 				$items = $db->loadObjectList();
 
 				// [Interpretation 20714] Set values to display correctly.
-				if (Ehealth_portalHelper::checkArray($items))
+				if (Eclinic_portalHelper::checkArray($items))
 				{
 					foreach ($items as $nr => &$item)
 					{
@@ -485,7 +485,7 @@ class Ehealth_portalModelBreast_cancers extends JModelList
 				}
 				// [Interpretation 20871] Add headers to items array.
 				$headers = $this->getExImPortHeaders();
-				if (Ehealth_portalHelper::checkObject($headers))
+				if (Eclinic_portalHelper::checkObject($headers))
 				{
 					array_unshift($items,$headers);
 				}
@@ -505,8 +505,8 @@ class Ehealth_portalModelBreast_cancers extends JModelList
 		// Get a db connection.
 		$db = JFactory::getDbo();
 		// get the columns
-		$columns = $db->getTableColumns("#__ehealth_portal_breast_cancer");
-		if (Ehealth_portalHelper::checkArray($columns))
+		$columns = $db->getTableColumns("#__eclinic_portal_breast_cancer");
+		if (Eclinic_portalHelper::checkArray($columns))
 		{
 			// remove the headers you don't import/export.
 			unset($columns['asset_id']);
@@ -551,7 +551,7 @@ class Ehealth_portalModelBreast_cancers extends JModelList
 	protected function checkInNow()
 	{
 		// [Interpretation 20196] Get set check in time
-		$time = JComponentHelper::getParams('com_ehealth_portal')->get('check_in');
+		$time = JComponentHelper::getParams('com_eclinic_portal')->get('check_in');
 
 		if ($time)
 		{
@@ -561,7 +561,7 @@ class Ehealth_portalModelBreast_cancers extends JModelList
 			// [Interpretation 20207] reset query
 			$query = $db->getQuery(true);
 			$query->select('*');
-			$query->from($db->quoteName('#__ehealth_portal_breast_cancer'));
+			$query->from($db->quoteName('#__eclinic_portal_breast_cancer'));
 			$db->setQuery($query);
 			$db->execute();
 			if ($db->getNumRows())
@@ -584,7 +584,7 @@ class Ehealth_portalModelBreast_cancers extends JModelList
 				);
 
 				// [Interpretation 20244] Check table
-				$query->update($db->quoteName('#__ehealth_portal_breast_cancer'))->set($fields)->where($conditions); 
+				$query->update($db->quoteName('#__eclinic_portal_breast_cancer'))->set($fields)->where($conditions); 
 
 				$db->setQuery($query);
 

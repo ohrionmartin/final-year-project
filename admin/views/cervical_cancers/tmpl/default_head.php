@@ -4,9 +4,9 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			29th November, 2020
+	@build			30th November, 2020
 	@created		13th August, 2020
-	@package		eHealth Portal
+	@package		eClinic Portal
 	@subpackage		default_head.php
 	@author			Oh Martin <https://vdm.io>	
 	@copyright		Copyright (C) 2015. All Rights Reserved
@@ -39,42 +39,42 @@ defined('_JEXEC') or die('Restricted access');
 		</th>
 	<?php endif; ?>
 	<th class="nowrap" >
-			<?php echo JHtml::_('grid.sort', 'COM_EHEALTH_PORTAL_CERVICAL_CANCER_PATIENT_LABEL', 'a.patient', $this->listDirn, $this->listOrder); ?>
+			<?php echo JHtml::_('grid.sort', 'COM_ECLINIC_PORTAL_CERVICAL_CANCER_PATIENT_LABEL', 'a.patient', $this->listDirn, $this->listOrder); ?>
 	</th>
 	<th class="nowrap hidden-phone" >
-			<?php echo JText::_('COM_EHEALTH_PORTAL_CERVICAL_CANCER_CC_VIGINAL_BLEEDING_LABEL'); ?>
+			<?php echo JText::_('COM_ECLINIC_PORTAL_CERVICAL_CANCER_CC_VIGINAL_BLEEDING_LABEL'); ?>
 	</th>
 	<th class="nowrap hidden-phone" >
-			<?php echo JText::_('COM_EHEALTH_PORTAL_CERVICAL_CANCER_CC_V_DISCHARGE_LABEL'); ?>
+			<?php echo JText::_('COM_ECLINIC_PORTAL_CERVICAL_CANCER_CC_V_DISCHARGE_LABEL'); ?>
 	</th>
 	<th class="nowrap hidden-phone" >
-			<?php echo JText::_('COM_EHEALTH_PORTAL_CERVICAL_CANCER_CC_PERIODS_LABEL'); ?>
+			<?php echo JText::_('COM_ECLINIC_PORTAL_CERVICAL_CANCER_CC_PERIODS_LABEL'); ?>
 	</th>
 	<th class="nowrap hidden-phone" >
-			<?php echo JText::_('COM_EHEALTH_PORTAL_CERVICAL_CANCER_CC_SMOKING_LABEL'); ?>
+			<?php echo JText::_('COM_ECLINIC_PORTAL_CERVICAL_CANCER_CC_SMOKING_LABEL'); ?>
 	</th>
 	<th class="nowrap hidden-phone" >
-			<?php echo JText::_('COM_EHEALTH_PORTAL_CERVICAL_CANCER_CC_SEX_ACTVE_LABEL'); ?>
+			<?php echo JText::_('COM_ECLINIC_PORTAL_CERVICAL_CANCER_CC_SEX_ACTVE_LABEL'); ?>
 	</th>
 	<th class="nowrap hidden-phone" >
-			<?php echo JText::_('COM_EHEALTH_PORTAL_CERVICAL_CANCER_CC_SEX_PARTNER_LABEL'); ?>
+			<?php echo JText::_('COM_ECLINIC_PORTAL_CERVICAL_CANCER_CC_SEX_PARTNER_LABEL'); ?>
 	</th>
 	<th class="nowrap hidden-phone" >
-			<?php echo JText::_('COM_EHEALTH_PORTAL_CERVICAL_CANCER_PAP_SMEAR_COLLECTION_LABEL'); ?>
+			<?php echo JText::_('COM_ECLINIC_PORTAL_CERVICAL_CANCER_PAP_SMEAR_COLLECTION_LABEL'); ?>
 	</th>
 	<th class="nowrap hidden-phone" >
-			<?php echo JText::_('COM_EHEALTH_PORTAL_CERVICAL_CANCER_CC_RESULT_LABEL'); ?>
+			<?php echo JText::_('COM_ECLINIC_PORTAL_CERVICAL_CANCER_CC_RESULT_LABEL'); ?>
 	</th>
 	<?php if ($this->canState): ?>
 		<th width="10" class="nowrap center" >
-			<?php echo JHtml::_('grid.sort', 'COM_EHEALTH_PORTAL_CERVICAL_CANCER_STATUS', 'a.published', $this->listDirn, $this->listOrder); ?>
+			<?php echo JHtml::_('grid.sort', 'COM_ECLINIC_PORTAL_CERVICAL_CANCER_STATUS', 'a.published', $this->listDirn, $this->listOrder); ?>
 		</th>
 	<?php else: ?>
 		<th width="10" class="nowrap center" >
-			<?php echo JText::_('COM_EHEALTH_PORTAL_CERVICAL_CANCER_STATUS'); ?>
+			<?php echo JText::_('COM_ECLINIC_PORTAL_CERVICAL_CANCER_STATUS'); ?>
 		</th>
 	<?php endif; ?>
 	<th width="5" class="nowrap center hidden-phone" >
-			<?php echo JHtml::_('grid.sort', 'COM_EHEALTH_PORTAL_CERVICAL_CANCER_ID', 'a.id', $this->listDirn, $this->listOrder); ?>
+			<?php echo JHtml::_('grid.sort', 'COM_ECLINIC_PORTAL_CERVICAL_CANCER_ID', 'a.id', $this->listDirn, $this->listOrder); ?>
 	</th>
 </tr>

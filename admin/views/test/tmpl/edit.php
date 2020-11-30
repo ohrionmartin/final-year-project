@@ -4,9 +4,9 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			29th November, 2020
+	@build			30th November, 2020
 	@created		13th August, 2020
-	@package		eHealth Portal
+	@package		eClinic Portal
 	@subpackage		edit.php
 	@author			Oh Martin <https://vdm.io>	
 	@copyright		Copyright (C) 2015. All Rights Reserved
@@ -32,7 +32,7 @@ $componentParams = $this->params; // will be removed just use $this->params inst
 	// waiting spinner
 	var outerDiv = jQuery('body');
 	jQuery('<div id="loading"></div>')
-		.css("background", "rgba(255, 255, 255, .8) url('components/com_ehealth_portal/assets/images/import.gif') 50% 15% no-repeat")
+		.css("background", "rgba(255, 255, 255, .8) url('components/com_eclinic_portal/assets/images/import.gif') 50% 15% no-repeat")
 		.css("top", outerDiv.position().top - jQuery(window).scrollTop())
 		.css("left", outerDiv.position().left - jQuery(window).scrollLeft())
 		.css("width", outerDiv.width())
@@ -46,19 +46,19 @@ $componentParams = $this->params; // will be removed just use $this->params inst
 	jQuery('#loading').show();
 	// when page is ready remove and show
 	jQuery(window).load(function() {
-		jQuery('#ehealth_portal_loader').fadeIn('fast');
+		jQuery('#eclinic_portal_loader').fadeIn('fast');
 		jQuery('#loading').hide();
 	});
 </script>
-<div id="ehealth_portal_loader" style="display: none;">
-<form action="<?php echo JRoute::_('index.php?option=com_ehealth_portal&layout=edit&id='. (int) $this->item->id . $this->referral); ?>" method="post" name="adminForm" id="adminForm" class="form-validate" enctype="multipart/form-data">
+<div id="eclinic_portal_loader" style="display: none;">
+<form action="<?php echo JRoute::_('index.php?option=com_eclinic_portal&layout=edit&id='. (int) $this->item->id . $this->referral); ?>" method="post" name="adminForm" id="adminForm" class="form-validate" enctype="multipart/form-data">
 
 	<?php echo JLayoutHelper::render('test.urine_above', $this); ?>
 <div class="form-horizontal">
 
 	<?php echo JHtml::_('bootstrap.startTabSet', 'testTab', array('active' => 'urine')); ?>
 
-	<?php echo JHtml::_('bootstrap.addTab', 'testTab', 'urine', JText::_('COM_EHEALTH_PORTAL_TEST_URINE', true)); ?>
+	<?php echo JHtml::_('bootstrap.addTab', 'testTab', 'urine', JText::_('COM_ECLINIC_PORTAL_TEST_URINE', true)); ?>
 		<div class="row-fluid form-horizontal-desktop">
 			<div class="span12">
 				<?php echo JLayoutHelper::render('test.urine_left', $this); ?>
@@ -66,7 +66,7 @@ $componentParams = $this->params; // will be removed just use $this->params inst
 		</div>
 	<?php echo JHtml::_('bootstrap.endTab'); ?>
 
-	<?php echo JHtml::_('bootstrap.addTab', 'testTab', 'glucose', JText::_('COM_EHEALTH_PORTAL_TEST_GLUCOSE', true)); ?>
+	<?php echo JHtml::_('bootstrap.addTab', 'testTab', 'glucose', JText::_('COM_ECLINIC_PORTAL_TEST_GLUCOSE', true)); ?>
 		<div class="row-fluid form-horizontal-desktop">
 			<div class="span12">
 				<?php echo JLayoutHelper::render('test.glucose_left', $this); ?>
@@ -74,7 +74,7 @@ $componentParams = $this->params; // will be removed just use $this->params inst
 		</div>
 	<?php echo JHtml::_('bootstrap.endTab'); ?>
 
-	<?php echo JHtml::_('bootstrap.addTab', 'testTab', 'haemoglobin', JText::_('COM_EHEALTH_PORTAL_TEST_HAEMOGLOBIN', true)); ?>
+	<?php echo JHtml::_('bootstrap.addTab', 'testTab', 'haemoglobin', JText::_('COM_ECLINIC_PORTAL_TEST_HAEMOGLOBIN', true)); ?>
 		<div class="row-fluid form-horizontal-desktop">
 			<div class="span12">
 				<?php echo JLayoutHelper::render('test.haemoglobin_left', $this); ?>
@@ -82,7 +82,7 @@ $componentParams = $this->params; // will be removed just use $this->params inst
 		</div>
 	<?php echo JHtml::_('bootstrap.endTab'); ?>
 
-	<?php echo JHtml::_('bootstrap.addTab', 'testTab', 'cholesterol', JText::_('COM_EHEALTH_PORTAL_TEST_CHOLESTEROL', true)); ?>
+	<?php echo JHtml::_('bootstrap.addTab', 'testTab', 'cholesterol', JText::_('COM_ECLINIC_PORTAL_TEST_CHOLESTEROL', true)); ?>
 		<div class="row-fluid form-horizontal-desktop">
 			<div class="span12">
 				<?php echo JLayoutHelper::render('test.cholesterol_left', $this); ?>
@@ -90,7 +90,7 @@ $componentParams = $this->params; // will be removed just use $this->params inst
 		</div>
 	<?php echo JHtml::_('bootstrap.endTab'); ?>
 
-	<?php echo JHtml::_('bootstrap.addTab', 'testTab', 'syphillis', JText::_('COM_EHEALTH_PORTAL_TEST_SYPHILLIS', true)); ?>
+	<?php echo JHtml::_('bootstrap.addTab', 'testTab', 'syphillis', JText::_('COM_ECLINIC_PORTAL_TEST_SYPHILLIS', true)); ?>
 		<div class="row-fluid form-horizontal-desktop">
 			<div class="span12">
 				<?php echo JLayoutHelper::render('test.syphillis_left', $this); ?>
@@ -98,7 +98,7 @@ $componentParams = $this->params; // will be removed just use $this->params inst
 		</div>
 	<?php echo JHtml::_('bootstrap.endTab'); ?>
 
-	<?php echo JHtml::_('bootstrap.addTab', 'testTab', 'hepatitis_b', JText::_('COM_EHEALTH_PORTAL_TEST_HEPATITIS_B', true)); ?>
+	<?php echo JHtml::_('bootstrap.addTab', 'testTab', 'hepatitis_b', JText::_('COM_ECLINIC_PORTAL_TEST_HEPATITIS_B', true)); ?>
 		<div class="row-fluid form-horizontal-desktop">
 			<div class="span12">
 				<?php echo JLayoutHelper::render('test.hepatitis_b_left', $this); ?>
@@ -106,7 +106,7 @@ $componentParams = $this->params; // will be removed just use $this->params inst
 		</div>
 	<?php echo JHtml::_('bootstrap.endTab'); ?>
 
-	<?php echo JHtml::_('bootstrap.addTab', 'testTab', 'malaria', JText::_('COM_EHEALTH_PORTAL_TEST_MALARIA', true)); ?>
+	<?php echo JHtml::_('bootstrap.addTab', 'testTab', 'malaria', JText::_('COM_ECLINIC_PORTAL_TEST_MALARIA', true)); ?>
 		<div class="row-fluid form-horizontal-desktop">
 			<div class="span12">
 				<?php echo JLayoutHelper::render('test.malaria_left', $this); ?>
@@ -114,7 +114,7 @@ $componentParams = $this->params; // will be removed just use $this->params inst
 		</div>
 	<?php echo JHtml::_('bootstrap.endTab'); ?>
 
-	<?php echo JHtml::_('bootstrap.addTab', 'testTab', 'pregnancy', JText::_('COM_EHEALTH_PORTAL_TEST_PREGNANCY', true)); ?>
+	<?php echo JHtml::_('bootstrap.addTab', 'testTab', 'pregnancy', JText::_('COM_ECLINIC_PORTAL_TEST_PREGNANCY', true)); ?>
 		<div class="row-fluid form-horizontal-desktop">
 			<div class="span12">
 				<?php echo JLayoutHelper::render('test.pregnancy_left', $this); ?>
@@ -127,7 +127,7 @@ $componentParams = $this->params; // will be removed just use $this->params inst
 	<?php echo JLayoutHelper::render('joomla.edit.params', $this); ?>
 
 	<?php if ($this->canDo->get('core.edit.created_by') || $this->canDo->get('core.edit.created') || $this->canDo->get('core.edit.state') || ($this->canDo->get('core.delete') && $this->canDo->get('core.edit.state'))) : ?>
-	<?php echo JHtml::_('bootstrap.addTab', 'testTab', 'publishing', JText::_('COM_EHEALTH_PORTAL_TEST_PUBLISHING', true)); ?>
+	<?php echo JHtml::_('bootstrap.addTab', 'testTab', 'publishing', JText::_('COM_ECLINIC_PORTAL_TEST_PUBLISHING', true)); ?>
 		<div class="row-fluid form-horizontal-desktop">
 			<div class="span6">
 				<?php echo JLayoutHelper::render('test.publishing', $this); ?>
@@ -140,7 +140,7 @@ $componentParams = $this->params; // will be removed just use $this->params inst
 	<?php endif; ?>
 
 	<?php if ($this->canDo->get('core.admin')) : ?>
-	<?php echo JHtml::_('bootstrap.addTab', 'testTab', 'permissions', JText::_('COM_EHEALTH_PORTAL_TEST_PERMISSION', true)); ?>
+	<?php echo JHtml::_('bootstrap.addTab', 'testTab', 'permissions', JText::_('COM_ECLINIC_PORTAL_TEST_PERMISSION', true)); ?>
 		<div class="row-fluid form-horizontal-desktop">
 			<div class="span12">
 				<fieldset class="adminform">

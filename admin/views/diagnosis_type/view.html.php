@@ -4,9 +4,9 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			29th November, 2020
+	@build			30th November, 2020
 	@created		13th August, 2020
-	@package		eHealth Portal
+	@package		eClinic Portal
 	@subpackage		view.html.php
 	@author			Oh Martin <https://vdm.io>	
 	@copyright		Copyright (C) 2015. All Rights Reserved
@@ -24,7 +24,7 @@ defined('_JEXEC') or die('Restricted access');
 /**
  * Diagnosis_type View class
  */
-class Ehealth_portalViewDiagnosis_type extends JViewLegacy
+class Eclinic_portalViewDiagnosis_type extends JViewLegacy
 {
 	/**
 	 * display method of View
@@ -33,14 +33,14 @@ class Ehealth_portalViewDiagnosis_type extends JViewLegacy
 	public function display($tpl = null)
 	{
 		// set params
-		$this->params = JComponentHelper::getParams('com_ehealth_portal');
+		$this->params = JComponentHelper::getParams('com_eclinic_portal');
 		// Assign the variables
 		$this->form = $this->get('Form');
 		$this->item = $this->get('Item');
 		$this->script = $this->get('Script');
 		$this->state = $this->get('State');
 		// get action permissions
-		$this->canDo = Ehealth_portalHelper::getActions('diagnosis_type', $this->item);
+		$this->canDo = Eclinic_portalHelper::getActions('diagnosis_type', $this->item);
 		// get input
 		$jinput = JFactory::getApplication()->input;
 		$this->ref = $jinput->get('ref', 0, 'word');
@@ -92,9 +92,9 @@ class Ehealth_portalViewDiagnosis_type extends JViewLegacy
 		$userId	= $user->id;
 		$isNew = $this->item->id == 0;
 
-		JToolbarHelper::title( JText::_($isNew ? 'COM_EHEALTH_PORTAL_DIAGNOSIS_TYPE_NEW' : 'COM_EHEALTH_PORTAL_DIAGNOSIS_TYPE_EDIT'), 'pencil-2 article-add');
+		JToolbarHelper::title( JText::_($isNew ? 'COM_ECLINIC_PORTAL_DIAGNOSIS_TYPE_NEW' : 'COM_ECLINIC_PORTAL_DIAGNOSIS_TYPE_EDIT'), 'pencil-2 article-add');
 		// [Interpretation 19721] Built the actions for new and existing records.
-		if (Ehealth_portalHelper::checkString($this->referral))
+		if (Eclinic_portalHelper::checkString($this->referral))
 		{
 			if ($this->canDo->get('core.create') && $isNew)
 			{
@@ -147,7 +147,7 @@ class Ehealth_portalViewDiagnosis_type extends JViewLegacy
 				$canVersion = ($this->canDo->get('core.version') && $this->canDo->get('diagnosis_type.version'));
 				if ($this->state->params->get('save_history', 1) && $this->canDo->get('core.edit') && $canVersion)
 				{
-					JToolbarHelper::versions('com_ehealth_portal.diagnosis_type', $this->item->id);
+					JToolbarHelper::versions('com_eclinic_portal.diagnosis_type', $this->item->id);
 				}
 				if ($this->canDo->get('core.create'))
 				{
@@ -158,10 +158,10 @@ class Ehealth_portalViewDiagnosis_type extends JViewLegacy
 		}
 		JToolbarHelper::divider();
 		// [Interpretation 19961] set help url for this view if found
-		$help_url = Ehealth_portalHelper::getHelpUrl('diagnosis_type');
-		if (Ehealth_portalHelper::checkString($help_url))
+		$help_url = Eclinic_portalHelper::getHelpUrl('diagnosis_type');
+		if (Eclinic_portalHelper::checkString($help_url))
 		{
-			JToolbarHelper::help('COM_EHEALTH_PORTAL_HELP_MANAGER', false, $help_url);
+			JToolbarHelper::help('COM_ECLINIC_PORTAL_HELP_MANAGER', false, $help_url);
 		}
 	}
 
@@ -177,10 +177,10 @@ class Ehealth_portalViewDiagnosis_type extends JViewLegacy
 		if(strlen($var) > 30)
 		{
     		// use the helper htmlEscape method instead and shorten the string
-			return Ehealth_portalHelper::htmlEscape($var, $this->_charset, true, 30);
+			return Eclinic_portalHelper::htmlEscape($var, $this->_charset, true, 30);
 		}
 		// use the helper htmlEscape method instead.
-		return Ehealth_portalHelper::htmlEscape($var, $this->_charset);
+		return Eclinic_portalHelper::htmlEscape($var, $this->_charset);
 	}
 
 	/**
@@ -195,10 +195,10 @@ class Ehealth_portalViewDiagnosis_type extends JViewLegacy
 		{
 			$this->document = JFactory::getDocument();
 		}
-		$this->document->setTitle(JText::_($isNew ? 'COM_EHEALTH_PORTAL_DIAGNOSIS_TYPE_NEW' : 'COM_EHEALTH_PORTAL_DIAGNOSIS_TYPE_EDIT'));
-		$this->document->addStyleSheet(JURI::root() . "administrator/components/com_ehealth_portal/assets/css/diagnosis_type.css", (Ehealth_portalHelper::jVersion()->isCompatible('3.8.0')) ? array('version' => 'auto') : 'text/css');
-		$this->document->addScript(JURI::root() . $this->script, (Ehealth_portalHelper::jVersion()->isCompatible('3.8.0')) ? array('version' => 'auto') : 'text/javascript');
-		$this->document->addScript(JURI::root() . "administrator/components/com_ehealth_portal/views/diagnosis_type/submitbutton.js", (Ehealth_portalHelper::jVersion()->isCompatible('3.8.0')) ? array('version' => 'auto') : 'text/javascript'); 
+		$this->document->setTitle(JText::_($isNew ? 'COM_ECLINIC_PORTAL_DIAGNOSIS_TYPE_NEW' : 'COM_ECLINIC_PORTAL_DIAGNOSIS_TYPE_EDIT'));
+		$this->document->addStyleSheet(JURI::root() . "administrator/components/com_eclinic_portal/assets/css/diagnosis_type.css", (Eclinic_portalHelper::jVersion()->isCompatible('3.8.0')) ? array('version' => 'auto') : 'text/css');
+		$this->document->addScript(JURI::root() . $this->script, (Eclinic_portalHelper::jVersion()->isCompatible('3.8.0')) ? array('version' => 'auto') : 'text/javascript');
+		$this->document->addScript(JURI::root() . "administrator/components/com_eclinic_portal/views/diagnosis_type/submitbutton.js", (Eclinic_portalHelper::jVersion()->isCompatible('3.8.0')) ? array('version' => 'auto') : 'text/javascript'); 
 		JText::script('view not acceptable. Error');
 	}
 }

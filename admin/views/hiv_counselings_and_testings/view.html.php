@@ -4,9 +4,9 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			29th November, 2020
+	@build			30th November, 2020
 	@created		13th August, 2020
-	@package		eHealth Portal
+	@package		eClinic Portal
 	@subpackage		view.html.php
 	@author			Oh Martin <https://vdm.io>	
 	@copyright		Copyright (C) 2015. All Rights Reserved
@@ -22,9 +22,9 @@
 defined('_JEXEC') or die('Restricted access');
 
 /**
- * Ehealth_portal View class for the Hiv_counselings_and_testings
+ * Eclinic_portal View class for the Hiv_counselings_and_testings
  */
-class Ehealth_portalViewHiv_counselings_and_testings extends JViewLegacy
+class Eclinic_portalViewHiv_counselings_and_testings extends JViewLegacy
 {
 	/**
 	 * Hiv_counselings_and_testings view display method
@@ -35,7 +35,7 @@ class Ehealth_portalViewHiv_counselings_and_testings extends JViewLegacy
 		if ($this->getLayout() !== 'modal')
 		{
 			// Include helper submenu
-			Ehealth_portalHelper::addSubmenu('hiv_counselings_and_testings');
+			Eclinic_portalHelper::addSubmenu('hiv_counselings_and_testings');
 		}
 
 		// Assign data to the view
@@ -50,7 +50,7 @@ class Ehealth_portalViewHiv_counselings_and_testings extends JViewLegacy
 		// set the return here value
 		$this->return_here = urlencode(base64_encode((string) JUri::getInstance()));
 		// get global action permissions
-		$this->canDo = Ehealth_portalHelper::getActions('hiv_counseling_and_testing');
+		$this->canDo = Eclinic_portalHelper::getActions('hiv_counseling_and_testing');
 		$this->canEdit = $this->canDo->get('core.edit');
 		$this->canState = $this->canDo->get('core.edit.state');
 		$this->canCreate = $this->canDo->get('core.create');
@@ -87,8 +87,8 @@ class Ehealth_portalViewHiv_counselings_and_testings extends JViewLegacy
 	 */
 	protected function addToolBar()
 	{
-		JToolBarHelper::title(JText::_('COM_EHEALTH_PORTAL_HIV_COUNSELINGS_AND_TESTINGS'), 'pencil-2');
-		JHtmlSidebar::setAction('index.php?option=com_ehealth_portal&view=hiv_counselings_and_testings');
+		JToolBarHelper::title(JText::_('COM_ECLINIC_PORTAL_HIV_COUNSELINGS_AND_TESTINGS'), 'pencil-2');
+		JHtmlSidebar::setAction('index.php?option=com_eclinic_portal&view=hiv_counselings_and_testings');
 		JFormHelper::addFieldPath(JPATH_COMPONENT . '/models/fields');
 
 		if ($this->canCreate)
@@ -97,7 +97,7 @@ class Ehealth_portalViewHiv_counselings_and_testings extends JViewLegacy
 		}
 
 		// Only load if there are items
-		if (Ehealth_portalHelper::checkArray($this->items))
+		if (Eclinic_portalHelper::checkArray($this->items))
 		{
 			if ($this->canEdit)
 			{
@@ -141,26 +141,26 @@ class Ehealth_portalViewHiv_counselings_and_testings extends JViewLegacy
 
 			if ($this->canDo->get('core.export') && $this->canDo->get('hiv_counseling_and_testing.export'))
 			{
-				JToolBarHelper::custom('hiv_counselings_and_testings.exportData', 'download', '', 'COM_EHEALTH_PORTAL_EXPORT_DATA', true);
+				JToolBarHelper::custom('hiv_counselings_and_testings.exportData', 'download', '', 'COM_ECLINIC_PORTAL_EXPORT_DATA', true);
 			}
 		}
 
 		if ($this->canDo->get('core.import') && $this->canDo->get('hiv_counseling_and_testing.import'))
 		{
-			JToolBarHelper::custom('hiv_counselings_and_testings.importData', 'upload', '', 'COM_EHEALTH_PORTAL_IMPORT_DATA', false);
+			JToolBarHelper::custom('hiv_counselings_and_testings.importData', 'upload', '', 'COM_ECLINIC_PORTAL_IMPORT_DATA', false);
 		}
 
 		// set help url for this view if found
-		$help_url = Ehealth_portalHelper::getHelpUrl('hiv_counselings_and_testings');
-		if (Ehealth_portalHelper::checkString($help_url))
+		$help_url = Eclinic_portalHelper::getHelpUrl('hiv_counselings_and_testings');
+		if (Eclinic_portalHelper::checkString($help_url))
 		{
-				JToolbarHelper::help('COM_EHEALTH_PORTAL_HELP_MANAGER', false, $help_url);
+				JToolbarHelper::help('COM_ECLINIC_PORTAL_HELP_MANAGER', false, $help_url);
 		}
 
 		// add the options comp button
 		if ($this->canDo->get('core.admin') || $this->canDo->get('core.options'))
 		{
-			JToolBarHelper::preferences('com_ehealth_portal');
+			JToolBarHelper::preferences('com_eclinic_portal');
 		}
 
 		if ($this->canState)
@@ -174,7 +174,7 @@ class Ehealth_portalViewHiv_counselings_and_testings extends JViewLegacy
 			if ($this->canBatch)
 			{
 				JHtmlBatch_::addListSelection(
-					JText::_('COM_EHEALTH_PORTAL_KEEP_ORIGINAL_STATE'),
+					JText::_('COM_ECLINIC_PORTAL_KEEP_ORIGINAL_STATE'),
 					'batch[published]',
 					JHtml::_('select.options', JHtml::_('jgrid.publishedOptions', array('all' => false)), 'value', 'text', '', true)
 				);
@@ -190,7 +190,7 @@ class Ehealth_portalViewHiv_counselings_and_testings extends JViewLegacy
 		if ($this->canBatch && $this->canCreate && $this->canEdit)
 		{
 			JHtmlBatch_::addListSelection(
-				JText::_('COM_EHEALTH_PORTAL_KEEP_ORIGINAL_ACCESS'),
+				JText::_('COM_ECLINIC_PORTAL_KEEP_ORIGINAL_ACCESS'),
 				'batch[access]',
 				JHtml::_('select.options', JHtml::_('access.assetgroups'), 'value', 'text')
 			);
@@ -199,18 +199,18 @@ class Ehealth_portalViewHiv_counselings_and_testings extends JViewLegacy
 		// [Interpretation 17612] Set Patient Selection
 		$this->patientOptions = $this->getThePatientSelections();
 		// [Interpretation 17617] We do some sanitation for Patient filter
-		if (Ehealth_portalHelper::checkArray($this->patientOptions) &&
+		if (Eclinic_portalHelper::checkArray($this->patientOptions) &&
 			isset($this->patientOptions[0]->value) &&
-			!Ehealth_portalHelper::checkString($this->patientOptions[0]->value))
+			!Eclinic_portalHelper::checkString($this->patientOptions[0]->value))
 		{
 			unset($this->patientOptions[0]);
 		}
 		// [Interpretation 17633] Only load Patient filter if it has values
-		if (Ehealth_portalHelper::checkArray($this->patientOptions))
+		if (Eclinic_portalHelper::checkArray($this->patientOptions))
 		{
 			// [Interpretation 17641] Patient Filter
 			JHtmlSidebar::addFilter(
-				'- Select '.JText::_('COM_EHEALTH_PORTAL_HIV_COUNSELING_AND_TESTING_PATIENT_LABEL').' -',
+				'- Select '.JText::_('COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_PATIENT_LABEL').' -',
 				'filter_patient',
 				JHtml::_('select.options', $this->patientOptions, 'value', 'text', $this->state->get('filter.patient'))
 			);
@@ -219,7 +219,7 @@ class Ehealth_portalViewHiv_counselings_and_testings extends JViewLegacy
 			{
 				// [Interpretation 17659] Patient Batch Selection
 				JHtmlBatch_::addListSelection(
-					'- Keep Original '.JText::_('COM_EHEALTH_PORTAL_HIV_COUNSELING_AND_TESTING_PATIENT_LABEL').' -',
+					'- Keep Original '.JText::_('COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_PATIENT_LABEL').' -',
 					'batch[patient]',
 					JHtml::_('select.options', $this->patientOptions, 'value', 'text')
 				);
@@ -238,8 +238,8 @@ class Ehealth_portalViewHiv_counselings_and_testings extends JViewLegacy
 		{
 			$this->document = JFactory::getDocument();
 		}
-		$this->document->setTitle(JText::_('COM_EHEALTH_PORTAL_HIV_COUNSELINGS_AND_TESTINGS'));
-		$this->document->addStyleSheet(JURI::root() . "administrator/components/com_ehealth_portal/assets/css/hiv_counselings_and_testings.css", (Ehealth_portalHelper::jVersion()->isCompatible('3.8.0')) ? array('version' => 'auto') : 'text/css');
+		$this->document->setTitle(JText::_('COM_ECLINIC_PORTAL_HIV_COUNSELINGS_AND_TESTINGS'));
+		$this->document->addStyleSheet(JURI::root() . "administrator/components/com_eclinic_portal/assets/css/hiv_counselings_and_testings.css", (Eclinic_portalHelper::jVersion()->isCompatible('3.8.0')) ? array('version' => 'auto') : 'text/css');
 	}
 
 	/**
@@ -254,10 +254,10 @@ class Ehealth_portalViewHiv_counselings_and_testings extends JViewLegacy
 		if(strlen($var) > 50)
 		{
 			// use the helper htmlEscape method instead and shorten the string
-			return Ehealth_portalHelper::htmlEscape($var, $this->_charset, true);
+			return Eclinic_portalHelper::htmlEscape($var, $this->_charset, true);
 		}
 		// use the helper htmlEscape method instead.
-		return Ehealth_portalHelper::htmlEscape($var, $this->_charset);
+		return Eclinic_portalHelper::htmlEscape($var, $this->_charset);
 	}
 
 	/**
@@ -270,7 +270,7 @@ class Ehealth_portalViewHiv_counselings_and_testings extends JViewLegacy
 		return array(
 			'ordering' => JText::_('JGRID_HEADING_ORDERING'),
 			'a.published' => JText::_('JSTATUS'),
-			'a.patient' => JText::_('COM_EHEALTH_PORTAL_HIV_COUNSELING_AND_TESTING_PATIENT_LABEL'),
+			'a.patient' => JText::_('COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_PATIENT_LABEL'),
 			'a.id' => JText::_('JGRID_HEADING_ID')
 		);
 	}
@@ -285,7 +285,7 @@ class Ehealth_portalViewHiv_counselings_and_testings extends JViewLegacy
 
 		// [Interpretation 17344] Select the text.
 		$query->select($db->quoteName('patient'));
-		$query->from($db->quoteName('#__ehealth_portal_hiv_counseling_and_testing'));
+		$query->from($db->quoteName('#__eclinic_portal_hiv_counseling_and_testing'));
 		$query->order($db->quoteName('patient') . ' ASC');
 
 		// [Interpretation 17355] Reset the query using our newly populated query object.

@@ -1,14 +1,14 @@
-# eHealth Portal (1.0.0)
+# eClinic Portal (1.0.0)
 
-eHealth Portal is a secure web-based viewer that offers health care providers that may not have access to one of the provincial clinical viewers, a single point of access to their patients' digital health information.
+eClinic Portal is a secure web-based viewer that offers health care providers that may not have access to one of the provincial clinical viewers, a single point of access to their patients' digital health information.
 
 # Build Details
 
 + *Company*: [Vast Development Method](https://vdm.io)
 + *Author*: [Oh Martin](mailto:oh.martin@vdm.io)
-+ *Name*: [eHealth Portal](https://vdm.io)
++ *Name*: [eClinic Portal](https://vdm.io)
 + *First Build*: 13th August, 2020
-+ *Last Build*: 29th November, 2020
++ *Last Build*: 30th November, 2020
 + *Version*: 1.0.0
 + *Copyright*: Copyright (C) 2015. All Rights Reserved
 + *License*: GNU/GPL Version 2 or later - http://www.gnu.org/licenses/gpl-2.0.html
@@ -21,7 +21,7 @@ due to [Automated Component Builder](http://joomlacomponentbuilder.com))
 > (if creating a folder and file took **5 seconds** and writing one line of code took **10 seconds**,
 > never making one mistake or taking any coffee break.)
 
-+ *Line count*: **130806**
++ *Line count*: **130808**
 + *File count*: **985**
 + *Folder count*: **166**
 
@@ -43,4 +43,5 @@ Project duration: **15.2 weeks** or **3.2 months**
 
 > This **component** was build with a Joomla [Automated Component Builder](http://joomlacomponentbuilder.com).
 > Developed by [Oh Martin](mailto:oh.martin@vdm.io)
+                                                                           
 > Permissions to reproduce this software were granted by Vast Development Method

@@ -4,9 +4,9 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			29th November, 2020
+	@build			30th November, 2020
 	@created		13th August, 2020
-	@package		eHealth Portal
+	@package		eClinic Portal
 	@subpackage		hiv_counseling_and_testing.php
 	@author			Oh Martin <https://vdm.io>	
 	@copyright		Copyright (C) 2015. All Rights Reserved
@@ -28,7 +28,7 @@ use Joomla\Utilities\ArrayHelper;
 /**
  * Hiv_counselings_and_testings Table class
  */
-class Ehealth_portalTableHiv_counseling_and_testing extends JTable
+class Eclinic_portalTableHiv_counseling_and_testing extends JTable
 {
 	/**
 	 * Ensure the params and metadata in json encoded in the bind method
@@ -45,10 +45,10 @@ class Ehealth_portalTableHiv_counseling_and_testing extends JTable
 	 */
 	function __construct(&$db) 
 	{
-		parent::__construct('#__ehealth_portal_hiv_counseling_and_testing', 'id', $db);
+		parent::__construct('#__eclinic_portal_hiv_counseling_and_testing', 'id', $db);
 
 		// [Interpretation 7717] Adding History Options
-		JTableObserverContenthistory::createObserver($this, array('typeAlias' => 'com_ehealth_portal.hiv_counseling_and_testing'));
+		JTableObserverContenthistory::createObserver($this, array('typeAlias' => 'com_eclinic_portal.hiv_counseling_and_testing'));
 	}	
  
 	public function bind($array, $ignore = '')
@@ -112,11 +112,11 @@ class Ehealth_portalTableHiv_counseling_and_testing extends JTable
 		if (isset($this->alias))
 		{
 			// Verify that the alias is unique
-			$table = JTable::getInstance('hiv_counseling_and_testing', 'Ehealth_portalTable');
+			$table = JTable::getInstance('hiv_counseling_and_testing', 'Eclinic_portalTable');
 
 			if ($table->load(array('alias' => $this->alias)) && ($table->id != $this->id || $this->id == 0))
 			{
-				$this->setError(JText::_('COM_EHEALTH_PORTAL_HIV_COUNSELING_AND_TESTING_ERROR_UNIQUE_ALIAS'));
+				$this->setError(JText::_('COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_ERROR_UNIQUE_ALIAS'));
 				return false;
 			}
 		}
@@ -147,7 +147,7 @@ class Ehealth_portalTableHiv_counseling_and_testing extends JTable
 			// Generate a valid alias
 			$this->generateAlias();
             
-			$table = JTable::getInstance('hiv_counseling_and_testing', 'ehealth_portalTable');
+			$table = JTable::getInstance('hiv_counseling_and_testing', 'eclinic_portalTable');
 
 			while ($table->load(array('alias' => $this->alias)) && ($table->id != $this->id || $this->id == 0))
 			{
@@ -196,7 +196,7 @@ class Ehealth_portalTableHiv_counseling_and_testing extends JTable
 		// If we don't have any access rules set at this point just use an empty JAccessRules class
 		if (!$this->getRules())
 		{
-			$rules = $this->getDefaultAssetValues('com_ehealth_portal.hiv_counseling_and_testing.'.$this->id);
+			$rules = $this->getDefaultAssetValues('com_eclinic_portal.hiv_counseling_and_testing.'.$this->id);
 			$this->setRules($rules);
 		}
         
@@ -287,7 +287,7 @@ class Ehealth_portalTableHiv_counseling_and_testing extends JTable
 	protected function _getAssetName()
 	{
 		$k = $this->_tbl_key;
-		return 'com_ehealth_portal.hiv_counseling_and_testing.'.(int) $this->$k;
+		return 'com_eclinic_portal.hiv_counseling_and_testing.'.(int) $this->$k;
 	}
 
 	/**
@@ -314,7 +314,7 @@ class Ehealth_portalTableHiv_counseling_and_testing extends JTable
 	protected function _getAssetParentId(JTable $table = NULL, $id = NULL) 
 	{
 		$asset = JTable::getInstance('Asset');
-		$asset->loadByName('com_ehealth_portal');
+		$asset->loadByName('com_eclinic_portal');
 
 		return $asset->id;
 	}

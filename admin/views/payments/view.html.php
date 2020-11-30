@@ -4,9 +4,9 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			29th November, 2020
+	@build			30th November, 2020
 	@created		13th August, 2020
-	@package		eHealth Portal
+	@package		eClinic Portal
 	@subpackage		view.html.php
 	@author			Oh Martin <https://vdm.io>	
 	@copyright		Copyright (C) 2015. All Rights Reserved
@@ -22,9 +22,9 @@
 defined('_JEXEC') or die('Restricted access');
 
 /**
- * Ehealth_portal View class for the Payments
+ * Eclinic_portal View class for the Payments
  */
-class Ehealth_portalViewPayments extends JViewLegacy
+class Eclinic_portalViewPayments extends JViewLegacy
 {
 	/**
 	 * Payments view display method
@@ -35,7 +35,7 @@ class Ehealth_portalViewPayments extends JViewLegacy
 		if ($this->getLayout() !== 'modal')
 		{
 			// Include helper submenu
-			Ehealth_portalHelper::addSubmenu('payments');
+			Eclinic_portalHelper::addSubmenu('payments');
 		}
 
 		// Assign data to the view
@@ -50,7 +50,7 @@ class Ehealth_portalViewPayments extends JViewLegacy
 		// set the return here value
 		$this->return_here = urlencode(base64_encode((string) JUri::getInstance()));
 		// get global action permissions
-		$this->canDo = Ehealth_portalHelper::getActions('payment');
+		$this->canDo = Eclinic_portalHelper::getActions('payment');
 		$this->canEdit = $this->canDo->get('core.edit');
 		$this->canState = $this->canDo->get('core.edit.state');
 		$this->canCreate = $this->canDo->get('core.create');
@@ -87,8 +87,8 @@ class Ehealth_portalViewPayments extends JViewLegacy
 	 */
 	protected function addToolBar()
 	{
-		JToolBarHelper::title(JText::_('COM_EHEALTH_PORTAL_PAYMENTS'), 'chart');
-		JHtmlSidebar::setAction('index.php?option=com_ehealth_portal&view=payments');
+		JToolBarHelper::title(JText::_('COM_ECLINIC_PORTAL_PAYMENTS'), 'chart');
+		JHtmlSidebar::setAction('index.php?option=com_eclinic_portal&view=payments');
 		JFormHelper::addFieldPath(JPATH_COMPONENT . '/models/fields');
 
 		if ($this->canCreate)
@@ -97,7 +97,7 @@ class Ehealth_portalViewPayments extends JViewLegacy
 		}
 
 		// Only load if there are items
-		if (Ehealth_portalHelper::checkArray($this->items))
+		if (Eclinic_portalHelper::checkArray($this->items))
 		{
 			if ($this->canEdit)
 			{
@@ -141,26 +141,26 @@ class Ehealth_portalViewPayments extends JViewLegacy
 
 			if ($this->canDo->get('core.export') && $this->canDo->get('payment.export'))
 			{
-				JToolBarHelper::custom('payments.exportData', 'download', '', 'COM_EHEALTH_PORTAL_EXPORT_DATA', true);
+				JToolBarHelper::custom('payments.exportData', 'download', '', 'COM_ECLINIC_PORTAL_EXPORT_DATA', true);
 			}
 		}
 
 		if ($this->canDo->get('core.import') && $this->canDo->get('payment.import'))
 		{
-			JToolBarHelper::custom('payments.importData', 'upload', '', 'COM_EHEALTH_PORTAL_IMPORT_DATA', false);
+			JToolBarHelper::custom('payments.importData', 'upload', '', 'COM_ECLINIC_PORTAL_IMPORT_DATA', false);
 		}
 
 		// set help url for this view if found
-		$help_url = Ehealth_portalHelper::getHelpUrl('payments');
-		if (Ehealth_portalHelper::checkString($help_url))
+		$help_url = Eclinic_portalHelper::getHelpUrl('payments');
+		if (Eclinic_portalHelper::checkString($help_url))
 		{
-				JToolbarHelper::help('COM_EHEALTH_PORTAL_HELP_MANAGER', false, $help_url);
+				JToolbarHelper::help('COM_ECLINIC_PORTAL_HELP_MANAGER', false, $help_url);
 		}
 
 		// add the options comp button
 		if ($this->canDo->get('core.admin') || $this->canDo->get('core.options'))
 		{
-			JToolBarHelper::preferences('com_ehealth_portal');
+			JToolBarHelper::preferences('com_eclinic_portal');
 		}
 
 		if ($this->canState)
@@ -174,7 +174,7 @@ class Ehealth_portalViewPayments extends JViewLegacy
 			if ($this->canBatch)
 			{
 				JHtmlBatch_::addListSelection(
-					JText::_('COM_EHEALTH_PORTAL_KEEP_ORIGINAL_STATE'),
+					JText::_('COM_ECLINIC_PORTAL_KEEP_ORIGINAL_STATE'),
 					'batch[published]',
 					JHtml::_('select.options', JHtml::_('jgrid.publishedOptions', array('all' => false)), 'value', 'text', '', true)
 				);
@@ -190,7 +190,7 @@ class Ehealth_portalViewPayments extends JViewLegacy
 		if ($this->canBatch && $this->canCreate && $this->canEdit)
 		{
 			JHtmlBatch_::addListSelection(
-				JText::_('COM_EHEALTH_PORTAL_KEEP_ORIGINAL_ACCESS'),
+				JText::_('COM_ECLINIC_PORTAL_KEEP_ORIGINAL_ACCESS'),
 				'batch[access]',
 				JHtml::_('select.options', JHtml::_('access.assetgroups'), 'value', 'text')
 			);
@@ -199,18 +199,18 @@ class Ehealth_portalViewPayments extends JViewLegacy
 		// [Interpretation 17612] Set Patient Selection
 		$this->patientOptions = $this->getThePatientSelections();
 		// [Interpretation 17617] We do some sanitation for Patient filter
-		if (Ehealth_portalHelper::checkArray($this->patientOptions) &&
+		if (Eclinic_portalHelper::checkArray($this->patientOptions) &&
 			isset($this->patientOptions[0]->value) &&
-			!Ehealth_portalHelper::checkString($this->patientOptions[0]->value))
+			!Eclinic_portalHelper::checkString($this->patientOptions[0]->value))
 		{
 			unset($this->patientOptions[0]);
 		}
 		// [Interpretation 17633] Only load Patient filter if it has values
-		if (Ehealth_portalHelper::checkArray($this->patientOptions))
+		if (Eclinic_portalHelper::checkArray($this->patientOptions))
 		{
 			// [Interpretation 17641] Patient Filter
 			JHtmlSidebar::addFilter(
-				'- Select '.JText::_('COM_EHEALTH_PORTAL_PAYMENT_PATIENT_LABEL').' -',
+				'- Select '.JText::_('COM_ECLINIC_PORTAL_PAYMENT_PATIENT_LABEL').' -',
 				'filter_patient',
 				JHtml::_('select.options', $this->patientOptions, 'value', 'text', $this->state->get('filter.patient'))
 			);
@@ -219,7 +219,7 @@ class Ehealth_portalViewPayments extends JViewLegacy
 			{
 				// [Interpretation 17659] Patient Batch Selection
 				JHtmlBatch_::addListSelection(
-					'- Keep Original '.JText::_('COM_EHEALTH_PORTAL_PAYMENT_PATIENT_LABEL').' -',
+					'- Keep Original '.JText::_('COM_ECLINIC_PORTAL_PAYMENT_PATIENT_LABEL').' -',
 					'batch[patient]',
 					JHtml::_('select.options', $this->patientOptions, 'value', 'text')
 				);
@@ -229,18 +229,18 @@ class Ehealth_portalViewPayments extends JViewLegacy
 		// [Interpretation 17612] Set Payment Category Selection
 		$this->payment_categoryOptions = $this->getThePayment_categorySelections();
 		// [Interpretation 17617] We do some sanitation for Payment Category filter
-		if (Ehealth_portalHelper::checkArray($this->payment_categoryOptions) &&
+		if (Eclinic_portalHelper::checkArray($this->payment_categoryOptions) &&
 			isset($this->payment_categoryOptions[0]->value) &&
-			!Ehealth_portalHelper::checkString($this->payment_categoryOptions[0]->value))
+			!Eclinic_portalHelper::checkString($this->payment_categoryOptions[0]->value))
 		{
 			unset($this->payment_categoryOptions[0]);
 		}
 		// [Interpretation 17633] Only load Payment Category filter if it has values
-		if (Ehealth_portalHelper::checkArray($this->payment_categoryOptions))
+		if (Eclinic_portalHelper::checkArray($this->payment_categoryOptions))
 		{
 			// [Interpretation 17641] Payment Category Filter
 			JHtmlSidebar::addFilter(
-				'- Select '.JText::_('COM_EHEALTH_PORTAL_PAYMENT_PAYMENT_CATEGORY_LABEL').' -',
+				'- Select '.JText::_('COM_ECLINIC_PORTAL_PAYMENT_PAYMENT_CATEGORY_LABEL').' -',
 				'filter_payment_category',
 				JHtml::_('select.options', $this->payment_categoryOptions, 'value', 'text', $this->state->get('filter.payment_category'))
 			);
@@ -249,7 +249,7 @@ class Ehealth_portalViewPayments extends JViewLegacy
 			{
 				// [Interpretation 17659] Payment Category Batch Selection
 				JHtmlBatch_::addListSelection(
-					'- Keep Original '.JText::_('COM_EHEALTH_PORTAL_PAYMENT_PAYMENT_CATEGORY_LABEL').' -',
+					'- Keep Original '.JText::_('COM_ECLINIC_PORTAL_PAYMENT_PAYMENT_CATEGORY_LABEL').' -',
 					'batch[payment_category]',
 					JHtml::_('select.options', $this->payment_categoryOptions, 'value', 'text')
 				);
@@ -268,8 +268,8 @@ class Ehealth_portalViewPayments extends JViewLegacy
 		{
 			$this->document = JFactory::getDocument();
 		}
-		$this->document->setTitle(JText::_('COM_EHEALTH_PORTAL_PAYMENTS'));
-		$this->document->addStyleSheet(JURI::root() . "administrator/components/com_ehealth_portal/assets/css/payments.css", (Ehealth_portalHelper::jVersion()->isCompatible('3.8.0')) ? array('version' => 'auto') : 'text/css');
+		$this->document->setTitle(JText::_('COM_ECLINIC_PORTAL_PAYMENTS'));
+		$this->document->addStyleSheet(JURI::root() . "administrator/components/com_eclinic_portal/assets/css/payments.css", (Eclinic_portalHelper::jVersion()->isCompatible('3.8.0')) ? array('version' => 'auto') : 'text/css');
 	}
 
 	/**
@@ -284,10 +284,10 @@ class Ehealth_portalViewPayments extends JViewLegacy
 		if(strlen($var) > 50)
 		{
 			// use the helper htmlEscape method instead and shorten the string
-			return Ehealth_portalHelper::htmlEscape($var, $this->_charset, true);
+			return Eclinic_portalHelper::htmlEscape($var, $this->_charset, true);
 		}
 		// use the helper htmlEscape method instead.
-		return Ehealth_portalHelper::htmlEscape($var, $this->_charset);
+		return Eclinic_portalHelper::htmlEscape($var, $this->_charset);
 	}
 
 	/**
@@ -314,7 +314,7 @@ class Ehealth_portalViewPayments extends JViewLegacy
 
 		// [Interpretation 17344] Select the text.
 		$query->select($db->quoteName('patient'));
-		$query->from($db->quoteName('#__ehealth_portal_payment'));
+		$query->from($db->quoteName('#__eclinic_portal_payment'));
 		$query->order($db->quoteName('patient') . ' ASC');
 
 		// [Interpretation 17355] Reset the query using our newly populated query object.
@@ -346,7 +346,7 @@ class Ehealth_portalViewPayments extends JViewLegacy
 
 		// [Interpretation 17344] Select the text.
 		$query->select($db->quoteName('payment_category'));
-		$query->from($db->quoteName('#__ehealth_portal_payment'));
+		$query->from($db->quoteName('#__eclinic_portal_payment'));
 		$query->order($db->quoteName('payment_category') . ' ASC');
 
 		// [Interpretation 17355] Reset the query using our newly populated query object.

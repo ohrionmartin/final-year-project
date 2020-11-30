@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form
-	addrulepath="/administrator/components/com_ehealth_portal/models/rules"
-	addfieldpath="/administrator/components/com_ehealth_portal/models/fields"
+	addrulepath="/administrator/components/com_eclinic_portal/models/rules"
+	addfieldpath="/administrator/components/com_eclinic_portal/models/fields"
 >
 	<fieldset name="details">
 		<!-- [Fields 636] Default Fields. -->
@@ -16,8 +16,8 @@
 		<field
 			name="created"
 			type="calendar"
-			label="COM_EHEALTH_PORTAL_TEST_CREATED_DATE_LABEL"
-			description="COM_EHEALTH_PORTAL_TEST_CREATED_DATE_DESC"
+			label="COM_ECLINIC_PORTAL_TEST_CREATED_DATE_LABEL"
+			description="COM_ECLINIC_PORTAL_TEST_CREATED_DATE_DESC"
 			size="22"
 			format="%Y-%m-%d %H:%M:%S"
 			filter="user_utc"
@@ -26,8 +26,8 @@
 		<field
 			name="created_by"
 			type="user"
-			label="COM_EHEALTH_PORTAL_TEST_CREATED_BY_LABEL"
-			description="COM_EHEALTH_PORTAL_TEST_CREATED_BY_DESC"
+			label="COM_ECLINIC_PORTAL_TEST_CREATED_BY_LABEL"
+			description="COM_ECLINIC_PORTAL_TEST_CREATED_BY_DESC"
 		/>
 		<!-- [Fields 700] Published Field. Type: List (joomla) -->
 		<field name="published" type="list" label="JSTATUS"
@@ -44,12 +44,12 @@
 		</field>
 		<!-- [Fields 727] Date Modified Field. Type: Calendar (joomla) -->
 		<field name="modified" type="calendar" class="readonly"
-			label="COM_EHEALTH_PORTAL_TEST_MODIFIED_DATE_LABEL" description="COM_EHEALTH_PORTAL_TEST_MODIFIED_DATE_DESC"
+			label="COM_ECLINIC_PORTAL_TEST_MODIFIED_DATE_LABEL" description="COM_ECLINIC_PORTAL_TEST_MODIFIED_DATE_DESC"
 			size="22" readonly="true" format="%Y-%m-%d %H:%M:%S" filter="user_utc" />
 		<!-- [Fields 742] User Modified Field. Type: User (joomla) -->
 		<field name="modified_by" type="user"
-			label="COM_EHEALTH_PORTAL_TEST_MODIFIED_BY_LABEL"
-			description="COM_EHEALTH_PORTAL_TEST_MODIFIED_BY_DESC"
+			label="COM_ECLINIC_PORTAL_TEST_MODIFIED_BY_LABEL"
+			description="COM_ECLINIC_PORTAL_TEST_MODIFIED_BY_DESC"
 			class="readonly"
 			readonly="true"
 			filter="unset"
@@ -67,7 +67,7 @@
 			name="ordering"
 			type="number"
 			class="inputbox validate-ordering"
-			label="COM_EHEALTH_PORTAL_TEST_ORDERING_LABEL"
+			label="COM_ECLINIC_PORTAL_TEST_ORDERING_LABEL"
 			description=""
 			default="0"
 			size="6"
@@ -78,8 +78,8 @@
 			name="version"
 			type="text"
 			class="readonly"
-			label="COM_EHEALTH_PORTAL_TEST_VERSION_LABEL"
-			description="COM_EHEALTH_PORTAL_TEST_VERSION_DESC"
+			label="COM_ECLINIC_PORTAL_TEST_VERSION_LABEL"
+			description="COM_ECLINIC_PORTAL_TEST_VERSION_DESC"
 			size="6"
 			readonly="true"
 			filter="unset"
@@ -89,14 +89,14 @@
 		<field
 			type="user"
 			name="patient"
-			label="COM_EHEALTH_PORTAL_TEST_PATIENT_LABEL"
+			label="COM_ECLINIC_PORTAL_TEST_PATIENT_LABEL"
 		/>
 		<!-- [Fields 1650] Urine_test_result Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="urine_test_result"
-			label="COM_EHEALTH_PORTAL_TEST_URINE_TEST_RESULT_LABEL"
-			description="COM_EHEALTH_PORTAL_TEST_URINE_TEST_RESULT_DESCRIPTION"
+			label="COM_ECLINIC_PORTAL_TEST_URINE_TEST_RESULT_LABEL"
+			description="COM_ECLINIC_PORTAL_TEST_URINE_TEST_RESULT_DESCRIPTION"
 			class="list_class"
 			multiple="false"
 			required="true"
@@ -104,78 +104,78 @@
 			default="0">
 			<!-- [Fields 1913] Option Set. -->
 			<option value="0">
-				COM_EHEALTH_PORTAL_TEST_NORMAL</option>
+				COM_ECLINIC_PORTAL_TEST_NORMAL</option>
 			<option value="1">
-				COM_EHEALTH_PORTAL_TEST_ABNORMAL</option>
+				COM_ECLINIC_PORTAL_TEST_ABNORMAL</option>
 		</field>
 		<!-- [Fields 1937] Glucose_first_reading Field. Type: Text. (joomla) -->
 		<field
 			type="text"
 			name="glucose_first_reading"
-			label="COM_EHEALTH_PORTAL_TEST_GLUCOSE_FIRST_READING_LABEL"
+			label="COM_ECLINIC_PORTAL_TEST_GLUCOSE_FIRST_READING_LABEL"
 			size="10"
 			maxlength="20"
-			description="COM_EHEALTH_PORTAL_TEST_GLUCOSE_FIRST_READING_DESCRIPTION"
+			description="COM_ECLINIC_PORTAL_TEST_GLUCOSE_FIRST_READING_DESCRIPTION"
 			class="text_area"
 			readonly="false"
 			disabled="false"
 			required="false"
 			filter="STRING"
-			hint="COM_EHEALTH_PORTAL_TEST_GLUCOSE_FIRST_READING_HINT"
+			hint="COM_ECLINIC_PORTAL_TEST_GLUCOSE_FIRST_READING_HINT"
 		/>
 		<!-- [Fields 1937] Glucose_second_reading Field. Type: Text. (joomla) -->
 		<field
 			type="text"
 			name="glucose_second_reading"
-			label="COM_EHEALTH_PORTAL_TEST_GLUCOSE_SECOND_READING_LABEL"
+			label="COM_ECLINIC_PORTAL_TEST_GLUCOSE_SECOND_READING_LABEL"
 			size="10"
 			maxlength="20"
-			description="COM_EHEALTH_PORTAL_TEST_GLUCOSE_SECOND_READING_DESCRIPTION"
+			description="COM_ECLINIC_PORTAL_TEST_GLUCOSE_SECOND_READING_DESCRIPTION"
 			class="text_area"
 			readonly="false"
 			disabled="false"
 			required="false"
 			filter="STRING"
-			hint="COM_EHEALTH_PORTAL_TEST_GLUCOSE_SECOND_READING_HINT"
+			hint="COM_ECLINIC_PORTAL_TEST_GLUCOSE_SECOND_READING_HINT"
 		/>
 		<!-- [Fields 1937] Haemoglobin_reading Field. Type: Text. (joomla) -->
 		<field
 			type="text"
 			name="haemoglobin_reading"
-			label="COM_EHEALTH_PORTAL_TEST_HAEMOGLOBIN_READING_LABEL"
+			label="COM_ECLINIC_PORTAL_TEST_HAEMOGLOBIN_READING_LABEL"
 			size="10"
 			maxlength="20"
-			description="COM_EHEALTH_PORTAL_TEST_HAEMOGLOBIN_READING_DESCRIPTION"
+			description="COM_ECLINIC_PORTAL_TEST_HAEMOGLOBIN_READING_DESCRIPTION"
 			class="text_area"
 			readonly="false"
 			disabled="false"
 			required="false"
 			filter="STRING"
-			hint="COM_EHEALTH_PORTAL_TEST_HAEMOGLOBIN_READING_HINT"
+			hint="COM_ECLINIC_PORTAL_TEST_HAEMOGLOBIN_READING_HINT"
 			autocomplete="on"
 		/>
 		<!-- [Fields 1937] Cholesterol_reading Field. Type: Text. (joomla) -->
 		<field
 			type="text"
 			name="cholesterol_reading"
-			label="COM_EHEALTH_PORTAL_TEST_CHOLESTEROL_READING_LABEL"
+			label="COM_ECLINIC_PORTAL_TEST_CHOLESTEROL_READING_LABEL"
 			size="10"
 			maxlength="20"
-			description="COM_EHEALTH_PORTAL_TEST_CHOLESTEROL_READING_DESCRIPTION"
+			description="COM_ECLINIC_PORTAL_TEST_CHOLESTEROL_READING_DESCRIPTION"
 			class="text_area"
 			readonly="false"
 			disabled="false"
 			required="false"
 			filter="STRING"
-			hint="COM_EHEALTH_PORTAL_TEST_CHOLESTEROL_READING_HINT"
+			hint="COM_ECLINIC_PORTAL_TEST_CHOLESTEROL_READING_HINT"
 			autocomplete="on"
 		/>
 		<!-- [Fields 1650] Syphilis_first_reading Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="syphilis_first_reading"
-			label="COM_EHEALTH_PORTAL_TEST_SYPHILIS_FIRST_READING_LABEL"
-			description="COM_EHEALTH_PORTAL_TEST_SYPHILIS_FIRST_READING_DESCRIPTION"
+			label="COM_ECLINIC_PORTAL_TEST_SYPHILIS_FIRST_READING_LABEL"
+			description="COM_ECLINIC_PORTAL_TEST_SYPHILIS_FIRST_READING_DESCRIPTION"
 			class="list_class"
 			multiple="false"
 			required="true"
@@ -183,18 +183,18 @@
 			default="0">
 			<!-- [Fields 1913] Option Set. -->
 			<option value="0">
-				COM_EHEALTH_PORTAL_TEST_POSITIVE</option>
+				COM_ECLINIC_PORTAL_TEST_POSITIVE</option>
 			<option value="1">
-				COM_EHEALTH_PORTAL_TEST_NEGATIVE</option>
+				COM_ECLINIC_PORTAL_TEST_NEGATIVE</option>
 			<option value="2">
-				COM_EHEALTH_PORTAL_TEST_INCONCLUSIVE</option>
+				COM_ECLINIC_PORTAL_TEST_INCONCLUSIVE</option>
 		</field>
 		<!-- [Fields 1650] Syphilis_second_reading Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="syphilis_second_reading"
-			label="COM_EHEALTH_PORTAL_TEST_SYPHILIS_SECOND_READING_LABEL"
-			description="COM_EHEALTH_PORTAL_TEST_SYPHILIS_SECOND_READING_DESCRIPTION"
+			label="COM_ECLINIC_PORTAL_TEST_SYPHILIS_SECOND_READING_LABEL"
+			description="COM_ECLINIC_PORTAL_TEST_SYPHILIS_SECOND_READING_DESCRIPTION"
 			class="list_class"
 			multiple="false"
 			required="true"
@@ -202,18 +202,18 @@
 			default="0">
 			<!-- [Fields 1913] Option Set. -->
 			<option value="0">
-				COM_EHEALTH_PORTAL_TEST_POSITIVE</option>
+				COM_ECLINIC_PORTAL_TEST_POSITIVE</option>
 			<option value="1">
-				COM_EHEALTH_PORTAL_TEST_NEGATIVE</option>
+				COM_ECLINIC_PORTAL_TEST_NEGATIVE</option>
 			<option value="2">
-				COM_EHEALTH_PORTAL_TEST_INCONCLUSIVE</option>
+				COM_ECLINIC_PORTAL_TEST_INCONCLUSIVE</option>
 		</field>
 		<!-- [Fields 1650] Hepatitis_first_reading Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="hepatitis_first_reading"
-			label="COM_EHEALTH_PORTAL_TEST_HEPATITIS_FIRST_READING_LABEL"
-			description="COM_EHEALTH_PORTAL_TEST_HEPATITIS_FIRST_READING_DESCRIPTION"
+			label="COM_ECLINIC_PORTAL_TEST_HEPATITIS_FIRST_READING_LABEL"
+			description="COM_ECLINIC_PORTAL_TEST_HEPATITIS_FIRST_READING_DESCRIPTION"
 			class="list_class"
 			multiple="false"
 			required="true"
@@ -221,18 +221,18 @@
 			default="0">
 			<!-- [Fields 1913] Option Set. -->
 			<option value="0">
-				COM_EHEALTH_PORTAL_TEST_POSITIVE</option>
+				COM_ECLINIC_PORTAL_TEST_POSITIVE</option>
 			<option value="1">
-				COM_EHEALTH_PORTAL_TEST_NEGATIVE</option>
+				COM_ECLINIC_PORTAL_TEST_NEGATIVE</option>
 			<option value="2">
-				COM_EHEALTH_PORTAL_TEST_INCONCLUSIVE</option>
+				COM_ECLINIC_PORTAL_TEST_INCONCLUSIVE</option>
 		</field>
 		<!-- [Fields 1650] Hepatitis_second_reading Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="hepatitis_second_reading"
-			label="COM_EHEALTH_PORTAL_TEST_HEPATITIS_SECOND_READING_LABEL"
-			description="COM_EHEALTH_PORTAL_TEST_HEPATITIS_SECOND_READING_DESCRIPTION"
+			label="COM_ECLINIC_PORTAL_TEST_HEPATITIS_SECOND_READING_LABEL"
+			description="COM_ECLINIC_PORTAL_TEST_HEPATITIS_SECOND_READING_DESCRIPTION"
 			class="list_class"
 			multiple="false"
 			required="true"
@@ -240,18 +240,18 @@
 			default="0">
 			<!-- [Fields 1913] Option Set. -->
 			<option value="0">
-				COM_EHEALTH_PORTAL_TEST_POSITIVE</option>
+				COM_ECLINIC_PORTAL_TEST_POSITIVE</option>
 			<option value="1">
-				COM_EHEALTH_PORTAL_TEST_NEGATIVE</option>
+				COM_ECLINIC_PORTAL_TEST_NEGATIVE</option>
 			<option value="2">
-				COM_EHEALTH_PORTAL_TEST_INCONCLUSIVE</option>
+				COM_ECLINIC_PORTAL_TEST_INCONCLUSIVE</option>
 		</field>
 		<!-- [Fields 1650] Malaria_first_reading Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="malaria_first_reading"
-			label="COM_EHEALTH_PORTAL_TEST_MALARIA_FIRST_READING_LABEL"
-			description="COM_EHEALTH_PORTAL_TEST_MALARIA_FIRST_READING_DESCRIPTION"
+			label="COM_ECLINIC_PORTAL_TEST_MALARIA_FIRST_READING_LABEL"
+			description="COM_ECLINIC_PORTAL_TEST_MALARIA_FIRST_READING_DESCRIPTION"
 			class="list_class"
 			multiple="false"
 			required="true"
@@ -259,18 +259,18 @@
 			default="0">
 			<!-- [Fields 1913] Option Set. -->
 			<option value="0">
-				COM_EHEALTH_PORTAL_TEST_POSITIVE</option>
+				COM_ECLINIC_PORTAL_TEST_POSITIVE</option>
 			<option value="1">
-				COM_EHEALTH_PORTAL_TEST_NEGATIVE</option>
+				COM_ECLINIC_PORTAL_TEST_NEGATIVE</option>
 			<option value="2">
-				COM_EHEALTH_PORTAL_TEST_INCONCLUSIVE</option>
+				COM_ECLINIC_PORTAL_TEST_INCONCLUSIVE</option>
 		</field>
 		<!-- [Fields 1650] Malaria_second_reading Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="malaria_second_reading"
-			label="COM_EHEALTH_PORTAL_TEST_MALARIA_SECOND_READING_LABEL"
-			description="COM_EHEALTH_PORTAL_TEST_MALARIA_SECOND_READING_DESCRIPTION"
+			label="COM_ECLINIC_PORTAL_TEST_MALARIA_SECOND_READING_LABEL"
+			description="COM_ECLINIC_PORTAL_TEST_MALARIA_SECOND_READING_DESCRIPTION"
 			class="list_class"
 			multiple="false"
 			required="true"
@@ -278,18 +278,18 @@
 			default="0">
 			<!-- [Fields 1913] Option Set. -->
 			<option value="0">
-				COM_EHEALTH_PORTAL_TEST_POSITIVE</option>
+				COM_ECLINIC_PORTAL_TEST_POSITIVE</option>
 			<option value="1">
-				COM_EHEALTH_PORTAL_TEST_NEGATIVE</option>
+				COM_ECLINIC_PORTAL_TEST_NEGATIVE</option>
 			<option value="2">
-				COM_EHEALTH_PORTAL_TEST_INCONCLUSIVE</option>
+				COM_ECLINIC_PORTAL_TEST_INCONCLUSIVE</option>
 		</field>
 		<!-- [Fields 1650] Pregnancy_first_reading Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="pregnancy_first_reading"
-			label="COM_EHEALTH_PORTAL_TEST_PREGNANCY_FIRST_READING_LABEL"
-			description="COM_EHEALTH_PORTAL_TEST_PREGNANCY_FIRST_READING_DESCRIPTION"
+			label="COM_ECLINIC_PORTAL_TEST_PREGNANCY_FIRST_READING_LABEL"
+			description="COM_ECLINIC_PORTAL_TEST_PREGNANCY_FIRST_READING_DESCRIPTION"
 			class="list_class"
 			multiple="false"
 			required="true"
@@ -297,18 +297,18 @@
 			default="0">
 			<!-- [Fields 1913] Option Set. -->
 			<option value="0">
-				COM_EHEALTH_PORTAL_TEST_POSITIVE</option>
+				COM_ECLINIC_PORTAL_TEST_POSITIVE</option>
 			<option value="1">
-				COM_EHEALTH_PORTAL_TEST_NEGATIVE</option>
+				COM_ECLINIC_PORTAL_TEST_NEGATIVE</option>
 			<option value="2">
-				COM_EHEALTH_PORTAL_TEST_INCONCLUSIVE</option>
+				COM_ECLINIC_PORTAL_TEST_INCONCLUSIVE</option>
 		</field>
 		<!-- [Fields 1650] Pregnancy_second_reading Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="pregnancy_second_reading"
-			label="COM_EHEALTH_PORTAL_TEST_PREGNANCY_SECOND_READING_LABEL"
-			description="COM_EHEALTH_PORTAL_TEST_PREGNANCY_SECOND_READING_DESCRIPTION"
+			label="COM_ECLINIC_PORTAL_TEST_PREGNANCY_SECOND_READING_LABEL"
+			description="COM_ECLINIC_PORTAL_TEST_PREGNANCY_SECOND_READING_DESCRIPTION"
 			class="list_class"
 			multiple="false"
 			required="true"
@@ -316,11 +316,11 @@
 			default="0">
 			<!-- [Fields 1913] Option Set. -->
 			<option value="0">
-				COM_EHEALTH_PORTAL_TEST_POSITIVE</option>
+				COM_ECLINIC_PORTAL_TEST_POSITIVE</option>
 			<option value="1">
-				COM_EHEALTH_PORTAL_TEST_NEGATIVE</option>
+				COM_ECLINIC_PORTAL_TEST_NEGATIVE</option>
 			<option value="2">
-				COM_EHEALTH_PORTAL_TEST_INCONCLUSIVE</option>
+				COM_ECLINIC_PORTAL_TEST_INCONCLUSIVE</option>
 		</field>
 	</fieldset>
 	
@@ -341,7 +341,7 @@
 			filter="rules"
 			validate="rules"
 			class="inputbox"
-			component="com_ehealth_portal"
+			component="com_eclinic_portal"
 			section="test"
 		/>
 	</fieldset>

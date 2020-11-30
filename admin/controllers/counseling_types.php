@@ -4,9 +4,9 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			29th November, 2020
+	@build			30th November, 2020
 	@created		13th August, 2020
-	@package		eHealth Portal
+	@package		eClinic Portal
 	@subpackage		counseling_types.php
 	@author			Oh Martin <https://vdm.io>	
 	@copyright		Copyright (C) 2015. All Rights Reserved
@@ -26,7 +26,7 @@ use Joomla\Utilities\ArrayHelper;
 /**
  * Counseling_types Controller
  */
-class Ehealth_portalControllerCounseling_types extends JControllerAdmin
+class Eclinic_portalControllerCounseling_types extends JControllerAdmin
 {
 	/**
 	 * The prefix to use with controller messages.
@@ -34,7 +34,7 @@ class Ehealth_portalControllerCounseling_types extends JControllerAdmin
 	 * @var    string
 	 * @since  1.6
 	 */
-	protected $text_prefix = 'COM_EHEALTH_PORTAL_COUNSELING_TYPES';
+	protected $text_prefix = 'COM_ECLINIC_PORTAL_COUNSELING_TYPES';
 
 	/**
 	 * Method to get a model object, loading it if required.
@@ -47,7 +47,7 @@ class Ehealth_portalControllerCounseling_types extends JControllerAdmin
 	 *
 	 * @since   1.6
 	 */
-	public function getModel($name = 'Counseling_type', $prefix = 'Ehealth_portalModel', $config = array('ignore_request' => true))
+	public function getModel($name = 'Counseling_type', $prefix = 'Eclinic_portalModel', $config = array('ignore_request' => true))
 	{
 		return parent::getModel($name, $prefix, $config);
 	}
@@ -58,7 +58,7 @@ class Ehealth_portalControllerCounseling_types extends JControllerAdmin
 		JSession::checkToken() or die(JText::_('JINVALID_TOKEN'));
 		// [Interpretation 14748] check if export is allowed for this user.
 		$user = JFactory::getUser();
-		if ($user->authorise('counseling_type.export', 'com_ehealth_portal') && $user->authorise('core.export', 'com_ehealth_portal'))
+		if ($user->authorise('counseling_type.export', 'com_eclinic_portal') && $user->authorise('core.export', 'com_eclinic_portal'))
 		{
 			// [Interpretation 14757] Get the input
 			$input = JFactory::getApplication()->input;
@@ -69,16 +69,16 @@ class Ehealth_portalControllerCounseling_types extends JControllerAdmin
 			$model = $this->getModel('Counseling_types');
 			// [Interpretation 14771] get the data to export
 			$data = $model->getExportData($pks);
-			if (Ehealth_portalHelper::checkArray($data))
+			if (Eclinic_portalHelper::checkArray($data))
 			{
 				// [Interpretation 14779] now set the data to the spreadsheet
 				$date = JFactory::getDate();
-				Ehealth_portalHelper::xls($data,'Counseling_types_'.$date->format('jS_F_Y'),'Counseling types exported ('.$date->format('jS F, Y').')','counseling types');
+				Eclinic_portalHelper::xls($data,'Counseling_types_'.$date->format('jS_F_Y'),'Counseling types exported ('.$date->format('jS F, Y').')','counseling types');
 			}
 		}
 		// [Interpretation 14792] Redirect to the list screen with error.
-		$message = JText::_('COM_EHEALTH_PORTAL_EXPORT_FAILED');
-		$this->setRedirect(JRoute::_('index.php?option=com_ehealth_portal&view=counseling_types', false), $message, 'error');
+		$message = JText::_('COM_ECLINIC_PORTAL_EXPORT_FAILED');
+		$this->setRedirect(JRoute::_('index.php?option=com_eclinic_portal&view=counseling_types', false), $message, 'error');
 		return;
 	}
 
@@ -89,13 +89,13 @@ class Ehealth_portalControllerCounseling_types extends JControllerAdmin
 		JSession::checkToken() or die(JText::_('JINVALID_TOKEN'));
 		// [Interpretation 14811] check if import is allowed for this user.
 		$user = JFactory::getUser();
-		if ($user->authorise('counseling_type.import', 'com_ehealth_portal') && $user->authorise('core.import', 'com_ehealth_portal'))
+		if ($user->authorise('counseling_type.import', 'com_eclinic_portal') && $user->authorise('core.import', 'com_eclinic_portal'))
 		{
 			// [Interpretation 14820] Get the import model
 			$model = $this->getModel('Counseling_types');
 			// [Interpretation 14825] get the headers to import
 			$headers = $model->getExImPortHeaders();
-			if (Ehealth_portalHelper::checkObject($headers))
+			if (Eclinic_portalHelper::checkObject($headers))
 			{
 				// [Interpretation 14833] Load headers to session.
 				$session = JFactory::getSession();
@@ -104,14 +104,14 @@ class Ehealth_portalControllerCounseling_types extends JControllerAdmin
 				$session->set('backto_VDM_IMPORT', 'counseling_types');
 				$session->set('dataType_VDM_IMPORTINTO', 'counseling_type');
 				// [Interpretation 14844] Redirect to import view.
-				$message = JText::_('COM_EHEALTH_PORTAL_IMPORT_SELECT_FILE_FOR_COUNSELING_TYPES');
-				$this->setRedirect(JRoute::_('index.php?option=com_ehealth_portal&view=import', false), $message);
+				$message = JText::_('COM_ECLINIC_PORTAL_IMPORT_SELECT_FILE_FOR_COUNSELING_TYPES');
+				$this->setRedirect(JRoute::_('index.php?option=com_eclinic_portal&view=import', false), $message);
 				return;
 			}
 		}
 		// [Interpretation 14875] Redirect to the list screen with error.
-		$message = JText::_('COM_EHEALTH_PORTAL_IMPORT_FAILED');
-		$this->setRedirect(JRoute::_('index.php?option=com_ehealth_portal&view=counseling_types', false), $message, 'error');
+		$message = JText::_('COM_ECLINIC_PORTAL_IMPORT_FAILED');
+		$this->setRedirect(JRoute::_('index.php?option=com_eclinic_portal&view=counseling_types', false), $message, 'error');
 		return;
 	}
 }

@@ -4,9 +4,9 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			29th November, 2020
+	@build			30th November, 2020
 	@created		13th August, 2020
-	@package		eHealth Portal
+	@package		eClinic Portal
 	@subpackage		tests.php
 	@author			Oh Martin <https://vdm.io>	
 	@copyright		Copyright (C) 2015. All Rights Reserved
@@ -26,7 +26,7 @@ use Joomla\Utilities\ArrayHelper;
 /**
  * Tests Model
  */
-class Ehealth_portalModelTests extends JModelList
+class Eclinic_portalModelTests extends JModelList
 {
 	public function __construct($config = array())
 	{
@@ -98,7 +98,7 @@ class Ehealth_portalModelTests extends JModelList
 		$items = parent::getItems();
 
 		// [Interpretation 21022] set selection value to a translatable value
-		if (Ehealth_portalHelper::checkArray($items))
+		if (Eclinic_portalHelper::checkArray($items))
 		{
 			foreach ($items as $nr => &$item)
 			{
@@ -139,11 +139,11 @@ class Ehealth_portalModelTests extends JModelList
 		if ($name === 'urine_test_result')
 		{
 			$urine_test_resultArray = array(
-				0 => 'COM_EHEALTH_PORTAL_TEST_NORMAL',
-				1 => 'COM_EHEALTH_PORTAL_TEST_ABNORMAL'
+				0 => 'COM_ECLINIC_PORTAL_TEST_NORMAL',
+				1 => 'COM_ECLINIC_PORTAL_TEST_ABNORMAL'
 			);
 			// [Interpretation 21113] Now check if value is found in this array
-			if (isset($urine_test_resultArray[$value]) && Ehealth_portalHelper::checkString($urine_test_resultArray[$value]))
+			if (isset($urine_test_resultArray[$value]) && Eclinic_portalHelper::checkString($urine_test_resultArray[$value]))
 			{
 				return $urine_test_resultArray[$value];
 			}
@@ -152,12 +152,12 @@ class Ehealth_portalModelTests extends JModelList
 		if ($name === 'syphilis_first_reading')
 		{
 			$syphilis_first_readingArray = array(
-				0 => 'COM_EHEALTH_PORTAL_TEST_POSITIVE',
-				1 => 'COM_EHEALTH_PORTAL_TEST_NEGATIVE',
-				2 => 'COM_EHEALTH_PORTAL_TEST_INCONCLUSIVE'
+				0 => 'COM_ECLINIC_PORTAL_TEST_POSITIVE',
+				1 => 'COM_ECLINIC_PORTAL_TEST_NEGATIVE',
+				2 => 'COM_ECLINIC_PORTAL_TEST_INCONCLUSIVE'
 			);
 			// [Interpretation 21113] Now check if value is found in this array
-			if (isset($syphilis_first_readingArray[$value]) && Ehealth_portalHelper::checkString($syphilis_first_readingArray[$value]))
+			if (isset($syphilis_first_readingArray[$value]) && Eclinic_portalHelper::checkString($syphilis_first_readingArray[$value]))
 			{
 				return $syphilis_first_readingArray[$value];
 			}
@@ -166,12 +166,12 @@ class Ehealth_portalModelTests extends JModelList
 		if ($name === 'syphilis_second_reading')
 		{
 			$syphilis_second_readingArray = array(
-				0 => 'COM_EHEALTH_PORTAL_TEST_POSITIVE',
-				1 => 'COM_EHEALTH_PORTAL_TEST_NEGATIVE',
-				2 => 'COM_EHEALTH_PORTAL_TEST_INCONCLUSIVE'
+				0 => 'COM_ECLINIC_PORTAL_TEST_POSITIVE',
+				1 => 'COM_ECLINIC_PORTAL_TEST_NEGATIVE',
+				2 => 'COM_ECLINIC_PORTAL_TEST_INCONCLUSIVE'
 			);
 			// [Interpretation 21113] Now check if value is found in this array
-			if (isset($syphilis_second_readingArray[$value]) && Ehealth_portalHelper::checkString($syphilis_second_readingArray[$value]))
+			if (isset($syphilis_second_readingArray[$value]) && Eclinic_portalHelper::checkString($syphilis_second_readingArray[$value]))
 			{
 				return $syphilis_second_readingArray[$value];
 			}
@@ -180,12 +180,12 @@ class Ehealth_portalModelTests extends JModelList
 		if ($name === 'hepatitis_first_reading')
 		{
 			$hepatitis_first_readingArray = array(
-				0 => 'COM_EHEALTH_PORTAL_TEST_POSITIVE',
-				1 => 'COM_EHEALTH_PORTAL_TEST_NEGATIVE',
-				2 => 'COM_EHEALTH_PORTAL_TEST_INCONCLUSIVE'
+				0 => 'COM_ECLINIC_PORTAL_TEST_POSITIVE',
+				1 => 'COM_ECLINIC_PORTAL_TEST_NEGATIVE',
+				2 => 'COM_ECLINIC_PORTAL_TEST_INCONCLUSIVE'
 			);
 			// [Interpretation 21113] Now check if value is found in this array
-			if (isset($hepatitis_first_readingArray[$value]) && Ehealth_portalHelper::checkString($hepatitis_first_readingArray[$value]))
+			if (isset($hepatitis_first_readingArray[$value]) && Eclinic_portalHelper::checkString($hepatitis_first_readingArray[$value]))
 			{
 				return $hepatitis_first_readingArray[$value];
 			}
@@ -194,12 +194,12 @@ class Ehealth_portalModelTests extends JModelList
 		if ($name === 'hepatitis_second_reading')
 		{
 			$hepatitis_second_readingArray = array(
-				0 => 'COM_EHEALTH_PORTAL_TEST_POSITIVE',
-				1 => 'COM_EHEALTH_PORTAL_TEST_NEGATIVE',
-				2 => 'COM_EHEALTH_PORTAL_TEST_INCONCLUSIVE'
+				0 => 'COM_ECLINIC_PORTAL_TEST_POSITIVE',
+				1 => 'COM_ECLINIC_PORTAL_TEST_NEGATIVE',
+				2 => 'COM_ECLINIC_PORTAL_TEST_INCONCLUSIVE'
 			);
 			// [Interpretation 21113] Now check if value is found in this array
-			if (isset($hepatitis_second_readingArray[$value]) && Ehealth_portalHelper::checkString($hepatitis_second_readingArray[$value]))
+			if (isset($hepatitis_second_readingArray[$value]) && Eclinic_portalHelper::checkString($hepatitis_second_readingArray[$value]))
 			{
 				return $hepatitis_second_readingArray[$value];
 			}
@@ -208,12 +208,12 @@ class Ehealth_portalModelTests extends JModelList
 		if ($name === 'malaria_first_reading')
 		{
 			$malaria_first_readingArray = array(
-				0 => 'COM_EHEALTH_PORTAL_TEST_POSITIVE',
-				1 => 'COM_EHEALTH_PORTAL_TEST_NEGATIVE',
-				2 => 'COM_EHEALTH_PORTAL_TEST_INCONCLUSIVE'
+				0 => 'COM_ECLINIC_PORTAL_TEST_POSITIVE',
+				1 => 'COM_ECLINIC_PORTAL_TEST_NEGATIVE',
+				2 => 'COM_ECLINIC_PORTAL_TEST_INCONCLUSIVE'
 			);
 			// [Interpretation 21113] Now check if value is found in this array
-			if (isset($malaria_first_readingArray[$value]) && Ehealth_portalHelper::checkString($malaria_first_readingArray[$value]))
+			if (isset($malaria_first_readingArray[$value]) && Eclinic_portalHelper::checkString($malaria_first_readingArray[$value]))
 			{
 				return $malaria_first_readingArray[$value];
 			}
@@ -222,12 +222,12 @@ class Ehealth_portalModelTests extends JModelList
 		if ($name === 'malaria_second_reading')
 		{
 			$malaria_second_readingArray = array(
-				0 => 'COM_EHEALTH_PORTAL_TEST_POSITIVE',
-				1 => 'COM_EHEALTH_PORTAL_TEST_NEGATIVE',
-				2 => 'COM_EHEALTH_PORTAL_TEST_INCONCLUSIVE'
+				0 => 'COM_ECLINIC_PORTAL_TEST_POSITIVE',
+				1 => 'COM_ECLINIC_PORTAL_TEST_NEGATIVE',
+				2 => 'COM_ECLINIC_PORTAL_TEST_INCONCLUSIVE'
 			);
 			// [Interpretation 21113] Now check if value is found in this array
-			if (isset($malaria_second_readingArray[$value]) && Ehealth_portalHelper::checkString($malaria_second_readingArray[$value]))
+			if (isset($malaria_second_readingArray[$value]) && Eclinic_portalHelper::checkString($malaria_second_readingArray[$value]))
 			{
 				return $malaria_second_readingArray[$value];
 			}
@@ -236,12 +236,12 @@ class Ehealth_portalModelTests extends JModelList
 		if ($name === 'pregnancy_first_reading')
 		{
 			$pregnancy_first_readingArray = array(
-				0 => 'COM_EHEALTH_PORTAL_TEST_POSITIVE',
-				1 => 'COM_EHEALTH_PORTAL_TEST_NEGATIVE',
-				2 => 'COM_EHEALTH_PORTAL_TEST_INCONCLUSIVE'
+				0 => 'COM_ECLINIC_PORTAL_TEST_POSITIVE',
+				1 => 'COM_ECLINIC_PORTAL_TEST_NEGATIVE',
+				2 => 'COM_ECLINIC_PORTAL_TEST_INCONCLUSIVE'
 			);
 			// [Interpretation 21113] Now check if value is found in this array
-			if (isset($pregnancy_first_readingArray[$value]) && Ehealth_portalHelper::checkString($pregnancy_first_readingArray[$value]))
+			if (isset($pregnancy_first_readingArray[$value]) && Eclinic_portalHelper::checkString($pregnancy_first_readingArray[$value]))
 			{
 				return $pregnancy_first_readingArray[$value];
 			}
@@ -250,12 +250,12 @@ class Ehealth_portalModelTests extends JModelList
 		if ($name === 'pregnancy_second_reading')
 		{
 			$pregnancy_second_readingArray = array(
-				0 => 'COM_EHEALTH_PORTAL_TEST_POSITIVE',
-				1 => 'COM_EHEALTH_PORTAL_TEST_NEGATIVE',
-				2 => 'COM_EHEALTH_PORTAL_TEST_INCONCLUSIVE'
+				0 => 'COM_ECLINIC_PORTAL_TEST_POSITIVE',
+				1 => 'COM_ECLINIC_PORTAL_TEST_NEGATIVE',
+				2 => 'COM_ECLINIC_PORTAL_TEST_INCONCLUSIVE'
 			);
 			// [Interpretation 21113] Now check if value is found in this array
-			if (isset($pregnancy_second_readingArray[$value]) && Ehealth_portalHelper::checkString($pregnancy_second_readingArray[$value]))
+			if (isset($pregnancy_second_readingArray[$value]) && Eclinic_portalHelper::checkString($pregnancy_second_readingArray[$value]))
 			{
 				return $pregnancy_second_readingArray[$value];
 			}
@@ -279,8 +279,8 @@ class Ehealth_portalModelTests extends JModelList
 		// [Interpretation 15049] Select some fields
 		$query->select('a.*');
 
-		// [Interpretation 15059] From the ehealth_portal_item table
-		$query->from($db->quoteName('#__ehealth_portal_test', 'a'));
+		// [Interpretation 15059] From the eclinic_portal_item table
+		$query->from($db->quoteName('#__eclinic_portal_test', 'a'));
 
 		// [Interpretation 15078] Filter by published state
 		$published = $this->getState('filter.published');
@@ -302,7 +302,7 @@ class Ehealth_portalModelTests extends JModelList
 			$query->where('a.access = ' . (int) $access);
 		}
 		// [Interpretation 15112] Implement View Level Access
-		if (!$user->authorise('core.options', 'com_ehealth_portal'))
+		if (!$user->authorise('core.options', 'com_eclinic_portal'))
 		{
 			$groups = implode(',', $user->getAuthorisedViewLevels());
 			$query->where('a.access IN (' . $groups . ')');
@@ -350,12 +350,12 @@ class Ehealth_portalModelTests extends JModelList
 	public function getExportData($pks, $user = null)
 	{
 		// [Interpretation 14499] setup the query
-		if (($pks_size = Ehealth_portalHelper::checkArray($pks)) !== false || 'bulk' === $pks)
+		if (($pks_size = Eclinic_portalHelper::checkArray($pks)) !== false || 'bulk' === $pks)
 		{
 			// [Interpretation 14505] Set a value to know this is export method. (USE IN CUSTOM CODE TO ALTER OUTCOME)
 			$_export = true;
 			// [Interpretation 14510] Get the user object if not set.
-			if (!isset($user) || !Ehealth_portalHelper::checkObject($user))
+			if (!isset($user) || !Eclinic_portalHelper::checkObject($user))
 			{
 				$user = JFactory::getUser();
 			}
@@ -366,8 +366,8 @@ class Ehealth_portalModelTests extends JModelList
 			// [Interpretation 14524] Select some fields
 			$query->select('a.*');
 
-			// [Interpretation 14528] From the ehealth_portal_test table
-			$query->from($db->quoteName('#__ehealth_portal_test', 'a'));
+			// [Interpretation 14528] From the eclinic_portal_test table
+			$query->from($db->quoteName('#__eclinic_portal_test', 'a'));
 			// [Interpretation 14535] The bulk export path
 			if ('bulk' === $pks)
 			{
@@ -387,7 +387,7 @@ class Ehealth_portalModelTests extends JModelList
 				$query->where('a.id IN (' . implode(',',$pks) . ')');
 			}
 			// [Interpretation 14611] Implement View Level Access
-			if (!$user->authorise('core.options', 'com_ehealth_portal'))
+			if (!$user->authorise('core.options', 'com_eclinic_portal'))
 			{
 				$groups = implode(',', $user->getAuthorisedViewLevels());
 				$query->where('a.access IN (' . $groups . ')');
@@ -404,7 +404,7 @@ class Ehealth_portalModelTests extends JModelList
 				$items = $db->loadObjectList();
 
 				// [Interpretation 20714] Set values to display correctly.
-				if (Ehealth_portalHelper::checkArray($items))
+				if (Eclinic_portalHelper::checkArray($items))
 				{
 					foreach ($items as $nr => &$item)
 					{
@@ -416,7 +416,7 @@ class Ehealth_portalModelTests extends JModelList
 				}
 				// [Interpretation 20871] Add headers to items array.
 				$headers = $this->getExImPortHeaders();
-				if (Ehealth_portalHelper::checkObject($headers))
+				if (Eclinic_portalHelper::checkObject($headers))
 				{
 					array_unshift($items,$headers);
 				}
@@ -436,8 +436,8 @@ class Ehealth_portalModelTests extends JModelList
 		// Get a db connection.
 		$db = JFactory::getDbo();
 		// get the columns
-		$columns = $db->getTableColumns("#__ehealth_portal_test");
-		if (Ehealth_portalHelper::checkArray($columns))
+		$columns = $db->getTableColumns("#__eclinic_portal_test");
+		if (Eclinic_portalHelper::checkArray($columns))
 		{
 			// remove the headers you don't import/export.
 			unset($columns['asset_id']);
@@ -482,7 +482,7 @@ class Ehealth_portalModelTests extends JModelList
 	protected function checkInNow()
 	{
 		// [Interpretation 20196] Get set check in time
-		$time = JComponentHelper::getParams('com_ehealth_portal')->get('check_in');
+		$time = JComponentHelper::getParams('com_eclinic_portal')->get('check_in');
 
 		if ($time)
 		{
@@ -492,7 +492,7 @@ class Ehealth_portalModelTests extends JModelList
 			// [Interpretation 20207] reset query
 			$query = $db->getQuery(true);
 			$query->select('*');
-			$query->from($db->quoteName('#__ehealth_portal_test'));
+			$query->from($db->quoteName('#__eclinic_portal_test'));
 			$db->setQuery($query);
 			$db->execute();
 			if ($db->getNumRows())
@@ -515,7 +515,7 @@ class Ehealth_portalModelTests extends JModelList
 				);
 
 				// [Interpretation 20244] Check table
-				$query->update($db->quoteName('#__ehealth_portal_test'))->set($fields)->where($conditions); 
+				$query->update($db->quoteName('#__eclinic_portal_test'))->set($fields)->where($conditions); 
 
 				$db->setQuery($query);
 

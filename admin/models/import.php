@@ -4,9 +4,9 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			29th November, 2020
+	@build			30th November, 2020
 	@created		13th August, 2020
-	@package		eHealth Portal
+	@package		eClinic Portal
 	@subpackage		import.php
 	@author			Oh Martin <https://vdm.io>	
 	@copyright		Copyright (C) 2015. All Rights Reserved
@@ -25,9 +25,9 @@ use Joomla\Utilities\ArrayHelper;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
 /**
- * Ehealth_portal Import Model
+ * Eclinic_portal Import Model
  */
-class Ehealth_portalModelImport extends JModelLegacy
+class Eclinic_portalModelImport extends JModelLegacy
 {
 	// set uploading values
 	protected $use_streams = false;
@@ -49,7 +49,7 @@ class Ehealth_portalModelImport extends JModelLegacy
 	 *
 	 * @var        string
 	 */
-	protected $_context = 'com_ehealth_portal.import';
+	protected $_context = 'com_eclinic_portal.import';
 	
 	/**
 	 * Import Settings
@@ -69,8 +69,8 @@ class Ehealth_portalModelImport extends JModelLegacy
 	{
 		$app = JFactory::getApplication('administrator');
 
-		$this->setState('message', $app->getUserState('com_ehealth_portal.message'));
-		$app->setUserState('com_ehealth_portal.message', '');
+		$this->setState('message', $app->getUserState('com_eclinic_portal.message'));
+		$app->setUserState('com_eclinic_portal.message', '');
 
 		// Recall the 'Import from Directory' path.
 		$path = $app->getUserStateFromRequest($this->_context . '.import_directory', 'import_directory', $app->get('tmp_path'));
@@ -125,7 +125,7 @@ class Ehealth_portalModelImport extends JModelLegacy
 					break;
 
 				default:
-					$app->setUserState('com_ehealth_portal.message', JText::_('COM_EHEALTH_PORTAL_IMPORT_NO_IMPORT_TYPE_FOUND'));
+					$app->setUserState('com_eclinic_portal.message', JText::_('COM_ECLINIC_PORTAL_IMPORT_NO_IMPORT_TYPE_FOUND'));
 
 					return false;
 					break;
@@ -139,7 +139,7 @@ class Ehealth_portalModelImport extends JModelLegacy
 				$this->remove($package['packagename']);
 			}
 
-			$app->setUserState('com_ehealth_portal.message', JText::_('COM_EHEALTH_PORTAL_IMPORT_UNABLE_TO_FIND_IMPORT_PACKAGE'));
+			$app->setUserState('com_eclinic_portal.message', JText::_('COM_ECLINIC_PORTAL_IMPORT_UNABLE_TO_FIND_IMPORT_PACKAGE'));
 			return false;
 		}
 		
@@ -157,11 +157,11 @@ class Ehealth_portalModelImport extends JModelLegacy
 		if (!$this->setData($package,$this->dataType,$headerList))
 		{
 			// There was an error importing the package
-			$msg = JText::_('COM_EHEALTH_PORTAL_IMPORT_ERROR');
+			$msg = JText::_('COM_ECLINIC_PORTAL_IMPORT_ERROR');
 			$back = $session->get('backto_VDM_IMPORT', NULL);
 			if ($back)
 			{
-				$app->setUserState('com_ehealth_portal.redirect_url', 'index.php?option=com_ehealth_portal&view='.$back);
+				$app->setUserState('com_eclinic_portal.redirect_url', 'index.php?option=com_eclinic_portal&view='.$back);
 				$session->clear('backto_VDM_IMPORT');
 			}
 			$result = false;
@@ -169,11 +169,11 @@ class Ehealth_portalModelImport extends JModelLegacy
 		else
 		{
 			// Package imported sucessfully
-			$msg = JText::sprintf('COM_EHEALTH_PORTAL_IMPORT_SUCCESS', $package['packagename']);
+			$msg = JText::sprintf('COM_ECLINIC_PORTAL_IMPORT_SUCCESS', $package['packagename']);
 			$back = $session->get('backto_VDM_IMPORT', NULL);
 			if ($back)
 			{
-			    $app->setUserState('com_ehealth_portal.redirect_url', 'index.php?option=com_ehealth_portal&view='.$back);
+			    $app->setUserState('com_eclinic_portal.redirect_url', 'index.php?option=com_eclinic_portal&view='.$back);
 			    $session->clear('backto_VDM_IMPORT');
 			}
 			$result = true;
@@ -206,21 +206,21 @@ class Ehealth_portalModelImport extends JModelLegacy
 		// Make sure that file uploads are enabled in php
 		if (!(bool) ini_get('file_uploads'))
 		{
-			$app->enqueueMessage(JText::_('COM_EHEALTH_PORTAL_IMPORT_MSG_WARNIMPORTFILE'), 'warning');
+			$app->enqueueMessage(JText::_('COM_ECLINIC_PORTAL_IMPORT_MSG_WARNIMPORTFILE'), 'warning');
 			return false;
 		}
 
 		// If there is no uploaded file, we have a problem...
 		if (!is_array($userfile))
 		{
-			$app->enqueueMessage(JText::_('COM_EHEALTH_PORTAL_IMPORT_MSG_NO_FILE_SELECTED'), 'warning');
+			$app->enqueueMessage(JText::_('COM_ECLINIC_PORTAL_IMPORT_MSG_NO_FILE_SELECTED'), 'warning');
 			return false;
 		}
 
 		// Check if there was a problem uploading the file.
 		if ($userfile['error'] || $userfile['size'] < 1)
 		{
-			$app->enqueueMessage(JText::_('COM_EHEALTH_PORTAL_IMPORT_MSG_WARNIMPORTUPLOADERROR'), 'warning');
+			$app->enqueueMessage(JText::_('COM_ECLINIC_PORTAL_IMPORT_MSG_WARNIMPORTUPLOADERROR'), 'warning');
 			return false;
 		}
 
@@ -267,7 +267,7 @@ class Ehealth_portalModelImport extends JModelLegacy
 		// Did you give us a valid path?
 		if (!file_exists($p_dir))
 		{
-			$app->enqueueMessage(JText::_('COM_EHEALTH_PORTAL_IMPORT_MSG_PLEASE_ENTER_A_PACKAGE_DIRECTORY'), 'warning');
+			$app->enqueueMessage(JText::_('COM_ECLINIC_PORTAL_IMPORT_MSG_PLEASE_ENTER_A_PACKAGE_DIRECTORY'), 'warning');
 			return false;
 		}
 
@@ -277,14 +277,14 @@ class Ehealth_portalModelImport extends JModelLegacy
 		// Did you give us a valid package?
 		if (!$type)
 		{
-			$app->enqueueMessage(JText::_('COM_EHEALTH_PORTAL_IMPORT_MSG_PATH_DOES_NOT_HAVE_A_VALID_PACKAGE'), 'warning');
+			$app->enqueueMessage(JText::_('COM_ECLINIC_PORTAL_IMPORT_MSG_PATH_DOES_NOT_HAVE_A_VALID_PACKAGE'), 'warning');
 		}
 		
 		// check the extention
 		if(!$this->checkExtension($p_dir))
 		{
 			// set error message
-			$app->enqueueMessage(JText::_('COM_EHEALTH_PORTAL_IMPORT_MSG_DOES_NOT_HAVE_A_VALID_FILE_TYPE'), 'warning');
+			$app->enqueueMessage(JText::_('COM_ECLINIC_PORTAL_IMPORT_MSG_DOES_NOT_HAVE_A_VALID_FILE_TYPE'), 'warning');
 			return false;
 		}
 		
@@ -312,7 +312,7 @@ class Ehealth_portalModelImport extends JModelLegacy
 		// Did you give us a URL?
 		if (!$url)
 		{
-			$app->enqueueMessage(JText::_('COM_EHEALTH_PORTAL_IMPORT_MSG_ENTER_A_URL'), 'warning');
+			$app->enqueueMessage(JText::_('COM_ECLINIC_PORTAL_IMPORT_MSG_ENTER_A_URL'), 'warning');
 			return false;
 		}
 
@@ -322,7 +322,7 @@ class Ehealth_portalModelImport extends JModelLegacy
 		// Was the package downloaded?
 		if (!$p_file)
 		{
-			$app->enqueueMessage(JText::_('COM_EHEALTH_PORTAL_IMPORT_MSG_INVALID_URL'), 'warning');
+			$app->enqueueMessage(JText::_('COM_ECLINIC_PORTAL_IMPORT_MSG_INVALID_URL'), 'warning');
 			return false;
 		}
 
@@ -352,7 +352,7 @@ class Ehealth_portalModelImport extends JModelLegacy
 		{
 			// Cleanup the import files
 			$this->remove($archivename);
-			$app->enqueueMessage(JText::_('COM_EHEALTH_PORTAL_IMPORT_MSG_DOES_NOT_HAVE_A_VALID_FILE_TYPE'), 'warning');
+			$app->enqueueMessage(JText::_('COM_ECLINIC_PORTAL_IMPORT_MSG_DOES_NOT_HAVE_A_VALID_FILE_TYPE'), 'warning');
 			return false;
 		}
 		
@@ -428,10 +428,10 @@ class Ehealth_portalModelImport extends JModelLegacy
 	**/
 	protected function setData($package,$table,$target_headers)
 	{
-		if (Ehealth_portalHelper::checkArray($target_headers))
+		if (Eclinic_portalHelper::checkArray($target_headers))
 		{
 			// make sure the file is loaded
-			Ehealth_portalHelper::composerAutoload('phpspreadsheet');
+			Eclinic_portalHelper::composerAutoload('phpspreadsheet');
 			$jinput = JFactory::getApplication()->input;
 			foreach($target_headers as $header)
 			{
@@ -472,7 +472,7 @@ class Ehealth_portalModelImport extends JModelLegacy
 	protected function save($data,$table)
 	{
 		// import the data if there is any
-		if(Ehealth_portalHelper::checkArray($data['array']))
+		if(Eclinic_portalHelper::checkArray($data['array']))
 		{
 			// get user object
 			$user		= JFactory::getUser();
@@ -490,7 +490,7 @@ class Ehealth_portalModelImport extends JModelLegacy
 			}
 			
 			// make sure there is still values in array and that it was not only headers
-			if(Ehealth_portalHelper::checkArray($data['array']) && $user->authorise($table.'.import', 'com_ehealth_portal') && $user->authorise('core.import', 'com_ehealth_portal'))
+			if(Eclinic_portalHelper::checkArray($data['array']) && $user->authorise($table.'.import', 'com_eclinic_portal') && $user->authorise('core.import', 'com_eclinic_portal'))
 			{
 				// set target.
 				$target	= array_flip($data['target_headers']);
@@ -499,7 +499,7 @@ class Ehealth_portalModelImport extends JModelLegacy
 				// set some defaults
 				$todayDate		= JFactory::getDate()->toSql();
 				// get global action permissions
-				$canDo			= Ehealth_portalHelper::getActions($table);
+				$canDo			= Eclinic_portalHelper::getActions($table);
 				$canEdit		= $canDo->get('core.edit');
 				$canState		= $canDo->get('core.edit.state');
 				$canCreate		= $canDo->get('core.create');
@@ -514,7 +514,7 @@ class Ehealth_portalModelImport extends JModelLegacy
 						$query = $db->getQuery(true);
 						$query
 							->select('version')
-							->from($db->quoteName('#__ehealth_portal_'.$table))
+							->from($db->quoteName('#__eclinic_portal_'.$table))
 							->where($db->quoteName('id') . ' = '. $db->quote($row[$id_key]));
 						// Reset the query using our newly populated query object.
 						$db->setQuery($query);
@@ -581,7 +581,7 @@ class Ehealth_portalModelImport extends JModelLegacy
 							$db->quoteName('id') . ' = ' . $id
 						);
 						
-						$query->update($db->quoteName('#__ehealth_portal_'.$table))->set($fields)->where($conditions);
+						$query->update($db->quoteName('#__eclinic_portal_'.$table))->set($fields)->where($conditions);
 						$db->setQuery($query);
 						$db->execute();
 					}
@@ -657,7 +657,7 @@ class Ehealth_portalModelImport extends JModelLegacy
 						}
 						// Prepare the insert query.
 						$query
-							->insert($db->quoteName('#__ehealth_portal_'.$table))
+							->insert($db->quoteName('#__eclinic_portal_'.$table))
 							->columns($db->quoteName($columns))
 							->values(implode(',', $values));
 						// Set the query using our newly populated query object and execute it.
@@ -667,7 +667,7 @@ class Ehealth_portalModelImport extends JModelLegacy
 						{
 							$aId = $db->insertid();
 							// make sure the access of asset is set
-							Ehealth_portalHelper::setAsset($aId,$table);
+							Eclinic_portalHelper::setAsset($aId,$table);
 						}
 					}
 					else
@@ -725,12 +725,12 @@ class Ehealth_portalModelImport extends JModelLegacy
 		// Get a db connection.
 		$db = JFactory::getDbo();
 		// first we check if there is a alias column
-		$columns = $db->getTableColumns('#__ehealth_portal_'.$table);
+		$columns = $db->getTableColumns('#__eclinic_portal_'.$table);
 		if(isset($columns['alias'])){
 			// Create a new query object.
 			$query = $db->getQuery(true);
 			$query->select($db->quoteName(array('alias')));
-			$query->from($db->quoteName('#__ehealth_portal_'.$table));
+			$query->from($db->quoteName('#__eclinic_portal_'.$table));
 			$db->setQuery($query);
 			$db->execute();
 			if ($db->getNumRows())

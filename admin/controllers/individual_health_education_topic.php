@@ -4,9 +4,9 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			29th November, 2020
+	@build			30th November, 2020
 	@created		13th August, 2020
-	@package		eHealth Portal
+	@package		eClinic Portal
 	@subpackage		individual_health_education_topic.php
 	@author			Oh Martin <https://vdm.io>	
 	@copyright		Copyright (C) 2015. All Rights Reserved
@@ -26,7 +26,7 @@ use Joomla\Utilities\ArrayHelper;
 /**
  * Individual_health_education_topic Controller
  */
-class Ehealth_portalControllerIndividual_health_education_topic extends JControllerForm
+class Eclinic_portalControllerIndividual_health_education_topic extends JControllerForm
 {
 	/**
 	 * Current or most recently performed task.
@@ -64,7 +64,7 @@ class Ehealth_portalControllerIndividual_health_education_topic extends JControl
 		// [Interpretation 17943] Get user object.
 		$user = JFactory::getUser();
 		// [Interpretation 17957] Access check.
-		$access = $user->authorise('individual_health_education_topic.access', 'com_ehealth_portal');
+		$access = $user->authorise('individual_health_education_topic.access', 'com_eclinic_portal');
 		if (!$access)
 		{
 			return false;
@@ -95,10 +95,10 @@ class Ehealth_portalControllerIndividual_health_education_topic extends JControl
 		if ($recordId)
 		{
 			// [Interpretation 18232] The record has been set. Check the record permissions.
-			$permission = $user->authorise('core.edit', 'com_ehealth_portal.individual_health_education_topic.' . (int) $recordId);
+			$permission = $user->authorise('core.edit', 'com_eclinic_portal.individual_health_education_topic.' . (int) $recordId);
 			if (!$permission)
 			{
-				if ($user->authorise('core.edit.own', 'com_ehealth_portal.individual_health_education_topic.' . $recordId))
+				if ($user->authorise('core.edit.own', 'com_eclinic_portal.individual_health_education_topic.' . $recordId))
 				{
 					// [Interpretation 18280] Now test the owner is the user.
 					$ownerId = (int) isset($data['created_by']) ? $data['created_by'] : 0;
@@ -117,7 +117,7 @@ class Ehealth_portalControllerIndividual_health_education_topic extends JControl
 					// [Interpretation 18296] If the owner matches 'me' then allow.
 					if ($ownerId == $user->id)
 					{
-						if ($user->authorise('core.edit.own', 'com_ehealth_portal'))
+						if ($user->authorise('core.edit.own', 'com_eclinic_portal'))
 						{
 							return true;
 						}
@@ -179,7 +179,7 @@ class Ehealth_portalControllerIndividual_health_education_topic extends JControl
 		$model = $this->getModel('Individual_health_education_topic', '', array());
 
 		// Preset the redirect
-		$this->setRedirect(JRoute::_('index.php?option=com_ehealth_portal&view=individual_health_education_topics' . $this->getRedirectToListAppend(), false));
+		$this->setRedirect(JRoute::_('index.php?option=com_eclinic_portal&view=individual_health_education_topics' . $this->getRedirectToListAppend(), false));
 
 		return parent::batch($model);
 	}

@@ -4,9 +4,9 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			29th November, 2020
+	@build			30th November, 2020
 	@created		13th August, 2020
-	@package		eHealth Portal
+	@package		eClinic Portal
 	@subpackage		prostate_and_testicular_cancer.php
 	@author			Oh Martin <https://vdm.io>	
 	@copyright		Copyright (C) 2015. All Rights Reserved
@@ -26,7 +26,7 @@ use Joomla\Utilities\ArrayHelper;
 /**
  * Prostate_and_testicular_cancer Controller
  */
-class Ehealth_portalControllerProstate_and_testicular_cancer extends JControllerForm
+class Eclinic_portalControllerProstate_and_testicular_cancer extends JControllerForm
 {
 	/**
 	 * Current or most recently performed task.
@@ -64,7 +64,7 @@ class Ehealth_portalControllerProstate_and_testicular_cancer extends JController
 		// [Interpretation 17943] Get user object.
 		$user = JFactory::getUser();
 		// [Interpretation 17957] Access check.
-		$access = $user->authorise('prostate_and_testicular_cancer.access', 'com_ehealth_portal');
+		$access = $user->authorise('prostate_and_testicular_cancer.access', 'com_eclinic_portal');
 		if (!$access)
 		{
 			return false;
@@ -95,10 +95,10 @@ class Ehealth_portalControllerProstate_and_testicular_cancer extends JController
 		if ($recordId)
 		{
 			// [Interpretation 18232] The record has been set. Check the record permissions.
-			$permission = $user->authorise('core.edit', 'com_ehealth_portal.prostate_and_testicular_cancer.' . (int) $recordId);
+			$permission = $user->authorise('core.edit', 'com_eclinic_portal.prostate_and_testicular_cancer.' . (int) $recordId);
 			if (!$permission)
 			{
-				if ($user->authorise('core.edit.own', 'com_ehealth_portal.prostate_and_testicular_cancer.' . $recordId))
+				if ($user->authorise('core.edit.own', 'com_eclinic_portal.prostate_and_testicular_cancer.' . $recordId))
 				{
 					// [Interpretation 18280] Now test the owner is the user.
 					$ownerId = (int) isset($data['created_by']) ? $data['created_by'] : 0;
@@ -117,7 +117,7 @@ class Ehealth_portalControllerProstate_and_testicular_cancer extends JController
 					// [Interpretation 18296] If the owner matches 'me' then allow.
 					if ($ownerId == $user->id)
 					{
-						if ($user->authorise('core.edit.own', 'com_ehealth_portal'))
+						if ($user->authorise('core.edit.own', 'com_eclinic_portal'))
 						{
 							return true;
 						}
@@ -179,7 +179,7 @@ class Ehealth_portalControllerProstate_and_testicular_cancer extends JController
 		$model = $this->getModel('Prostate_and_testicular_cancer', '', array());
 
 		// Preset the redirect
-		$this->setRedirect(JRoute::_('index.php?option=com_ehealth_portal&view=prostate_and_testicular_cancers' . $this->getRedirectToListAppend(), false));
+		$this->setRedirect(JRoute::_('index.php?option=com_eclinic_portal&view=prostate_and_testicular_cancers' . $this->getRedirectToListAppend(), false));
 
 		return parent::batch($model);
 	}

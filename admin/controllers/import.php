@@ -4,9 +4,9 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			29th November, 2020
+	@build			30th November, 2020
 	@created		13th August, 2020
-	@package		eHealth Portal
+	@package		eClinic Portal
 	@subpackage		import.php
 	@author			Oh Martin <https://vdm.io>	
 	@copyright		Copyright (C) 2015. All Rights Reserved
@@ -24,9 +24,9 @@ defined('_JEXEC') or die('Restricted access');
 use Joomla\Utilities\ArrayHelper;
 
 /**
- * Ehealth_portal Import Controller
+ * Eclinic_portal Import Controller
  */
-class Ehealth_portalControllerImport extends JControllerLegacy
+class Eclinic_portalControllerImport extends JControllerLegacy
 {
 	/**
 	 * Import an spreadsheet.
@@ -47,17 +47,17 @@ class Ehealth_portalControllerImport extends JControllerLegacy
 		}
 
 		$app = JFactory::getApplication();
-		$redirect_url = $app->getUserState('com_ehealth_portal.redirect_url');
+		$redirect_url = $app->getUserState('com_eclinic_portal.redirect_url');
 		if (empty($redirect_url))
 		{
-			$redirect_url = JRoute::_('index.php?option=com_ehealth_portal&view=import', false);
+			$redirect_url = JRoute::_('index.php?option=com_eclinic_portal&view=import', false);
 		}
 		else
 		{
 			// wipe out the user state when we're going to redirect
-			$app->setUserState('com_ehealth_portal.redirect_url', '');
-			$app->setUserState('com_ehealth_portal.message', '');
-			$app->setUserState('com_ehealth_portal.extension_message', '');
+			$app->setUserState('com_eclinic_portal.redirect_url', '');
+			$app->setUserState('com_eclinic_portal.message', '');
+			$app->setUserState('com_eclinic_portal.extension_message', '');
 		}
 		$this->setRedirect($redirect_url);
 	}

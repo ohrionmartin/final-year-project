@@ -4,9 +4,9 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			29th November, 2020
+	@build			30th November, 2020
 	@created		13th August, 2020
-	@package		eHealth Portal
+	@package		eClinic Portal
 	@subpackage		headercheck.php
 	@author			Oh Martin <https://vdm.io>	
 	@copyright		Copyright (C) 2015. All Rights Reserved
@@ -21,7 +21,7 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
-class ehealth_portalHeaderCheck
+class eclinic_portalHeaderCheck
 {
 	function js_loaded($script_name)
 	{
