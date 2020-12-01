@@ -1,6 +1,6 @@
 # eClinic Portal (1.0.0)
 
-eClinic Portal is a secure web-based viewer that offers health care providers that may not have access to one of the provincial clinical viewers, a single point of access to their patients' digital health information.
+eClinic Portal is a secure web-based application that offers health care providers that may not have access to one of the provincial clinical viewers, a single point of access to their patients' digital health information.
 
 # Build Details
 
