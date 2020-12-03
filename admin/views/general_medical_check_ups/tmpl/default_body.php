@@ -4,7 +4,7 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			30th November, 2020
+	@build			3rd December, 2020
 	@created		13th August, 2020
 	@package		eClinic Portal
 	@subpackage		default_body.php
@@ -124,7 +124,7 @@ $edit = "index.php?option=com_eclinic_portal&view=general_medical_check_ups&task
 			<?php echo $this->escape($item->diagnosis_name); ?>
 		</td>
 		<td class="hidden-phone">
-			<?php echo JFactory::getUser((int)$item->referred_to)->name; ?>
+			<?php echo $this->escape($item->referral_name); ?>
 		</td>
 		<td class="hidden-phone">
 			<?php echo $this->escape($item->reason); ?>

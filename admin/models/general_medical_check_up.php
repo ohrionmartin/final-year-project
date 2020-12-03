@@ -4,7 +4,7 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			30th November, 2020
+	@build			3rd December, 2020
 	@created		13th August, 2020
 	@package		eClinic Portal
 	@subpackage		general_medical_check_up.php
@@ -68,7 +68,7 @@ class Eclinic_portalModelGeneral_medical_check_up extends JModelAdmin
 		),
 		'referrals' => array(
 			'left' => array(
-				'referred_to'
+				'referral'
 			),
 			'right' => array(
 				'reason'
@@ -454,7 +454,7 @@ class Eclinic_portalModelGeneral_medical_check_up extends JModelAdmin
 	 */
 	protected function getUniqueFields()
 	{
-		return array('referred_to');
+		return false;
 	}
 	
 	/**

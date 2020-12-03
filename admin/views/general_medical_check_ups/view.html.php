@@ -4,7 +4,7 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			30th November, 2020
+	@build			3rd December, 2020
 	@created		13th August, 2020
 	@package		eClinic Portal
 	@subpackage		view.html.php
@@ -280,7 +280,7 @@ class Eclinic_portalViewGeneral_medical_check_ups extends JViewLegacy
 			'a.bp_systolic_two' => JText::_('COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_BP_SYSTOLIC_TWO_LABEL'),
 			'a.temp_two' => JText::_('COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_TEMP_TWO_LABEL'),
 			'a.height' => JText::_('COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_HEIGHT_LABEL'),
-			'a.referred_to' => JText::_('COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_REFERRED_TO_LABEL'),
+			'h.name' => JText::_('COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_REFERRAL_LABEL'),
 			'a.id' => JText::_('JGRID_HEADING_ID')
 		);
 	}

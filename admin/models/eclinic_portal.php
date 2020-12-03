@@ -4,7 +4,7 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			30th November, 2020
+	@build			3rd December, 2020
 	@created		13th August, 2020
 	@package		eClinic Portal
 	@subpackage		eclinic_portal.php
@@ -110,10 +110,10 @@ class Eclinic_portalModelEclinic_portal extends JModelList
 			'individual_health_education.access' => 'individual_health_education.access',
 			'group_health_educations.access' => 'group_health_education.access',
 			'group_health_education.access' => 'group_health_education.access',
-			'clinics.access' => 'clinic.access',
-			'clinic.access' => 'clinic.access',
 			'foetal_engagements.access' => 'foetal_engagement.access',
 			'foetal_engagement.access' => 'foetal_engagement.access',
+			'administration_parts.access' => 'administration_part.access',
+			'administration_part.access' => 'administration_part.access',
 			'planning_types.access' => 'planning_type.access',
 			'planning_type.access' => 'planning_type.access',
 			'immunisation_types.access' => 'immunisation_type.access',
@@ -136,7 +136,11 @@ class Eclinic_portalModelEclinic_portal extends JModelList
 			'medication.access' => 'medication.access',
 			'medications.submenu' => 'medication.submenu',
 			'sites.access' => 'site.access',
-			'site.access' => 'site.access');
+			'site.access' => 'site.access',
+			'referrals.access' => 'referral.access',
+			'referral.access' => 'referral.access',
+			'clinics.access' => 'clinic.access',
+			'clinic.access' => 'clinic.access');
 		// loop over the $views
 		foreach($viewGroups as $group => $views)
 		{

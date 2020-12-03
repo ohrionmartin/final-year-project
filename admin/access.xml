@@ -15,6 +15,14 @@
 		<action name="core.edit.own" title="JACTION_EDITOWN" description="JACTION_EDITOWN_COMPONENT_DESC" />
 		<action name="core.edit.created_by" title="COM_ECLINIC_PORTAL_EDIT_CREATED_BY" description="COM_ECLINIC_PORTAL_EDIT_CREATED_BY_DESC" />
 		<action name="core.edit.created" title="COM_ECLINIC_PORTAL_EDIT_CREATED_DATE" description="COM_ECLINIC_PORTAL_EDIT_CREATED_DATE_DESC" />
+		<action name="administration_part.access" title="COM_ECLINIC_PORTAL_ADMINISTRATION_PARTS_ACCESS" description="COM_ECLINIC_PORTAL_ADMINISTRATION_PARTS_ACCESS_DESC" />
+		<action name="administration_part.batch" title="COM_ECLINIC_PORTAL_ADMINISTRATION_PARTS_BATCH_USE" description="COM_ECLINIC_PORTAL_ADMINISTRATION_PARTS_BATCH_USE_DESC" />
+		<action name="administration_part.edit.alias" title="COM_ECLINIC_PORTAL_ADMINISTRATION_PARTS_EDIT_ALIAS" description="COM_ECLINIC_PORTAL_ADMINISTRATION_PARTS_EDIT_ALIAS_DESC" />
+		<action name="administration_part.edit.description" title="COM_ECLINIC_PORTAL_ADMINISTRATION_PARTS_EDIT_DESCRIPTION" description="COM_ECLINIC_PORTAL_ADMINISTRATION_PARTS_EDIT_DESCRIPTION_DESC" />
+		<action name="administration_part.edit.name" title="COM_ECLINIC_PORTAL_ADMINISTRATION_PARTS_EDIT_NAME" description="COM_ECLINIC_PORTAL_ADMINISTRATION_PARTS_EDIT_NAME_DESC" />
+		<action name="administration_part.version" title="COM_ECLINIC_PORTAL_ADMINISTRATION_PARTS_EDIT_VERSION" description="COM_ECLINIC_PORTAL_ADMINISTRATION_PARTS_EDIT_VERSION_DESC" />
+		<action name="administration_part.export" title="COM_ECLINIC_PORTAL_ADMINISTRATION_PARTS_EXPORT" description="COM_ECLINIC_PORTAL_ADMINISTRATION_PARTS_EXPORT_DESC" />
+		<action name="administration_part.import" title="COM_ECLINIC_PORTAL_ADMINISTRATION_PARTS_IMPORT" description="COM_ECLINIC_PORTAL_ADMINISTRATION_PARTS_IMPORT_DESC" />
 		<action name="antenatal_care.access" title="COM_ECLINIC_PORTAL_ANTENATAL_CARES_ACCESS" description="COM_ECLINIC_PORTAL_ANTENATAL_CARES_ACCESS_DESC" />
 		<action name="antenatal_care.batch" title="COM_ECLINIC_PORTAL_ANTENATAL_CARES_BATCH_USE" description="COM_ECLINIC_PORTAL_ANTENATAL_CARES_BATCH_USE_DESC" />
 		<action name="antenatal_care.dashboard_add" title="COM_ECLINIC_PORTAL_ANTENATAL_CARES_DASHBOARD_ADD" description="COM_ECLINIC_PORTAL_ANTENATAL_CARES_DASHBOARD_ADD_DESC" />
@@ -208,6 +216,13 @@
 		<action name="prostate_and_testicular_cancer.export" title="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCERS_EXPORT" description="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCERS_EXPORT_DESC" />
 		<action name="prostate_and_testicular_cancer.import" title="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCERS_IMPORT" description="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCERS_IMPORT_DESC" />
 		<action name="prostate_and_testicular_cancer.submenu" title="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCERS_SUBMENU" description="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCERS_SUBMENU_DESC" />
+		<action name="referral.access" title="COM_ECLINIC_PORTAL_REFERRALS_ACCESS" description="COM_ECLINIC_PORTAL_REFERRALS_ACCESS_DESC" />
+		<action name="referral.batch" title="COM_ECLINIC_PORTAL_REFERRALS_BATCH_USE" description="COM_ECLINIC_PORTAL_REFERRALS_BATCH_USE_DESC" />
+		<action name="referral.edit.description" title="COM_ECLINIC_PORTAL_REFERRALS_EDIT_DESCRIPTION" description="COM_ECLINIC_PORTAL_REFERRALS_EDIT_DESCRIPTION_DESC" />
+		<action name="referral.edit.name" title="COM_ECLINIC_PORTAL_REFERRALS_EDIT_NAME" description="COM_ECLINIC_PORTAL_REFERRALS_EDIT_NAME_DESC" />
+		<action name="referral.version" title="COM_ECLINIC_PORTAL_REFERRALS_EDIT_VERSION" description="COM_ECLINIC_PORTAL_REFERRALS_EDIT_VERSION_DESC" />
+		<action name="referral.export" title="COM_ECLINIC_PORTAL_REFERRALS_EXPORT" description="COM_ECLINIC_PORTAL_REFERRALS_EXPORT_DESC" />
+		<action name="referral.import" title="COM_ECLINIC_PORTAL_REFERRALS_IMPORT" description="COM_ECLINIC_PORTAL_REFERRALS_IMPORT_DESC" />
 		<action name="site.access" title="COM_ECLINIC_PORTAL_SITES_ACCESS" description="COM_ECLINIC_PORTAL_SITES_ACCESS_DESC" />
 		<action name="site.batch" title="COM_ECLINIC_PORTAL_SITES_BATCH_USE" description="COM_ECLINIC_PORTAL_SITES_BATCH_USE_DESC" />
 		<action name="site.edit.description" title="COM_ECLINIC_PORTAL_SITES_EDIT_DESCRIPTION" description="COM_ECLINIC_PORTAL_SITES_EDIT_DESCRIPTION_DESC" />
@@ -317,15 +332,16 @@
 		<action name="group_health_education.edit.group_health_edu" title="COM_ECLINIC_PORTAL_GROUP_HEALTH_EDUCATIONS_EDIT_GROUP_HEALTH_EDU" description="COM_ECLINIC_PORTAL_GROUP_HEALTH_EDUCATIONS_EDIT_GROUP_HEALTH_EDU_DESC" />
 		<action name="group_health_education.version" title="COM_ECLINIC_PORTAL_GROUP_HEALTH_EDUCATIONS_EDIT_VERSION" description="COM_ECLINIC_PORTAL_GROUP_HEALTH_EDUCATIONS_EDIT_VERSION_DESC" />
 	</section>
-	<section name="clinic">
-		<action name="clinic.edit.clinic_name" title="COM_ECLINIC_PORTAL_CLINICS_EDIT_CLINIC_NAME" description="COM_ECLINIC_PORTAL_CLINICS_EDIT_CLINIC_NAME_DESC" />
-		<action name="clinic.edit.description" title="COM_ECLINIC_PORTAL_CLINICS_EDIT_DESCRIPTION" description="COM_ECLINIC_PORTAL_CLINICS_EDIT_DESCRIPTION_DESC" />
-		<action name="clinic.version" title="COM_ECLINIC_PORTAL_CLINICS_EDIT_VERSION" description="COM_ECLINIC_PORTAL_CLINICS_EDIT_VERSION_DESC" />
-	</section>
 	<section name="foetal_engagement">
 		<action name="foetal_engagement.edit.name" title="COM_ECLINIC_PORTAL_FOETAL_ENGAGEMENTS_EDIT_NAME" description="COM_ECLINIC_PORTAL_FOETAL_ENGAGEMENTS_EDIT_NAME_DESC" />
 		<action name="foetal_engagement.edit.description" title="COM_ECLINIC_PORTAL_FOETAL_ENGAGEMENTS_EDIT_DESCRIPTION" description="COM_ECLINIC_PORTAL_FOETAL_ENGAGEMENTS_EDIT_DESCRIPTION_DESC" />
 		<action name="foetal_engagement.version" title="COM_ECLINIC_PORTAL_FOETAL_ENGAGEMENTS_EDIT_VERSION" description="COM_ECLINIC_PORTAL_FOETAL_ENGAGEMENTS_EDIT_VERSION_DESC" />
+	</section>
+	<section name="administration_part">
+		<action name="administration_part.edit.name" title="COM_ECLINIC_PORTAL_ADMINISTRATION_PARTS_EDIT_NAME" description="COM_ECLINIC_PORTAL_ADMINISTRATION_PARTS_EDIT_NAME_DESC" />
+		<action name="administration_part.edit.description" title="COM_ECLINIC_PORTAL_ADMINISTRATION_PARTS_EDIT_DESCRIPTION" description="COM_ECLINIC_PORTAL_ADMINISTRATION_PARTS_EDIT_DESCRIPTION_DESC" />
+		<action name="administration_part.edit.alias" title="COM_ECLINIC_PORTAL_ADMINISTRATION_PARTS_EDIT_ALIAS" description="COM_ECLINIC_PORTAL_ADMINISTRATION_PARTS_EDIT_ALIAS_DESC" />
+		<action name="administration_part.version" title="COM_ECLINIC_PORTAL_ADMINISTRATION_PARTS_EDIT_VERSION" description="COM_ECLINIC_PORTAL_ADMINISTRATION_PARTS_EDIT_VERSION_DESC" />
 	</section>
 	<section name="planning_type">
 		<action name="planning_type.edit.name" title="COM_ECLINIC_PORTAL_PLANNING_TYPES_EDIT_NAME" description="COM_ECLINIC_PORTAL_PLANNING_TYPES_EDIT_NAME_DESC" />
@@ -382,5 +398,15 @@
 		<action name="site.edit.description" title="COM_ECLINIC_PORTAL_SITES_EDIT_DESCRIPTION" description="COM_ECLINIC_PORTAL_SITES_EDIT_DESCRIPTION_DESC" />
 		<action name="site.edit.site_region" title="COM_ECLINIC_PORTAL_SITES_EDIT_SITE_REGION" description="COM_ECLINIC_PORTAL_SITES_EDIT_SITE_REGION_DESC" />
 		<action name="site.version" title="COM_ECLINIC_PORTAL_SITES_EDIT_VERSION" description="COM_ECLINIC_PORTAL_SITES_EDIT_VERSION_DESC" />
+	</section>
+	<section name="referral">
+		<action name="referral.edit.name" title="COM_ECLINIC_PORTAL_REFERRALS_EDIT_NAME" description="COM_ECLINIC_PORTAL_REFERRALS_EDIT_NAME_DESC" />
+		<action name="referral.edit.description" title="COM_ECLINIC_PORTAL_REFERRALS_EDIT_DESCRIPTION" description="COM_ECLINIC_PORTAL_REFERRALS_EDIT_DESCRIPTION_DESC" />
+		<action name="referral.version" title="COM_ECLINIC_PORTAL_REFERRALS_EDIT_VERSION" description="COM_ECLINIC_PORTAL_REFERRALS_EDIT_VERSION_DESC" />
+	</section>
+	<section name="clinic">
+		<action name="clinic.edit.clinic_name" title="COM_ECLINIC_PORTAL_CLINICS_EDIT_CLINIC_NAME" description="COM_ECLINIC_PORTAL_CLINICS_EDIT_CLINIC_NAME_DESC" />
+		<action name="clinic.edit.description" title="COM_ECLINIC_PORTAL_CLINICS_EDIT_DESCRIPTION" description="COM_ECLINIC_PORTAL_CLINICS_EDIT_DESCRIPTION_DESC" />
+		<action name="clinic.version" title="COM_ECLINIC_PORTAL_CLINICS_EDIT_VERSION" description="COM_ECLINIC_PORTAL_CLINICS_EDIT_VERSION_DESC" />
 	</section>
 </access>

@@ -91,28 +91,6 @@
 			name="patient"
 			label="COM_ECLINIC_PORTAL_IMMUNISATION_PATIENT_LABEL"
 		/>
-		<!-- [Fields 2335] Immunisation_type Field. Type: Immunisationtype. (custom) -->
-		<field
-			type="immunisationtype"
-			name="immunisation_type"
-			label="COM_ECLINIC_PORTAL_IMMUNISATION_IMMUNISATION_TYPE_LABEL"
-			description="COM_ECLINIC_PORTAL_IMMUNISATION_IMMUNISATION_TYPE_DESCRIPTION"
-			class="list_class"
-			multiple="false"
-			default="0"
-			button="true"
-		/>
-		<!-- [Fields 2335] Immunisation_vaccine_type Field. Type: Immunisationvaccinetype. (custom) -->
-		<field
-			type="immunisationvaccinetype"
-			name="immunisation_vaccine_type"
-			label="COM_ECLINIC_PORTAL_IMMUNISATION_IMMUNISATION_VACCINE_TYPE_LABEL"
-			description="COM_ECLINIC_PORTAL_IMMUNISATION_IMMUNISATION_VACCINE_TYPE_DESCRIPTION"
-			class="list_class"
-			multiple="false"
-			default="0"
-			button="true"
-		/>
 		<!-- [Fields 1650] Immunisation_up_to_date Field. Type: List. (joomla) -->
 		<field
 			type="list"
@@ -129,6 +107,52 @@
 				COM_ECLINIC_PORTAL_IMMUNISATION_YES</option>
 			<option value="1">
 				COM_ECLINIC_PORTAL_IMMUNISATION_NO</option>
+		</field>
+		<!-- [Fields 2144] Immunisation Field. Type: Subform. (joomla) -->
+		<field
+			type="subform"
+			name="immunisation"
+			label="COM_ECLINIC_PORTAL_IMMUNISATION_IMMUNISATION_LABEL"
+			layout="joomla.form.field.subform.repeatable-table"
+			multiple="true"
+			buttons="add,remove,move"
+			icon="list"
+			max="50">
+			<form hidden="true" name="list_immunisation_modal" repeat="true">
+				<!-- [Fields 2335] Immunisation_type Field. Type: Immunisationtype. (custom) -->
+				<field
+					type="immunisationtype"
+					name="immunisation_type"
+					label="COM_ECLINIC_PORTAL_IMMUNISATION_IMMUNISATION_TYPE_LABEL"
+					description="COM_ECLINIC_PORTAL_IMMUNISATION_IMMUNISATION_TYPE_DESCRIPTION"
+					class="list_class"
+					multiple="false"
+					default="0"
+					button="false"
+				/>
+				<!-- [Fields 2335] Administrationpart Field. Type: Administrationparts. (custom) -->
+				<field
+					type="administrationparts"
+					name="administrationpart"
+					label="COM_ECLINIC_PORTAL_IMMUNISATION_ADMINISTRATIONPART_LABEL"
+					description="COM_ECLINIC_PORTAL_IMMUNISATION_ADMINISTRATIONPART_DESCRIPTION"
+					class="list_class"
+					multiple="false"
+					default="0"
+					button="false"
+				/>
+				<!-- [Fields 2335] Immunisation_vaccine_type Field. Type: Immunisationvaccinetype. (custom) -->
+				<field
+					type="immunisationvaccinetype"
+					name="immunisation_vaccine_type"
+					label="COM_ECLINIC_PORTAL_IMMUNISATION_IMMUNISATION_VACCINE_TYPE_LABEL"
+					description="COM_ECLINIC_PORTAL_IMMUNISATION_IMMUNISATION_VACCINE_TYPE_DESCRIPTION"
+					class="list_class"
+					multiple="false"
+					default="0"
+					button="false"
+				/>
+			</form>
 		</field>
 	</fieldset>
 	

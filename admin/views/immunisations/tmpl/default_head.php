@@ -4,7 +4,7 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			30th November, 2020
+	@build			3rd December, 2020
 	@created		13th August, 2020
 	@package		eClinic Portal
 	@subpackage		default_head.php
@@ -40,12 +40,6 @@ defined('_JEXEC') or die('Restricted access');
 	<?php endif; ?>
 	<th class="nowrap" >
 			<?php echo JHtml::_('grid.sort', 'COM_ECLINIC_PORTAL_IMMUNISATION_PATIENT_LABEL', 'a.patient', $this->listDirn, $this->listOrder); ?>
-	</th>
-	<th class="nowrap hidden-phone" >
-			<?php echo JText::_('COM_ECLINIC_PORTAL_IMMUNISATION_IMMUNISATION_TYPE_LABEL'); ?>
-	</th>
-	<th class="nowrap hidden-phone" >
-			<?php echo JText::_('COM_ECLINIC_PORTAL_IMMUNISATION_IMMUNISATION_VACCINE_TYPE_LABEL'); ?>
 	</th>
 	<th class="nowrap hidden-phone" >
 			<?php echo JText::_('COM_ECLINIC_PORTAL_IMMUNISATION_IMMUNISATION_UP_TO_DATE_LABEL'); ?>

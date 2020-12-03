@@ -4,7 +4,7 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			30th November, 2020
+	@build			3rd December, 2020
 	@created		13th August, 2020
 	@package		eClinic Portal
 	@subpackage		immunisations.php
@@ -153,14 +153,6 @@ class Eclinic_portalModelImmunisations extends JModelList
 
 		// [Interpretation 15059] From the eclinic_portal_item table
 		$query->from($db->quoteName('#__eclinic_portal_immunisation', 'a'));
-
-		// [Interpretation 15382] From the eclinic_portal_immunisation_type table.
-		$query->select($db->quoteName('g.name','immunisation_type_name'));
-		$query->join('LEFT', $db->quoteName('#__eclinic_portal_immunisation_type', 'g') . ' ON (' . $db->quoteName('a.immunisation_type') . ' = ' . $db->quoteName('g.id') . ')');
-
-		// [Interpretation 15382] From the eclinic_portal_immunisation_vaccine_type table.
-		$query->select($db->quoteName('h.name','immunisation_vaccine_type_name'));
-		$query->join('LEFT', $db->quoteName('#__eclinic_portal_immunisation_vaccine_type', 'h') . ' ON (' . $db->quoteName('a.immunisation_vaccine_type') . ' = ' . $db->quoteName('h.id') . ')');
 
 		// [Interpretation 15078] Filter by published state
 		$published = $this->getState('filter.published');
