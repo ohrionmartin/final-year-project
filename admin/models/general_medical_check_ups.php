@@ -4,7 +4,7 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			30th November, 2020
+	@build			3rd December, 2020
 	@created		13th August, 2020
 	@package		eClinic Portal
 	@subpackage		general_medical_check_ups.php
@@ -48,7 +48,7 @@ class Eclinic_portalModelGeneral_medical_check_ups extends JModelList
 				'a.bp_systolic_two','bp_systolic_two',
 				'a.temp_two','temp_two',
 				'a.height','height',
-				'a.referred_to','referred_to'
+				'h.name'
 			);
 		}
 
@@ -99,8 +99,8 @@ class Eclinic_portalModelGeneral_medical_check_ups extends JModelList
 		$height = $this->getUserStateFromRequest($this->context . '.filter.height', 'filter_height');
 		$this->setState('filter.height', $height);
 
-		$referred_to = $this->getUserStateFromRequest($this->context . '.filter.referred_to', 'filter_referred_to');
-		$this->setState('filter.referred_to', $referred_to);
+		$referral = $this->getUserStateFromRequest($this->context . '.filter.referral', 'filter_referral');
+		$this->setState('filter.referral', $referral);
         
 		$sorting = $this->getUserStateFromRequest($this->context . '.filter.sorting', 'filter_sorting', 0, 'int');
 		$this->setState('filter.sorting', $sorting);
@@ -163,6 +163,10 @@ class Eclinic_portalModelGeneral_medical_check_ups extends JModelList
 		// [Interpretation 15382] From the eclinic_portal_diagnosis_type table.
 		$query->select($db->quoteName('g.name','diagnosis_name'));
 		$query->join('LEFT', $db->quoteName('#__eclinic_portal_diagnosis_type', 'g') . ' ON (' . $db->quoteName('a.diagnosis') . ' = ' . $db->quoteName('g.id') . ')');
+
+		// [Interpretation 15382] From the eclinic_portal_referral table.
+		$query->select($db->quoteName('h.name','referral_name'));
+		$query->join('LEFT', $db->quoteName('#__eclinic_portal_referral', 'h') . ' ON (' . $db->quoteName('a.referral') . ' = ' . $db->quoteName('h.id') . ')');
 
 		// [Interpretation 15078] Filter by published state
 		$published = $this->getState('filter.published');
@@ -360,7 +364,7 @@ class Eclinic_portalModelGeneral_medical_check_ups extends JModelList
 		$id .= ':' . $this->getState('filter.bp_systolic_two');
 		$id .= ':' . $this->getState('filter.temp_two');
 		$id .= ':' . $this->getState('filter.height');
-		$id .= ':' . $this->getState('filter.referred_to');
+		$id .= ':' . $this->getState('filter.referral');
 
 		return parent::getStoreId($id);
 	}

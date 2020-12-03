@@ -262,11 +262,15 @@
 			default="0"
 			button="true"
 		/>
-		<!-- [Fields 1937] Referred_to Field. Type: User. (joomla) -->
+		<!-- [Fields 2335] Referral Field. Type: Referrals. (custom) -->
 		<field
-			type="user"
-			name="referred_to"
-			label="COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_REFERRED_TO_LABEL"
+			type="referrals"
+			name="referral"
+			label="COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_REFERRAL_LABEL"
+			class="list_class"
+			multiple="false"
+			default="0"
+			button="true"
 		/>
 		<!-- [Fields 1937] Reason Field. Type: Textarea. (joomla) -->
 		<field

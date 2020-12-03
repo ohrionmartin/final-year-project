@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `#__eclinic_portal_general_medical_check_up` (
 	`patient` INT(11) NOT NULL DEFAULT 0,
 	`pulse` INT(7) NOT NULL DEFAULT 0,
 	`reason` MEDIUMTEXT NOT NULL,
-	`referred_to` INT(11) NOT NULL DEFAULT 0,
+	`referral` INT(11) NOT NULL DEFAULT 0,
 	`temp_one` FLOAT(7) NOT NULL DEFAULT 0,
 	`temp_two` FLOAT(7) NOT NULL DEFAULT 0,
 	`weight` FLOAT(7) NOT NULL DEFAULT 0,
@@ -63,7 +63,6 @@ CREATE TABLE IF NOT EXISTS `#__eclinic_portal_general_medical_check_up` (
 	`access` INT(10) unsigned NOT NULL DEFAULT 0,
 	`ordering` INT(11) NOT NULL DEFAULT 0,
 	PRIMARY KEY  (`id`),
-	UNIQUE KEY `idx_referred_to` (`referred_to`),
 	KEY `idx_access` (`access`),
 	KEY `idx_checkout` (`checked_out`),
 	KEY `idx_createdby` (`created_by`),
@@ -110,9 +109,8 @@ CREATE TABLE IF NOT EXISTS `#__eclinic_portal_antenatal_care` (
 CREATE TABLE IF NOT EXISTS `#__eclinic_portal_immunisation` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	`asset_id` INT(10) unsigned NOT NULL DEFAULT 0 COMMENT 'FK to the #__assets table.',
-	`immunisation_type` INT(11) NOT NULL DEFAULT 0,
+	`immunisation` TEXT NOT NULL,
 	`immunisation_up_to_date` VARCHAR(255) NOT NULL DEFAULT '',
-	`immunisation_vaccine_type` INT(11) NOT NULL DEFAULT 0,
 	`patient` INT(11) NOT NULL DEFAULT 0,
 	`params` text NOT NULL,
 	`published` TINYINT(3) NOT NULL DEFAULT 1,
@@ -584,13 +582,12 @@ CREATE TABLE IF NOT EXISTS `#__eclinic_portal_group_health_education` (
 	KEY `idx_state` (`published`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
-CREATE TABLE IF NOT EXISTS `#__eclinic_portal_clinic` (
+CREATE TABLE IF NOT EXISTS `#__eclinic_portal_foetal_engagement` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	`asset_id` INT(10) unsigned NOT NULL DEFAULT 0 COMMENT 'FK to the #__assets table.',
 	`alias` CHAR(64) NOT NULL DEFAULT '',
-	`clinic_name` VARCHAR(255) NOT NULL DEFAULT '',
-	`clinic_type` VARCHAR(255) NOT NULL DEFAULT '',
 	`description` TEXT NOT NULL,
+	`name` VARCHAR(255) NOT NULL DEFAULT '',
 	`params` text NOT NULL,
 	`published` TINYINT(3) NOT NULL DEFAULT 1,
 	`created_by` INT(10) unsigned NOT NULL DEFAULT 0,
@@ -604,7 +601,7 @@ CREATE TABLE IF NOT EXISTS `#__eclinic_portal_clinic` (
 	`access` INT(10) unsigned NOT NULL DEFAULT 0,
 	`ordering` INT(11) NOT NULL DEFAULT 0,
 	PRIMARY KEY  (`id`),
-	KEY `idx_clinic_name` (`clinic_name`),
+	KEY `idx_name` (`name`),
 	KEY `idx_alias` (`alias`),
 	KEY `idx_access` (`access`),
 	KEY `idx_checkout` (`checked_out`),
@@ -613,7 +610,7 @@ CREATE TABLE IF NOT EXISTS `#__eclinic_portal_clinic` (
 	KEY `idx_state` (`published`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
-CREATE TABLE IF NOT EXISTS `#__eclinic_portal_foetal_engagement` (
+CREATE TABLE IF NOT EXISTS `#__eclinic_portal_administration_part` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	`asset_id` INT(10) unsigned NOT NULL DEFAULT 0 COMMENT 'FK to the #__assets table.',
 	`alias` CHAR(64) NOT NULL DEFAULT '',
@@ -942,6 +939,63 @@ CREATE TABLE IF NOT EXISTS `#__eclinic_portal_site` (
 	`ordering` INT(11) NOT NULL DEFAULT 0,
 	PRIMARY KEY  (`id`),
 	KEY `idx_site_name` (`site_name`),
+	KEY `idx_alias` (`alias`),
+	KEY `idx_access` (`access`),
+	KEY `idx_checkout` (`checked_out`),
+	KEY `idx_createdby` (`created_by`),
+	KEY `idx_modifiedby` (`modified_by`),
+	KEY `idx_state` (`published`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+
+CREATE TABLE IF NOT EXISTS `#__eclinic_portal_referral` (
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
+	`asset_id` INT(10) unsigned NOT NULL DEFAULT 0 COMMENT 'FK to the #__assets table.',
+	`alias` CHAR(64) NOT NULL DEFAULT '',
+	`description` TEXT NOT NULL,
+	`name` VARCHAR(255) NOT NULL DEFAULT '',
+	`params` text NOT NULL,
+	`published` TINYINT(3) NOT NULL DEFAULT 1,
+	`created_by` INT(10) unsigned NOT NULL DEFAULT 0,
+	`modified_by` INT(10) unsigned NOT NULL DEFAULT 0,
+	`created` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
+	`modified` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
+	`checked_out` int(11) unsigned NOT NULL DEFAULT 0,
+	`checked_out_time` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
+	`version` INT(10) unsigned NOT NULL DEFAULT 1,
+	`hits` INT(10) unsigned NOT NULL DEFAULT 0,
+	`access` INT(10) unsigned NOT NULL DEFAULT 0,
+	`ordering` INT(11) NOT NULL DEFAULT 0,
+	PRIMARY KEY  (`id`),
+	KEY `idx_name` (`name`),
+	KEY `idx_alias` (`alias`),
+	KEY `idx_access` (`access`),
+	KEY `idx_checkout` (`checked_out`),
+	KEY `idx_createdby` (`created_by`),
+	KEY `idx_modifiedby` (`modified_by`),
+	KEY `idx_state` (`published`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+
+CREATE TABLE IF NOT EXISTS `#__eclinic_portal_clinic` (
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
+	`asset_id` INT(10) unsigned NOT NULL DEFAULT 0 COMMENT 'FK to the #__assets table.',
+	`alias` CHAR(64) NOT NULL DEFAULT '',
+	`clinic_name` VARCHAR(255) NOT NULL DEFAULT '',
+	`clinic_type` VARCHAR(255) NOT NULL DEFAULT '',
+	`description` TEXT NOT NULL,
+	`params` text NOT NULL,
+	`published` TINYINT(3) NOT NULL DEFAULT 1,
+	`created_by` INT(10) unsigned NOT NULL DEFAULT 0,
+	`modified_by` INT(10) unsigned NOT NULL DEFAULT 0,
+	`created` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
+	`modified` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
+	`checked_out` int(11) unsigned NOT NULL DEFAULT 0,
+	`checked_out_time` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
+	`version` INT(10) unsigned NOT NULL DEFAULT 1,
+	`hits` INT(10) unsigned NOT NULL DEFAULT 0,
+	`access` INT(10) unsigned NOT NULL DEFAULT 0,
+	`ordering` INT(11) NOT NULL DEFAULT 0,
+	PRIMARY KEY  (`id`),
+	KEY `idx_clinic_name` (`clinic_name`),
 	KEY `idx_alias` (`alias`),
 	KEY `idx_access` (`access`),
 	KEY `idx_checkout` (`checked_out`),

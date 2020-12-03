@@ -4,7 +4,7 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			30th November, 2020
+	@build			3rd December, 2020
 	@created		13th August, 2020
 	@package		eClinic Portal
 	@subpackage		immunisation.php
@@ -38,9 +38,10 @@ class Eclinic_portalModelImmunisation extends JModelAdmin
 	protected $tabLayoutFields = array(
 		'details' => array(
 			'left' => array(
-				'immunisation_type',
-				'immunisation_vaccine_type',
 				'immunisation_up_to_date'
+			),
+			'fullwidth' => array(
+				'immunisation'
 			),
 			'above' => array(
 				'patient'
@@ -108,6 +109,14 @@ class Eclinic_portalModelImmunisation extends JModelAdmin
 				$registry = new Registry;
 				$registry->loadString($item->metadata);
 				$item->metadata = $registry->toArray();
+			}
+
+			if (!empty($item->immunisation))
+			{
+				// [Interpretation 7414] Convert the immunisation field to an array.
+				$immunisation = new Registry;
+				$immunisation->loadString($item->immunisation);
+				$item->immunisation = $immunisation->toArray();
 			}
 			
 			if (!empty($item->id))
@@ -818,6 +827,19 @@ class Eclinic_portalModelImmunisation extends JModelAdmin
 			$metadata = new JRegistry;
 			$metadata->loadArray($data['metadata']);
 			$data['metadata'] = (string) $metadata;
+		}
+
+		// [Interpretation 7514] Set the immunisation items to data.
+		if (isset($data['immunisation']) && is_array($data['immunisation']))
+		{
+			$immunisation = new JRegistry;
+			$immunisation->loadArray($data['immunisation']);
+			$data['immunisation'] = (string) $immunisation;
+		}
+		elseif (!isset($data['immunisation']))
+		{
+			// [Interpretation 7564] Set the empty immunisation to data
+			$data['immunisation'] = '';
 		}
         
 		// Set the Params Items to data

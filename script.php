@@ -4,7 +4,7 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			30th November, 2020
+	@build			3rd December, 2020
 	@created		13th August, 2020
 	@package		eClinic Portal
 	@subpackage		script.php
@@ -1610,92 +1610,6 @@ class com_eclinic_portalInstallerScript
 		// [Interpretation 8247] Select id from content type table
 		$query->select($db->quoteName('type_id'));
 		$query->from($db->quoteName('#__content_types'));
-		// [Interpretation 8254] Where Clinic alias is found
-		$query->where( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.clinic') );
-		$db->setQuery($query);
-		// [Interpretation 8261] Execute query to see if alias is found
-		$db->execute();
-		$clinic_found = $db->getNumRows();
-		// [Interpretation 8267] Now check if there were any rows
-		if ($clinic_found)
-		{
-			// [Interpretation 8273] Since there are load the needed  clinic type ids
-			$clinic_ids = $db->loadColumn();
-			// [Interpretation 8281] Remove Clinic from the content type table
-			$clinic_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.clinic') );
-			// [Interpretation 8287] Create a new query object.
-			$query = $db->getQuery(true);
-			$query->delete($db->quoteName('#__content_types'));
-			$query->where($clinic_condition);
-			$db->setQuery($query);
-			// [Interpretation 8297] Execute the query to remove Clinic items
-			$clinic_done = $db->execute();
-			if ($clinic_done)
-			{
-				// [Interpretation 8304] If succesfully remove Clinic add queued success message.
-				$app->enqueueMessage(JText::_('The (com_eclinic_portal.clinic) type alias was removed from the <b>#__content_type</b> table'));
-			}
-
-			// [Interpretation 8315] Remove Clinic items from the contentitem tag map table
-			$clinic_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.clinic') );
-			// [Interpretation 8321] Create a new query object.
-			$query = $db->getQuery(true);
-			$query->delete($db->quoteName('#__contentitem_tag_map'));
-			$query->where($clinic_condition);
-			$db->setQuery($query);
-			// [Interpretation 8331] Execute the query to remove Clinic items
-			$clinic_done = $db->execute();
-			if ($clinic_done)
-			{
-				// [Interpretation 8338] If succesfully remove Clinic add queued success message.
-				$app->enqueueMessage(JText::_('The (com_eclinic_portal.clinic) type alias was removed from the <b>#__contentitem_tag_map</b> table'));
-			}
-
-			// [Interpretation 8349] Remove Clinic items from the ucm content table
-			$clinic_condition = array( $db->quoteName('core_type_alias') . ' = ' . $db->quote('com_eclinic_portal.clinic') );
-			// [Interpretation 8355] Create a new query object.
-			$query = $db->getQuery(true);
-			$query->delete($db->quoteName('#__ucm_content'));
-			$query->where($clinic_condition);
-			$db->setQuery($query);
-			// [Interpretation 8365] Execute the query to remove Clinic items
-			$clinic_done = $db->execute();
-			if ($clinic_done)
-			{
-				// [Interpretation 8372] If succesfully remove Clinic add queued success message.
-				$app->enqueueMessage(JText::_('The (com_eclinic_portal.clinic) type alias was removed from the <b>#__ucm_content</b> table'));
-			}
-
-			// [Interpretation 8383] Make sure that all the Clinic items are cleared from DB
-			foreach ($clinic_ids as $clinic_id)
-			{
-				// [Interpretation 8391] Remove Clinic items from the ucm base table
-				$clinic_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $clinic_id);
-				// [Interpretation 8398] Create a new query object.
-				$query = $db->getQuery(true);
-				$query->delete($db->quoteName('#__ucm_base'));
-				$query->where($clinic_condition);
-				$db->setQuery($query);
-				// [Interpretation 8408] Execute the query to remove Clinic items
-				$db->execute();
-
-				// [Interpretation 8414] Remove Clinic items from the ucm history table
-				$clinic_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $clinic_id);
-				// [Interpretation 8420] Create a new query object.
-				$query = $db->getQuery(true);
-				$query->delete($db->quoteName('#__ucm_history'));
-				$query->where($clinic_condition);
-				$db->setQuery($query);
-				// [Interpretation 8430] Execute the query to remove Clinic items
-				$db->execute();
-			}
-		}
-
-		// [Interpretation 8243] Create a new query object.
-		$query = $db->getQuery(true);
-		// [Interpretation 8247] Select id from content type table
-		$query->select($db->quoteName('type_id'));
-		$query->from($db->quoteName('#__content_types'));
 		// [Interpretation 8254] Where Foetal_engagement alias is found
 		$query->where( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.foetal_engagement') );
 		$db->setQuery($query);
@@ -1773,6 +1687,92 @@ class com_eclinic_portalInstallerScript
 				$query->where($foetal_engagement_condition);
 				$db->setQuery($query);
 				// [Interpretation 8430] Execute the query to remove Foetal_engagement items
+				$db->execute();
+			}
+		}
+
+		// [Interpretation 8243] Create a new query object.
+		$query = $db->getQuery(true);
+		// [Interpretation 8247] Select id from content type table
+		$query->select($db->quoteName('type_id'));
+		$query->from($db->quoteName('#__content_types'));
+		// [Interpretation 8254] Where Administration_part alias is found
+		$query->where( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.administration_part') );
+		$db->setQuery($query);
+		// [Interpretation 8261] Execute query to see if alias is found
+		$db->execute();
+		$administration_part_found = $db->getNumRows();
+		// [Interpretation 8267] Now check if there were any rows
+		if ($administration_part_found)
+		{
+			// [Interpretation 8273] Since there are load the needed  administration_part type ids
+			$administration_part_ids = $db->loadColumn();
+			// [Interpretation 8281] Remove Administration_part from the content type table
+			$administration_part_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.administration_part') );
+			// [Interpretation 8287] Create a new query object.
+			$query = $db->getQuery(true);
+			$query->delete($db->quoteName('#__content_types'));
+			$query->where($administration_part_condition);
+			$db->setQuery($query);
+			// [Interpretation 8297] Execute the query to remove Administration_part items
+			$administration_part_done = $db->execute();
+			if ($administration_part_done)
+			{
+				// [Interpretation 8304] If succesfully remove Administration_part add queued success message.
+				$app->enqueueMessage(JText::_('The (com_eclinic_portal.administration_part) type alias was removed from the <b>#__content_type</b> table'));
+			}
+
+			// [Interpretation 8315] Remove Administration_part items from the contentitem tag map table
+			$administration_part_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.administration_part') );
+			// [Interpretation 8321] Create a new query object.
+			$query = $db->getQuery(true);
+			$query->delete($db->quoteName('#__contentitem_tag_map'));
+			$query->where($administration_part_condition);
+			$db->setQuery($query);
+			// [Interpretation 8331] Execute the query to remove Administration_part items
+			$administration_part_done = $db->execute();
+			if ($administration_part_done)
+			{
+				// [Interpretation 8338] If succesfully remove Administration_part add queued success message.
+				$app->enqueueMessage(JText::_('The (com_eclinic_portal.administration_part) type alias was removed from the <b>#__contentitem_tag_map</b> table'));
+			}
+
+			// [Interpretation 8349] Remove Administration_part items from the ucm content table
+			$administration_part_condition = array( $db->quoteName('core_type_alias') . ' = ' . $db->quote('com_eclinic_portal.administration_part') );
+			// [Interpretation 8355] Create a new query object.
+			$query = $db->getQuery(true);
+			$query->delete($db->quoteName('#__ucm_content'));
+			$query->where($administration_part_condition);
+			$db->setQuery($query);
+			// [Interpretation 8365] Execute the query to remove Administration_part items
+			$administration_part_done = $db->execute();
+			if ($administration_part_done)
+			{
+				// [Interpretation 8372] If succesfully remove Administration_part add queued success message.
+				$app->enqueueMessage(JText::_('The (com_eclinic_portal.administration_part) type alias was removed from the <b>#__ucm_content</b> table'));
+			}
+
+			// [Interpretation 8383] Make sure that all the Administration_part items are cleared from DB
+			foreach ($administration_part_ids as $administration_part_id)
+			{
+				// [Interpretation 8391] Remove Administration_part items from the ucm base table
+				$administration_part_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $administration_part_id);
+				// [Interpretation 8398] Create a new query object.
+				$query = $db->getQuery(true);
+				$query->delete($db->quoteName('#__ucm_base'));
+				$query->where($administration_part_condition);
+				$db->setQuery($query);
+				// [Interpretation 8408] Execute the query to remove Administration_part items
+				$db->execute();
+
+				// [Interpretation 8414] Remove Administration_part items from the ucm history table
+				$administration_part_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $administration_part_id);
+				// [Interpretation 8420] Create a new query object.
+				$query = $db->getQuery(true);
+				$query->delete($db->quoteName('#__ucm_history'));
+				$query->where($administration_part_condition);
+				$db->setQuery($query);
+				// [Interpretation 8430] Execute the query to remove Administration_part items
 				$db->execute();
 			}
 		}
@@ -2723,6 +2723,178 @@ class com_eclinic_portalInstallerScript
 			}
 		}
 
+		// [Interpretation 8243] Create a new query object.
+		$query = $db->getQuery(true);
+		// [Interpretation 8247] Select id from content type table
+		$query->select($db->quoteName('type_id'));
+		$query->from($db->quoteName('#__content_types'));
+		// [Interpretation 8254] Where Referral alias is found
+		$query->where( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.referral') );
+		$db->setQuery($query);
+		// [Interpretation 8261] Execute query to see if alias is found
+		$db->execute();
+		$referral_found = $db->getNumRows();
+		// [Interpretation 8267] Now check if there were any rows
+		if ($referral_found)
+		{
+			// [Interpretation 8273] Since there are load the needed  referral type ids
+			$referral_ids = $db->loadColumn();
+			// [Interpretation 8281] Remove Referral from the content type table
+			$referral_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.referral') );
+			// [Interpretation 8287] Create a new query object.
+			$query = $db->getQuery(true);
+			$query->delete($db->quoteName('#__content_types'));
+			$query->where($referral_condition);
+			$db->setQuery($query);
+			// [Interpretation 8297] Execute the query to remove Referral items
+			$referral_done = $db->execute();
+			if ($referral_done)
+			{
+				// [Interpretation 8304] If succesfully remove Referral add queued success message.
+				$app->enqueueMessage(JText::_('The (com_eclinic_portal.referral) type alias was removed from the <b>#__content_type</b> table'));
+			}
+
+			// [Interpretation 8315] Remove Referral items from the contentitem tag map table
+			$referral_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.referral') );
+			// [Interpretation 8321] Create a new query object.
+			$query = $db->getQuery(true);
+			$query->delete($db->quoteName('#__contentitem_tag_map'));
+			$query->where($referral_condition);
+			$db->setQuery($query);
+			// [Interpretation 8331] Execute the query to remove Referral items
+			$referral_done = $db->execute();
+			if ($referral_done)
+			{
+				// [Interpretation 8338] If succesfully remove Referral add queued success message.
+				$app->enqueueMessage(JText::_('The (com_eclinic_portal.referral) type alias was removed from the <b>#__contentitem_tag_map</b> table'));
+			}
+
+			// [Interpretation 8349] Remove Referral items from the ucm content table
+			$referral_condition = array( $db->quoteName('core_type_alias') . ' = ' . $db->quote('com_eclinic_portal.referral') );
+			// [Interpretation 8355] Create a new query object.
+			$query = $db->getQuery(true);
+			$query->delete($db->quoteName('#__ucm_content'));
+			$query->where($referral_condition);
+			$db->setQuery($query);
+			// [Interpretation 8365] Execute the query to remove Referral items
+			$referral_done = $db->execute();
+			if ($referral_done)
+			{
+				// [Interpretation 8372] If succesfully remove Referral add queued success message.
+				$app->enqueueMessage(JText::_('The (com_eclinic_portal.referral) type alias was removed from the <b>#__ucm_content</b> table'));
+			}
+
+			// [Interpretation 8383] Make sure that all the Referral items are cleared from DB
+			foreach ($referral_ids as $referral_id)
+			{
+				// [Interpretation 8391] Remove Referral items from the ucm base table
+				$referral_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $referral_id);
+				// [Interpretation 8398] Create a new query object.
+				$query = $db->getQuery(true);
+				$query->delete($db->quoteName('#__ucm_base'));
+				$query->where($referral_condition);
+				$db->setQuery($query);
+				// [Interpretation 8408] Execute the query to remove Referral items
+				$db->execute();
+
+				// [Interpretation 8414] Remove Referral items from the ucm history table
+				$referral_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $referral_id);
+				// [Interpretation 8420] Create a new query object.
+				$query = $db->getQuery(true);
+				$query->delete($db->quoteName('#__ucm_history'));
+				$query->where($referral_condition);
+				$db->setQuery($query);
+				// [Interpretation 8430] Execute the query to remove Referral items
+				$db->execute();
+			}
+		}
+
+		// [Interpretation 8243] Create a new query object.
+		$query = $db->getQuery(true);
+		// [Interpretation 8247] Select id from content type table
+		$query->select($db->quoteName('type_id'));
+		$query->from($db->quoteName('#__content_types'));
+		// [Interpretation 8254] Where Clinic alias is found
+		$query->where( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.clinic') );
+		$db->setQuery($query);
+		// [Interpretation 8261] Execute query to see if alias is found
+		$db->execute();
+		$clinic_found = $db->getNumRows();
+		// [Interpretation 8267] Now check if there were any rows
+		if ($clinic_found)
+		{
+			// [Interpretation 8273] Since there are load the needed  clinic type ids
+			$clinic_ids = $db->loadColumn();
+			// [Interpretation 8281] Remove Clinic from the content type table
+			$clinic_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.clinic') );
+			// [Interpretation 8287] Create a new query object.
+			$query = $db->getQuery(true);
+			$query->delete($db->quoteName('#__content_types'));
+			$query->where($clinic_condition);
+			$db->setQuery($query);
+			// [Interpretation 8297] Execute the query to remove Clinic items
+			$clinic_done = $db->execute();
+			if ($clinic_done)
+			{
+				// [Interpretation 8304] If succesfully remove Clinic add queued success message.
+				$app->enqueueMessage(JText::_('The (com_eclinic_portal.clinic) type alias was removed from the <b>#__content_type</b> table'));
+			}
+
+			// [Interpretation 8315] Remove Clinic items from the contentitem tag map table
+			$clinic_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.clinic') );
+			// [Interpretation 8321] Create a new query object.
+			$query = $db->getQuery(true);
+			$query->delete($db->quoteName('#__contentitem_tag_map'));
+			$query->where($clinic_condition);
+			$db->setQuery($query);
+			// [Interpretation 8331] Execute the query to remove Clinic items
+			$clinic_done = $db->execute();
+			if ($clinic_done)
+			{
+				// [Interpretation 8338] If succesfully remove Clinic add queued success message.
+				$app->enqueueMessage(JText::_('The (com_eclinic_portal.clinic) type alias was removed from the <b>#__contentitem_tag_map</b> table'));
+			}
+
+			// [Interpretation 8349] Remove Clinic items from the ucm content table
+			$clinic_condition = array( $db->quoteName('core_type_alias') . ' = ' . $db->quote('com_eclinic_portal.clinic') );
+			// [Interpretation 8355] Create a new query object.
+			$query = $db->getQuery(true);
+			$query->delete($db->quoteName('#__ucm_content'));
+			$query->where($clinic_condition);
+			$db->setQuery($query);
+			// [Interpretation 8365] Execute the query to remove Clinic items
+			$clinic_done = $db->execute();
+			if ($clinic_done)
+			{
+				// [Interpretation 8372] If succesfully remove Clinic add queued success message.
+				$app->enqueueMessage(JText::_('The (com_eclinic_portal.clinic) type alias was removed from the <b>#__ucm_content</b> table'));
+			}
+
+			// [Interpretation 8383] Make sure that all the Clinic items are cleared from DB
+			foreach ($clinic_ids as $clinic_id)
+			{
+				// [Interpretation 8391] Remove Clinic items from the ucm base table
+				$clinic_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $clinic_id);
+				// [Interpretation 8398] Create a new query object.
+				$query = $db->getQuery(true);
+				$query->delete($db->quoteName('#__ucm_base'));
+				$query->where($clinic_condition);
+				$db->setQuery($query);
+				// [Interpretation 8408] Execute the query to remove Clinic items
+				$db->execute();
+
+				// [Interpretation 8414] Remove Clinic items from the ucm history table
+				$clinic_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $clinic_id);
+				// [Interpretation 8420] Create a new query object.
+				$query = $db->getQuery(true);
+				$query->delete($db->quoteName('#__ucm_history'));
+				$query->where($clinic_condition);
+				$db->setQuery($query);
+				// [Interpretation 8430] Execute the query to remove Clinic items
+				$db->execute();
+			}
+		}
+
 		// [Interpretation 8440] If All related items was removed queued success message.
 		$app->enqueueMessage(JText::_('All related items was removed from the <b>#__ucm_base</b> table'));
 		$app->enqueueMessage(JText::_('All related items was removed from the <b>#__ucm_history</b> table'));
@@ -2735,8 +2907,8 @@ class com_eclinic_portalInstallerScript
 		$query->delete($db->quoteName('#__assets'));
 		$query->where($eclinic_portal_condition);
 		$db->setQuery($query);
-		$site_done = $db->execute();
-		if ($site_done)
+		$clinic_done = $db->execute();
+		if ($clinic_done)
 		{
 			// [Interpretation 8468] If succesfully remove eclinic_portal add queued success message.
 			$app->enqueueMessage(JText::_('All related items was removed from the <b>#__assets</b> table'));
@@ -2840,9 +3012,9 @@ class com_eclinic_portalInstallerScript
 			$general_medical_check_up->type_title = 'Eclinic_portal General_medical_check_up';
 			$general_medical_check_up->type_alias = 'com_eclinic_portal.general_medical_check_up';
 			$general_medical_check_up->table = '{"special": {"dbtable": "#__eclinic_portal_general_medical_check_up","key": "id","type": "General_medical_check_up","prefix": "eclinic_portalTable","config": "array()"},"common": {"dbtable": "#__ucm_content","key": "ucm_id","type": "Corecontent","prefix": "JTable","config": "array()"}}';
-			$general_medical_check_up->field_mappings = '{"common": {"core_content_item_id": "id","core_title": "null","core_state": "published","core_alias": "null","core_created_time": "created","core_modified_time": "modified","core_body": "null","core_hits": "hits","core_publish_up": "null","core_publish_down": "null","core_access": "access","core_params": "params","core_featured": "null","core_metadata": "null","core_language": "null","core_images": "null","core_urls": "null","core_version": "version","core_ordering": "ordering","core_metakey": "null","core_metadesc": "null","core_catid": "null","core_xreference": "null","asset_id": "asset_id"},"special": {"patient":"patient","bp_diastolic_one":"bp_diastolic_one","bp_systolic_one":"bp_systolic_one","temp_one":"temp_one","weight":"weight","pulse":"pulse","chronic_medication":"chronic_medication","bp_diastolic_two":"bp_diastolic_two","bp_systolic_two":"bp_systolic_two","temp_two":"temp_two","height":"height","bmi":"bmi","complaint":"complaint","investigations":"investigations","notes":"notes","diagnosis":"diagnosis","referred_to":"referred_to","reason":"reason"}}';
+			$general_medical_check_up->field_mappings = '{"common": {"core_content_item_id": "id","core_title": "null","core_state": "published","core_alias": "null","core_created_time": "created","core_modified_time": "modified","core_body": "null","core_hits": "hits","core_publish_up": "null","core_publish_down": "null","core_access": "access","core_params": "params","core_featured": "null","core_metadata": "null","core_language": "null","core_images": "null","core_urls": "null","core_version": "version","core_ordering": "ordering","core_metakey": "null","core_metadesc": "null","core_catid": "null","core_xreference": "null","asset_id": "asset_id"},"special": {"patient":"patient","bp_diastolic_one":"bp_diastolic_one","bp_systolic_one":"bp_systolic_one","temp_one":"temp_one","weight":"weight","pulse":"pulse","chronic_medication":"chronic_medication","bp_diastolic_two":"bp_diastolic_two","bp_systolic_two":"bp_systolic_two","temp_two":"temp_two","height":"height","bmi":"bmi","complaint":"complaint","investigations":"investigations","notes":"notes","diagnosis":"diagnosis","referral":"referral","reason":"reason"}}';
 			$general_medical_check_up->router = 'Eclinic_portalHelperRoute::getGeneral_medical_check_upRoute';
-			$general_medical_check_up->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/general_medical_check_up.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering","patient","bp_diastolic_one","bp_systolic_one","pulse","bp_diastolic_two","bp_systolic_two","diagnosis","referred_to"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "diagnosis","targetTable": "#__eclinic_portal_diagnosis_type","targetColumn": "id","displayColumn": "name"}]}';
+			$general_medical_check_up->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/general_medical_check_up.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering","patient","bp_diastolic_one","bp_systolic_one","pulse","bp_diastolic_two","bp_systolic_two","diagnosis","referral"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "diagnosis","targetTable": "#__eclinic_portal_diagnosis_type","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "referral","targetTable": "#__eclinic_portal_referral","targetColumn": "id","displayColumn": "name"}]}';
 
 			// [Interpretation 7836] Set the object into the content types table.
 			$general_medical_check_up_Inserted = $db->insertObject('#__content_types', $general_medical_check_up);
@@ -2864,9 +3036,9 @@ class com_eclinic_portalInstallerScript
 			$immunisation->type_title = 'Eclinic_portal Immunisation';
 			$immunisation->type_alias = 'com_eclinic_portal.immunisation';
 			$immunisation->table = '{"special": {"dbtable": "#__eclinic_portal_immunisation","key": "id","type": "Immunisation","prefix": "eclinic_portalTable","config": "array()"},"common": {"dbtable": "#__ucm_content","key": "ucm_id","type": "Corecontent","prefix": "JTable","config": "array()"}}';
-			$immunisation->field_mappings = '{"common": {"core_content_item_id": "id","core_title": "null","core_state": "published","core_alias": "null","core_created_time": "created","core_modified_time": "modified","core_body": "null","core_hits": "hits","core_publish_up": "null","core_publish_down": "null","core_access": "access","core_params": "params","core_featured": "null","core_metadata": "null","core_language": "null","core_images": "null","core_urls": "null","core_version": "version","core_ordering": "ordering","core_metakey": "null","core_metadesc": "null","core_catid": "null","core_xreference": "null","asset_id": "asset_id"},"special": {"patient":"patient","immunisation_type":"immunisation_type","immunisation_vaccine_type":"immunisation_vaccine_type","immunisation_up_to_date":"immunisation_up_to_date"}}';
+			$immunisation->field_mappings = '{"common": {"core_content_item_id": "id","core_title": "null","core_state": "published","core_alias": "null","core_created_time": "created","core_modified_time": "modified","core_body": "null","core_hits": "hits","core_publish_up": "null","core_publish_down": "null","core_access": "access","core_params": "params","core_featured": "null","core_metadata": "null","core_language": "null","core_images": "null","core_urls": "null","core_version": "version","core_ordering": "ordering","core_metakey": "null","core_metadesc": "null","core_catid": "null","core_xreference": "null","asset_id": "asset_id"},"special": {"patient":"patient","immunisation_up_to_date":"immunisation_up_to_date"}}';
 			$immunisation->router = 'Eclinic_portalHelperRoute::getImmunisationRoute';
-			$immunisation->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/immunisation.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering","patient","immunisation_type","immunisation_vaccine_type"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "immunisation_type","targetTable": "#__eclinic_portal_immunisation_type","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "immunisation_vaccine_type","targetTable": "#__eclinic_portal_immunisation_vaccine_type","targetColumn": "id","displayColumn": "name"}]}';
+			$immunisation->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/immunisation.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering","patient"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
 
 			// [Interpretation 7836] Set the object into the content types table.
 			$immunisation_Inserted = $db->insertObject('#__content_types', $immunisation);
@@ -3039,18 +3211,6 @@ class com_eclinic_portalInstallerScript
 			// [Interpretation 7836] Set the object into the content types table.
 			$group_health_education_Inserted = $db->insertObject('#__content_types', $group_health_education);
 
-			// [Interpretation 7803] Create the clinic content type object.
-			$clinic = new stdClass();
-			$clinic->type_title = 'Eclinic_portal Clinic';
-			$clinic->type_alias = 'com_eclinic_portal.clinic';
-			$clinic->table = '{"special": {"dbtable": "#__eclinic_portal_clinic","key": "id","type": "Clinic","prefix": "eclinic_portalTable","config": "array()"},"common": {"dbtable": "#__ucm_content","key": "ucm_id","type": "Corecontent","prefix": "JTable","config": "array()"}}';
-			$clinic->field_mappings = '{"common": {"core_content_item_id": "id","core_title": "clinic_name","core_state": "published","core_alias": "alias","core_created_time": "created","core_modified_time": "modified","core_body": "null","core_hits": "hits","core_publish_up": "null","core_publish_down": "null","core_access": "access","core_params": "params","core_featured": "null","core_metadata": "null","core_language": "null","core_images": "null","core_urls": "null","core_version": "version","core_ordering": "ordering","core_metakey": "null","core_metadesc": "null","core_catid": "null","core_xreference": "null","asset_id": "asset_id"},"special": {"clinic_name":"clinic_name","description":"description","clinic_type":"clinic_type","alias":"alias"}}';
-			$clinic->router = 'Eclinic_portalHelperRoute::getClinicRoute';
-			$clinic->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/clinic.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
-
-			// [Interpretation 7836] Set the object into the content types table.
-			$clinic_Inserted = $db->insertObject('#__content_types', $clinic);
-
 			// [Interpretation 7803] Create the foetal_engagement content type object.
 			$foetal_engagement = new stdClass();
 			$foetal_engagement->type_title = 'Eclinic_portal Foetal_engagement';
@@ -3062,6 +3222,18 @@ class com_eclinic_portalInstallerScript
 
 			// [Interpretation 7836] Set the object into the content types table.
 			$foetal_engagement_Inserted = $db->insertObject('#__content_types', $foetal_engagement);
+
+			// [Interpretation 7803] Create the administration_part content type object.
+			$administration_part = new stdClass();
+			$administration_part->type_title = 'Eclinic_portal Administration_part';
+			$administration_part->type_alias = 'com_eclinic_portal.administration_part';
+			$administration_part->table = '{"special": {"dbtable": "#__eclinic_portal_administration_part","key": "id","type": "Administration_part","prefix": "eclinic_portalTable","config": "array()"},"common": {"dbtable": "#__ucm_content","key": "ucm_id","type": "Corecontent","prefix": "JTable","config": "array()"}}';
+			$administration_part->field_mappings = '{"common": {"core_content_item_id": "id","core_title": "name","core_state": "published","core_alias": "alias","core_created_time": "created","core_modified_time": "modified","core_body": "null","core_hits": "hits","core_publish_up": "null","core_publish_down": "null","core_access": "access","core_params": "params","core_featured": "null","core_metadata": "null","core_language": "null","core_images": "null","core_urls": "null","core_version": "version","core_ordering": "ordering","core_metakey": "null","core_metadesc": "null","core_catid": "null","core_xreference": "null","asset_id": "asset_id"},"special": {"name":"name","description":"description","alias":"alias"}}';
+			$administration_part->router = 'Eclinic_portalHelperRoute::getAdministration_partRoute';
+			$administration_part->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/administration_part.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
+
+			// [Interpretation 7836] Set the object into the content types table.
+			$administration_part_Inserted = $db->insertObject('#__content_types', $administration_part);
 
 			// [Interpretation 7803] Create the planning_type content type object.
 			$planning_type = new stdClass();
@@ -3195,6 +3367,30 @@ class com_eclinic_portalInstallerScript
 			// [Interpretation 7836] Set the object into the content types table.
 			$site_Inserted = $db->insertObject('#__content_types', $site);
 
+			// [Interpretation 7803] Create the referral content type object.
+			$referral = new stdClass();
+			$referral->type_title = 'Eclinic_portal Referral';
+			$referral->type_alias = 'com_eclinic_portal.referral';
+			$referral->table = '{"special": {"dbtable": "#__eclinic_portal_referral","key": "id","type": "Referral","prefix": "eclinic_portalTable","config": "array()"},"common": {"dbtable": "#__ucm_content","key": "ucm_id","type": "Corecontent","prefix": "JTable","config": "array()"}}';
+			$referral->field_mappings = '{"common": {"core_content_item_id": "id","core_title": "name","core_state": "published","core_alias": "alias","core_created_time": "created","core_modified_time": "modified","core_body": "null","core_hits": "hits","core_publish_up": "null","core_publish_down": "null","core_access": "access","core_params": "params","core_featured": "null","core_metadata": "null","core_language": "null","core_images": "null","core_urls": "null","core_version": "version","core_ordering": "ordering","core_metakey": "null","core_metadesc": "null","core_catid": "null","core_xreference": "null","asset_id": "asset_id"},"special": {"name":"name","description":"description","alias":"alias"}}';
+			$referral->router = 'Eclinic_portalHelperRoute::getReferralRoute';
+			$referral->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/referral.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
+
+			// [Interpretation 7836] Set the object into the content types table.
+			$referral_Inserted = $db->insertObject('#__content_types', $referral);
+
+			// [Interpretation 7803] Create the clinic content type object.
+			$clinic = new stdClass();
+			$clinic->type_title = 'Eclinic_portal Clinic';
+			$clinic->type_alias = 'com_eclinic_portal.clinic';
+			$clinic->table = '{"special": {"dbtable": "#__eclinic_portal_clinic","key": "id","type": "Clinic","prefix": "eclinic_portalTable","config": "array()"},"common": {"dbtable": "#__ucm_content","key": "ucm_id","type": "Corecontent","prefix": "JTable","config": "array()"}}';
+			$clinic->field_mappings = '{"common": {"core_content_item_id": "id","core_title": "clinic_name","core_state": "published","core_alias": "alias","core_created_time": "created","core_modified_time": "modified","core_body": "null","core_hits": "hits","core_publish_up": "null","core_publish_down": "null","core_access": "access","core_params": "params","core_featured": "null","core_metadata": "null","core_language": "null","core_images": "null","core_urls": "null","core_version": "version","core_ordering": "ordering","core_metakey": "null","core_metadesc": "null","core_catid": "null","core_xreference": "null","asset_id": "asset_id"},"special": {"clinic_name":"clinic_name","description":"description","clinic_type":"clinic_type","alias":"alias"}}';
+			$clinic->router = 'Eclinic_portalHelperRoute::getClinicRoute';
+			$clinic->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/clinic.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
+
+			// [Interpretation 7836] Set the object into the content types table.
+			$clinic_Inserted = $db->insertObject('#__content_types', $clinic);
+
 
 			// [Interpretation 7927] Install the global extenstion params.
 			$query = $db->getQuery(true);
@@ -3255,9 +3451,9 @@ class com_eclinic_portalInstallerScript
 			$general_medical_check_up->type_title = 'Eclinic_portal General_medical_check_up';
 			$general_medical_check_up->type_alias = 'com_eclinic_portal.general_medical_check_up';
 			$general_medical_check_up->table = '{"special": {"dbtable": "#__eclinic_portal_general_medical_check_up","key": "id","type": "General_medical_check_up","prefix": "eclinic_portalTable","config": "array()"},"common": {"dbtable": "#__ucm_content","key": "ucm_id","type": "Corecontent","prefix": "JTable","config": "array()"}}';
-			$general_medical_check_up->field_mappings = '{"common": {"core_content_item_id": "id","core_title": "null","core_state": "published","core_alias": "null","core_created_time": "created","core_modified_time": "modified","core_body": "null","core_hits": "hits","core_publish_up": "null","core_publish_down": "null","core_access": "access","core_params": "params","core_featured": "null","core_metadata": "null","core_language": "null","core_images": "null","core_urls": "null","core_version": "version","core_ordering": "ordering","core_metakey": "null","core_metadesc": "null","core_catid": "null","core_xreference": "null","asset_id": "asset_id"},"special": {"patient":"patient","bp_diastolic_one":"bp_diastolic_one","bp_systolic_one":"bp_systolic_one","temp_one":"temp_one","weight":"weight","pulse":"pulse","chronic_medication":"chronic_medication","bp_diastolic_two":"bp_diastolic_two","bp_systolic_two":"bp_systolic_two","temp_two":"temp_two","height":"height","bmi":"bmi","complaint":"complaint","investigations":"investigations","notes":"notes","diagnosis":"diagnosis","referred_to":"referred_to","reason":"reason"}}';
+			$general_medical_check_up->field_mappings = '{"common": {"core_content_item_id": "id","core_title": "null","core_state": "published","core_alias": "null","core_created_time": "created","core_modified_time": "modified","core_body": "null","core_hits": "hits","core_publish_up": "null","core_publish_down": "null","core_access": "access","core_params": "params","core_featured": "null","core_metadata": "null","core_language": "null","core_images": "null","core_urls": "null","core_version": "version","core_ordering": "ordering","core_metakey": "null","core_metadesc": "null","core_catid": "null","core_xreference": "null","asset_id": "asset_id"},"special": {"patient":"patient","bp_diastolic_one":"bp_diastolic_one","bp_systolic_one":"bp_systolic_one","temp_one":"temp_one","weight":"weight","pulse":"pulse","chronic_medication":"chronic_medication","bp_diastolic_two":"bp_diastolic_two","bp_systolic_two":"bp_systolic_two","temp_two":"temp_two","height":"height","bmi":"bmi","complaint":"complaint","investigations":"investigations","notes":"notes","diagnosis":"diagnosis","referral":"referral","reason":"reason"}}';
 			$general_medical_check_up->router = 'Eclinic_portalHelperRoute::getGeneral_medical_check_upRoute';
-			$general_medical_check_up->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/general_medical_check_up.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering","patient","bp_diastolic_one","bp_systolic_one","pulse","bp_diastolic_two","bp_systolic_two","diagnosis","referred_to"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "diagnosis","targetTable": "#__eclinic_portal_diagnosis_type","targetColumn": "id","displayColumn": "name"}]}';
+			$general_medical_check_up->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/general_medical_check_up.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering","patient","bp_diastolic_one","bp_systolic_one","pulse","bp_diastolic_two","bp_systolic_two","diagnosis","referral"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "diagnosis","targetTable": "#__eclinic_portal_diagnosis_type","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "referral","targetTable": "#__eclinic_portal_referral","targetColumn": "id","displayColumn": "name"}]}';
 
 			// [Interpretation 7816] Check if general_medical_check_up type is already in content_type DB.
 			$general_medical_check_up_id = null;
@@ -3313,9 +3509,9 @@ class com_eclinic_portalInstallerScript
 			$immunisation->type_title = 'Eclinic_portal Immunisation';
 			$immunisation->type_alias = 'com_eclinic_portal.immunisation';
 			$immunisation->table = '{"special": {"dbtable": "#__eclinic_portal_immunisation","key": "id","type": "Immunisation","prefix": "eclinic_portalTable","config": "array()"},"common": {"dbtable": "#__ucm_content","key": "ucm_id","type": "Corecontent","prefix": "JTable","config": "array()"}}';
-			$immunisation->field_mappings = '{"common": {"core_content_item_id": "id","core_title": "null","core_state": "published","core_alias": "null","core_created_time": "created","core_modified_time": "modified","core_body": "null","core_hits": "hits","core_publish_up": "null","core_publish_down": "null","core_access": "access","core_params": "params","core_featured": "null","core_metadata": "null","core_language": "null","core_images": "null","core_urls": "null","core_version": "version","core_ordering": "ordering","core_metakey": "null","core_metadesc": "null","core_catid": "null","core_xreference": "null","asset_id": "asset_id"},"special": {"patient":"patient","immunisation_type":"immunisation_type","immunisation_vaccine_type":"immunisation_vaccine_type","immunisation_up_to_date":"immunisation_up_to_date"}}';
+			$immunisation->field_mappings = '{"common": {"core_content_item_id": "id","core_title": "null","core_state": "published","core_alias": "null","core_created_time": "created","core_modified_time": "modified","core_body": "null","core_hits": "hits","core_publish_up": "null","core_publish_down": "null","core_access": "access","core_params": "params","core_featured": "null","core_metadata": "null","core_language": "null","core_images": "null","core_urls": "null","core_version": "version","core_ordering": "ordering","core_metakey": "null","core_metadesc": "null","core_catid": "null","core_xreference": "null","asset_id": "asset_id"},"special": {"patient":"patient","immunisation_up_to_date":"immunisation_up_to_date"}}';
 			$immunisation->router = 'Eclinic_portalHelperRoute::getImmunisationRoute';
-			$immunisation->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/immunisation.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering","patient","immunisation_type","immunisation_vaccine_type"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "immunisation_type","targetTable": "#__eclinic_portal_immunisation_type","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "immunisation_vaccine_type","targetTable": "#__eclinic_portal_immunisation_vaccine_type","targetColumn": "id","displayColumn": "name"}]}';
+			$immunisation->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/immunisation.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering","patient"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
 
 			// [Interpretation 7816] Check if immunisation type is already in content_type DB.
 			$immunisation_id = null;
@@ -3743,35 +3939,6 @@ class com_eclinic_portalInstallerScript
 				$group_health_education_Inserted = $db->insertObject('#__content_types', $group_health_education);
 			}
 
-			// [Interpretation 7803] Create the clinic content type object.
-			$clinic = new stdClass();
-			$clinic->type_title = 'Eclinic_portal Clinic';
-			$clinic->type_alias = 'com_eclinic_portal.clinic';
-			$clinic->table = '{"special": {"dbtable": "#__eclinic_portal_clinic","key": "id","type": "Clinic","prefix": "eclinic_portalTable","config": "array()"},"common": {"dbtable": "#__ucm_content","key": "ucm_id","type": "Corecontent","prefix": "JTable","config": "array()"}}';
-			$clinic->field_mappings = '{"common": {"core_content_item_id": "id","core_title": "clinic_name","core_state": "published","core_alias": "alias","core_created_time": "created","core_modified_time": "modified","core_body": "null","core_hits": "hits","core_publish_up": "null","core_publish_down": "null","core_access": "access","core_params": "params","core_featured": "null","core_metadata": "null","core_language": "null","core_images": "null","core_urls": "null","core_version": "version","core_ordering": "ordering","core_metakey": "null","core_metadesc": "null","core_catid": "null","core_xreference": "null","asset_id": "asset_id"},"special": {"clinic_name":"clinic_name","description":"description","clinic_type":"clinic_type","alias":"alias"}}';
-			$clinic->router = 'Eclinic_portalHelperRoute::getClinicRoute';
-			$clinic->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/clinic.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
-
-			// [Interpretation 7816] Check if clinic type is already in content_type DB.
-			$clinic_id = null;
-			$query = $db->getQuery(true);
-			$query->select($db->quoteName(array('type_id')));
-			$query->from($db->quoteName('#__content_types'));
-			$query->where($db->quoteName('type_alias') . ' LIKE '. $db->quote($clinic->type_alias));
-			$db->setQuery($query);
-			$db->execute();
-
-			// [Interpretation 7836] Set the object into the content types table.
-			if ($db->getNumRows())
-			{
-				$clinic->type_id = $db->loadResult();
-				$clinic_Updated = $db->updateObject('#__content_types', $clinic, 'type_id');
-			}
-			else
-			{
-				$clinic_Inserted = $db->insertObject('#__content_types', $clinic);
-			}
-
 			// [Interpretation 7803] Create the foetal_engagement content type object.
 			$foetal_engagement = new stdClass();
 			$foetal_engagement->type_title = 'Eclinic_portal Foetal_engagement';
@@ -3799,6 +3966,35 @@ class com_eclinic_portalInstallerScript
 			else
 			{
 				$foetal_engagement_Inserted = $db->insertObject('#__content_types', $foetal_engagement);
+			}
+
+			// [Interpretation 7803] Create the administration_part content type object.
+			$administration_part = new stdClass();
+			$administration_part->type_title = 'Eclinic_portal Administration_part';
+			$administration_part->type_alias = 'com_eclinic_portal.administration_part';
+			$administration_part->table = '{"special": {"dbtable": "#__eclinic_portal_administration_part","key": "id","type": "Administration_part","prefix": "eclinic_portalTable","config": "array()"},"common": {"dbtable": "#__ucm_content","key": "ucm_id","type": "Corecontent","prefix": "JTable","config": "array()"}}';
+			$administration_part->field_mappings = '{"common": {"core_content_item_id": "id","core_title": "name","core_state": "published","core_alias": "alias","core_created_time": "created","core_modified_time": "modified","core_body": "null","core_hits": "hits","core_publish_up": "null","core_publish_down": "null","core_access": "access","core_params": "params","core_featured": "null","core_metadata": "null","core_language": "null","core_images": "null","core_urls": "null","core_version": "version","core_ordering": "ordering","core_metakey": "null","core_metadesc": "null","core_catid": "null","core_xreference": "null","asset_id": "asset_id"},"special": {"name":"name","description":"description","alias":"alias"}}';
+			$administration_part->router = 'Eclinic_portalHelperRoute::getAdministration_partRoute';
+			$administration_part->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/administration_part.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
+
+			// [Interpretation 7816] Check if administration_part type is already in content_type DB.
+			$administration_part_id = null;
+			$query = $db->getQuery(true);
+			$query->select($db->quoteName(array('type_id')));
+			$query->from($db->quoteName('#__content_types'));
+			$query->where($db->quoteName('type_alias') . ' LIKE '. $db->quote($administration_part->type_alias));
+			$db->setQuery($query);
+			$db->execute();
+
+			// [Interpretation 7836] Set the object into the content types table.
+			if ($db->getNumRows())
+			{
+				$administration_part->type_id = $db->loadResult();
+				$administration_part_Updated = $db->updateObject('#__content_types', $administration_part, 'type_id');
+			}
+			else
+			{
+				$administration_part_Inserted = $db->insertObject('#__content_types', $administration_part);
 			}
 
 			// [Interpretation 7803] Create the planning_type content type object.
@@ -4118,6 +4314,64 @@ class com_eclinic_portalInstallerScript
 			else
 			{
 				$site_Inserted = $db->insertObject('#__content_types', $site);
+			}
+
+			// [Interpretation 7803] Create the referral content type object.
+			$referral = new stdClass();
+			$referral->type_title = 'Eclinic_portal Referral';
+			$referral->type_alias = 'com_eclinic_portal.referral';
+			$referral->table = '{"special": {"dbtable": "#__eclinic_portal_referral","key": "id","type": "Referral","prefix": "eclinic_portalTable","config": "array()"},"common": {"dbtable": "#__ucm_content","key": "ucm_id","type": "Corecontent","prefix": "JTable","config": "array()"}}';
+			$referral->field_mappings = '{"common": {"core_content_item_id": "id","core_title": "name","core_state": "published","core_alias": "alias","core_created_time": "created","core_modified_time": "modified","core_body": "null","core_hits": "hits","core_publish_up": "null","core_publish_down": "null","core_access": "access","core_params": "params","core_featured": "null","core_metadata": "null","core_language": "null","core_images": "null","core_urls": "null","core_version": "version","core_ordering": "ordering","core_metakey": "null","core_metadesc": "null","core_catid": "null","core_xreference": "null","asset_id": "asset_id"},"special": {"name":"name","description":"description","alias":"alias"}}';
+			$referral->router = 'Eclinic_portalHelperRoute::getReferralRoute';
+			$referral->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/referral.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
+
+			// [Interpretation 7816] Check if referral type is already in content_type DB.
+			$referral_id = null;
+			$query = $db->getQuery(true);
+			$query->select($db->quoteName(array('type_id')));
+			$query->from($db->quoteName('#__content_types'));
+			$query->where($db->quoteName('type_alias') . ' LIKE '. $db->quote($referral->type_alias));
+			$db->setQuery($query);
+			$db->execute();
+
+			// [Interpretation 7836] Set the object into the content types table.
+			if ($db->getNumRows())
+			{
+				$referral->type_id = $db->loadResult();
+				$referral_Updated = $db->updateObject('#__content_types', $referral, 'type_id');
+			}
+			else
+			{
+				$referral_Inserted = $db->insertObject('#__content_types', $referral);
+			}
+
+			// [Interpretation 7803] Create the clinic content type object.
+			$clinic = new stdClass();
+			$clinic->type_title = 'Eclinic_portal Clinic';
+			$clinic->type_alias = 'com_eclinic_portal.clinic';
+			$clinic->table = '{"special": {"dbtable": "#__eclinic_portal_clinic","key": "id","type": "Clinic","prefix": "eclinic_portalTable","config": "array()"},"common": {"dbtable": "#__ucm_content","key": "ucm_id","type": "Corecontent","prefix": "JTable","config": "array()"}}';
+			$clinic->field_mappings = '{"common": {"core_content_item_id": "id","core_title": "clinic_name","core_state": "published","core_alias": "alias","core_created_time": "created","core_modified_time": "modified","core_body": "null","core_hits": "hits","core_publish_up": "null","core_publish_down": "null","core_access": "access","core_params": "params","core_featured": "null","core_metadata": "null","core_language": "null","core_images": "null","core_urls": "null","core_version": "version","core_ordering": "ordering","core_metakey": "null","core_metadesc": "null","core_catid": "null","core_xreference": "null","asset_id": "asset_id"},"special": {"clinic_name":"clinic_name","description":"description","clinic_type":"clinic_type","alias":"alias"}}';
+			$clinic->router = 'Eclinic_portalHelperRoute::getClinicRoute';
+			$clinic->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/clinic.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
+
+			// [Interpretation 7816] Check if clinic type is already in content_type DB.
+			$clinic_id = null;
+			$query = $db->getQuery(true);
+			$query->select($db->quoteName(array('type_id')));
+			$query->from($db->quoteName('#__content_types'));
+			$query->where($db->quoteName('type_alias') . ' LIKE '. $db->quote($clinic->type_alias));
+			$db->setQuery($query);
+			$db->execute();
+
+			// [Interpretation 7836] Set the object into the content types table.
+			if ($db->getNumRows())
+			{
+				$clinic->type_id = $db->loadResult();
+				$clinic_Updated = $db->updateObject('#__content_types', $clinic, 'type_id');
+			}
+			else
+			{
+				$clinic_Inserted = $db->insertObject('#__content_types', $clinic);
 			}
 
 

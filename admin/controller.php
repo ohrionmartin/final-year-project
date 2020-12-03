@@ -4,7 +4,7 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			30th November, 2020
+	@build			3rd December, 2020
 	@created		13th August, 2020
 	@package		eClinic Portal
 	@subpackage		controller.php
@@ -119,8 +119,8 @@ class Eclinic_portalController extends JControllerLegacy
 				'individual_health_education_topic' => 'individual_health_education_topics',
 				'individual_health_education' => 'individual_health_educations',
 				'group_health_education' => 'group_health_educations',
-				'clinic' => 'clinics',
 				'foetal_engagement' => 'foetal_engagements',
+				'administration_part' => 'administration_parts',
 				'planning_type' => 'planning_types',
 				'immunisation_type' => 'immunisation_types',
 				'foetal_lie' => 'foetal_lies',
@@ -131,7 +131,9 @@ class Eclinic_portalController extends JControllerLegacy
 				'diagnosis_type' => 'diagnosis_types',
 				'payment_type' => 'payment_types',
 				'medication' => 'medications',
-				'site' => 'sites'
+				'site' => 'sites',
+				'referral' => 'referrals',
+				'clinic' => 'clinics'
 					);
 			// check if this is a list view
 			if (in_array($view, $views))

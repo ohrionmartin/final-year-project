@@ -4,7 +4,7 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			30th November, 2020
+	@build			3rd December, 2020
 	@created		13th August, 2020
 	@package		eClinic Portal
 	@subpackage		referrals_left.php
@@ -35,7 +35,7 @@ $fields_tab_layout = 'fields_' . $layout_path_array[1];
 
 // get the fields
 $fields = $displayData->get($fields_tab_layout) ?: array(
-	'referred_to'
+	'referral'
 );
 
 $hiddenFields = $displayData->get('hidden_fields') ?: array();

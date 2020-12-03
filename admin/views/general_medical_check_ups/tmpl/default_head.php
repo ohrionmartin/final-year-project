@@ -4,7 +4,7 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			30th November, 2020
+	@build			3rd December, 2020
 	@created		13th August, 2020
 	@package		eClinic Portal
 	@subpackage		default_head.php
@@ -87,7 +87,7 @@ defined('_JEXEC') or die('Restricted access');
 			<?php echo JText::_('COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_DIAGNOSIS_LABEL'); ?>
 	</th>
 	<th class="nowrap hidden-phone" >
-			<?php echo JHtml::_('grid.sort', 'COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_REFERRED_TO_LABEL', 'a.referred_to', $this->listDirn, $this->listOrder); ?>
+			<?php echo JHtml::_('grid.sort', 'COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_REFERRAL_LABEL', 'h.name', $this->listDirn, $this->listOrder); ?>
 	</th>
 	<th class="nowrap hidden-phone" >
 			<?php echo JText::_('COM_ECLINIC_PORTAL_GENERAL_MEDICAL_CHECK_UP_REASON_LABEL'); ?>

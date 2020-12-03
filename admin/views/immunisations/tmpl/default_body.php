@@ -4,7 +4,7 @@
 /-------------------------------------------------------------------------------------------------------/
 
 	@version		1.0.0
-	@build			30th November, 2020
+	@build			3rd December, 2020
 	@created		13th August, 2020
 	@package		eClinic Portal
 	@subpackage		default_body.php
@@ -77,12 +77,6 @@ $edit = "index.php?option=com_eclinic_portal&view=immunisations&task=immunisatio
 					<?php echo JFactory::getUser((int)$item->patient)->name; ?>
 				<?php endif; ?>
 			</div>
-		</td>
-		<td class="hidden-phone">
-			<?php echo $this->escape($item->immunisation_type_name); ?>
-		</td>
-		<td class="hidden-phone">
-			<?php echo $this->escape($item->immunisation_vaccine_type_name); ?>
 		</td>
 		<td class="hidden-phone">
 			<?php echo JText::_($item->immunisation_up_to_date); ?>
