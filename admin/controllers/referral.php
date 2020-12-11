@@ -3,8 +3,8 @@
 				Vast Development Method 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.0.0
-	@build			3rd December, 2020
+	@version		1.0.4
+	@build			11th December, 2020
 	@created		13th August, 2020
 	@package		eClinic Portal
 	@subpackage		referral.php
@@ -61,16 +61,16 @@ class Eclinic_portalControllerReferral extends JControllerForm
 	 */
 	protected function allowAdd($data = array())
 	{
-		// [Interpretation 17943] Get user object.
+		// [Interpretation 18945] Get user object.
 		$user = JFactory::getUser();
-		// [Interpretation 17957] Access check.
+		// [Interpretation 18959] Access check.
 		$access = $user->authorise('referral.access', 'com_eclinic_portal');
 		if (!$access)
 		{
 			return false;
 		}
 
-		// [Interpretation 17988] In the absense of better information, revert to the component permissions.
+		// [Interpretation 18990] In the absense of better information, revert to the component permissions.
 		return parent::allowAdd($data);
 	}
 
@@ -86,25 +86,25 @@ class Eclinic_portalControllerReferral extends JControllerForm
 	 */
 	protected function allowEdit($data = array(), $key = 'id')
 	{
-		// [Interpretation 18197] get user object.
+		// [Interpretation 19199] get user object.
 		$user = JFactory::getUser();
-		// [Interpretation 18200] get record id.
+		// [Interpretation 19202] get record id.
 		$recordId = (int) isset($data[$key]) ? $data[$key] : 0;
 
 
 		if ($recordId)
 		{
-			// [Interpretation 18232] The record has been set. Check the record permissions.
+			// [Interpretation 19234] The record has been set. Check the record permissions.
 			$permission = $user->authorise('core.edit', 'com_eclinic_portal.referral.' . (int) $recordId);
 			if (!$permission)
 			{
 				if ($user->authorise('core.edit.own', 'com_eclinic_portal.referral.' . $recordId))
 				{
-					// [Interpretation 18280] Now test the owner is the user.
+					// [Interpretation 19283] Now test the owner is the user.
 					$ownerId = (int) isset($data['created_by']) ? $data['created_by'] : 0;
 					if (empty($ownerId))
 					{
-						// [Interpretation 18286] Need to do a lookup from the model.
+						// [Interpretation 19289] Need to do a lookup from the model.
 						$record = $this->getModel()->getItem($recordId);
 
 						if (empty($record))
@@ -114,7 +114,7 @@ class Eclinic_portalControllerReferral extends JControllerForm
 						$ownerId = $record->created_by;
 					}
 
-					// [Interpretation 18296] If the owner matches 'me' then allow.
+					// [Interpretation 19299] If the owner matches 'me' then allow.
 					if ($ownerId == $user->id)
 					{
 						if ($user->authorise('core.edit.own', 'com_eclinic_portal'))
@@ -126,7 +126,7 @@ class Eclinic_portalControllerReferral extends JControllerForm
 				return false;
 			}
 		}
-		// [Interpretation 18345] Since there is no permission, revert to the component permissions.
+		// [Interpretation 19348] Since there is no permission, revert to the component permissions.
 		return parent::allowEdit($data, $key);
 	}
 

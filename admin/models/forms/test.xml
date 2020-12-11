@@ -85,13 +85,13 @@
 			filter="unset"
 		/>
 		<!-- [Fields 869] Dynamic Fields. -->
-		<!-- [Fields 1937] Patient Field. Type: User. (joomla) -->
+		<!-- [Fields 2057] Patient Field. Type: User. (joomla) -->
 		<field
 			type="user"
 			name="patient"
 			label="COM_ECLINIC_PORTAL_TEST_PATIENT_LABEL"
 		/>
-		<!-- [Fields 1650] Urine_test_result Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Urine_test_result Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="urine_test_result"
@@ -102,13 +102,13 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_TEST_NORMAL</option>
 			<option value="1">
 				COM_ECLINIC_PORTAL_TEST_ABNORMAL</option>
 		</field>
-		<!-- [Fields 1937] Glucose_first_reading Field. Type: Text. (joomla) -->
+		<!-- [Fields 2057] Glucose_first_reading Field. Type: Text. (joomla) -->
 		<field
 			type="text"
 			name="glucose_first_reading"
@@ -123,7 +123,7 @@
 			filter="STRING"
 			hint="COM_ECLINIC_PORTAL_TEST_GLUCOSE_FIRST_READING_HINT"
 		/>
-		<!-- [Fields 1937] Glucose_second_reading Field. Type: Text. (joomla) -->
+		<!-- [Fields 2057] Glucose_second_reading Field. Type: Text. (joomla) -->
 		<field
 			type="text"
 			name="glucose_second_reading"
@@ -138,7 +138,7 @@
 			filter="STRING"
 			hint="COM_ECLINIC_PORTAL_TEST_GLUCOSE_SECOND_READING_HINT"
 		/>
-		<!-- [Fields 1937] Haemoglobin_reading Field. Type: Text. (joomla) -->
+		<!-- [Fields 2057] Haemoglobin_reading Field. Type: Text. (joomla) -->
 		<field
 			type="text"
 			name="haemoglobin_reading"
@@ -154,7 +154,7 @@
 			hint="COM_ECLINIC_PORTAL_TEST_HAEMOGLOBIN_READING_HINT"
 			autocomplete="on"
 		/>
-		<!-- [Fields 1937] Cholesterol_reading Field. Type: Text. (joomla) -->
+		<!-- [Fields 2057] Cholesterol_reading Field. Type: Text. (joomla) -->
 		<field
 			type="text"
 			name="cholesterol_reading"
@@ -170,7 +170,7 @@
 			hint="COM_ECLINIC_PORTAL_TEST_CHOLESTEROL_READING_HINT"
 			autocomplete="on"
 		/>
-		<!-- [Fields 1650] Syphilis_first_reading Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Syphilis_first_reading Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="syphilis_first_reading"
@@ -181,7 +181,7 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_TEST_POSITIVE</option>
 			<option value="1">
@@ -189,7 +189,7 @@
 			<option value="2">
 				COM_ECLINIC_PORTAL_TEST_INCONCLUSIVE</option>
 		</field>
-		<!-- [Fields 1650] Syphilis_second_reading Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Syphilis_second_reading Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="syphilis_second_reading"
@@ -200,7 +200,7 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_TEST_POSITIVE</option>
 			<option value="1">
@@ -208,7 +208,7 @@
 			<option value="2">
 				COM_ECLINIC_PORTAL_TEST_INCONCLUSIVE</option>
 		</field>
-		<!-- [Fields 1650] Hepatitis_first_reading Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Hepatitis_first_reading Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="hepatitis_first_reading"
@@ -219,7 +219,7 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_TEST_POSITIVE</option>
 			<option value="1">
@@ -227,7 +227,7 @@
 			<option value="2">
 				COM_ECLINIC_PORTAL_TEST_INCONCLUSIVE</option>
 		</field>
-		<!-- [Fields 1650] Hepatitis_second_reading Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Hepatitis_second_reading Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="hepatitis_second_reading"
@@ -238,7 +238,7 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_TEST_POSITIVE</option>
 			<option value="1">
@@ -246,7 +246,7 @@
 			<option value="2">
 				COM_ECLINIC_PORTAL_TEST_INCONCLUSIVE</option>
 		</field>
-		<!-- [Fields 1650] Malaria_first_reading Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Malaria_first_reading Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="malaria_first_reading"
@@ -257,7 +257,7 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_TEST_POSITIVE</option>
 			<option value="1">
@@ -265,7 +265,7 @@
 			<option value="2">
 				COM_ECLINIC_PORTAL_TEST_INCONCLUSIVE</option>
 		</field>
-		<!-- [Fields 1650] Malaria_second_reading Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Malaria_second_reading Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="malaria_second_reading"
@@ -276,7 +276,7 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_TEST_POSITIVE</option>
 			<option value="1">
@@ -284,7 +284,7 @@
 			<option value="2">
 				COM_ECLINIC_PORTAL_TEST_INCONCLUSIVE</option>
 		</field>
-		<!-- [Fields 1650] Pregnancy_first_reading Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Pregnancy_first_reading Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="pregnancy_first_reading"
@@ -295,7 +295,7 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_TEST_POSITIVE</option>
 			<option value="1">
@@ -303,7 +303,7 @@
 			<option value="2">
 				COM_ECLINIC_PORTAL_TEST_INCONCLUSIVE</option>
 		</field>
-		<!-- [Fields 1650] Pregnancy_second_reading Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Pregnancy_second_reading Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="pregnancy_second_reading"
@@ -314,7 +314,7 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_TEST_POSITIVE</option>
 			<option value="1">
@@ -324,15 +324,15 @@
 		</field>
 	</fieldset>
 	
-	<!-- [Interpretation 19419] Access Control Fields. -->
+	<!-- [Interpretation 20425] Access Control Fields. -->
 	<fieldset name="accesscontrol">
-		<!-- [Interpretation 19424] Asset Id Field. Type: Hidden (joomla) -->
+		<!-- [Interpretation 20430] Asset Id Field. Type: Hidden (joomla) -->
 		<field
 			name="asset_id"
 			type="hidden"
 			filter="unset"
 		/>
-		<!-- [Interpretation 19432] Rules Field. Type: Rules (joomla) -->
+		<!-- [Interpretation 20438] Rules Field. Type: Rules (joomla) -->
 		<field
 			name="rules"
 			type="rules"

@@ -85,7 +85,7 @@
 			filter="unset"
 		/>
 		<!-- [Fields 869] Dynamic Fields. -->
-		<!-- [Fields 1650] Are_you_circumcised Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Are_you_circumcised Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="are_you_circumcised"
@@ -96,19 +96,19 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_VMMC_YES</option>
 			<option value="1">
 				COM_ECLINIC_PORTAL_VMMC_NO</option>
 		</field>
-		<!-- [Fields 1937] Patient Field. Type: User. (joomla) -->
+		<!-- [Fields 2057] Patient Field. Type: User. (joomla) -->
 		<field
 			type="user"
 			name="patient"
 			label="COM_ECLINIC_PORTAL_VMMC_PATIENT_LABEL"
 		/>
-		<!-- [Fields 1650] Info_ben_vmcc Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Info_ben_vmcc Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="info_ben_vmcc"
@@ -119,13 +119,13 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_VMMC_YES</option>
 			<option value="1">
 				COM_ECLINIC_PORTAL_VMMC_NO</option>
 		</field>
-		<!-- [Fields 1650] Interested_in_vmmc Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Interested_in_vmmc Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="interested_in_vmmc"
@@ -136,13 +136,13 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_VMMC_YES</option>
 			<option value="1">
 				COM_ECLINIC_PORTAL_VMMC_NO</option>
 		</field>
-		<!-- [Fields 1650] Vmmc_gender Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Vmmc_gender Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="vmmc_gender"
@@ -153,13 +153,13 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_VMMC_MALE</option>
 			<option value="1">
 				COM_ECLINIC_PORTAL_VMMC_FEMALE</option>
 		</field>
-		<!-- [Fields 1650] Partner_circumcised Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Partner_circumcised Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="partner_circumcised"
@@ -170,7 +170,7 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_VMMC_YES</option>
 			<option value="1">
@@ -178,15 +178,15 @@
 		</field>
 	</fieldset>
 	
-	<!-- [Interpretation 19419] Access Control Fields. -->
+	<!-- [Interpretation 20425] Access Control Fields. -->
 	<fieldset name="accesscontrol">
-		<!-- [Interpretation 19424] Asset Id Field. Type: Hidden (joomla) -->
+		<!-- [Interpretation 20430] Asset Id Field. Type: Hidden (joomla) -->
 		<field
 			name="asset_id"
 			type="hidden"
 			filter="unset"
 		/>
-		<!-- [Interpretation 19432] Rules Field. Type: Rules (joomla) -->
+		<!-- [Interpretation 20438] Rules Field. Type: Rules (joomla) -->
 		<field
 			name="rules"
 			type="rules"

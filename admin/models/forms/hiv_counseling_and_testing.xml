@@ -85,13 +85,13 @@
 			filter="unset"
 		/>
 		<!-- [Fields 869] Dynamic Fields. -->
-		<!-- [Fields 1937] Patient Field. Type: User. (joomla) -->
+		<!-- [Fields 2057] Patient Field. Type: User. (joomla) -->
 		<field
 			type="user"
 			name="patient"
 			label="COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_PATIENT_LABEL"
 		/>
-		<!-- [Fields 1650] Counseling_type Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Counseling_type Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="counseling_type"
@@ -100,7 +100,7 @@
 			multiple="false"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_INDIVIDUAL</option>
 			<option value="1">
@@ -108,7 +108,7 @@
 			<option value="2">
 				COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_MINOR</option>
 		</field>
-		<!-- [Fields 2335] Testing_reason Field. Type: Testingreason. (custom) -->
+		<!-- [Fields 2455] Testing_reason Field. Type: Testingreason. (custom) -->
 		<field
 			type="testingreason"
 			name="testing_reason"
@@ -119,7 +119,7 @@
 			default="0"
 			button="true"
 		/>
-		<!-- [Fields 1650] Last_test_date Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Last_test_date Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="last_test_date"
@@ -130,7 +130,7 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_ONESIX_MONTHS</option>
 			<option value="1">
@@ -140,7 +140,7 @@
 			<option value="3">
 				COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_NEVER</option>
 		</field>
-		<!-- [Fields 1650] Prev_test_result Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Prev_test_result Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="prev_test_result"
@@ -151,7 +151,7 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_NEGATIVE</option>
 			<option value="1">
@@ -161,7 +161,7 @@
 			<option value="3">
 				COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_NA</option>
 		</field>
-		<!-- [Fields 1650] Test_result_one Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Test_result_one Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="test_result_one"
@@ -172,7 +172,7 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_POSITIVE</option>
 			<option value="1">
@@ -180,7 +180,7 @@
 			<option value="2">
 				COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_INCONCLUSIVE</option>
 		</field>
-		<!-- [Fields 1650] Test_result_two Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Test_result_two Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="test_result_two"
@@ -191,7 +191,7 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_POSITIVE</option>
 			<option value="1">
@@ -199,7 +199,7 @@
 			<option value="2">
 				COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_INCONCLUSIVE</option>
 		</field>
-		<!-- [Fields 1650] Final_test_result Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Final_test_result Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="final_test_result"
@@ -210,7 +210,7 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_NEGATIVE</option>
 			<option value="1">
@@ -220,7 +220,7 @@
 			<option value="3">
 				COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_NA</option>
 		</field>
-		<!-- [Fields 1650] Eqa Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Eqa Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="eqa"
@@ -229,7 +229,7 @@
 			multiple="false"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_HIV_COUNSELING_AND_TESTING_YES</option>
 			<option value="1">
@@ -237,15 +237,15 @@
 		</field>
 	</fieldset>
 	
-	<!-- [Interpretation 19419] Access Control Fields. -->
+	<!-- [Interpretation 20425] Access Control Fields. -->
 	<fieldset name="accesscontrol">
-		<!-- [Interpretation 19424] Asset Id Field. Type: Hidden (joomla) -->
+		<!-- [Interpretation 20430] Asset Id Field. Type: Hidden (joomla) -->
 		<field
 			name="asset_id"
 			type="hidden"
 			filter="unset"
 		/>
-		<!-- [Interpretation 19432] Rules Field. Type: Rules (joomla) -->
+		<!-- [Interpretation 20438] Rules Field. Type: Rules (joomla) -->
 		<field
 			name="rules"
 			type="rules"

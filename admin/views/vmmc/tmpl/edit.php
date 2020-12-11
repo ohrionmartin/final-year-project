@@ -3,8 +3,8 @@
 				Vast Development Method 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.0.0
-	@build			3rd December, 2020
+	@version		1.0.4
+	@build			11th December, 2020
 	@created		13th August, 2020
 	@package		eClinic Portal
 	@subpackage		edit.php
@@ -114,7 +114,7 @@ $componentParams = $this->params; // will be removed just use $this->params inst
 
 <script type="text/javascript">
 
-// [Interpretation 15693] #jform_vmmc_gender listeners for vmmc_gender_vvvvvvx function
+// [Interpretation 16290] #jform_vmmc_gender listeners for vmmc_gender_vvvvvvx function
 jQuery('#jform_vmmc_gender').on('keyup',function()
 {
 	var vmmc_gender_vvvvvvx = jQuery("#jform_vmmc_gender").val();
@@ -129,7 +129,7 @@ jQuery('#adminForm').on('change', '#jform_vmmc_gender',function (e)
 
 });
 
-// [Interpretation 15693] #jform_vmmc_gender listeners for vmmc_gender_vvvvvvy function
+// [Interpretation 16290] #jform_vmmc_gender listeners for vmmc_gender_vvvvvvy function
 jQuery('#jform_vmmc_gender').on('keyup',function()
 {
 	var vmmc_gender_vvvvvvy = jQuery("#jform_vmmc_gender").val();

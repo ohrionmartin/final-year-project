@@ -3,8 +3,8 @@
 				Vast Development Method 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.0.0
-	@build			3rd December, 2020
+	@version		1.0.4
+	@build			11th December, 2020
 	@created		13th August, 2020
 	@package		eClinic Portal
 	@subpackage		eclinic_portal.php
@@ -209,61 +209,61 @@ abstract class Eclinic_portalHelper
 	*/
 	public static function xls($rows, $fileName = null, $title = null, $subjectTab = null, $creator = 'Joomla Component Builder', $description = null, $category = null,$keywords = null, $modified = null)
 	{
-		// [Interpretation 1597] set the user
+		// [Interpretation 1596] set the user
 		$user = JFactory::getUser();
-		// [Interpretation 1600] set fileName if not set
+		// [Interpretation 1599] set fileName if not set
 		if (!$fileName)
 		{
 			$fileName = 'exported_'.JFactory::getDate()->format('jS_F_Y');
 		}
-		// [Interpretation 1607] set modified if not set
+		// [Interpretation 1606] set modified if not set
 		if (!$modified)
 		{
 			$modified = $user->name;
 		}
-		// [Interpretation 1613] set title if not set
+		// [Interpretation 1612] set title if not set
 		if (!$title)
 		{
 			$title = 'Book1';
 		}
-		// [Interpretation 1619] set tab name if not set
+		// [Interpretation 1618] set tab name if not set
 		if (!$subjectTab)
 		{
 			$subjectTab = 'Sheet1';
 		}
 
-		// [Interpretation 1625] make sure we have the composer classes loaded
+		// [Interpretation 1624] make sure we have the composer classes loaded
 		self::composerAutoload('phpspreadsheet');
 
-		// [Interpretation 1629] Create new Spreadsheet object
+		// [Interpretation 1628] Create new Spreadsheet object
 		$spreadsheet = new Spreadsheet();
 
-		// [Interpretation 1632] Set document properties
+		// [Interpretation 1631] Set document properties
 		$spreadsheet->getProperties()
 			->setCreator($creator)
 			->setCompany('Joomla Component Builder')
 			->setLastModifiedBy($modified)
 			->setTitle($title)
 			->setSubject($subjectTab);
-		// [Interpretation 1640] The file type
+		// [Interpretation 1639] The file type
 		$file_type = 'Xls';
-		// [Interpretation 1643] set description
+		// [Interpretation 1642] set description
 		if ($description)
 		{
 			$spreadsheet->getProperties()->setDescription($description);
 		}
-		// [Interpretation 1650] set keywords
+		// [Interpretation 1649] set keywords
 		if ($keywords)
 		{
 			$spreadsheet->getProperties()->setKeywords($keywords);
 		}
-		// [Interpretation 1657] set category
+		// [Interpretation 1656] set category
 		if ($category)
 		{
 			$spreadsheet->getProperties()->setCategory($category);
 		}
 
-		// [Interpretation 1664] Some styles
+		// [Interpretation 1663] Some styles
 		$headerStyles = array(
 			'font'  => array(
 				'bold'  => true,
@@ -285,7 +285,7 @@ abstract class Eclinic_portalHelper
 				'name'  => 'Verdana'
 		));
 
-		// [Interpretation 1686] Add some data
+		// [Interpretation 1685] Add some data
 		if (($size = self::checkArray($rows)) !== false)
 		{
 			$i = 1;
@@ -337,24 +337,24 @@ abstract class Eclinic_portalHelper
 			return false;
 		}
 
-		// [Interpretation 1744] Rename worksheet
+		// [Interpretation 1745] Rename worksheet
 		$spreadsheet->getActiveSheet()->setTitle($subjectTab);
 
-		// [Interpretation 1748] Set active sheet index to the first sheet, so Excel opens this as the first sheet
+		// [Interpretation 1749] Set active sheet index to the first sheet, so Excel opens this as the first sheet
 		$spreadsheet->setActiveSheetIndex(0);
 
-		// [Interpretation 1751] Redirect output to a client's web browser (Excel5)
+		// [Interpretation 1752] Redirect output to a client's web browser (Excel5)
 		header('Content-Type: application/vnd.ms-excel');
 		header('Content-Disposition: attachment;filename="' . $fileName . '.' . strtolower($file_type) .'"');
 		header('Cache-Control: max-age=0');
-		// [Interpretation 1758] If you're serving to IE 9, then the following may be needed
+		// [Interpretation 1759] If you're serving to IE 9, then the following may be needed
 		header('Cache-Control: max-age=1');
 
-		// [Interpretation 1761] If you're serving to IE over SSL, then the following may be needed
-		header ('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); // [Interpretation 1765] Date in the past
-		header ('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT'); // [Interpretation 1768] always modified
-		header ('Cache-Control: cache, must-revalidate'); // [Interpretation 1771] HTTP/1.1
-		header ('Pragma: public'); // [Interpretation 1773] HTTP/1.0
+		// [Interpretation 1762] If you're serving to IE over SSL, then the following may be needed
+		header ('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); // [Interpretation 1766] Date in the past
+		header ('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT'); // [Interpretation 1769] always modified
+		header ('Cache-Control: cache, must-revalidate'); // [Interpretation 1772] HTTP/1.1
+		header ('Pragma: public'); // [Interpretation 1774] HTTP/1.0
 
 		$writer = IOFactory::createWriter($spreadsheet, $file_type);
 		$writer->save('php://output');
@@ -366,25 +366,25 @@ abstract class Eclinic_portalHelper
 	*/
 	public static function getFileHeaders($dataType)
 	{
-		// [Interpretation 1785] make sure we have the composer classes loaded
+		// [Interpretation 1786] make sure we have the composer classes loaded
 		self::composerAutoload('phpspreadsheet');
-		// [Interpretation 1789] get session object
+		// [Interpretation 1790] get session object
 		$session = JFactory::getSession();
 		$package = $session->get('package', null);
 		$package = json_decode($package, true);
-		// [Interpretation 1796] set the headers
+		// [Interpretation 1797] set the headers
 		if(isset($package['dir']))
 		{
-			// [Interpretation 1800] only load first three rows
+			// [Interpretation 1801] only load first three rows
 			$chunkFilter = new PhpOffice\PhpSpreadsheet\Reader\chunkReadFilter(2,1);
-			// [Interpretation 1804] identify the file type
+			// [Interpretation 1805] identify the file type
 			$inputFileType = IOFactory::identify($package['dir']);
-			// [Interpretation 1808] create the reader for this file type
+			// [Interpretation 1809] create the reader for this file type
 			$excelReader = IOFactory::createReader($inputFileType);
-			// [Interpretation 1812] load the limiting filter
+			// [Interpretation 1813] load the limiting filter
 			$excelReader->setReadFilter($chunkFilter);
 			$excelReader->setReadDataOnly(true);
-			// [Interpretation 1817] load the rows (only first three)
+			// [Interpretation 1818] load the rows (only first three)
 			$excelObj = $excelReader->load($package['dir']);
 			$headers = array();
 			foreach ($excelObj->getActiveSheet()->getRowIterator() as $row)
@@ -415,9 +415,9 @@ abstract class Eclinic_portalHelper
 	*/
 	protected static function composephpspreadsheet()
 	{
-		// [Interpretation 1855] load the autoloader for phpspreadsheet
+		// [Interpretation 1856] load the autoloader for phpspreadsheet
 		require_once JPATH_SITE . '/libraries/phpspreadsheet/vendor/autoload.php';
-		// [Interpretation 1859] do not load again
+		// [Interpretation 1860] do not load again
 		self::$composer['phpspreadsheet'] = true;
 
 		return  true;

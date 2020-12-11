@@ -85,13 +85,13 @@
 			filter="unset"
 		/>
 		<!-- [Fields 869] Dynamic Fields. -->
-		<!-- [Fields 1937] Patient Field. Type: User. (joomla) -->
+		<!-- [Fields 2057] Patient Field. Type: User. (joomla) -->
 		<field
 			type="user"
 			name="patient"
 			label="COM_ECLINIC_PORTAL_CERVICAL_CANCER_PATIENT_LABEL"
 		/>
-		<!-- [Fields 1650] Cc_viginal_bleeding Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Cc_viginal_bleeding Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="cc_viginal_bleeding"
@@ -102,13 +102,13 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_CERVICAL_CANCER_YES</option>
 			<option value="1">
 				COM_ECLINIC_PORTAL_CERVICAL_CANCER_NO</option>
 		</field>
-		<!-- [Fields 1650] Cc_v_discharge Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Cc_v_discharge Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="cc_v_discharge"
@@ -119,13 +119,13 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_CERVICAL_CANCER_YES</option>
 			<option value="1">
 				COM_ECLINIC_PORTAL_CERVICAL_CANCER_NO</option>
 		</field>
-		<!-- [Fields 1650] Cc_periods Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Cc_periods Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="cc_periods"
@@ -136,13 +136,13 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_CERVICAL_CANCER_YES</option>
 			<option value="1">
 				COM_ECLINIC_PORTAL_CERVICAL_CANCER_NO</option>
 		</field>
-		<!-- [Fields 1650] Cc_smoking Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Cc_smoking Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="cc_smoking"
@@ -153,13 +153,13 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_CERVICAL_CANCER_YES</option>
 			<option value="1">
 				COM_ECLINIC_PORTAL_CERVICAL_CANCER_NO</option>
 		</field>
-		<!-- [Fields 1650] Cc_sex_actve Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Cc_sex_actve Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="cc_sex_actve"
@@ -170,13 +170,13 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_CERVICAL_CANCER_YES</option>
 			<option value="1">
 				COM_ECLINIC_PORTAL_CERVICAL_CANCER_NO</option>
 		</field>
-		<!-- [Fields 1650] Cc_sex_partner Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Cc_sex_partner Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="cc_sex_partner"
@@ -187,13 +187,13 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_CERVICAL_CANCER_YES</option>
 			<option value="1">
 				COM_ECLINIC_PORTAL_CERVICAL_CANCER_NO</option>
 		</field>
-		<!-- [Fields 1650] Pap_smear_collection Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Pap_smear_collection Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="pap_smear_collection"
@@ -204,13 +204,13 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_CERVICAL_CANCER_YES</option>
 			<option value="1">
 				COM_ECLINIC_PORTAL_CERVICAL_CANCER_NO</option>
 		</field>
-		<!-- [Fields 1650] Cc_result Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Cc_result Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="cc_result"
@@ -221,7 +221,7 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_CERVICAL_CANCER_POSITIVE</option>
 			<option value="1">
@@ -229,7 +229,7 @@
 			<option value="2">
 				COM_ECLINIC_PORTAL_CERVICAL_CANCER_INCONCLUSIVE</option>
 		</field>
-		<!-- [Fields 1937] Cc_reason Field. Type: Text. (joomla) -->
+		<!-- [Fields 2057] Cc_reason Field. Type: Text. (joomla) -->
 		<field
 			type="text"
 			name="cc_reason"
@@ -246,7 +246,7 @@
 			hint="COM_ECLINIC_PORTAL_CERVICAL_CANCER_CC_REASON_HINT"
 			autocomplete="on"
 		/>
-		<!-- [Fields 1937] Txt_cc_sex_partner Field. Type: Textarea. (joomla) -->
+		<!-- [Fields 2057] Txt_cc_sex_partner Field. Type: Textarea. (joomla) -->
 		<field
 			type="textarea"
 			name="txt_cc_sex_partner"
@@ -258,7 +258,7 @@
 			filter="HTML"
 			hint="COM_ECLINIC_PORTAL_CERVICAL_CANCER_TXT_CC_SEX_PARTNER_HINT"
 		/>
-		<!-- [Fields 1937] Txt_cc_sex_actve Field. Type: Textarea. (joomla) -->
+		<!-- [Fields 2057] Txt_cc_sex_actve Field. Type: Textarea. (joomla) -->
 		<field
 			type="textarea"
 			name="txt_cc_sex_actve"
@@ -270,7 +270,7 @@
 			filter="HTML"
 			hint="COM_ECLINIC_PORTAL_CERVICAL_CANCER_TXT_CC_SEX_ACTVE_HINT"
 		/>
-		<!-- [Fields 1937] Txt_cc_smoking Field. Type: Textarea. (joomla) -->
+		<!-- [Fields 2057] Txt_cc_smoking Field. Type: Textarea. (joomla) -->
 		<field
 			type="textarea"
 			name="txt_cc_smoking"
@@ -282,7 +282,7 @@
 			filter="HTML"
 			hint="COM_ECLINIC_PORTAL_CERVICAL_CANCER_TXT_CC_SMOKING_HINT"
 		/>
-		<!-- [Fields 1937] Txt_cc_periods Field. Type: Textarea. (joomla) -->
+		<!-- [Fields 2057] Txt_cc_periods Field. Type: Textarea. (joomla) -->
 		<field
 			type="textarea"
 			name="txt_cc_periods"
@@ -294,7 +294,7 @@
 			filter="HTML"
 			hint="COM_ECLINIC_PORTAL_CERVICAL_CANCER_TXT_CC_PERIODS_HINT"
 		/>
-		<!-- [Fields 1937] Txt_cc_v_discharge Field. Type: Textarea. (joomla) -->
+		<!-- [Fields 2057] Txt_cc_v_discharge Field. Type: Textarea. (joomla) -->
 		<field
 			type="textarea"
 			name="txt_cc_v_discharge"
@@ -306,7 +306,7 @@
 			filter="HTML"
 			hint="COM_ECLINIC_PORTAL_CERVICAL_CANCER_TXT_CC_V_DISCHARGE_HINT"
 		/>
-		<!-- [Fields 1937] Txt_cc_viginal_bleeding Field. Type: Textarea. (joomla) -->
+		<!-- [Fields 2057] Txt_cc_viginal_bleeding Field. Type: Textarea. (joomla) -->
 		<field
 			type="textarea"
 			name="txt_cc_viginal_bleeding"
@@ -320,15 +320,15 @@
 		/>
 	</fieldset>
 	
-	<!-- [Interpretation 19419] Access Control Fields. -->
+	<!-- [Interpretation 20425] Access Control Fields. -->
 	<fieldset name="accesscontrol">
-		<!-- [Interpretation 19424] Asset Id Field. Type: Hidden (joomla) -->
+		<!-- [Interpretation 20430] Asset Id Field. Type: Hidden (joomla) -->
 		<field
 			name="asset_id"
 			type="hidden"
 			filter="unset"
 		/>
-		<!-- [Interpretation 19432] Rules Field. Type: Rules (joomla) -->
+		<!-- [Interpretation 20438] Rules Field. Type: Rules (joomla) -->
 		<field
 			name="rules"
 			type="rules"

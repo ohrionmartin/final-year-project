@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" version="3.2" method="upgrade">
 	<name>COM_ECLINIC_PORTAL</name>
-	<creationDate>3rd December, 2020</creationDate>
+	<creationDate>11th December, 2020</creationDate>
 	<author>Oh Martin</author>
 	<authorEmail>oh.martin@vdm.io</authorEmail>
 	<authorUrl>https://vdm.io</authorUrl>
 	<copyright>Copyright (C) 2015. All Rights Reserved</copyright>
 	<license>GNU/GPL Version 2 or later - http://www.gnu.org/licenses/gpl-2.0.html</license>
-	<version>1.0.0</version>
+	<version>1.0.4</version>
 	<description><![CDATA[
-		<h1>eClinic Portal (v.1.0.0)</h1>
+		<h1>eClinic Portal (v.1.0.4)</h1>
 		<div style="clear: both;"></div>
 		<p>eClinic Portal is a secure web-based application that offers health care providers that may not have access to one of the provincial clinical viewers, a single point of access to their patients' digital health medical information.</p>
 		<p>Created by <a href="https://vdm.io" target="_blank">Oh Martin</a><br /><small>Development started 13th August, 2020</small></p>

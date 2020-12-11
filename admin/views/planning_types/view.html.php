@@ -3,8 +3,8 @@
 				Vast Development Method 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.0.0
-	@build			3rd December, 2020
+	@version		1.0.4
+	@build			11th December, 2020
 	@created		13th August, 2020
 	@package		eClinic Portal
 	@subpackage		view.html.php
@@ -43,10 +43,14 @@ class Eclinic_portalViewPlanning_types extends JViewLegacy
 		$this->pagination = $this->get('Pagination');
 		$this->state = $this->get('State');
 		$this->user = JFactory::getUser();
-		// [Interpretation 5103] Add the list ordering clause.
+		// [Interpretation 5062] Load the filter form from xml.
+		$this->filterForm = $this->get('FilterForm');
+		// [Interpretation 5068] Load the active filters.
+		$this->activeFilters = $this->get('ActiveFilters');
+		// [Interpretation 5078] Add the list ordering clause.
 		$this->listOrder = $this->escape($this->state->get('list.ordering', 'a.id'));
-		$this->listDirn = $this->escape($this->state->get('list.direction', 'asc'));
-		$this->saveOrder = $this->listOrder == 'ordering';
+		$this->listDirn = $this->escape($this->state->get('list.direction', 'DESC'));
+		$this->saveOrder = $this->listOrder == 'a.ordering';
 		// set the return here value
 		$this->return_here = urlencode(base64_encode((string) JUri::getInstance()));
 		// get global action permissions
@@ -163,30 +167,17 @@ class Eclinic_portalViewPlanning_types extends JViewLegacy
 			JToolBarHelper::preferences('com_eclinic_portal');
 		}
 
-		if ($this->canState)
+		// [Interpretation 18661] Only load published batch if state and batch is allowed
+		if ($this->canState && $this->canBatch)
 		{
-			JHtmlSidebar::addFilter(
-				JText::_('JOPTION_SELECT_PUBLISHED'),
-				'filter_published',
-				JHtml::_('select.options', JHtml::_('jgrid.publishedOptions'), 'value', 'text', $this->state->get('filter.published'), true)
+			JHtmlBatch_::addListSelection(
+				JText::_('COM_ECLINIC_PORTAL_KEEP_ORIGINAL_STATE'),
+				'batch[published]',
+				JHtml::_('select.options', JHtml::_('jgrid.publishedOptions', array('all' => false)), 'value', 'text', '', true)
 			);
-			// only load if batch allowed
-			if ($this->canBatch)
-			{
-				JHtmlBatch_::addListSelection(
-					JText::_('COM_ECLINIC_PORTAL_KEEP_ORIGINAL_STATE'),
-					'batch[published]',
-					JHtml::_('select.options', JHtml::_('jgrid.publishedOptions', array('all' => false)), 'value', 'text', '', true)
-				);
-			}
 		}
 
-		JHtmlSidebar::addFilter(
-			JText::_('JOPTION_SELECT_ACCESS'),
-			'filter_access',
-			JHtml::_('select.options', JHtml::_('access.assetgroups'), 'value', 'text', $this->state->get('filter.access'))
-		);
-
+		// [Interpretation 18682] Only load access batch if create, edit and batch is allowed
 		if ($this->canBatch && $this->canCreate && $this->canEdit)
 		{
 			JHtmlBatch_::addListSelection(
@@ -238,7 +229,7 @@ class Eclinic_portalViewPlanning_types extends JViewLegacy
 	protected function getSortFields()
 	{
 		return array(
-			'ordering' => JText::_('JGRID_HEADING_ORDERING'),
+			'a.ordering' => JText::_('JGRID_HEADING_ORDERING'),
 			'a.published' => JText::_('JSTATUS'),
 			'a.name' => JText::_('COM_ECLINIC_PORTAL_PLANNING_TYPE_NAME_LABEL'),
 			'a.description' => JText::_('COM_ECLINIC_PORTAL_PLANNING_TYPE_DESCRIPTION_LABEL'),

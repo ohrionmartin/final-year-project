@@ -2,8 +2,8 @@
 				Vast Development Method 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.0.0
-	@build			3rd December, 2020
+	@version		1.0.4
+	@build			11th December, 2020
 	@created		13th August, 2020
 	@package		eClinic Portal
 	@subpackage		administration_part.js

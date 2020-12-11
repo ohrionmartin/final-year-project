@@ -3,8 +3,8 @@
 				Vast Development Method 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.0.0
-	@build			3rd December, 2020
+	@version		1.0.4
+	@build			11th December, 2020
 	@created		13th August, 2020
 	@package		eClinic Portal
 	@subpackage		eclinic_portal.php
@@ -36,7 +36,7 @@ class Eclinic_portalModelEclinic_portal extends JModelList
 		$viewGroups = array(
 			'main' => array('png.payment.add', 'png.payments', 'png.general_medical_check_up.add', 'png.general_medical_check_ups', 'png.antenatal_care.add', 'png.antenatal_cares', 'png.immunisation.add', 'png.immunisations', 'png.vmmc.add', 'png.vmmcs', 'png.prostate_and_testicular_cancer.add', 'png.prostate_and_testicular_cancers', 'png.tuberculosis.add', 'png.tuberculoses', 'png.hiv_counseling_and_testing.add', 'png.hiv_counselings_and_testings', 'png.family_planning.add', 'png.family_plannings', 'png.cervical_cancer.add', 'png.cervical_cancers', 'png.breast_cancer.add', 'png.breast_cancers', 'png.test.add', 'png.tests')
 		);
-		// [Interpretation 21181] view access array
+		// [Interpretation 22514] view access array
 		$viewAccess = array(
 			'payments.access' => 'payment.access',
 			'payment.access' => 'payment.access',

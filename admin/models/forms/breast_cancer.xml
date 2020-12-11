@@ -85,13 +85,13 @@
 			filter="unset"
 		/>
 		<!-- [Fields 869] Dynamic Fields. -->
-		<!-- [Fields 1937] Patient Field. Type: User. (joomla) -->
+		<!-- [Fields 2057] Patient Field. Type: User. (joomla) -->
 		<field
 			type="user"
 			name="patient"
 			label="COM_ECLINIC_PORTAL_BREAST_CANCER_PATIENT_LABEL"
 		/>
-		<!-- [Fields 1650] Bc_age_range Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Bc_age_range Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="bc_age_range"
@@ -102,13 +102,13 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_BREAST_CANCER_YES</option>
 			<option value="1">
 				COM_ECLINIC_PORTAL_BREAST_CANCER_NO</option>
 		</field>
-		<!-- [Fields 1650] Bc_family_history Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Bc_family_history Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="bc_family_history"
@@ -119,13 +119,13 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_BREAST_CANCER_YES</option>
 			<option value="1">
 				COM_ECLINIC_PORTAL_BREAST_CANCER_NO</option>
 		</field>
-		<!-- [Fields 1650] Bc_race Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Bc_race Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="bc_race"
@@ -134,7 +134,7 @@
 			multiple="false"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_BREAST_CANCER_WHITE</option>
 			<option value="1">
@@ -144,7 +144,7 @@
 			<option value="3">
 				COM_ECLINIC_PORTAL_BREAST_CANCER_ASIAN</option>
 		</field>
-		<!-- [Fields 1650] Bc_breastfeeding Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Bc_breastfeeding Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="bc_breastfeeding"
@@ -155,13 +155,13 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_BREAST_CANCER_YES</option>
 			<option value="1">
 				COM_ECLINIC_PORTAL_BREAST_CANCER_NO</option>
 		</field>
-		<!-- [Fields 1937] Bc_preg_freq Field. Type: Number. (joomla) -->
+		<!-- [Fields 2057] Bc_preg_freq Field. Type: Number. (joomla) -->
 		<field
 			type="number"
 			name="bc_preg_freq"
@@ -171,7 +171,7 @@
 			max="100"
 			step="1"
 		/>
-		<!-- [Fields 1650] Bc_preg_age Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Bc_preg_age Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="bc_preg_age"
@@ -180,13 +180,13 @@
 			multiple="false"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_BREAST_CANCER_THIRTY_YEARS</option>
 			<option value="1">
 				COM_ECLINIC_PORTAL_BREAST_CANCER_THIRTY_YEARS</option>
 		</field>
-		<!-- [Fields 1650] Bc_history_hrt Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Bc_history_hrt Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="bc_history_hrt"
@@ -197,13 +197,13 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_BREAST_CANCER_YES</option>
 			<option value="1">
 				COM_ECLINIC_PORTAL_BREAST_CANCER_NO</option>
 		</field>
-		<!-- [Fields 1650] Bc_reg_exercise Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Bc_reg_exercise Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="bc_reg_exercise"
@@ -214,13 +214,13 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_BREAST_CANCER_YES</option>
 			<option value="1">
 				COM_ECLINIC_PORTAL_BREAST_CANCER_NO</option>
 		</field>
-		<!-- [Fields 1650] Bc_overweight Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Bc_overweight Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="bc_overweight"
@@ -231,13 +231,13 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_BREAST_CANCER_YES</option>
 			<option value="1">
 				COM_ECLINIC_PORTAL_BREAST_CANCER_NO</option>
 		</field>
-		<!-- [Fields 1650] Bc_lump_near_breast Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Bc_lump_near_breast Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="bc_lump_near_breast"
@@ -248,13 +248,13 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_BREAST_CANCER_YES</option>
 			<option value="1">
 				COM_ECLINIC_PORTAL_BREAST_CANCER_NO</option>
 		</field>
-		<!-- [Fields 1650] Bc_dimpling Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Bc_dimpling Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="bc_dimpling"
@@ -265,13 +265,13 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_BREAST_CANCER_YES</option>
 			<option value="1">
 				COM_ECLINIC_PORTAL_BREAST_CANCER_NO</option>
 		</field>
-		<!-- [Fields 1650] Bc_inward_nipple Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Bc_inward_nipple Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="bc_inward_nipple"
@@ -282,13 +282,13 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_BREAST_CANCER_YES</option>
 			<option value="1">
 				COM_ECLINIC_PORTAL_BREAST_CANCER_NO</option>
 		</field>
-		<!-- [Fields 1650] Bc_nipple_discharge Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Bc_nipple_discharge Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="bc_nipple_discharge"
@@ -299,13 +299,13 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_BREAST_CANCER_YES</option>
 			<option value="1">
 				COM_ECLINIC_PORTAL_BREAST_CANCER_NO</option>
 		</field>
-		<!-- [Fields 1650] Bc_abnormal_skin Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Bc_abnormal_skin Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="bc_abnormal_skin"
@@ -316,13 +316,13 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_BREAST_CANCER_YES</option>
 			<option value="1">
 				COM_ECLINIC_PORTAL_BREAST_CANCER_NO</option>
 		</field>
-		<!-- [Fields 1650] Bc_breast_shape Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Bc_breast_shape Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="bc_breast_shape"
@@ -333,13 +333,13 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_BREAST_CANCER_YES</option>
 			<option value="1">
 				COM_ECLINIC_PORTAL_BREAST_CANCER_NO</option>
 		</field>
-		<!-- [Fields 1937] Txt_bc_abnormal_skin Field. Type: Textarea. (joomla) -->
+		<!-- [Fields 2057] Txt_bc_abnormal_skin Field. Type: Textarea. (joomla) -->
 		<field
 			type="textarea"
 			name="txt_bc_abnormal_skin"
@@ -351,7 +351,7 @@
 			filter="HTML"
 			hint="COM_ECLINIC_PORTAL_BREAST_CANCER_TXT_BC_ABNORMAL_SKIN_HINT"
 		/>
-		<!-- [Fields 1937] Txt_bc_nipple_discharge Field. Type: Textarea. (joomla) -->
+		<!-- [Fields 2057] Txt_bc_nipple_discharge Field. Type: Textarea. (joomla) -->
 		<field
 			type="textarea"
 			name="txt_bc_nipple_discharge"
@@ -363,7 +363,7 @@
 			filter="HTML"
 			hint="COM_ECLINIC_PORTAL_BREAST_CANCER_TXT_BC_NIPPLE_DISCHARGE_HINT"
 		/>
-		<!-- [Fields 1937] Txt_bc_dimpling Field. Type: Textarea. (joomla) -->
+		<!-- [Fields 2057] Txt_bc_dimpling Field. Type: Textarea. (joomla) -->
 		<field
 			type="textarea"
 			name="txt_bc_dimpling"
@@ -375,7 +375,7 @@
 			filter="HTML"
 			hint="COM_ECLINIC_PORTAL_BREAST_CANCER_TXT_BC_DIMPLING_HINT"
 		/>
-		<!-- [Fields 1937] Txt_bc_inward_nipple Field. Type: Textarea. (joomla) -->
+		<!-- [Fields 2057] Txt_bc_inward_nipple Field. Type: Textarea. (joomla) -->
 		<field
 			type="textarea"
 			name="txt_bc_inward_nipple"
@@ -387,7 +387,7 @@
 			filter="HTML"
 			hint="COM_ECLINIC_PORTAL_BREAST_CANCER_TXT_BC_INWARD_NIPPLE_HINT"
 		/>
-		<!-- [Fields 1937] Txt_bc_breast_shape Field. Type: Textarea. (joomla) -->
+		<!-- [Fields 2057] Txt_bc_breast_shape Field. Type: Textarea. (joomla) -->
 		<field
 			type="textarea"
 			name="txt_bc_breast_shape"
@@ -399,7 +399,7 @@
 			filter="HTML"
 			hint="COM_ECLINIC_PORTAL_BREAST_CANCER_TXT_BC_BREAST_SHAPE_HINT"
 		/>
-		<!-- [Fields 1937] Txt_bc_lump_near_breast Field. Type: Textarea. (joomla) -->
+		<!-- [Fields 2057] Txt_bc_lump_near_breast Field. Type: Textarea. (joomla) -->
 		<field
 			type="textarea"
 			name="txt_bc_lump_near_breast"
@@ -413,15 +413,15 @@
 		/>
 	</fieldset>
 	
-	<!-- [Interpretation 19419] Access Control Fields. -->
+	<!-- [Interpretation 20425] Access Control Fields. -->
 	<fieldset name="accesscontrol">
-		<!-- [Interpretation 19424] Asset Id Field. Type: Hidden (joomla) -->
+		<!-- [Interpretation 20430] Asset Id Field. Type: Hidden (joomla) -->
 		<field
 			name="asset_id"
 			type="hidden"
 			filter="unset"
 		/>
-		<!-- [Interpretation 19432] Rules Field. Type: Rules (joomla) -->
+		<!-- [Interpretation 20438] Rules Field. Type: Rules (joomla) -->
 		<field
 			name="rules"
 			type="rules"

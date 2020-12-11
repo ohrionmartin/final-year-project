@@ -3,8 +3,8 @@
 				Vast Development Method 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.0.0
-	@build			3rd December, 2020
+	@version		1.0.4
+	@build			11th December, 2020
 	@created		13th August, 2020
 	@package		eClinic Portal
 	@subpackage		view.html.php
@@ -93,27 +93,27 @@ class Eclinic_portalViewNonpay_reason extends JViewLegacy
 		$isNew = $this->item->id == 0;
 
 		JToolbarHelper::title( JText::_($isNew ? 'COM_ECLINIC_PORTAL_NONPAY_REASON_NEW' : 'COM_ECLINIC_PORTAL_NONPAY_REASON_EDIT'), 'pencil-2 article-add');
-		// [Interpretation 19721] Built the actions for new and existing records.
+		// [Interpretation 20862] Built the actions for new and existing records.
 		if (Eclinic_portalHelper::checkString($this->referral))
 		{
 			if ($this->canDo->get('core.create') && $isNew)
 			{
-				// [Interpretation 19746] We can create the record.
+				// [Interpretation 20887] We can create the record.
 				JToolBarHelper::save('nonpay_reason.save', 'JTOOLBAR_SAVE');
 			}
 			elseif ($this->canDo->get('core.edit'))
 			{
-				// [Interpretation 19771] We can save the record.
+				// [Interpretation 20912] We can save the record.
 				JToolBarHelper::save('nonpay_reason.save', 'JTOOLBAR_SAVE');
 			}
 			if ($isNew)
 			{
-				// [Interpretation 19778] Do not creat but cancel.
+				// [Interpretation 20919] Do not creat but cancel.
 				JToolBarHelper::cancel('nonpay_reason.cancel', 'JTOOLBAR_CANCEL');
 			}
 			else
 			{
-				// [Interpretation 19785] We can close it.
+				// [Interpretation 20926] We can close it.
 				JToolBarHelper::cancel('nonpay_reason.cancel', 'JTOOLBAR_CLOSE');
 			}
 		}
@@ -121,7 +121,7 @@ class Eclinic_portalViewNonpay_reason extends JViewLegacy
 		{
 			if ($isNew)
 			{
-				// [Interpretation 19795] For new records, check the create permission.
+				// [Interpretation 20936] For new records, check the create permission.
 				if ($this->canDo->get('core.create'))
 				{
 					JToolBarHelper::apply('nonpay_reason.apply', 'JTOOLBAR_APPLY');
@@ -134,11 +134,11 @@ class Eclinic_portalViewNonpay_reason extends JViewLegacy
 			{
 				if ($this->canDo->get('core.edit'))
 				{
-					// [Interpretation 19848] We can save the new record
+					// [Interpretation 20989] We can save the new record
 					JToolBarHelper::apply('nonpay_reason.apply', 'JTOOLBAR_APPLY');
 					JToolBarHelper::save('nonpay_reason.save', 'JTOOLBAR_SAVE');
-					// [Interpretation 19854] We can save this record, but check the create permission to see
-					// [Interpretation 19856] if we can return to make a new one.
+					// [Interpretation 20995] We can save this record, but check the create permission to see
+					// [Interpretation 20997] if we can return to make a new one.
 					if ($this->canDo->get('core.create'))
 					{
 						JToolBarHelper::custom('nonpay_reason.save2new', 'save-new.png', 'save-new_f2.png', 'JTOOLBAR_SAVE_AND_NEW', false);
@@ -157,7 +157,7 @@ class Eclinic_portalViewNonpay_reason extends JViewLegacy
 			}
 		}
 		JToolbarHelper::divider();
-		// [Interpretation 19961] set help url for this view if found
+		// [Interpretation 21102] set help url for this view if found
 		$help_url = Eclinic_portalHelper::getHelpUrl('nonpay_reason');
 		if (Eclinic_portalHelper::checkString($help_url))
 		{

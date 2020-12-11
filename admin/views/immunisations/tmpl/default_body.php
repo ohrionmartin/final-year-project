@@ -3,8 +3,8 @@
 				Vast Development Method 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.0.0
-	@build			3rd December, 2020
+	@version		1.0.4
+	@build			11th December, 2020
 	@created		13th August, 2020
 	@package		eClinic Portal
 	@subpackage		default_body.php
@@ -34,11 +34,8 @@ $edit = "index.php?option=com_eclinic_portal&view=immunisations&task=immunisatio
 		<td class="order nowrap center hidden-phone">
 		<?php if ($canDo->get('core.edit.state')): ?>
 			<?php
-				if ($this->saveOrder)
-				{
-					$iconClass = ' inactive';
-				}
-				else
+				$iconClass = '';
+				if (!$this->saveOrder)
 				{
 					$iconClass = ' inactive tip-top" hasTooltip" title="' . JHtml::tooltipText('JORDERINGDISABLED');
 				}

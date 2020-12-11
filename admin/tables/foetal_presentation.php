@@ -3,8 +3,8 @@
 				Vast Development Method 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.0.0
-	@build			3rd December, 2020
+	@version		1.0.4
+	@build			11th December, 2020
 	@created		13th August, 2020
 	@package		eClinic Portal
 	@subpackage		foetal_presentation.php
@@ -47,7 +47,7 @@ class Eclinic_portalTableFoetal_presentation extends JTable
 	{
 		parent::__construct('#__eclinic_portal_foetal_presentation', 'id', $db);
 
-		// [Interpretation 7717] Adding History Options
+		// [Interpretation 7724] Adding History Options
 		JTableObserverContenthistory::createObserver($this, array('typeAlias' => 'com_eclinic_portal.foetal_presentation'));
 	}	
  

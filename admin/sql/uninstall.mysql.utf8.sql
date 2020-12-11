@@ -31,3 +31,14 @@ DROP TABLE IF EXISTS `#__eclinic_portal_medication`;
 DROP TABLE IF EXISTS `#__eclinic_portal_site`;
 DROP TABLE IF EXISTS `#__eclinic_portal_referral`;
 DROP TABLE IF EXISTS `#__eclinic_portal_clinic`;
+
+
+--
+-- [Interpretation 10740] Always insure this column rules is reversed to Joomla defaults on uninstall. (as on 1st Dec 2020)
+--
+ALTER TABLE `#__assets` CHANGE `rules` `rules` varchar(5120) NOT NULL COMMENT 'JSON encoded access control.';
+
+--
+-- [Interpretation 10759] Always insure this column name is reversed to Joomla defaults on uninstall. (as on 1st Dec 2020).
+--
+ALTER TABLE `#__assets` CHANGE `name` `name` VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'The unique name for the asset.';

@@ -85,13 +85,13 @@
 			filter="unset"
 		/>
 		<!-- [Fields 869] Dynamic Fields. -->
-		<!-- [Fields 1937] Patient Field. Type: User. (joomla) -->
+		<!-- [Fields 2057] Patient Field. Type: User. (joomla) -->
 		<field
 			type="user"
 			name="patient"
 			label="COM_ECLINIC_PORTAL_IMMUNISATION_PATIENT_LABEL"
 		/>
-		<!-- [Fields 1650] Immunisation_up_to_date Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Immunisation_up_to_date Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="immunisation_up_to_date"
@@ -102,13 +102,13 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_IMMUNISATION_YES</option>
 			<option value="1">
 				COM_ECLINIC_PORTAL_IMMUNISATION_NO</option>
 		</field>
-		<!-- [Fields 2144] Immunisation Field. Type: Subform. (joomla) -->
+		<!-- [Fields 2264] Immunisation Field. Type: Subform. (joomla) -->
 		<field
 			type="subform"
 			name="immunisation"
@@ -119,7 +119,7 @@
 			icon="list"
 			max="50">
 			<form hidden="true" name="list_immunisation_modal" repeat="true">
-				<!-- [Fields 2335] Immunisation_type Field. Type: Immunisationtype. (custom) -->
+				<!-- [Fields 2455] Immunisation_type Field. Type: Immunisationtype. (custom) -->
 				<field
 					type="immunisationtype"
 					name="immunisation_type"
@@ -130,7 +130,7 @@
 					default="0"
 					button="false"
 				/>
-				<!-- [Fields 2335] Administrationpart Field. Type: Administrationparts. (custom) -->
+				<!-- [Fields 2455] Administrationpart Field. Type: Administrationparts. (custom) -->
 				<field
 					type="administrationparts"
 					name="administrationpart"
@@ -141,7 +141,7 @@
 					default="0"
 					button="false"
 				/>
-				<!-- [Fields 2335] Immunisation_vaccine_type Field. Type: Immunisationvaccinetype. (custom) -->
+				<!-- [Fields 2455] Immunisation_vaccine_type Field. Type: Immunisationvaccinetype. (custom) -->
 				<field
 					type="immunisationvaccinetype"
 					name="immunisation_vaccine_type"
@@ -156,15 +156,15 @@
 		</field>
 	</fieldset>
 	
-	<!-- [Interpretation 19419] Access Control Fields. -->
+	<!-- [Interpretation 20425] Access Control Fields. -->
 	<fieldset name="accesscontrol">
-		<!-- [Interpretation 19424] Asset Id Field. Type: Hidden (joomla) -->
+		<!-- [Interpretation 20430] Asset Id Field. Type: Hidden (joomla) -->
 		<field
 			name="asset_id"
 			type="hidden"
 			filter="unset"
 		/>
-		<!-- [Interpretation 19432] Rules Field. Type: Rules (joomla) -->
+		<!-- [Interpretation 20438] Rules Field. Type: Rules (joomla) -->
 		<field
 			name="rules"
 			type="rules"

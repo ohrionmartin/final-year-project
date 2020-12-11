@@ -2,8 +2,8 @@
 				Vast Development Method 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.0.0
-	@build			3rd December, 2020
+	@version		1.0.4
+	@build			11th December, 2020
 	@created		13th August, 2020
 	@package		eClinic Portal
 	@subpackage		payment.js
@@ -17,7 +17,7 @@
 
 /------------------------------------------------------------------------------------------------------*/
 
-// [Interpretation 15644] Initial Script
+// [Interpretation 16241] Initial Script
 jQuery(document).ready(function()
 {
 	var payment_category_vvvvvvv = jQuery("#jform_payment_category").val();
@@ -27,7 +27,7 @@ jQuery(document).ready(function()
 	vvvvvvw(payment_amount_vvvvvvw);
 });
 
-// [Interpretation 15737] the vvvvvvv function
+// [Interpretation 16334] the vvvvvvv function
 function vvvvvvv(payment_category_vvvvvvv)
 {
 	if (isSet(payment_category_vvvvvvv) && payment_category_vvvvvvv.constructor !== Array)
@@ -43,7 +43,7 @@ function vvvvvvv(payment_category_vvvvvvv)
 	var payment_category = payment_category_vvvvvvv.some(payment_category_vvvvvvv_SomeFunc);
 
 
-	// [Interpretation 15806] set this function logic
+	// [Interpretation 16403] set this function logic
 	if (payment_category)
 	{
 		jQuery('#jform_nonpay_reason').closest('.control-group').show();
@@ -54,10 +54,10 @@ function vvvvvvv(payment_category_vvvvvvv)
 	}
 }
 
-// [Interpretation 15784] the vvvvvvv Some function
+// [Interpretation 16381] the vvvvvvv Some function
 function payment_category_vvvvvvv_SomeFunc(payment_category_vvvvvvv)
 {
-	// [Interpretation 15790] set the function logic
+	// [Interpretation 16387] set the function logic
 	if (payment_category_vvvvvvv == 1)
 	{
 		return true;
@@ -65,7 +65,7 @@ function payment_category_vvvvvvv_SomeFunc(payment_category_vvvvvvv)
 	return false;
 }
 
-// [Interpretation 15737] the vvvvvvw function
+// [Interpretation 16334] the vvvvvvw function
 function vvvvvvw(payment_amount_vvvvvvw)
 {
 	if (isSet(payment_amount_vvvvvvw) && payment_amount_vvvvvvw.constructor !== Array)
@@ -81,7 +81,7 @@ function vvvvvvw(payment_amount_vvvvvvw)
 	var payment_amount = payment_amount_vvvvvvw.some(payment_amount_vvvvvvw_SomeFunc);
 
 
-	// [Interpretation 15806] set this function logic
+	// [Interpretation 16403] set this function logic
 	if (payment_amount)
 	{
 		jQuery('#jform_nonpay_reason').closest('.control-group').show();
@@ -92,10 +92,10 @@ function vvvvvvw(payment_amount_vvvvvvw)
 	}
 }
 
-// [Interpretation 15784] the vvvvvvw Some function
+// [Interpretation 16381] the vvvvvvw Some function
 function payment_amount_vvvvvvw_SomeFunc(payment_amount_vvvvvvw)
 {
-	// [Interpretation 15790] set the function logic
+	// [Interpretation 16387] set the function logic
 	if (payment_amount_vvvvvvw == 1)
 	{
 		return true;

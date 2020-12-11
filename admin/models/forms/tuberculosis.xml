@@ -85,13 +85,13 @@
 			filter="unset"
 		/>
 		<!-- [Fields 869] Dynamic Fields. -->
-		<!-- [Fields 1937] Patient Field. Type: User. (joomla) -->
+		<!-- [Fields 2057] Patient Field. Type: User. (joomla) -->
 		<field
 			type="user"
 			name="patient"
 			label="COM_ECLINIC_PORTAL_TUBERCULOSIS_PATIENT_LABEL"
 		/>
-		<!-- [Fields 1650] Recurring_night_sweats Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Recurring_night_sweats Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="recurring_night_sweats"
@@ -102,7 +102,7 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_TUBERCULOSIS_YES</option>
 			<option value="1">
@@ -110,7 +110,7 @@
 			<option value="2">
 				COM_ECLINIC_PORTAL_TUBERCULOSIS_UNCERTAIN</option>
 		</field>
-		<!-- [Fields 1650] Tb_fever Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Tb_fever Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="tb_fever"
@@ -121,7 +121,7 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_TUBERCULOSIS_YES</option>
 			<option value="1">
@@ -129,7 +129,7 @@
 			<option value="2">
 				COM_ECLINIC_PORTAL_TUBERCULOSIS_UNCERTAIN</option>
 		</field>
-		<!-- [Fields 1650] Persistent_cough Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Persistent_cough Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="persistent_cough"
@@ -140,7 +140,7 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_TUBERCULOSIS_YES</option>
 			<option value="1">
@@ -148,7 +148,7 @@
 			<option value="2">
 				COM_ECLINIC_PORTAL_TUBERCULOSIS_UNCERTAIN</option>
 		</field>
-		<!-- [Fields 1650] Blood_streaked_sputum Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Blood_streaked_sputum Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="blood_streaked_sputum"
@@ -159,7 +159,7 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_TUBERCULOSIS_YES</option>
 			<option value="1">
@@ -167,7 +167,7 @@
 			<option value="2">
 				COM_ECLINIC_PORTAL_TUBERCULOSIS_UNCERTAIN</option>
 		</field>
-		<!-- [Fields 1650] Unusual_tiredness Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Unusual_tiredness Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="unusual_tiredness"
@@ -178,7 +178,7 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_TUBERCULOSIS_YES</option>
 			<option value="1">
@@ -186,7 +186,7 @@
 			<option value="2">
 				COM_ECLINIC_PORTAL_TUBERCULOSIS_UNCERTAIN</option>
 		</field>
-		<!-- [Fields 1650] Pain_in_chest Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Pain_in_chest Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="pain_in_chest"
@@ -197,7 +197,7 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_TUBERCULOSIS_YES</option>
 			<option value="1">
@@ -205,7 +205,7 @@
 			<option value="2">
 				COM_ECLINIC_PORTAL_TUBERCULOSIS_UNCERTAIN</option>
 		</field>
-		<!-- [Fields 1650] Shortness_of_breath Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Shortness_of_breath Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="shortness_of_breath"
@@ -216,7 +216,7 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_TUBERCULOSIS_YES</option>
 			<option value="1">
@@ -224,7 +224,7 @@
 			<option value="2">
 				COM_ECLINIC_PORTAL_TUBERCULOSIS_UNCERTAIN</option>
 		</field>
-		<!-- [Fields 1650] Diagnosed_with_disease Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Diagnosed_with_disease Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="diagnosed_with_disease"
@@ -235,13 +235,13 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_TUBERCULOSIS_YES</option>
 			<option value="1">
 				COM_ECLINIC_PORTAL_TUBERCULOSIS_NO</option>
 		</field>
-		<!-- [Fields 1650] Tb_exposed Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Tb_exposed Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="tb_exposed"
@@ -252,7 +252,7 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_TUBERCULOSIS_YES</option>
 			<option value="1">
@@ -260,7 +260,7 @@
 			<option value="2">
 				COM_ECLINIC_PORTAL_TUBERCULOSIS_UNCERTAIN</option>
 		</field>
-		<!-- [Fields 1650] Tb_treatment Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Tb_treatment Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="tb_treatment"
@@ -271,13 +271,13 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_TUBERCULOSIS_YES</option>
 			<option value="1">
 				COM_ECLINIC_PORTAL_TUBERCULOSIS_NO</option>
 		</field>
-		<!-- [Fields 1937] Date_of_treatment Field. Type: Calendar. (joomla) -->
+		<!-- [Fields 2057] Date_of_treatment Field. Type: Calendar. (joomla) -->
 		<field
 			type="calendar"
 			name="date_of_treatment"
@@ -286,7 +286,7 @@
 			description="COM_ECLINIC_PORTAL_TUBERCULOSIS_DATE_OF_TREATMENT_DESCRIPTION"
 			format="%d-%m-%Y"
 		/>
-		<!-- [Fields 1937] Treating_dhc Field. Type: Text. (joomla) -->
+		<!-- [Fields 2057] Treating_dhc Field. Type: Text. (joomla) -->
 		<field
 			type="text"
 			name="treating_dhc"
@@ -303,7 +303,7 @@
 			hint="COM_ECLINIC_PORTAL_TUBERCULOSIS_TREATING_DHC_HINT"
 			autocomplete="on"
 		/>
-		<!-- [Fields 1650] Sputum_collection_one Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Sputum_collection_one Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="sputum_collection_one"
@@ -314,13 +314,13 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_TUBERCULOSIS_YES</option>
 			<option value="1">
 				COM_ECLINIC_PORTAL_TUBERCULOSIS_NO</option>
 		</field>
-		<!-- [Fields 1937] Tb_reason_one Field. Type: Text. (joomla) -->
+		<!-- [Fields 2057] Tb_reason_one Field. Type: Text. (joomla) -->
 		<field
 			type="text"
 			name="tb_reason_one"
@@ -337,7 +337,7 @@
 			hint="COM_ECLINIC_PORTAL_TUBERCULOSIS_TB_REASON_ONE_HINT"
 			autocomplete="on"
 		/>
-		<!-- [Fields 1650] Sputum_result_one Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Sputum_result_one Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="sputum_result_one"
@@ -348,7 +348,7 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_TUBERCULOSIS_POSITIVE</option>
 			<option value="1">
@@ -356,7 +356,7 @@
 			<option value="2">
 				COM_ECLINIC_PORTAL_TUBERCULOSIS_INCONCLUSIVE</option>
 		</field>
-		<!-- [Fields 1650] Referred_second_sputum Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Referred_second_sputum Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="referred_second_sputum"
@@ -367,13 +367,13 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_TUBERCULOSIS_YES</option>
 			<option value="1">
 				COM_ECLINIC_PORTAL_TUBERCULOSIS_NO</option>
 		</field>
-		<!-- [Fields 1937] Tb_reason_two Field. Type: Text. (joomla) -->
+		<!-- [Fields 2057] Tb_reason_two Field. Type: Text. (joomla) -->
 		<field
 			type="text"
 			name="tb_reason_two"
@@ -390,7 +390,7 @@
 			hint="COM_ECLINIC_PORTAL_TUBERCULOSIS_TB_REASON_TWO_HINT"
 			autocomplete="on"
 		/>
-		<!-- [Fields 1650] Sputum_result_two Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Sputum_result_two Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="sputum_result_two"
@@ -401,7 +401,7 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_TUBERCULOSIS_POSITIVE</option>
 			<option value="1">
@@ -409,7 +409,7 @@
 			<option value="2">
 				COM_ECLINIC_PORTAL_TUBERCULOSIS_INCONCLUSIVE</option>
 		</field>
-		<!-- [Fields 1650] Weight_loss_wdieting Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Weight_loss_wdieting Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="weight_loss_wdieting"
@@ -420,7 +420,7 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_TUBERCULOSIS_YES</option>
 			<option value="1">
@@ -430,15 +430,15 @@
 		</field>
 	</fieldset>
 	
-	<!-- [Interpretation 19419] Access Control Fields. -->
+	<!-- [Interpretation 20425] Access Control Fields. -->
 	<fieldset name="accesscontrol">
-		<!-- [Interpretation 19424] Asset Id Field. Type: Hidden (joomla) -->
+		<!-- [Interpretation 20430] Asset Id Field. Type: Hidden (joomla) -->
 		<field
 			name="asset_id"
 			type="hidden"
 			filter="unset"
 		/>
-		<!-- [Interpretation 19432] Rules Field. Type: Rules (joomla) -->
+		<!-- [Interpretation 20438] Rules Field. Type: Rules (joomla) -->
 		<field
 			name="rules"
 			type="rules"

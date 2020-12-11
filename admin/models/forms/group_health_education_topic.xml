@@ -85,7 +85,7 @@
 			filter="unset"
 		/>
 		<!-- [Fields 869] Dynamic Fields. -->
-		<!-- [Fields 1937] Name Field. Type: Text. (joomla) -->
+		<!-- [Fields 2057] Name Field. Type: Text. (joomla) -->
 		<field
 			type="text"
 			name="name"
@@ -101,7 +101,7 @@
 			message="COM_ECLINIC_PORTAL_GROUP_HEALTH_EDUCATION_TOPIC_NAME_MESSAGE"
 			hint="COM_ECLINIC_PORTAL_GROUP_HEALTH_EDUCATION_TOPIC_NAME_HINT"
 		/>
-		<!-- [Fields 1937] Description Field. Type: Textarea. (joomla) -->
+		<!-- [Fields 2057] Description Field. Type: Textarea. (joomla) -->
 		<field
 			type="textarea"
 			name="description"
@@ -113,7 +113,7 @@
 			filter="HTML"
 			hint="COM_ECLINIC_PORTAL_GROUP_HEALTH_EDUCATION_TOPIC_DESCRIPTION_HINT"
 		/>
-		<!-- [Fields 1937] Alias Field. Type: Text. (joomla) -->
+		<!-- [Fields 2057] Alias Field. Type: Text. (joomla) -->
 		<field
 			type="text"
 			name="alias"
@@ -124,15 +124,15 @@
 		/>
 	</fieldset>
 	
-	<!-- [Interpretation 19419] Access Control Fields. -->
+	<!-- [Interpretation 20425] Access Control Fields. -->
 	<fieldset name="accesscontrol">
-		<!-- [Interpretation 19424] Asset Id Field. Type: Hidden (joomla) -->
+		<!-- [Interpretation 20430] Asset Id Field. Type: Hidden (joomla) -->
 		<field
 			name="asset_id"
 			type="hidden"
 			filter="unset"
 		/>
-		<!-- [Interpretation 19432] Rules Field. Type: Rules (joomla) -->
+		<!-- [Interpretation 20438] Rules Field. Type: Rules (joomla) -->
 		<field
 			name="rules"
 			type="rules"

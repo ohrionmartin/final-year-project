@@ -85,13 +85,13 @@
 			filter="unset"
 		/>
 		<!-- [Fields 869] Dynamic Fields. -->
-		<!-- [Fields 1937] Patient Field. Type: User. (joomla) -->
+		<!-- [Fields 2057] Patient Field. Type: User. (joomla) -->
 		<field
 			type="user"
 			name="patient"
 			label="COM_ECLINIC_PORTAL_PAYMENT_PATIENT_LABEL"
 		/>
-		<!-- [Fields 1650] Payment_category Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Payment_category Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="payment_category"
@@ -102,13 +102,13 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_PAYMENT_DEBT_PAYMENT</option>
 			<option value="1">
 				COM_ECLINIC_PORTAL_PAYMENT_RECEIVE_PAYMENT</option>
 		</field>
-		<!-- [Fields 2335] Payment_type Field. Type: Paymenttype. (custom) -->
+		<!-- [Fields 2455] Payment_type Field. Type: Paymenttype. (custom) -->
 		<field
 			type="paymenttype"
 			name="payment_type"
@@ -119,7 +119,7 @@
 			default="0"
 			button="true"
 		/>
-		<!-- [Fields 1650] Payment_amount Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Payment_amount Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="payment_amount"
@@ -129,7 +129,7 @@
 			multiple="false"
 			required="true"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_PAYMENT_SELECT_AMOUNT_N</option>
 			<option value="1">
@@ -139,7 +139,7 @@
 			<option value="3">
 				COM_ECLINIC_PORTAL_PAYMENT_SEVENTY_FIVE</option>
 		</field>
-		<!-- [Fields 2335] Nonpay_reason Field. Type: Nonpayreason. (custom) -->
+		<!-- [Fields 2455] Nonpay_reason Field. Type: Nonpayreason. (custom) -->
 		<field
 			type="nonpayreason"
 			name="nonpay_reason"
@@ -150,7 +150,7 @@
 			default="0"
 			button="true"
 		/>
-		<!-- [Fields 1937] Receipt_no Field. Type: Text. (joomla) -->
+		<!-- [Fields 2057] Receipt_no Field. Type: Text. (joomla) -->
 		<field
 			type="text"
 			name="receipt_no"
@@ -168,15 +168,15 @@
 		/>
 	</fieldset>
 	
-	<!-- [Interpretation 19419] Access Control Fields. -->
+	<!-- [Interpretation 20425] Access Control Fields. -->
 	<fieldset name="accesscontrol">
-		<!-- [Interpretation 19424] Asset Id Field. Type: Hidden (joomla) -->
+		<!-- [Interpretation 20430] Asset Id Field. Type: Hidden (joomla) -->
 		<field
 			name="asset_id"
 			type="hidden"
 			filter="unset"
 		/>
-		<!-- [Interpretation 19432] Rules Field. Type: Rules (joomla) -->
+		<!-- [Interpretation 20438] Rules Field. Type: Rules (joomla) -->
 		<field
 			name="rules"
 			type="rules"

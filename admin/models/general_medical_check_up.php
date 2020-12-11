@@ -3,8 +3,8 @@
 				Vast Development Method 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.0.0
-	@build			3rd December, 2020
+	@version		1.0.4
+	@build			11th December, 2020
 	@created		13th August, 2020
 	@package		eClinic Portal
 	@subpackage		general_medical_check_up.php
@@ -145,7 +145,7 @@ class Eclinic_portalModelGeneral_medical_check_up extends JModelAdmin
 
 			if (!empty($item->dispensing))
 			{
-				// [Interpretation 7414] Convert the dispensing field to an array.
+				// [Interpretation 7421] Convert the dispensing field to an array.
 				$dispensing = new Registry;
 				$dispensing->loadString($item->dispensing);
 				$item->dispensing = $dispensing->toArray();
@@ -176,14 +176,14 @@ class Eclinic_portalModelGeneral_medical_check_up extends JModelAdmin
 	{
 		// set load data option
 		$options['load_data'] = $loadData;
-		// [Interpretation 18361] check if xpath was set in options
+		// [Interpretation 19364] check if xpath was set in options
 		$xpath = false;
 		if (isset($options['xpath']))
 		{
 			$xpath = $options['xpath'];
 			unset($options['xpath']);
 		}
-		// [Interpretation 18369] check if clear form was set in options
+		// [Interpretation 19372] check if clear form was set in options
 		$clear = false;
 		if (isset($options['clear']))
 		{
@@ -191,7 +191,7 @@ class Eclinic_portalModelGeneral_medical_check_up extends JModelAdmin
 			unset($options['clear']);
 		}
 
-		// [Interpretation 18377] Get the form.
+		// [Interpretation 19380] Get the form.
 		$form = $this->loadForm('com_eclinic_portal.general_medical_check_up', 'general_medical_check_up', $options, $clear, $xpath);
 
 		if (empty($form))
@@ -201,12 +201,12 @@ class Eclinic_portalModelGeneral_medical_check_up extends JModelAdmin
 
 		$jinput = JFactory::getApplication()->input;
 
-		// [Interpretation 18542] The front end calls this model and uses a_id to avoid id clashes so we need to check for that first.
+		// [Interpretation 19546] The front end calls this model and uses a_id to avoid id clashes so we need to check for that first.
 		if ($jinput->get('a_id'))
 		{
 			$id = $jinput->get('a_id', 0, 'INT');
 		}
-		// [Interpretation 18550] The back end uses id so we use that the rest of the time and set it to 0 by default.
+		// [Interpretation 19554] The back end uses id so we use that the rest of the time and set it to 0 by default.
 		else
 		{
 			$id = $jinput->get('id', 0, 'INT');
@@ -214,73 +214,73 @@ class Eclinic_portalModelGeneral_medical_check_up extends JModelAdmin
 
 		$user = JFactory::getUser();
 
-		// [Interpretation 18559] Check for existing item.
-		// [Interpretation 18561] Modify the form based on Edit State access controls.
+		// [Interpretation 19563] Check for existing item.
+		// [Interpretation 19565] Modify the form based on Edit State access controls.
 		if ($id != 0 && (!$user->authorise('core.edit.state', 'com_eclinic_portal.general_medical_check_up.' . (int) $id))
 			|| ($id == 0 && !$user->authorise('core.edit.state', 'com_eclinic_portal')))
 		{
-			// [Interpretation 18593] Disable fields for display.
+			// [Interpretation 19598] Disable fields for display.
 			$form->setFieldAttribute('ordering', 'disabled', 'true');
 			$form->setFieldAttribute('published', 'disabled', 'true');
-			// [Interpretation 18599] Disable fields while saving.
+			// [Interpretation 19604] Disable fields while saving.
 			$form->setFieldAttribute('ordering', 'filter', 'unset');
 			$form->setFieldAttribute('published', 'filter', 'unset');
 		}
-		// [Interpretation 18607] If this is a new item insure the greated by is set.
+		// [Interpretation 19612] If this is a new item insure the greated by is set.
 		if (0 == $id)
 		{
-			// [Interpretation 18611] Set the created_by to this user
+			// [Interpretation 19616] Set the created_by to this user
 			$form->setValue('created_by', null, $user->id);
 		}
-		// [Interpretation 18616] Modify the form based on Edit Creaded By access controls.
+		// [Interpretation 19621] Modify the form based on Edit Creaded By access controls.
 		if (!$user->authorise('core.edit.created_by', 'com_eclinic_portal'))
 		{
-			// [Interpretation 18643] Disable fields for display.
+			// [Interpretation 19648] Disable fields for display.
 			$form->setFieldAttribute('created_by', 'disabled', 'true');
-			// [Interpretation 18647] Disable fields for display.
+			// [Interpretation 19652] Disable fields for display.
 			$form->setFieldAttribute('created_by', 'readonly', 'true');
-			// [Interpretation 18651] Disable fields while saving.
+			// [Interpretation 19656] Disable fields while saving.
 			$form->setFieldAttribute('created_by', 'filter', 'unset');
 		}
-		// [Interpretation 18656] Modify the form based on Edit Creaded Date access controls.
+		// [Interpretation 19661] Modify the form based on Edit Creaded Date access controls.
 		if (!$user->authorise('core.edit.created', 'com_eclinic_portal'))
 		{
-			// [Interpretation 18682] Disable fields for display.
+			// [Interpretation 19687] Disable fields for display.
 			$form->setFieldAttribute('created', 'disabled', 'true');
-			// [Interpretation 18686] Disable fields while saving.
+			// [Interpretation 19691] Disable fields while saving.
 			$form->setFieldAttribute('created', 'filter', 'unset');
 		}
-		// [Interpretation 18808] Modify the form based on Edit Patient access controls.
+		// [Interpretation 19813] Modify the form based on Edit Patient access controls.
 		if ($id != 0 && (!$user->authorise('general_medical_check_up.edit.patient', 'com_eclinic_portal.general_medical_check_up.' . (int) $id))
 			|| ($id == 0 && !$user->authorise('general_medical_check_up.edit.patient', 'com_eclinic_portal')))
 		{
-			// [Interpretation 18819] Disable fields for display.
+			// [Interpretation 19824] Disable fields for display.
 			$form->setFieldAttribute('patient', 'disabled', 'true');
-			// [Interpretation 18823] Disable fields for display.
+			// [Interpretation 19828] Disable fields for display.
 			$form->setFieldAttribute('patient', 'readonly', 'true');
-			// [Interpretation 18837] If there is no value continue.
+			// [Interpretation 19842] If there is no value continue.
 			if (!$form->getValue('patient'))
 			{
-				// [Interpretation 18842] Disable fields while saving.
+				// [Interpretation 19847] Disable fields while saving.
 				$form->setFieldAttribute('patient', 'filter', 'unset');
-				// [Interpretation 18846] Disable fields while saving.
+				// [Interpretation 19851] Disable fields while saving.
 				$form->setFieldAttribute('patient', 'required', 'false');
 			}
 		}
-		// [Interpretation 18764] Only load these values if no id is found
+		// [Interpretation 19769] Only load these values if no id is found
 		if (0 == $id)
 		{
-			// [Interpretation 18768] Set redirected view name
+			// [Interpretation 19773] Set redirected view name
 			$redirectedView = $jinput->get('ref', null, 'STRING');
-			// [Interpretation 18772] Set field name (or fall back to view name)
+			// [Interpretation 19777] Set field name (or fall back to view name)
 			$redirectedField = $jinput->get('field', $redirectedView, 'STRING');
-			// [Interpretation 18776] Set redirected view id
+			// [Interpretation 19781] Set redirected view id
 			$redirectedId = $jinput->get('refid', 0, 'INT');
-			// [Interpretation 18780] Set field id (or fall back to redirected view id)
+			// [Interpretation 19785] Set field id (or fall back to redirected view id)
 			$redirectedValue = $jinput->get('field_id', $redirectedId, 'INT');
 			if (0 != $redirectedValue && $redirectedField)
 			{
-				// [Interpretation 18787] Now set the local-redirected field default value
+				// [Interpretation 19792] Now set the local-redirected field default value
 				$form->setValue($redirectedField, null, $redirectedValue);
 			}
 		}
@@ -316,7 +316,7 @@ class Eclinic_portalModelGeneral_medical_check_up extends JModelAdmin
 			}
 
 			$user = JFactory::getUser();
-			// [Interpretation 19114] The record has been set. Check the record permissions.
+			// [Interpretation 20119] The record has been set. Check the record permissions.
 			return $user->authorise('core.delete', 'com_eclinic_portal.general_medical_check_up.' . (int) $record->id);
 		}
 		return false;
@@ -338,14 +338,14 @@ class Eclinic_portalModelGeneral_medical_check_up extends JModelAdmin
 
 		if ($recordId)
 		{
-			// [Interpretation 19238] The record has been set. Check the record permissions.
+			// [Interpretation 20244] The record has been set. Check the record permissions.
 			$permission = $user->authorise('core.edit.state', 'com_eclinic_portal.general_medical_check_up.' . (int) $recordId);
 			if (!$permission && !is_null($permission))
 			{
 				return false;
 			}
 		}
-		// [Interpretation 19286] In the absense of better information, revert to the component permissions.
+		// [Interpretation 20292] In the absense of better information, revert to the component permissions.
 		return parent::canEditState($record);
 	}
     
@@ -360,7 +360,7 @@ class Eclinic_portalModelGeneral_medical_check_up extends JModelAdmin
 	 */
 	protected function allowEdit($data = array(), $key = 'id')
 	{
-		// [Interpretation 18989] Check specific edit permission then general edit permission.
+		// [Interpretation 19994] Check specific edit permission then general edit permission.
 
 		return JFactory::getUser()->authorise('core.edit', 'com_eclinic_portal.general_medical_check_up.'. ((int) isset($data[$key]) ? $data[$key] : 0)) or parent::allowEdit($data, $key);
 	}
@@ -607,7 +607,7 @@ class Eclinic_portalModelGeneral_medical_check_up extends JModelAdmin
 	{
 		if (empty($this->batchSet))
 		{
-			// [Interpretation 9304] Set some needed variables.
+			// [Interpretation 9486] Set some needed variables.
 			$this->user 		= JFactory::getUser();
 			$this->table 		= $this->getTable();
 			$this->tableClassName	= get_class($this->table);
@@ -619,12 +619,12 @@ class Eclinic_portalModelGeneral_medical_check_up extends JModelAdmin
 			return false;
 		}
 
-		// [Interpretation 9338] get list of unique fields
+		// [Interpretation 9520] get list of unique fields
 		$uniqueFields = $this->getUniqueFields();
-		// [Interpretation 9342] remove move_copy from array
+		// [Interpretation 9524] remove move_copy from array
 		unset($values['move_copy']);
 
-		// [Interpretation 9346] make sure published is set
+		// [Interpretation 9528] make sure published is set
 		if (!isset($values['published']))
 		{
 			$values['published'] = 0;
@@ -635,40 +635,40 @@ class Eclinic_portalModelGeneral_medical_check_up extends JModelAdmin
 		}
 
 		$newIds = array();
-		// [Interpretation 9400] Parent exists so let's proceed
+		// [Interpretation 9582] Parent exists so let's proceed
 		while (!empty($pks))
 		{
-			// [Interpretation 9404] Pop the first ID off the stack
+			// [Interpretation 9586] Pop the first ID off the stack
 			$pk = array_shift($pks);
 
 			$this->table->reset();
 
-			// [Interpretation 9410] only allow copy if user may edit this item.
+			// [Interpretation 9592] only allow copy if user may edit this item.
 			if (!$this->user->authorise('core.edit', $contexts[$pk]))
 			{
-				// [Interpretation 9430] Not fatal error
+				// [Interpretation 9612] Not fatal error
 				$this->setError(JText::sprintf('JLIB_APPLICATION_ERROR_BATCH_MOVE_ROW_NOT_FOUND', $pk));
 				continue;
 			}
 
-			// [Interpretation 9437] Check that the row actually exists
+			// [Interpretation 9619] Check that the row actually exists
 			if (!$this->table->load($pk))
 			{
 				if ($error = $this->table->getError())
 				{
-					// [Interpretation 9444] Fatal error
+					// [Interpretation 9626] Fatal error
 					$this->setError($error);
 					return false;
 				}
 				else
 				{
-					// [Interpretation 9452] Not fatal error
+					// [Interpretation 9634] Not fatal error
 					$this->setError(JText::sprintf('JLIB_APPLICATION_ERROR_BATCH_MOVE_ROW_NOT_FOUND', $pk));
 					continue;
 				}
 			}
 
-			// [Interpretation 9537] insert all set values
+			// [Interpretation 9719] insert all set values
 			if (Eclinic_portalHelper::checkArray($values))
 			{
 				foreach ($values as $key => $value)
@@ -680,7 +680,7 @@ class Eclinic_portalModelGeneral_medical_check_up extends JModelAdmin
 				}
 			}
 
-			// [Interpretation 9552] update all unique fields
+			// [Interpretation 9734] update all unique fields
 			if (Eclinic_portalHelper::checkArray($uniqueFields))
 			{
 				foreach ($uniqueFields as $uniqueField)
@@ -689,13 +689,13 @@ class Eclinic_portalModelGeneral_medical_check_up extends JModelAdmin
 				}
 			}
 
-			// [Interpretation 9565] Reset the ID because we are making a copy
+			// [Interpretation 9747] Reset the ID because we are making a copy
 			$this->table->id = 0;
 
-			// [Interpretation 9569] TODO: Deal with ordering?
-			// [Interpretation 9571] $this->table->ordering = 1;
+			// [Interpretation 9751] TODO: Deal with ordering?
+			// [Interpretation 9753] $this->table->ordering = 1;
 
-			// [Interpretation 9574] Check the row.
+			// [Interpretation 9756] Check the row.
 			if (!$this->table->check())
 			{
 				$this->setError($this->table->getError());
@@ -708,7 +708,7 @@ class Eclinic_portalModelGeneral_medical_check_up extends JModelAdmin
 				$this->createTagsHelper($this->tagsObserver, $this->type, $pk, $this->typeAlias, $this->table);
 			}
 
-			// [Interpretation 9590] Store the row.
+			// [Interpretation 9772] Store the row.
 			if (!$this->table->store())
 			{
 				$this->setError($this->table->getError());
@@ -716,14 +716,14 @@ class Eclinic_portalModelGeneral_medical_check_up extends JModelAdmin
 				return false;
 			}
 
-			// [Interpretation 9600] Get the new item ID
+			// [Interpretation 9782] Get the new item ID
 			$newId = $this->table->get('id');
 
-			// [Interpretation 9604] Add the new ID to the array
+			// [Interpretation 9786] Add the new ID to the array
 			$newIds[$pk] = $newId;
 		}
 
-		// [Interpretation 9609] Clean the cache
+		// [Interpretation 9791] Clean the cache
 		$this->cleanCache();
 
 		return $newIds;
@@ -744,7 +744,7 @@ class Eclinic_portalModelGeneral_medical_check_up extends JModelAdmin
 	{
 		if (empty($this->batchSet))
 		{
-			// [Interpretation 9026] Set some needed variables.
+			// [Interpretation 9206] Set some needed variables.
 			$this->user		= JFactory::getUser();
 			$this->table		= $this->getTable();
 			$this->tableClassName	= get_class($this->table);
@@ -757,15 +757,15 @@ class Eclinic_portalModelGeneral_medical_check_up extends JModelAdmin
 			return false;
 		}
 
-		// [Interpretation 9063] make sure published only updates if user has the permission.
+		// [Interpretation 9243] make sure published only updates if user has the permission.
 		if (isset($values['published']) && !$this->canDo->get('core.edit.state'))
 		{
 			unset($values['published']);
 		}
-		// [Interpretation 9088] remove move_copy from array
+		// [Interpretation 9268] remove move_copy from array
 		unset($values['move_copy']);
 
-		// [Interpretation 9115] Parent exists so we proceed
+		// [Interpretation 9295] Parent exists so we proceed
 		foreach ($pks as $pk)
 		{
 			if (!$this->user->authorise('core.edit', $contexts[$pk]))
@@ -774,29 +774,29 @@ class Eclinic_portalModelGeneral_medical_check_up extends JModelAdmin
 				return false;
 			}
 
-			// [Interpretation 9143] Check that the row actually exists
+			// [Interpretation 9323] Check that the row actually exists
 			if (!$this->table->load($pk))
 			{
 				if ($error = $this->table->getError())
 				{
-					// [Interpretation 9150] Fatal error
+					// [Interpretation 9330] Fatal error
 					$this->setError($error);
 					return false;
 				}
 				else
 				{
-					// [Interpretation 9158] Not fatal error
+					// [Interpretation 9338] Not fatal error
 					$this->setError(JText::sprintf('JLIB_APPLICATION_ERROR_BATCH_MOVE_ROW_NOT_FOUND', $pk));
 					continue;
 				}
 			}
 
-			// [Interpretation 9166] insert all set values.
+			// [Interpretation 9346] insert all set values.
 			if (Eclinic_portalHelper::checkArray($values))
 			{
 				foreach ($values as $key => $value)
 				{
-					// [Interpretation 9173] Do special action for access.
+					// [Interpretation 9353] Do special action for access.
 					if ('access' === $key && strlen($value) > 0)
 					{
 						$this->table->$key = $value;
@@ -809,7 +809,7 @@ class Eclinic_portalModelGeneral_medical_check_up extends JModelAdmin
 			}
 
 
-			// [Interpretation 9188] Check the row.
+			// [Interpretation 9368] Check the row.
 			if (!$this->table->check())
 			{
 				$this->setError($this->table->getError());
@@ -822,7 +822,7 @@ class Eclinic_portalModelGeneral_medical_check_up extends JModelAdmin
 				$this->createTagsHelper($this->tagsObserver, $this->type, $pk, $this->typeAlias, $this->table);
 			}
 
-			// [Interpretation 9204] Store the row.
+			// [Interpretation 9384] Store the row.
 			if (!$this->table->store())
 			{
 				$this->setError($this->table->getError());
@@ -831,7 +831,7 @@ class Eclinic_portalModelGeneral_medical_check_up extends JModelAdmin
 			}
 		}
 
-		// [Interpretation 9215] Clean the cache
+		// [Interpretation 9395] Clean the cache
 		$this->cleanCache();
 
 		return true;
@@ -861,13 +861,13 @@ class Eclinic_portalModelGeneral_medical_check_up extends JModelAdmin
 			$data['metadata'] = (string) $metadata;
 		}
 
-		// [Interpretation 7480] Set the empty chronic_medication item to data
+		// [Interpretation 7487] Set the empty chronic_medication item to data
 		if (!isset($data['chronic_medication']))
 		{
 			$data['chronic_medication'] = '';
 		}
 
-		// [Interpretation 7514] Set the dispensing items to data.
+		// [Interpretation 7521] Set the dispensing items to data.
 		if (isset($data['dispensing']) && is_array($data['dispensing']))
 		{
 			$dispensing = new JRegistry;
@@ -876,7 +876,7 @@ class Eclinic_portalModelGeneral_medical_check_up extends JModelAdmin
 		}
 		elseif (!isset($data['dispensing']))
 		{
-			// [Interpretation 7564] Set the empty dispensing to data
+			// [Interpretation 7571] Set the empty dispensing to data
 			$data['dispensing'] = '';
 		}
         
@@ -888,10 +888,10 @@ class Eclinic_portalModelGeneral_medical_check_up extends JModelAdmin
 			$data['params'] = (string) $params;
 		}
 
-		// [Interpretation 9806] Alter the unique field for save as copy
+		// [Interpretation 9988] Alter the unique field for save as copy
 		if ($input->get('task') === 'save2copy')
 		{
-			// [Interpretation 9811] Automatic handling of other unique fields
+			// [Interpretation 9993] Automatic handling of other unique fields
 			$uniqueFields = $this->getUniqueFields();
 			if (Eclinic_portalHelper::checkArray($uniqueFields))
 			{

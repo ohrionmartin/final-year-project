@@ -3,8 +3,8 @@
 				Vast Development Method 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.0.0
-	@build			3rd December, 2020
+	@version		1.0.4
+	@build			11th December, 2020
 	@created		13th August, 2020
 	@package		eClinic Portal
 	@subpackage		foetal_presentations.php
@@ -54,29 +54,29 @@ class Eclinic_portalControllerFoetal_presentations extends JControllerAdmin
 
 	public function exportData()
 	{
-		// [Interpretation 14744] Check for request forgeries
+		// [Interpretation 15235] Check for request forgeries
 		JSession::checkToken() or die(JText::_('JINVALID_TOKEN'));
-		// [Interpretation 14748] check if export is allowed for this user.
+		// [Interpretation 15239] check if export is allowed for this user.
 		$user = JFactory::getUser();
 		if ($user->authorise('foetal_presentation.export', 'com_eclinic_portal') && $user->authorise('core.export', 'com_eclinic_portal'))
 		{
-			// [Interpretation 14757] Get the input
+			// [Interpretation 15248] Get the input
 			$input = JFactory::getApplication()->input;
 			$pks = $input->post->get('cid', array(), 'array');
-			// [Interpretation 14763] Sanitize the input
-			ArrayHelper::toInteger($pks);
-			// [Interpretation 14766] Get the model
+			// [Interpretation 15254] Sanitize the input
+			$pks = ArrayHelper::toInteger($pks);
+			// [Interpretation 15257] Get the model
 			$model = $this->getModel('Foetal_presentations');
-			// [Interpretation 14771] get the data to export
+			// [Interpretation 15262] get the data to export
 			$data = $model->getExportData($pks);
 			if (Eclinic_portalHelper::checkArray($data))
 			{
-				// [Interpretation 14779] now set the data to the spreadsheet
+				// [Interpretation 15270] now set the data to the spreadsheet
 				$date = JFactory::getDate();
 				Eclinic_portalHelper::xls($data,'Foetal_presentations_'.$date->format('jS_F_Y'),'Foetal presentations exported ('.$date->format('jS F, Y').')','foetal presentations');
 			}
 		}
-		// [Interpretation 14792] Redirect to the list screen with error.
+		// [Interpretation 15283] Redirect to the list screen with error.
 		$message = JText::_('COM_ECLINIC_PORTAL_EXPORT_FAILED');
 		$this->setRedirect(JRoute::_('index.php?option=com_eclinic_portal&view=foetal_presentations', false), $message, 'error');
 		return;
@@ -85,31 +85,31 @@ class Eclinic_portalControllerFoetal_presentations extends JControllerAdmin
 
 	public function importData()
 	{
-		// [Interpretation 14807] Check for request forgeries
+		// [Interpretation 15298] Check for request forgeries
 		JSession::checkToken() or die(JText::_('JINVALID_TOKEN'));
-		// [Interpretation 14811] check if import is allowed for this user.
+		// [Interpretation 15302] check if import is allowed for this user.
 		$user = JFactory::getUser();
 		if ($user->authorise('foetal_presentation.import', 'com_eclinic_portal') && $user->authorise('core.import', 'com_eclinic_portal'))
 		{
-			// [Interpretation 14820] Get the import model
+			// [Interpretation 15311] Get the import model
 			$model = $this->getModel('Foetal_presentations');
-			// [Interpretation 14825] get the headers to import
+			// [Interpretation 15316] get the headers to import
 			$headers = $model->getExImPortHeaders();
 			if (Eclinic_portalHelper::checkObject($headers))
 			{
-				// [Interpretation 14833] Load headers to session.
+				// [Interpretation 15324] Load headers to session.
 				$session = JFactory::getSession();
 				$headers = json_encode($headers);
 				$session->set('foetal_presentation_VDM_IMPORTHEADERS', $headers);
 				$session->set('backto_VDM_IMPORT', 'foetal_presentations');
 				$session->set('dataType_VDM_IMPORTINTO', 'foetal_presentation');
-				// [Interpretation 14844] Redirect to import view.
+				// [Interpretation 15335] Redirect to import view.
 				$message = JText::_('COM_ECLINIC_PORTAL_IMPORT_SELECT_FILE_FOR_FOETAL_PRESENTATIONS');
 				$this->setRedirect(JRoute::_('index.php?option=com_eclinic_portal&view=import', false), $message);
 				return;
 			}
 		}
-		// [Interpretation 14875] Redirect to the list screen with error.
+		// [Interpretation 15366] Redirect to the list screen with error.
 		$message = JText::_('COM_ECLINIC_PORTAL_IMPORT_FAILED');
 		$this->setRedirect(JRoute::_('index.php?option=com_eclinic_portal&view=foetal_presentations', false), $message, 'error');
 		return;

@@ -85,13 +85,13 @@
 			filter="unset"
 		/>
 		<!-- [Fields 869] Dynamic Fields. -->
-		<!-- [Fields 1937] Patient Field. Type: User. (joomla) -->
+		<!-- [Fields 2057] Patient Field. Type: User. (joomla) -->
 		<field
 			type="user"
 			name="patient"
 			label="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_PATIENT_LABEL"
 		/>
-		<!-- [Fields 1650] Ptc_age Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Ptc_age Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="ptc_age"
@@ -102,13 +102,13 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_YES</option>
 			<option value="1">
 				COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_NO</option>
 		</field>
-		<!-- [Fields 1650] Ptc_fam_history Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Ptc_fam_history Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="ptc_fam_history"
@@ -119,13 +119,13 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_YES</option>
 			<option value="1">
 				COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_NO</option>
 		</field>
-		<!-- [Fields 1650] Ptc_diet Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Ptc_diet Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="ptc_diet"
@@ -136,13 +136,13 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_YES</option>
 			<option value="1">
 				COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_NO</option>
 		</field>
-		<!-- [Fields 1650] Ptc_phy_activity Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Ptc_phy_activity Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="ptc_phy_activity"
@@ -153,13 +153,13 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_YES</option>
 			<option value="1">
 				COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_NO</option>
 		</field>
-		<!-- [Fields 1650] Ptc_overweight Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Ptc_overweight Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="ptc_overweight"
@@ -170,13 +170,13 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_YES</option>
 			<option value="1">
 				COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_NO</option>
 		</field>
-		<!-- [Fields 1650] Ptc_urinate Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Ptc_urinate Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="ptc_urinate"
@@ -187,13 +187,13 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_YES</option>
 			<option value="1">
 				COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_NO</option>
 		</field>
-		<!-- [Fields 1650] Ptc_urine_freq Field. Type: List. (joomla) -->
+		<!-- [Fields 1770] Ptc_urine_freq Field. Type: List. (joomla) -->
 		<field
 			type="list"
 			name="ptc_urine_freq"
@@ -204,13 +204,13 @@
 			required="true"
 			useglobal="false"
 			default="0">
-			<!-- [Fields 1913] Option Set. -->
+			<!-- [Fields 2033] Option Set. -->
 			<option value="0">
 				COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_YES</option>
 			<option value="1">
 				COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_NO</option>
 		</field>
-		<!-- [Fields 1937] Txt_ptc_urine_freq Field. Type: Textarea. (joomla) -->
+		<!-- [Fields 2057] Txt_ptc_urine_freq Field. Type: Textarea. (joomla) -->
 		<field
 			type="textarea"
 			name="txt_ptc_urine_freq"
@@ -222,7 +222,7 @@
 			filter="HTML"
 			hint="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_TXT_PTC_URINE_FREQ_HINT"
 		/>
-		<!-- [Fields 1937] Txt_ptc_urinate Field. Type: Textarea. (joomla) -->
+		<!-- [Fields 2057] Txt_ptc_urinate Field. Type: Textarea. (joomla) -->
 		<field
 			type="textarea"
 			name="txt_ptc_urinate"
@@ -234,7 +234,7 @@
 			filter="HTML"
 			hint="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_TXT_PTC_URINATE_HINT"
 		/>
-		<!-- [Fields 1937] Txt_ptc_overweight Field. Type: Textarea. (joomla) -->
+		<!-- [Fields 2057] Txt_ptc_overweight Field. Type: Textarea. (joomla) -->
 		<field
 			type="textarea"
 			name="txt_ptc_overweight"
@@ -246,7 +246,7 @@
 			filter="HTML"
 			hint="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_TXT_PTC_OVERWEIGHT_HINT"
 		/>
-		<!-- [Fields 1937] Txt_ptc_phy_activity Field. Type: Textarea. (joomla) -->
+		<!-- [Fields 2057] Txt_ptc_phy_activity Field. Type: Textarea. (joomla) -->
 		<field
 			type="textarea"
 			name="txt_ptc_phy_activity"
@@ -258,7 +258,7 @@
 			filter="HTML"
 			hint="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_TXT_PTC_PHY_ACTIVITY_HINT"
 		/>
-		<!-- [Fields 1937] Txt_ptc_diet Field. Type: Textarea. (joomla) -->
+		<!-- [Fields 2057] Txt_ptc_diet Field. Type: Textarea. (joomla) -->
 		<field
 			type="textarea"
 			name="txt_ptc_diet"
@@ -270,7 +270,7 @@
 			filter="HTML"
 			hint="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_TXT_PTC_DIET_HINT"
 		/>
-		<!-- [Fields 1937] Txt_ptc_fam_history Field. Type: Textarea. (joomla) -->
+		<!-- [Fields 2057] Txt_ptc_fam_history Field. Type: Textarea. (joomla) -->
 		<field
 			type="textarea"
 			name="txt_ptc_fam_history"
@@ -282,7 +282,7 @@
 			filter="HTML"
 			hint="COM_ECLINIC_PORTAL_PROSTATE_AND_TESTICULAR_CANCER_TXT_PTC_FAM_HISTORY_HINT"
 		/>
-		<!-- [Fields 1937] Txt_ptc_age Field. Type: Textarea. (joomla) -->
+		<!-- [Fields 2057] Txt_ptc_age Field. Type: Textarea. (joomla) -->
 		<field
 			type="textarea"
 			name="txt_ptc_age"
@@ -296,15 +296,15 @@
 		/>
 	</fieldset>
 	
-	<!-- [Interpretation 19419] Access Control Fields. -->
+	<!-- [Interpretation 20425] Access Control Fields. -->
 	<fieldset name="accesscontrol">
-		<!-- [Interpretation 19424] Asset Id Field. Type: Hidden (joomla) -->
+		<!-- [Interpretation 20430] Asset Id Field. Type: Hidden (joomla) -->
 		<field
 			name="asset_id"
 			type="hidden"
 			filter="unset"
 		/>
-		<!-- [Interpretation 19432] Rules Field. Type: Rules (joomla) -->
+		<!-- [Interpretation 20438] Rules Field. Type: Rules (joomla) -->
 		<field
 			name="rules"
 			type="rules"

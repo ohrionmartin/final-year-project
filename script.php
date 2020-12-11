@@ -3,8 +3,8 @@
 				Vast Development Method 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.0.0
-	@build			3rd December, 2020
+	@version		1.0.4
+	@build			11th December, 2020
 	@created		13th August, 2020
 	@package		eClinic Portal
 	@subpackage		script.php
@@ -51,2858 +51,2858 @@ class com_eclinic_portalInstallerScript
 	 */
 	public function uninstall(JAdapterInstance $parent)
 	{
-		// [Interpretation 8034] Get Application object
+		// [Interpretation 8043] Get Application object
 		$app = JFactory::getApplication();
 
-		// [Interpretation 8039] Get The Database object
+		// [Interpretation 8048] Get The Database object
 		$db = JFactory::getDbo();
 
-		// [Interpretation 8243] Create a new query object.
+		// [Interpretation 8255] Create a new query object.
 		$query = $db->getQuery(true);
-		// [Interpretation 8247] Select id from content type table
+		// [Interpretation 8259] Select id from content type table
 		$query->select($db->quoteName('type_id'));
 		$query->from($db->quoteName('#__content_types'));
-		// [Interpretation 8254] Where Payment alias is found
+		// [Interpretation 8266] Where Payment alias is found
 		$query->where( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.payment') );
 		$db->setQuery($query);
-		// [Interpretation 8261] Execute query to see if alias is found
+		// [Interpretation 8273] Execute query to see if alias is found
 		$db->execute();
 		$payment_found = $db->getNumRows();
-		// [Interpretation 8267] Now check if there were any rows
+		// [Interpretation 8279] Now check if there were any rows
 		if ($payment_found)
 		{
-			// [Interpretation 8273] Since there are load the needed  payment type ids
+			// [Interpretation 8285] Since there are load the needed  payment type ids
 			$payment_ids = $db->loadColumn();
-			// [Interpretation 8281] Remove Payment from the content type table
+			// [Interpretation 8293] Remove Payment from the content type table
 			$payment_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.payment') );
-			// [Interpretation 8287] Create a new query object.
+			// [Interpretation 8300] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__content_types'));
 			$query->where($payment_condition);
 			$db->setQuery($query);
-			// [Interpretation 8297] Execute the query to remove Payment items
+			// [Interpretation 8310] Execute the query to remove Payment items
 			$payment_done = $db->execute();
 			if ($payment_done)
 			{
-				// [Interpretation 8304] If succesfully remove Payment add queued success message.
+				// [Interpretation 8318] If successfully remove Payment add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.payment) type alias was removed from the <b>#__content_type</b> table'));
 			}
 
-			// [Interpretation 8315] Remove Payment items from the contentitem tag map table
+			// [Interpretation 8329] Remove Payment items from the contentitem tag map table
 			$payment_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.payment') );
-			// [Interpretation 8321] Create a new query object.
+			// [Interpretation 8335] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__contentitem_tag_map'));
 			$query->where($payment_condition);
 			$db->setQuery($query);
-			// [Interpretation 8331] Execute the query to remove Payment items
+			// [Interpretation 8345] Execute the query to remove Payment items
 			$payment_done = $db->execute();
 			if ($payment_done)
 			{
-				// [Interpretation 8338] If succesfully remove Payment add queued success message.
+				// [Interpretation 8353] If successfully remove Payment add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.payment) type alias was removed from the <b>#__contentitem_tag_map</b> table'));
 			}
 
-			// [Interpretation 8349] Remove Payment items from the ucm content table
+			// [Interpretation 8364] Remove Payment items from the ucm content table
 			$payment_condition = array( $db->quoteName('core_type_alias') . ' = ' . $db->quote('com_eclinic_portal.payment') );
-			// [Interpretation 8355] Create a new query object.
+			// [Interpretation 8370] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__ucm_content'));
 			$query->where($payment_condition);
 			$db->setQuery($query);
-			// [Interpretation 8365] Execute the query to remove Payment items
+			// [Interpretation 8380] Execute the query to remove Payment items
 			$payment_done = $db->execute();
 			if ($payment_done)
 			{
-				// [Interpretation 8372] If succesfully remove Payment add queued success message.
+				// [Interpretation 8388] If successfully removed Payment add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.payment) type alias was removed from the <b>#__ucm_content</b> table'));
 			}
 
-			// [Interpretation 8383] Make sure that all the Payment items are cleared from DB
+			// [Interpretation 8399] Make sure that all the Payment items are cleared from DB
 			foreach ($payment_ids as $payment_id)
 			{
-				// [Interpretation 8391] Remove Payment items from the ucm base table
+				// [Interpretation 8407] Remove Payment items from the ucm base table
 				$payment_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $payment_id);
-				// [Interpretation 8398] Create a new query object.
+				// [Interpretation 8414] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_base'));
 				$query->where($payment_condition);
 				$db->setQuery($query);
-				// [Interpretation 8408] Execute the query to remove Payment items
+				// [Interpretation 8424] Execute the query to remove Payment items
 				$db->execute();
 
-				// [Interpretation 8414] Remove Payment items from the ucm history table
+				// [Interpretation 8431] Remove Payment items from the ucm history table
 				$payment_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $payment_id);
-				// [Interpretation 8420] Create a new query object.
+				// [Interpretation 8437] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_history'));
 				$query->where($payment_condition);
 				$db->setQuery($query);
-				// [Interpretation 8430] Execute the query to remove Payment items
+				// [Interpretation 8447] Execute the query to remove Payment items
 				$db->execute();
 			}
 		}
 
-		// [Interpretation 8243] Create a new query object.
+		// [Interpretation 8255] Create a new query object.
 		$query = $db->getQuery(true);
-		// [Interpretation 8247] Select id from content type table
+		// [Interpretation 8259] Select id from content type table
 		$query->select($db->quoteName('type_id'));
 		$query->from($db->quoteName('#__content_types'));
-		// [Interpretation 8254] Where General_medical_check_up alias is found
+		// [Interpretation 8266] Where General_medical_check_up alias is found
 		$query->where( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.general_medical_check_up') );
 		$db->setQuery($query);
-		// [Interpretation 8261] Execute query to see if alias is found
+		// [Interpretation 8273] Execute query to see if alias is found
 		$db->execute();
 		$general_medical_check_up_found = $db->getNumRows();
-		// [Interpretation 8267] Now check if there were any rows
+		// [Interpretation 8279] Now check if there were any rows
 		if ($general_medical_check_up_found)
 		{
-			// [Interpretation 8273] Since there are load the needed  general_medical_check_up type ids
+			// [Interpretation 8285] Since there are load the needed  general_medical_check_up type ids
 			$general_medical_check_up_ids = $db->loadColumn();
-			// [Interpretation 8281] Remove General_medical_check_up from the content type table
+			// [Interpretation 8293] Remove General_medical_check_up from the content type table
 			$general_medical_check_up_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.general_medical_check_up') );
-			// [Interpretation 8287] Create a new query object.
+			// [Interpretation 8300] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__content_types'));
 			$query->where($general_medical_check_up_condition);
 			$db->setQuery($query);
-			// [Interpretation 8297] Execute the query to remove General_medical_check_up items
+			// [Interpretation 8310] Execute the query to remove General_medical_check_up items
 			$general_medical_check_up_done = $db->execute();
 			if ($general_medical_check_up_done)
 			{
-				// [Interpretation 8304] If succesfully remove General_medical_check_up add queued success message.
+				// [Interpretation 8318] If successfully remove General_medical_check_up add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.general_medical_check_up) type alias was removed from the <b>#__content_type</b> table'));
 			}
 
-			// [Interpretation 8315] Remove General_medical_check_up items from the contentitem tag map table
+			// [Interpretation 8329] Remove General_medical_check_up items from the contentitem tag map table
 			$general_medical_check_up_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.general_medical_check_up') );
-			// [Interpretation 8321] Create a new query object.
+			// [Interpretation 8335] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__contentitem_tag_map'));
 			$query->where($general_medical_check_up_condition);
 			$db->setQuery($query);
-			// [Interpretation 8331] Execute the query to remove General_medical_check_up items
+			// [Interpretation 8345] Execute the query to remove General_medical_check_up items
 			$general_medical_check_up_done = $db->execute();
 			if ($general_medical_check_up_done)
 			{
-				// [Interpretation 8338] If succesfully remove General_medical_check_up add queued success message.
+				// [Interpretation 8353] If successfully remove General_medical_check_up add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.general_medical_check_up) type alias was removed from the <b>#__contentitem_tag_map</b> table'));
 			}
 
-			// [Interpretation 8349] Remove General_medical_check_up items from the ucm content table
+			// [Interpretation 8364] Remove General_medical_check_up items from the ucm content table
 			$general_medical_check_up_condition = array( $db->quoteName('core_type_alias') . ' = ' . $db->quote('com_eclinic_portal.general_medical_check_up') );
-			// [Interpretation 8355] Create a new query object.
+			// [Interpretation 8370] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__ucm_content'));
 			$query->where($general_medical_check_up_condition);
 			$db->setQuery($query);
-			// [Interpretation 8365] Execute the query to remove General_medical_check_up items
+			// [Interpretation 8380] Execute the query to remove General_medical_check_up items
 			$general_medical_check_up_done = $db->execute();
 			if ($general_medical_check_up_done)
 			{
-				// [Interpretation 8372] If succesfully remove General_medical_check_up add queued success message.
+				// [Interpretation 8388] If successfully removed General_medical_check_up add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.general_medical_check_up) type alias was removed from the <b>#__ucm_content</b> table'));
 			}
 
-			// [Interpretation 8383] Make sure that all the General_medical_check_up items are cleared from DB
+			// [Interpretation 8399] Make sure that all the General_medical_check_up items are cleared from DB
 			foreach ($general_medical_check_up_ids as $general_medical_check_up_id)
 			{
-				// [Interpretation 8391] Remove General_medical_check_up items from the ucm base table
+				// [Interpretation 8407] Remove General_medical_check_up items from the ucm base table
 				$general_medical_check_up_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $general_medical_check_up_id);
-				// [Interpretation 8398] Create a new query object.
+				// [Interpretation 8414] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_base'));
 				$query->where($general_medical_check_up_condition);
 				$db->setQuery($query);
-				// [Interpretation 8408] Execute the query to remove General_medical_check_up items
+				// [Interpretation 8424] Execute the query to remove General_medical_check_up items
 				$db->execute();
 
-				// [Interpretation 8414] Remove General_medical_check_up items from the ucm history table
+				// [Interpretation 8431] Remove General_medical_check_up items from the ucm history table
 				$general_medical_check_up_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $general_medical_check_up_id);
-				// [Interpretation 8420] Create a new query object.
+				// [Interpretation 8437] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_history'));
 				$query->where($general_medical_check_up_condition);
 				$db->setQuery($query);
-				// [Interpretation 8430] Execute the query to remove General_medical_check_up items
+				// [Interpretation 8447] Execute the query to remove General_medical_check_up items
 				$db->execute();
 			}
 		}
 
-		// [Interpretation 8243] Create a new query object.
+		// [Interpretation 8255] Create a new query object.
 		$query = $db->getQuery(true);
-		// [Interpretation 8247] Select id from content type table
+		// [Interpretation 8259] Select id from content type table
 		$query->select($db->quoteName('type_id'));
 		$query->from($db->quoteName('#__content_types'));
-		// [Interpretation 8254] Where Antenatal_care alias is found
+		// [Interpretation 8266] Where Antenatal_care alias is found
 		$query->where( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.antenatal_care') );
 		$db->setQuery($query);
-		// [Interpretation 8261] Execute query to see if alias is found
+		// [Interpretation 8273] Execute query to see if alias is found
 		$db->execute();
 		$antenatal_care_found = $db->getNumRows();
-		// [Interpretation 8267] Now check if there were any rows
+		// [Interpretation 8279] Now check if there were any rows
 		if ($antenatal_care_found)
 		{
-			// [Interpretation 8273] Since there are load the needed  antenatal_care type ids
+			// [Interpretation 8285] Since there are load the needed  antenatal_care type ids
 			$antenatal_care_ids = $db->loadColumn();
-			// [Interpretation 8281] Remove Antenatal_care from the content type table
+			// [Interpretation 8293] Remove Antenatal_care from the content type table
 			$antenatal_care_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.antenatal_care') );
-			// [Interpretation 8287] Create a new query object.
+			// [Interpretation 8300] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__content_types'));
 			$query->where($antenatal_care_condition);
 			$db->setQuery($query);
-			// [Interpretation 8297] Execute the query to remove Antenatal_care items
+			// [Interpretation 8310] Execute the query to remove Antenatal_care items
 			$antenatal_care_done = $db->execute();
 			if ($antenatal_care_done)
 			{
-				// [Interpretation 8304] If succesfully remove Antenatal_care add queued success message.
+				// [Interpretation 8318] If successfully remove Antenatal_care add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.antenatal_care) type alias was removed from the <b>#__content_type</b> table'));
 			}
 
-			// [Interpretation 8315] Remove Antenatal_care items from the contentitem tag map table
+			// [Interpretation 8329] Remove Antenatal_care items from the contentitem tag map table
 			$antenatal_care_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.antenatal_care') );
-			// [Interpretation 8321] Create a new query object.
+			// [Interpretation 8335] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__contentitem_tag_map'));
 			$query->where($antenatal_care_condition);
 			$db->setQuery($query);
-			// [Interpretation 8331] Execute the query to remove Antenatal_care items
+			// [Interpretation 8345] Execute the query to remove Antenatal_care items
 			$antenatal_care_done = $db->execute();
 			if ($antenatal_care_done)
 			{
-				// [Interpretation 8338] If succesfully remove Antenatal_care add queued success message.
+				// [Interpretation 8353] If successfully remove Antenatal_care add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.antenatal_care) type alias was removed from the <b>#__contentitem_tag_map</b> table'));
 			}
 
-			// [Interpretation 8349] Remove Antenatal_care items from the ucm content table
+			// [Interpretation 8364] Remove Antenatal_care items from the ucm content table
 			$antenatal_care_condition = array( $db->quoteName('core_type_alias') . ' = ' . $db->quote('com_eclinic_portal.antenatal_care') );
-			// [Interpretation 8355] Create a new query object.
+			// [Interpretation 8370] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__ucm_content'));
 			$query->where($antenatal_care_condition);
 			$db->setQuery($query);
-			// [Interpretation 8365] Execute the query to remove Antenatal_care items
+			// [Interpretation 8380] Execute the query to remove Antenatal_care items
 			$antenatal_care_done = $db->execute();
 			if ($antenatal_care_done)
 			{
-				// [Interpretation 8372] If succesfully remove Antenatal_care add queued success message.
+				// [Interpretation 8388] If successfully removed Antenatal_care add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.antenatal_care) type alias was removed from the <b>#__ucm_content</b> table'));
 			}
 
-			// [Interpretation 8383] Make sure that all the Antenatal_care items are cleared from DB
+			// [Interpretation 8399] Make sure that all the Antenatal_care items are cleared from DB
 			foreach ($antenatal_care_ids as $antenatal_care_id)
 			{
-				// [Interpretation 8391] Remove Antenatal_care items from the ucm base table
+				// [Interpretation 8407] Remove Antenatal_care items from the ucm base table
 				$antenatal_care_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $antenatal_care_id);
-				// [Interpretation 8398] Create a new query object.
+				// [Interpretation 8414] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_base'));
 				$query->where($antenatal_care_condition);
 				$db->setQuery($query);
-				// [Interpretation 8408] Execute the query to remove Antenatal_care items
+				// [Interpretation 8424] Execute the query to remove Antenatal_care items
 				$db->execute();
 
-				// [Interpretation 8414] Remove Antenatal_care items from the ucm history table
+				// [Interpretation 8431] Remove Antenatal_care items from the ucm history table
 				$antenatal_care_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $antenatal_care_id);
-				// [Interpretation 8420] Create a new query object.
+				// [Interpretation 8437] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_history'));
 				$query->where($antenatal_care_condition);
 				$db->setQuery($query);
-				// [Interpretation 8430] Execute the query to remove Antenatal_care items
+				// [Interpretation 8447] Execute the query to remove Antenatal_care items
 				$db->execute();
 			}
 		}
 
-		// [Interpretation 8243] Create a new query object.
+		// [Interpretation 8255] Create a new query object.
 		$query = $db->getQuery(true);
-		// [Interpretation 8247] Select id from content type table
+		// [Interpretation 8259] Select id from content type table
 		$query->select($db->quoteName('type_id'));
 		$query->from($db->quoteName('#__content_types'));
-		// [Interpretation 8254] Where Immunisation alias is found
+		// [Interpretation 8266] Where Immunisation alias is found
 		$query->where( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.immunisation') );
 		$db->setQuery($query);
-		// [Interpretation 8261] Execute query to see if alias is found
+		// [Interpretation 8273] Execute query to see if alias is found
 		$db->execute();
 		$immunisation_found = $db->getNumRows();
-		// [Interpretation 8267] Now check if there were any rows
+		// [Interpretation 8279] Now check if there were any rows
 		if ($immunisation_found)
 		{
-			// [Interpretation 8273] Since there are load the needed  immunisation type ids
+			// [Interpretation 8285] Since there are load the needed  immunisation type ids
 			$immunisation_ids = $db->loadColumn();
-			// [Interpretation 8281] Remove Immunisation from the content type table
+			// [Interpretation 8293] Remove Immunisation from the content type table
 			$immunisation_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.immunisation') );
-			// [Interpretation 8287] Create a new query object.
+			// [Interpretation 8300] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__content_types'));
 			$query->where($immunisation_condition);
 			$db->setQuery($query);
-			// [Interpretation 8297] Execute the query to remove Immunisation items
+			// [Interpretation 8310] Execute the query to remove Immunisation items
 			$immunisation_done = $db->execute();
 			if ($immunisation_done)
 			{
-				// [Interpretation 8304] If succesfully remove Immunisation add queued success message.
+				// [Interpretation 8318] If successfully remove Immunisation add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.immunisation) type alias was removed from the <b>#__content_type</b> table'));
 			}
 
-			// [Interpretation 8315] Remove Immunisation items from the contentitem tag map table
+			// [Interpretation 8329] Remove Immunisation items from the contentitem tag map table
 			$immunisation_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.immunisation') );
-			// [Interpretation 8321] Create a new query object.
+			// [Interpretation 8335] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__contentitem_tag_map'));
 			$query->where($immunisation_condition);
 			$db->setQuery($query);
-			// [Interpretation 8331] Execute the query to remove Immunisation items
+			// [Interpretation 8345] Execute the query to remove Immunisation items
 			$immunisation_done = $db->execute();
 			if ($immunisation_done)
 			{
-				// [Interpretation 8338] If succesfully remove Immunisation add queued success message.
+				// [Interpretation 8353] If successfully remove Immunisation add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.immunisation) type alias was removed from the <b>#__contentitem_tag_map</b> table'));
 			}
 
-			// [Interpretation 8349] Remove Immunisation items from the ucm content table
+			// [Interpretation 8364] Remove Immunisation items from the ucm content table
 			$immunisation_condition = array( $db->quoteName('core_type_alias') . ' = ' . $db->quote('com_eclinic_portal.immunisation') );
-			// [Interpretation 8355] Create a new query object.
+			// [Interpretation 8370] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__ucm_content'));
 			$query->where($immunisation_condition);
 			$db->setQuery($query);
-			// [Interpretation 8365] Execute the query to remove Immunisation items
+			// [Interpretation 8380] Execute the query to remove Immunisation items
 			$immunisation_done = $db->execute();
 			if ($immunisation_done)
 			{
-				// [Interpretation 8372] If succesfully remove Immunisation add queued success message.
+				// [Interpretation 8388] If successfully removed Immunisation add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.immunisation) type alias was removed from the <b>#__ucm_content</b> table'));
 			}
 
-			// [Interpretation 8383] Make sure that all the Immunisation items are cleared from DB
+			// [Interpretation 8399] Make sure that all the Immunisation items are cleared from DB
 			foreach ($immunisation_ids as $immunisation_id)
 			{
-				// [Interpretation 8391] Remove Immunisation items from the ucm base table
+				// [Interpretation 8407] Remove Immunisation items from the ucm base table
 				$immunisation_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $immunisation_id);
-				// [Interpretation 8398] Create a new query object.
+				// [Interpretation 8414] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_base'));
 				$query->where($immunisation_condition);
 				$db->setQuery($query);
-				// [Interpretation 8408] Execute the query to remove Immunisation items
+				// [Interpretation 8424] Execute the query to remove Immunisation items
 				$db->execute();
 
-				// [Interpretation 8414] Remove Immunisation items from the ucm history table
+				// [Interpretation 8431] Remove Immunisation items from the ucm history table
 				$immunisation_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $immunisation_id);
-				// [Interpretation 8420] Create a new query object.
+				// [Interpretation 8437] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_history'));
 				$query->where($immunisation_condition);
 				$db->setQuery($query);
-				// [Interpretation 8430] Execute the query to remove Immunisation items
+				// [Interpretation 8447] Execute the query to remove Immunisation items
 				$db->execute();
 			}
 		}
 
-		// [Interpretation 8243] Create a new query object.
+		// [Interpretation 8255] Create a new query object.
 		$query = $db->getQuery(true);
-		// [Interpretation 8247] Select id from content type table
+		// [Interpretation 8259] Select id from content type table
 		$query->select($db->quoteName('type_id'));
 		$query->from($db->quoteName('#__content_types'));
-		// [Interpretation 8254] Where Vmmc alias is found
+		// [Interpretation 8266] Where Vmmc alias is found
 		$query->where( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.vmmc') );
 		$db->setQuery($query);
-		// [Interpretation 8261] Execute query to see if alias is found
+		// [Interpretation 8273] Execute query to see if alias is found
 		$db->execute();
 		$vmmc_found = $db->getNumRows();
-		// [Interpretation 8267] Now check if there were any rows
+		// [Interpretation 8279] Now check if there were any rows
 		if ($vmmc_found)
 		{
-			// [Interpretation 8273] Since there are load the needed  vmmc type ids
+			// [Interpretation 8285] Since there are load the needed  vmmc type ids
 			$vmmc_ids = $db->loadColumn();
-			// [Interpretation 8281] Remove Vmmc from the content type table
+			// [Interpretation 8293] Remove Vmmc from the content type table
 			$vmmc_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.vmmc') );
-			// [Interpretation 8287] Create a new query object.
+			// [Interpretation 8300] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__content_types'));
 			$query->where($vmmc_condition);
 			$db->setQuery($query);
-			// [Interpretation 8297] Execute the query to remove Vmmc items
+			// [Interpretation 8310] Execute the query to remove Vmmc items
 			$vmmc_done = $db->execute();
 			if ($vmmc_done)
 			{
-				// [Interpretation 8304] If succesfully remove Vmmc add queued success message.
+				// [Interpretation 8318] If successfully remove Vmmc add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.vmmc) type alias was removed from the <b>#__content_type</b> table'));
 			}
 
-			// [Interpretation 8315] Remove Vmmc items from the contentitem tag map table
+			// [Interpretation 8329] Remove Vmmc items from the contentitem tag map table
 			$vmmc_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.vmmc') );
-			// [Interpretation 8321] Create a new query object.
+			// [Interpretation 8335] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__contentitem_tag_map'));
 			$query->where($vmmc_condition);
 			$db->setQuery($query);
-			// [Interpretation 8331] Execute the query to remove Vmmc items
+			// [Interpretation 8345] Execute the query to remove Vmmc items
 			$vmmc_done = $db->execute();
 			if ($vmmc_done)
 			{
-				// [Interpretation 8338] If succesfully remove Vmmc add queued success message.
+				// [Interpretation 8353] If successfully remove Vmmc add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.vmmc) type alias was removed from the <b>#__contentitem_tag_map</b> table'));
 			}
 
-			// [Interpretation 8349] Remove Vmmc items from the ucm content table
+			// [Interpretation 8364] Remove Vmmc items from the ucm content table
 			$vmmc_condition = array( $db->quoteName('core_type_alias') . ' = ' . $db->quote('com_eclinic_portal.vmmc') );
-			// [Interpretation 8355] Create a new query object.
+			// [Interpretation 8370] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__ucm_content'));
 			$query->where($vmmc_condition);
 			$db->setQuery($query);
-			// [Interpretation 8365] Execute the query to remove Vmmc items
+			// [Interpretation 8380] Execute the query to remove Vmmc items
 			$vmmc_done = $db->execute();
 			if ($vmmc_done)
 			{
-				// [Interpretation 8372] If succesfully remove Vmmc add queued success message.
+				// [Interpretation 8388] If successfully removed Vmmc add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.vmmc) type alias was removed from the <b>#__ucm_content</b> table'));
 			}
 
-			// [Interpretation 8383] Make sure that all the Vmmc items are cleared from DB
+			// [Interpretation 8399] Make sure that all the Vmmc items are cleared from DB
 			foreach ($vmmc_ids as $vmmc_id)
 			{
-				// [Interpretation 8391] Remove Vmmc items from the ucm base table
+				// [Interpretation 8407] Remove Vmmc items from the ucm base table
 				$vmmc_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $vmmc_id);
-				// [Interpretation 8398] Create a new query object.
+				// [Interpretation 8414] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_base'));
 				$query->where($vmmc_condition);
 				$db->setQuery($query);
-				// [Interpretation 8408] Execute the query to remove Vmmc items
+				// [Interpretation 8424] Execute the query to remove Vmmc items
 				$db->execute();
 
-				// [Interpretation 8414] Remove Vmmc items from the ucm history table
+				// [Interpretation 8431] Remove Vmmc items from the ucm history table
 				$vmmc_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $vmmc_id);
-				// [Interpretation 8420] Create a new query object.
+				// [Interpretation 8437] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_history'));
 				$query->where($vmmc_condition);
 				$db->setQuery($query);
-				// [Interpretation 8430] Execute the query to remove Vmmc items
+				// [Interpretation 8447] Execute the query to remove Vmmc items
 				$db->execute();
 			}
 		}
 
-		// [Interpretation 8243] Create a new query object.
+		// [Interpretation 8255] Create a new query object.
 		$query = $db->getQuery(true);
-		// [Interpretation 8247] Select id from content type table
+		// [Interpretation 8259] Select id from content type table
 		$query->select($db->quoteName('type_id'));
 		$query->from($db->quoteName('#__content_types'));
-		// [Interpretation 8254] Where Prostate_and_testicular_cancer alias is found
+		// [Interpretation 8266] Where Prostate_and_testicular_cancer alias is found
 		$query->where( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.prostate_and_testicular_cancer') );
 		$db->setQuery($query);
-		// [Interpretation 8261] Execute query to see if alias is found
+		// [Interpretation 8273] Execute query to see if alias is found
 		$db->execute();
 		$prostate_and_testicular_cancer_found = $db->getNumRows();
-		// [Interpretation 8267] Now check if there were any rows
+		// [Interpretation 8279] Now check if there were any rows
 		if ($prostate_and_testicular_cancer_found)
 		{
-			// [Interpretation 8273] Since there are load the needed  prostate_and_testicular_cancer type ids
+			// [Interpretation 8285] Since there are load the needed  prostate_and_testicular_cancer type ids
 			$prostate_and_testicular_cancer_ids = $db->loadColumn();
-			// [Interpretation 8281] Remove Prostate_and_testicular_cancer from the content type table
+			// [Interpretation 8293] Remove Prostate_and_testicular_cancer from the content type table
 			$prostate_and_testicular_cancer_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.prostate_and_testicular_cancer') );
-			// [Interpretation 8287] Create a new query object.
+			// [Interpretation 8300] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__content_types'));
 			$query->where($prostate_and_testicular_cancer_condition);
 			$db->setQuery($query);
-			// [Interpretation 8297] Execute the query to remove Prostate_and_testicular_cancer items
+			// [Interpretation 8310] Execute the query to remove Prostate_and_testicular_cancer items
 			$prostate_and_testicular_cancer_done = $db->execute();
 			if ($prostate_and_testicular_cancer_done)
 			{
-				// [Interpretation 8304] If succesfully remove Prostate_and_testicular_cancer add queued success message.
+				// [Interpretation 8318] If successfully remove Prostate_and_testicular_cancer add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.prostate_and_testicular_cancer) type alias was removed from the <b>#__content_type</b> table'));
 			}
 
-			// [Interpretation 8315] Remove Prostate_and_testicular_cancer items from the contentitem tag map table
+			// [Interpretation 8329] Remove Prostate_and_testicular_cancer items from the contentitem tag map table
 			$prostate_and_testicular_cancer_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.prostate_and_testicular_cancer') );
-			// [Interpretation 8321] Create a new query object.
+			// [Interpretation 8335] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__contentitem_tag_map'));
 			$query->where($prostate_and_testicular_cancer_condition);
 			$db->setQuery($query);
-			// [Interpretation 8331] Execute the query to remove Prostate_and_testicular_cancer items
+			// [Interpretation 8345] Execute the query to remove Prostate_and_testicular_cancer items
 			$prostate_and_testicular_cancer_done = $db->execute();
 			if ($prostate_and_testicular_cancer_done)
 			{
-				// [Interpretation 8338] If succesfully remove Prostate_and_testicular_cancer add queued success message.
+				// [Interpretation 8353] If successfully remove Prostate_and_testicular_cancer add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.prostate_and_testicular_cancer) type alias was removed from the <b>#__contentitem_tag_map</b> table'));
 			}
 
-			// [Interpretation 8349] Remove Prostate_and_testicular_cancer items from the ucm content table
+			// [Interpretation 8364] Remove Prostate_and_testicular_cancer items from the ucm content table
 			$prostate_and_testicular_cancer_condition = array( $db->quoteName('core_type_alias') . ' = ' . $db->quote('com_eclinic_portal.prostate_and_testicular_cancer') );
-			// [Interpretation 8355] Create a new query object.
+			// [Interpretation 8370] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__ucm_content'));
 			$query->where($prostate_and_testicular_cancer_condition);
 			$db->setQuery($query);
-			// [Interpretation 8365] Execute the query to remove Prostate_and_testicular_cancer items
+			// [Interpretation 8380] Execute the query to remove Prostate_and_testicular_cancer items
 			$prostate_and_testicular_cancer_done = $db->execute();
 			if ($prostate_and_testicular_cancer_done)
 			{
-				// [Interpretation 8372] If succesfully remove Prostate_and_testicular_cancer add queued success message.
+				// [Interpretation 8388] If successfully removed Prostate_and_testicular_cancer add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.prostate_and_testicular_cancer) type alias was removed from the <b>#__ucm_content</b> table'));
 			}
 
-			// [Interpretation 8383] Make sure that all the Prostate_and_testicular_cancer items are cleared from DB
+			// [Interpretation 8399] Make sure that all the Prostate_and_testicular_cancer items are cleared from DB
 			foreach ($prostate_and_testicular_cancer_ids as $prostate_and_testicular_cancer_id)
 			{
-				// [Interpretation 8391] Remove Prostate_and_testicular_cancer items from the ucm base table
+				// [Interpretation 8407] Remove Prostate_and_testicular_cancer items from the ucm base table
 				$prostate_and_testicular_cancer_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $prostate_and_testicular_cancer_id);
-				// [Interpretation 8398] Create a new query object.
+				// [Interpretation 8414] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_base'));
 				$query->where($prostate_and_testicular_cancer_condition);
 				$db->setQuery($query);
-				// [Interpretation 8408] Execute the query to remove Prostate_and_testicular_cancer items
+				// [Interpretation 8424] Execute the query to remove Prostate_and_testicular_cancer items
 				$db->execute();
 
-				// [Interpretation 8414] Remove Prostate_and_testicular_cancer items from the ucm history table
+				// [Interpretation 8431] Remove Prostate_and_testicular_cancer items from the ucm history table
 				$prostate_and_testicular_cancer_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $prostate_and_testicular_cancer_id);
-				// [Interpretation 8420] Create a new query object.
+				// [Interpretation 8437] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_history'));
 				$query->where($prostate_and_testicular_cancer_condition);
 				$db->setQuery($query);
-				// [Interpretation 8430] Execute the query to remove Prostate_and_testicular_cancer items
+				// [Interpretation 8447] Execute the query to remove Prostate_and_testicular_cancer items
 				$db->execute();
 			}
 		}
 
-		// [Interpretation 8243] Create a new query object.
+		// [Interpretation 8255] Create a new query object.
 		$query = $db->getQuery(true);
-		// [Interpretation 8247] Select id from content type table
+		// [Interpretation 8259] Select id from content type table
 		$query->select($db->quoteName('type_id'));
 		$query->from($db->quoteName('#__content_types'));
-		// [Interpretation 8254] Where Tuberculosis alias is found
+		// [Interpretation 8266] Where Tuberculosis alias is found
 		$query->where( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.tuberculosis') );
 		$db->setQuery($query);
-		// [Interpretation 8261] Execute query to see if alias is found
+		// [Interpretation 8273] Execute query to see if alias is found
 		$db->execute();
 		$tuberculosis_found = $db->getNumRows();
-		// [Interpretation 8267] Now check if there were any rows
+		// [Interpretation 8279] Now check if there were any rows
 		if ($tuberculosis_found)
 		{
-			// [Interpretation 8273] Since there are load the needed  tuberculosis type ids
+			// [Interpretation 8285] Since there are load the needed  tuberculosis type ids
 			$tuberculosis_ids = $db->loadColumn();
-			// [Interpretation 8281] Remove Tuberculosis from the content type table
+			// [Interpretation 8293] Remove Tuberculosis from the content type table
 			$tuberculosis_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.tuberculosis') );
-			// [Interpretation 8287] Create a new query object.
+			// [Interpretation 8300] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__content_types'));
 			$query->where($tuberculosis_condition);
 			$db->setQuery($query);
-			// [Interpretation 8297] Execute the query to remove Tuberculosis items
+			// [Interpretation 8310] Execute the query to remove Tuberculosis items
 			$tuberculosis_done = $db->execute();
 			if ($tuberculosis_done)
 			{
-				// [Interpretation 8304] If succesfully remove Tuberculosis add queued success message.
+				// [Interpretation 8318] If successfully remove Tuberculosis add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.tuberculosis) type alias was removed from the <b>#__content_type</b> table'));
 			}
 
-			// [Interpretation 8315] Remove Tuberculosis items from the contentitem tag map table
+			// [Interpretation 8329] Remove Tuberculosis items from the contentitem tag map table
 			$tuberculosis_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.tuberculosis') );
-			// [Interpretation 8321] Create a new query object.
+			// [Interpretation 8335] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__contentitem_tag_map'));
 			$query->where($tuberculosis_condition);
 			$db->setQuery($query);
-			// [Interpretation 8331] Execute the query to remove Tuberculosis items
+			// [Interpretation 8345] Execute the query to remove Tuberculosis items
 			$tuberculosis_done = $db->execute();
 			if ($tuberculosis_done)
 			{
-				// [Interpretation 8338] If succesfully remove Tuberculosis add queued success message.
+				// [Interpretation 8353] If successfully remove Tuberculosis add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.tuberculosis) type alias was removed from the <b>#__contentitem_tag_map</b> table'));
 			}
 
-			// [Interpretation 8349] Remove Tuberculosis items from the ucm content table
+			// [Interpretation 8364] Remove Tuberculosis items from the ucm content table
 			$tuberculosis_condition = array( $db->quoteName('core_type_alias') . ' = ' . $db->quote('com_eclinic_portal.tuberculosis') );
-			// [Interpretation 8355] Create a new query object.
+			// [Interpretation 8370] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__ucm_content'));
 			$query->where($tuberculosis_condition);
 			$db->setQuery($query);
-			// [Interpretation 8365] Execute the query to remove Tuberculosis items
+			// [Interpretation 8380] Execute the query to remove Tuberculosis items
 			$tuberculosis_done = $db->execute();
 			if ($tuberculosis_done)
 			{
-				// [Interpretation 8372] If succesfully remove Tuberculosis add queued success message.
+				// [Interpretation 8388] If successfully removed Tuberculosis add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.tuberculosis) type alias was removed from the <b>#__ucm_content</b> table'));
 			}
 
-			// [Interpretation 8383] Make sure that all the Tuberculosis items are cleared from DB
+			// [Interpretation 8399] Make sure that all the Tuberculosis items are cleared from DB
 			foreach ($tuberculosis_ids as $tuberculosis_id)
 			{
-				// [Interpretation 8391] Remove Tuberculosis items from the ucm base table
+				// [Interpretation 8407] Remove Tuberculosis items from the ucm base table
 				$tuberculosis_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $tuberculosis_id);
-				// [Interpretation 8398] Create a new query object.
+				// [Interpretation 8414] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_base'));
 				$query->where($tuberculosis_condition);
 				$db->setQuery($query);
-				// [Interpretation 8408] Execute the query to remove Tuberculosis items
+				// [Interpretation 8424] Execute the query to remove Tuberculosis items
 				$db->execute();
 
-				// [Interpretation 8414] Remove Tuberculosis items from the ucm history table
+				// [Interpretation 8431] Remove Tuberculosis items from the ucm history table
 				$tuberculosis_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $tuberculosis_id);
-				// [Interpretation 8420] Create a new query object.
+				// [Interpretation 8437] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_history'));
 				$query->where($tuberculosis_condition);
 				$db->setQuery($query);
-				// [Interpretation 8430] Execute the query to remove Tuberculosis items
+				// [Interpretation 8447] Execute the query to remove Tuberculosis items
 				$db->execute();
 			}
 		}
 
-		// [Interpretation 8243] Create a new query object.
+		// [Interpretation 8255] Create a new query object.
 		$query = $db->getQuery(true);
-		// [Interpretation 8247] Select id from content type table
+		// [Interpretation 8259] Select id from content type table
 		$query->select($db->quoteName('type_id'));
 		$query->from($db->quoteName('#__content_types'));
-		// [Interpretation 8254] Where Hiv_counseling_and_testing alias is found
+		// [Interpretation 8266] Where Hiv_counseling_and_testing alias is found
 		$query->where( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.hiv_counseling_and_testing') );
 		$db->setQuery($query);
-		// [Interpretation 8261] Execute query to see if alias is found
+		// [Interpretation 8273] Execute query to see if alias is found
 		$db->execute();
 		$hiv_counseling_and_testing_found = $db->getNumRows();
-		// [Interpretation 8267] Now check if there were any rows
+		// [Interpretation 8279] Now check if there were any rows
 		if ($hiv_counseling_and_testing_found)
 		{
-			// [Interpretation 8273] Since there are load the needed  hiv_counseling_and_testing type ids
+			// [Interpretation 8285] Since there are load the needed  hiv_counseling_and_testing type ids
 			$hiv_counseling_and_testing_ids = $db->loadColumn();
-			// [Interpretation 8281] Remove Hiv_counseling_and_testing from the content type table
+			// [Interpretation 8293] Remove Hiv_counseling_and_testing from the content type table
 			$hiv_counseling_and_testing_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.hiv_counseling_and_testing') );
-			// [Interpretation 8287] Create a new query object.
+			// [Interpretation 8300] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__content_types'));
 			$query->where($hiv_counseling_and_testing_condition);
 			$db->setQuery($query);
-			// [Interpretation 8297] Execute the query to remove Hiv_counseling_and_testing items
+			// [Interpretation 8310] Execute the query to remove Hiv_counseling_and_testing items
 			$hiv_counseling_and_testing_done = $db->execute();
 			if ($hiv_counseling_and_testing_done)
 			{
-				// [Interpretation 8304] If succesfully remove Hiv_counseling_and_testing add queued success message.
+				// [Interpretation 8318] If successfully remove Hiv_counseling_and_testing add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.hiv_counseling_and_testing) type alias was removed from the <b>#__content_type</b> table'));
 			}
 
-			// [Interpretation 8315] Remove Hiv_counseling_and_testing items from the contentitem tag map table
+			// [Interpretation 8329] Remove Hiv_counseling_and_testing items from the contentitem tag map table
 			$hiv_counseling_and_testing_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.hiv_counseling_and_testing') );
-			// [Interpretation 8321] Create a new query object.
+			// [Interpretation 8335] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__contentitem_tag_map'));
 			$query->where($hiv_counseling_and_testing_condition);
 			$db->setQuery($query);
-			// [Interpretation 8331] Execute the query to remove Hiv_counseling_and_testing items
+			// [Interpretation 8345] Execute the query to remove Hiv_counseling_and_testing items
 			$hiv_counseling_and_testing_done = $db->execute();
 			if ($hiv_counseling_and_testing_done)
 			{
-				// [Interpretation 8338] If succesfully remove Hiv_counseling_and_testing add queued success message.
+				// [Interpretation 8353] If successfully remove Hiv_counseling_and_testing add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.hiv_counseling_and_testing) type alias was removed from the <b>#__contentitem_tag_map</b> table'));
 			}
 
-			// [Interpretation 8349] Remove Hiv_counseling_and_testing items from the ucm content table
+			// [Interpretation 8364] Remove Hiv_counseling_and_testing items from the ucm content table
 			$hiv_counseling_and_testing_condition = array( $db->quoteName('core_type_alias') . ' = ' . $db->quote('com_eclinic_portal.hiv_counseling_and_testing') );
-			// [Interpretation 8355] Create a new query object.
+			// [Interpretation 8370] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__ucm_content'));
 			$query->where($hiv_counseling_and_testing_condition);
 			$db->setQuery($query);
-			// [Interpretation 8365] Execute the query to remove Hiv_counseling_and_testing items
+			// [Interpretation 8380] Execute the query to remove Hiv_counseling_and_testing items
 			$hiv_counseling_and_testing_done = $db->execute();
 			if ($hiv_counseling_and_testing_done)
 			{
-				// [Interpretation 8372] If succesfully remove Hiv_counseling_and_testing add queued success message.
+				// [Interpretation 8388] If successfully removed Hiv_counseling_and_testing add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.hiv_counseling_and_testing) type alias was removed from the <b>#__ucm_content</b> table'));
 			}
 
-			// [Interpretation 8383] Make sure that all the Hiv_counseling_and_testing items are cleared from DB
+			// [Interpretation 8399] Make sure that all the Hiv_counseling_and_testing items are cleared from DB
 			foreach ($hiv_counseling_and_testing_ids as $hiv_counseling_and_testing_id)
 			{
-				// [Interpretation 8391] Remove Hiv_counseling_and_testing items from the ucm base table
+				// [Interpretation 8407] Remove Hiv_counseling_and_testing items from the ucm base table
 				$hiv_counseling_and_testing_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $hiv_counseling_and_testing_id);
-				// [Interpretation 8398] Create a new query object.
+				// [Interpretation 8414] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_base'));
 				$query->where($hiv_counseling_and_testing_condition);
 				$db->setQuery($query);
-				// [Interpretation 8408] Execute the query to remove Hiv_counseling_and_testing items
+				// [Interpretation 8424] Execute the query to remove Hiv_counseling_and_testing items
 				$db->execute();
 
-				// [Interpretation 8414] Remove Hiv_counseling_and_testing items from the ucm history table
+				// [Interpretation 8431] Remove Hiv_counseling_and_testing items from the ucm history table
 				$hiv_counseling_and_testing_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $hiv_counseling_and_testing_id);
-				// [Interpretation 8420] Create a new query object.
+				// [Interpretation 8437] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_history'));
 				$query->where($hiv_counseling_and_testing_condition);
 				$db->setQuery($query);
-				// [Interpretation 8430] Execute the query to remove Hiv_counseling_and_testing items
+				// [Interpretation 8447] Execute the query to remove Hiv_counseling_and_testing items
 				$db->execute();
 			}
 		}
 
-		// [Interpretation 8243] Create a new query object.
+		// [Interpretation 8255] Create a new query object.
 		$query = $db->getQuery(true);
-		// [Interpretation 8247] Select id from content type table
+		// [Interpretation 8259] Select id from content type table
 		$query->select($db->quoteName('type_id'));
 		$query->from($db->quoteName('#__content_types'));
-		// [Interpretation 8254] Where Family_planning alias is found
+		// [Interpretation 8266] Where Family_planning alias is found
 		$query->where( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.family_planning') );
 		$db->setQuery($query);
-		// [Interpretation 8261] Execute query to see if alias is found
+		// [Interpretation 8273] Execute query to see if alias is found
 		$db->execute();
 		$family_planning_found = $db->getNumRows();
-		// [Interpretation 8267] Now check if there were any rows
+		// [Interpretation 8279] Now check if there were any rows
 		if ($family_planning_found)
 		{
-			// [Interpretation 8273] Since there are load the needed  family_planning type ids
+			// [Interpretation 8285] Since there are load the needed  family_planning type ids
 			$family_planning_ids = $db->loadColumn();
-			// [Interpretation 8281] Remove Family_planning from the content type table
+			// [Interpretation 8293] Remove Family_planning from the content type table
 			$family_planning_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.family_planning') );
-			// [Interpretation 8287] Create a new query object.
+			// [Interpretation 8300] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__content_types'));
 			$query->where($family_planning_condition);
 			$db->setQuery($query);
-			// [Interpretation 8297] Execute the query to remove Family_planning items
+			// [Interpretation 8310] Execute the query to remove Family_planning items
 			$family_planning_done = $db->execute();
 			if ($family_planning_done)
 			{
-				// [Interpretation 8304] If succesfully remove Family_planning add queued success message.
+				// [Interpretation 8318] If successfully remove Family_planning add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.family_planning) type alias was removed from the <b>#__content_type</b> table'));
 			}
 
-			// [Interpretation 8315] Remove Family_planning items from the contentitem tag map table
+			// [Interpretation 8329] Remove Family_planning items from the contentitem tag map table
 			$family_planning_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.family_planning') );
-			// [Interpretation 8321] Create a new query object.
+			// [Interpretation 8335] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__contentitem_tag_map'));
 			$query->where($family_planning_condition);
 			$db->setQuery($query);
-			// [Interpretation 8331] Execute the query to remove Family_planning items
+			// [Interpretation 8345] Execute the query to remove Family_planning items
 			$family_planning_done = $db->execute();
 			if ($family_planning_done)
 			{
-				// [Interpretation 8338] If succesfully remove Family_planning add queued success message.
+				// [Interpretation 8353] If successfully remove Family_planning add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.family_planning) type alias was removed from the <b>#__contentitem_tag_map</b> table'));
 			}
 
-			// [Interpretation 8349] Remove Family_planning items from the ucm content table
+			// [Interpretation 8364] Remove Family_planning items from the ucm content table
 			$family_planning_condition = array( $db->quoteName('core_type_alias') . ' = ' . $db->quote('com_eclinic_portal.family_planning') );
-			// [Interpretation 8355] Create a new query object.
+			// [Interpretation 8370] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__ucm_content'));
 			$query->where($family_planning_condition);
 			$db->setQuery($query);
-			// [Interpretation 8365] Execute the query to remove Family_planning items
+			// [Interpretation 8380] Execute the query to remove Family_planning items
 			$family_planning_done = $db->execute();
 			if ($family_planning_done)
 			{
-				// [Interpretation 8372] If succesfully remove Family_planning add queued success message.
+				// [Interpretation 8388] If successfully removed Family_planning add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.family_planning) type alias was removed from the <b>#__ucm_content</b> table'));
 			}
 
-			// [Interpretation 8383] Make sure that all the Family_planning items are cleared from DB
+			// [Interpretation 8399] Make sure that all the Family_planning items are cleared from DB
 			foreach ($family_planning_ids as $family_planning_id)
 			{
-				// [Interpretation 8391] Remove Family_planning items from the ucm base table
+				// [Interpretation 8407] Remove Family_planning items from the ucm base table
 				$family_planning_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $family_planning_id);
-				// [Interpretation 8398] Create a new query object.
+				// [Interpretation 8414] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_base'));
 				$query->where($family_planning_condition);
 				$db->setQuery($query);
-				// [Interpretation 8408] Execute the query to remove Family_planning items
+				// [Interpretation 8424] Execute the query to remove Family_planning items
 				$db->execute();
 
-				// [Interpretation 8414] Remove Family_planning items from the ucm history table
+				// [Interpretation 8431] Remove Family_planning items from the ucm history table
 				$family_planning_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $family_planning_id);
-				// [Interpretation 8420] Create a new query object.
+				// [Interpretation 8437] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_history'));
 				$query->where($family_planning_condition);
 				$db->setQuery($query);
-				// [Interpretation 8430] Execute the query to remove Family_planning items
+				// [Interpretation 8447] Execute the query to remove Family_planning items
 				$db->execute();
 			}
 		}
 
-		// [Interpretation 8243] Create a new query object.
+		// [Interpretation 8255] Create a new query object.
 		$query = $db->getQuery(true);
-		// [Interpretation 8247] Select id from content type table
+		// [Interpretation 8259] Select id from content type table
 		$query->select($db->quoteName('type_id'));
 		$query->from($db->quoteName('#__content_types'));
-		// [Interpretation 8254] Where Cervical_cancer alias is found
+		// [Interpretation 8266] Where Cervical_cancer alias is found
 		$query->where( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.cervical_cancer') );
 		$db->setQuery($query);
-		// [Interpretation 8261] Execute query to see if alias is found
+		// [Interpretation 8273] Execute query to see if alias is found
 		$db->execute();
 		$cervical_cancer_found = $db->getNumRows();
-		// [Interpretation 8267] Now check if there were any rows
+		// [Interpretation 8279] Now check if there were any rows
 		if ($cervical_cancer_found)
 		{
-			// [Interpretation 8273] Since there are load the needed  cervical_cancer type ids
+			// [Interpretation 8285] Since there are load the needed  cervical_cancer type ids
 			$cervical_cancer_ids = $db->loadColumn();
-			// [Interpretation 8281] Remove Cervical_cancer from the content type table
+			// [Interpretation 8293] Remove Cervical_cancer from the content type table
 			$cervical_cancer_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.cervical_cancer') );
-			// [Interpretation 8287] Create a new query object.
+			// [Interpretation 8300] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__content_types'));
 			$query->where($cervical_cancer_condition);
 			$db->setQuery($query);
-			// [Interpretation 8297] Execute the query to remove Cervical_cancer items
+			// [Interpretation 8310] Execute the query to remove Cervical_cancer items
 			$cervical_cancer_done = $db->execute();
 			if ($cervical_cancer_done)
 			{
-				// [Interpretation 8304] If succesfully remove Cervical_cancer add queued success message.
+				// [Interpretation 8318] If successfully remove Cervical_cancer add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.cervical_cancer) type alias was removed from the <b>#__content_type</b> table'));
 			}
 
-			// [Interpretation 8315] Remove Cervical_cancer items from the contentitem tag map table
+			// [Interpretation 8329] Remove Cervical_cancer items from the contentitem tag map table
 			$cervical_cancer_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.cervical_cancer') );
-			// [Interpretation 8321] Create a new query object.
+			// [Interpretation 8335] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__contentitem_tag_map'));
 			$query->where($cervical_cancer_condition);
 			$db->setQuery($query);
-			// [Interpretation 8331] Execute the query to remove Cervical_cancer items
+			// [Interpretation 8345] Execute the query to remove Cervical_cancer items
 			$cervical_cancer_done = $db->execute();
 			if ($cervical_cancer_done)
 			{
-				// [Interpretation 8338] If succesfully remove Cervical_cancer add queued success message.
+				// [Interpretation 8353] If successfully remove Cervical_cancer add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.cervical_cancer) type alias was removed from the <b>#__contentitem_tag_map</b> table'));
 			}
 
-			// [Interpretation 8349] Remove Cervical_cancer items from the ucm content table
+			// [Interpretation 8364] Remove Cervical_cancer items from the ucm content table
 			$cervical_cancer_condition = array( $db->quoteName('core_type_alias') . ' = ' . $db->quote('com_eclinic_portal.cervical_cancer') );
-			// [Interpretation 8355] Create a new query object.
+			// [Interpretation 8370] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__ucm_content'));
 			$query->where($cervical_cancer_condition);
 			$db->setQuery($query);
-			// [Interpretation 8365] Execute the query to remove Cervical_cancer items
+			// [Interpretation 8380] Execute the query to remove Cervical_cancer items
 			$cervical_cancer_done = $db->execute();
 			if ($cervical_cancer_done)
 			{
-				// [Interpretation 8372] If succesfully remove Cervical_cancer add queued success message.
+				// [Interpretation 8388] If successfully removed Cervical_cancer add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.cervical_cancer) type alias was removed from the <b>#__ucm_content</b> table'));
 			}
 
-			// [Interpretation 8383] Make sure that all the Cervical_cancer items are cleared from DB
+			// [Interpretation 8399] Make sure that all the Cervical_cancer items are cleared from DB
 			foreach ($cervical_cancer_ids as $cervical_cancer_id)
 			{
-				// [Interpretation 8391] Remove Cervical_cancer items from the ucm base table
+				// [Interpretation 8407] Remove Cervical_cancer items from the ucm base table
 				$cervical_cancer_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $cervical_cancer_id);
-				// [Interpretation 8398] Create a new query object.
+				// [Interpretation 8414] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_base'));
 				$query->where($cervical_cancer_condition);
 				$db->setQuery($query);
-				// [Interpretation 8408] Execute the query to remove Cervical_cancer items
+				// [Interpretation 8424] Execute the query to remove Cervical_cancer items
 				$db->execute();
 
-				// [Interpretation 8414] Remove Cervical_cancer items from the ucm history table
+				// [Interpretation 8431] Remove Cervical_cancer items from the ucm history table
 				$cervical_cancer_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $cervical_cancer_id);
-				// [Interpretation 8420] Create a new query object.
+				// [Interpretation 8437] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_history'));
 				$query->where($cervical_cancer_condition);
 				$db->setQuery($query);
-				// [Interpretation 8430] Execute the query to remove Cervical_cancer items
+				// [Interpretation 8447] Execute the query to remove Cervical_cancer items
 				$db->execute();
 			}
 		}
 
-		// [Interpretation 8243] Create a new query object.
+		// [Interpretation 8255] Create a new query object.
 		$query = $db->getQuery(true);
-		// [Interpretation 8247] Select id from content type table
+		// [Interpretation 8259] Select id from content type table
 		$query->select($db->quoteName('type_id'));
 		$query->from($db->quoteName('#__content_types'));
-		// [Interpretation 8254] Where Breast_cancer alias is found
+		// [Interpretation 8266] Where Breast_cancer alias is found
 		$query->where( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.breast_cancer') );
 		$db->setQuery($query);
-		// [Interpretation 8261] Execute query to see if alias is found
+		// [Interpretation 8273] Execute query to see if alias is found
 		$db->execute();
 		$breast_cancer_found = $db->getNumRows();
-		// [Interpretation 8267] Now check if there were any rows
+		// [Interpretation 8279] Now check if there were any rows
 		if ($breast_cancer_found)
 		{
-			// [Interpretation 8273] Since there are load the needed  breast_cancer type ids
+			// [Interpretation 8285] Since there are load the needed  breast_cancer type ids
 			$breast_cancer_ids = $db->loadColumn();
-			// [Interpretation 8281] Remove Breast_cancer from the content type table
+			// [Interpretation 8293] Remove Breast_cancer from the content type table
 			$breast_cancer_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.breast_cancer') );
-			// [Interpretation 8287] Create a new query object.
+			// [Interpretation 8300] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__content_types'));
 			$query->where($breast_cancer_condition);
 			$db->setQuery($query);
-			// [Interpretation 8297] Execute the query to remove Breast_cancer items
+			// [Interpretation 8310] Execute the query to remove Breast_cancer items
 			$breast_cancer_done = $db->execute();
 			if ($breast_cancer_done)
 			{
-				// [Interpretation 8304] If succesfully remove Breast_cancer add queued success message.
+				// [Interpretation 8318] If successfully remove Breast_cancer add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.breast_cancer) type alias was removed from the <b>#__content_type</b> table'));
 			}
 
-			// [Interpretation 8315] Remove Breast_cancer items from the contentitem tag map table
+			// [Interpretation 8329] Remove Breast_cancer items from the contentitem tag map table
 			$breast_cancer_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.breast_cancer') );
-			// [Interpretation 8321] Create a new query object.
+			// [Interpretation 8335] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__contentitem_tag_map'));
 			$query->where($breast_cancer_condition);
 			$db->setQuery($query);
-			// [Interpretation 8331] Execute the query to remove Breast_cancer items
+			// [Interpretation 8345] Execute the query to remove Breast_cancer items
 			$breast_cancer_done = $db->execute();
 			if ($breast_cancer_done)
 			{
-				// [Interpretation 8338] If succesfully remove Breast_cancer add queued success message.
+				// [Interpretation 8353] If successfully remove Breast_cancer add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.breast_cancer) type alias was removed from the <b>#__contentitem_tag_map</b> table'));
 			}
 
-			// [Interpretation 8349] Remove Breast_cancer items from the ucm content table
+			// [Interpretation 8364] Remove Breast_cancer items from the ucm content table
 			$breast_cancer_condition = array( $db->quoteName('core_type_alias') . ' = ' . $db->quote('com_eclinic_portal.breast_cancer') );
-			// [Interpretation 8355] Create a new query object.
+			// [Interpretation 8370] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__ucm_content'));
 			$query->where($breast_cancer_condition);
 			$db->setQuery($query);
-			// [Interpretation 8365] Execute the query to remove Breast_cancer items
+			// [Interpretation 8380] Execute the query to remove Breast_cancer items
 			$breast_cancer_done = $db->execute();
 			if ($breast_cancer_done)
 			{
-				// [Interpretation 8372] If succesfully remove Breast_cancer add queued success message.
+				// [Interpretation 8388] If successfully removed Breast_cancer add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.breast_cancer) type alias was removed from the <b>#__ucm_content</b> table'));
 			}
 
-			// [Interpretation 8383] Make sure that all the Breast_cancer items are cleared from DB
+			// [Interpretation 8399] Make sure that all the Breast_cancer items are cleared from DB
 			foreach ($breast_cancer_ids as $breast_cancer_id)
 			{
-				// [Interpretation 8391] Remove Breast_cancer items from the ucm base table
+				// [Interpretation 8407] Remove Breast_cancer items from the ucm base table
 				$breast_cancer_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $breast_cancer_id);
-				// [Interpretation 8398] Create a new query object.
+				// [Interpretation 8414] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_base'));
 				$query->where($breast_cancer_condition);
 				$db->setQuery($query);
-				// [Interpretation 8408] Execute the query to remove Breast_cancer items
+				// [Interpretation 8424] Execute the query to remove Breast_cancer items
 				$db->execute();
 
-				// [Interpretation 8414] Remove Breast_cancer items from the ucm history table
+				// [Interpretation 8431] Remove Breast_cancer items from the ucm history table
 				$breast_cancer_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $breast_cancer_id);
-				// [Interpretation 8420] Create a new query object.
+				// [Interpretation 8437] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_history'));
 				$query->where($breast_cancer_condition);
 				$db->setQuery($query);
-				// [Interpretation 8430] Execute the query to remove Breast_cancer items
+				// [Interpretation 8447] Execute the query to remove Breast_cancer items
 				$db->execute();
 			}
 		}
 
-		// [Interpretation 8243] Create a new query object.
+		// [Interpretation 8255] Create a new query object.
 		$query = $db->getQuery(true);
-		// [Interpretation 8247] Select id from content type table
+		// [Interpretation 8259] Select id from content type table
 		$query->select($db->quoteName('type_id'));
 		$query->from($db->quoteName('#__content_types'));
-		// [Interpretation 8254] Where Test alias is found
+		// [Interpretation 8266] Where Test alias is found
 		$query->where( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.test') );
 		$db->setQuery($query);
-		// [Interpretation 8261] Execute query to see if alias is found
+		// [Interpretation 8273] Execute query to see if alias is found
 		$db->execute();
 		$test_found = $db->getNumRows();
-		// [Interpretation 8267] Now check if there were any rows
+		// [Interpretation 8279] Now check if there were any rows
 		if ($test_found)
 		{
-			// [Interpretation 8273] Since there are load the needed  test type ids
+			// [Interpretation 8285] Since there are load the needed  test type ids
 			$test_ids = $db->loadColumn();
-			// [Interpretation 8281] Remove Test from the content type table
+			// [Interpretation 8293] Remove Test from the content type table
 			$test_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.test') );
-			// [Interpretation 8287] Create a new query object.
+			// [Interpretation 8300] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__content_types'));
 			$query->where($test_condition);
 			$db->setQuery($query);
-			// [Interpretation 8297] Execute the query to remove Test items
+			// [Interpretation 8310] Execute the query to remove Test items
 			$test_done = $db->execute();
 			if ($test_done)
 			{
-				// [Interpretation 8304] If succesfully remove Test add queued success message.
+				// [Interpretation 8318] If successfully remove Test add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.test) type alias was removed from the <b>#__content_type</b> table'));
 			}
 
-			// [Interpretation 8315] Remove Test items from the contentitem tag map table
+			// [Interpretation 8329] Remove Test items from the contentitem tag map table
 			$test_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.test') );
-			// [Interpretation 8321] Create a new query object.
+			// [Interpretation 8335] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__contentitem_tag_map'));
 			$query->where($test_condition);
 			$db->setQuery($query);
-			// [Interpretation 8331] Execute the query to remove Test items
+			// [Interpretation 8345] Execute the query to remove Test items
 			$test_done = $db->execute();
 			if ($test_done)
 			{
-				// [Interpretation 8338] If succesfully remove Test add queued success message.
+				// [Interpretation 8353] If successfully remove Test add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.test) type alias was removed from the <b>#__contentitem_tag_map</b> table'));
 			}
 
-			// [Interpretation 8349] Remove Test items from the ucm content table
+			// [Interpretation 8364] Remove Test items from the ucm content table
 			$test_condition = array( $db->quoteName('core_type_alias') . ' = ' . $db->quote('com_eclinic_portal.test') );
-			// [Interpretation 8355] Create a new query object.
+			// [Interpretation 8370] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__ucm_content'));
 			$query->where($test_condition);
 			$db->setQuery($query);
-			// [Interpretation 8365] Execute the query to remove Test items
+			// [Interpretation 8380] Execute the query to remove Test items
 			$test_done = $db->execute();
 			if ($test_done)
 			{
-				// [Interpretation 8372] If succesfully remove Test add queued success message.
+				// [Interpretation 8388] If successfully removed Test add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.test) type alias was removed from the <b>#__ucm_content</b> table'));
 			}
 
-			// [Interpretation 8383] Make sure that all the Test items are cleared from DB
+			// [Interpretation 8399] Make sure that all the Test items are cleared from DB
 			foreach ($test_ids as $test_id)
 			{
-				// [Interpretation 8391] Remove Test items from the ucm base table
+				// [Interpretation 8407] Remove Test items from the ucm base table
 				$test_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $test_id);
-				// [Interpretation 8398] Create a new query object.
+				// [Interpretation 8414] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_base'));
 				$query->where($test_condition);
 				$db->setQuery($query);
-				// [Interpretation 8408] Execute the query to remove Test items
+				// [Interpretation 8424] Execute the query to remove Test items
 				$db->execute();
 
-				// [Interpretation 8414] Remove Test items from the ucm history table
+				// [Interpretation 8431] Remove Test items from the ucm history table
 				$test_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $test_id);
-				// [Interpretation 8420] Create a new query object.
+				// [Interpretation 8437] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_history'));
 				$query->where($test_condition);
 				$db->setQuery($query);
-				// [Interpretation 8430] Execute the query to remove Test items
+				// [Interpretation 8447] Execute the query to remove Test items
 				$db->execute();
 			}
 		}
 
-		// [Interpretation 8243] Create a new query object.
+		// [Interpretation 8255] Create a new query object.
 		$query = $db->getQuery(true);
-		// [Interpretation 8247] Select id from content type table
+		// [Interpretation 8259] Select id from content type table
 		$query->select($db->quoteName('type_id'));
 		$query->from($db->quoteName('#__content_types'));
-		// [Interpretation 8254] Where Testing_reason alias is found
+		// [Interpretation 8266] Where Testing_reason alias is found
 		$query->where( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.testing_reason') );
 		$db->setQuery($query);
-		// [Interpretation 8261] Execute query to see if alias is found
+		// [Interpretation 8273] Execute query to see if alias is found
 		$db->execute();
 		$testing_reason_found = $db->getNumRows();
-		// [Interpretation 8267] Now check if there were any rows
+		// [Interpretation 8279] Now check if there were any rows
 		if ($testing_reason_found)
 		{
-			// [Interpretation 8273] Since there are load the needed  testing_reason type ids
+			// [Interpretation 8285] Since there are load the needed  testing_reason type ids
 			$testing_reason_ids = $db->loadColumn();
-			// [Interpretation 8281] Remove Testing_reason from the content type table
+			// [Interpretation 8293] Remove Testing_reason from the content type table
 			$testing_reason_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.testing_reason') );
-			// [Interpretation 8287] Create a new query object.
+			// [Interpretation 8300] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__content_types'));
 			$query->where($testing_reason_condition);
 			$db->setQuery($query);
-			// [Interpretation 8297] Execute the query to remove Testing_reason items
+			// [Interpretation 8310] Execute the query to remove Testing_reason items
 			$testing_reason_done = $db->execute();
 			if ($testing_reason_done)
 			{
-				// [Interpretation 8304] If succesfully remove Testing_reason add queued success message.
+				// [Interpretation 8318] If successfully remove Testing_reason add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.testing_reason) type alias was removed from the <b>#__content_type</b> table'));
 			}
 
-			// [Interpretation 8315] Remove Testing_reason items from the contentitem tag map table
+			// [Interpretation 8329] Remove Testing_reason items from the contentitem tag map table
 			$testing_reason_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.testing_reason') );
-			// [Interpretation 8321] Create a new query object.
+			// [Interpretation 8335] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__contentitem_tag_map'));
 			$query->where($testing_reason_condition);
 			$db->setQuery($query);
-			// [Interpretation 8331] Execute the query to remove Testing_reason items
+			// [Interpretation 8345] Execute the query to remove Testing_reason items
 			$testing_reason_done = $db->execute();
 			if ($testing_reason_done)
 			{
-				// [Interpretation 8338] If succesfully remove Testing_reason add queued success message.
+				// [Interpretation 8353] If successfully remove Testing_reason add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.testing_reason) type alias was removed from the <b>#__contentitem_tag_map</b> table'));
 			}
 
-			// [Interpretation 8349] Remove Testing_reason items from the ucm content table
+			// [Interpretation 8364] Remove Testing_reason items from the ucm content table
 			$testing_reason_condition = array( $db->quoteName('core_type_alias') . ' = ' . $db->quote('com_eclinic_portal.testing_reason') );
-			// [Interpretation 8355] Create a new query object.
+			// [Interpretation 8370] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__ucm_content'));
 			$query->where($testing_reason_condition);
 			$db->setQuery($query);
-			// [Interpretation 8365] Execute the query to remove Testing_reason items
+			// [Interpretation 8380] Execute the query to remove Testing_reason items
 			$testing_reason_done = $db->execute();
 			if ($testing_reason_done)
 			{
-				// [Interpretation 8372] If succesfully remove Testing_reason add queued success message.
+				// [Interpretation 8388] If successfully removed Testing_reason add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.testing_reason) type alias was removed from the <b>#__ucm_content</b> table'));
 			}
 
-			// [Interpretation 8383] Make sure that all the Testing_reason items are cleared from DB
+			// [Interpretation 8399] Make sure that all the Testing_reason items are cleared from DB
 			foreach ($testing_reason_ids as $testing_reason_id)
 			{
-				// [Interpretation 8391] Remove Testing_reason items from the ucm base table
+				// [Interpretation 8407] Remove Testing_reason items from the ucm base table
 				$testing_reason_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $testing_reason_id);
-				// [Interpretation 8398] Create a new query object.
+				// [Interpretation 8414] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_base'));
 				$query->where($testing_reason_condition);
 				$db->setQuery($query);
-				// [Interpretation 8408] Execute the query to remove Testing_reason items
+				// [Interpretation 8424] Execute the query to remove Testing_reason items
 				$db->execute();
 
-				// [Interpretation 8414] Remove Testing_reason items from the ucm history table
+				// [Interpretation 8431] Remove Testing_reason items from the ucm history table
 				$testing_reason_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $testing_reason_id);
-				// [Interpretation 8420] Create a new query object.
+				// [Interpretation 8437] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_history'));
 				$query->where($testing_reason_condition);
 				$db->setQuery($query);
-				// [Interpretation 8430] Execute the query to remove Testing_reason items
+				// [Interpretation 8447] Execute the query to remove Testing_reason items
 				$db->execute();
 			}
 		}
 
-		// [Interpretation 8243] Create a new query object.
+		// [Interpretation 8255] Create a new query object.
 		$query = $db->getQuery(true);
-		// [Interpretation 8247] Select id from content type table
+		// [Interpretation 8259] Select id from content type table
 		$query->select($db->quoteName('type_id'));
 		$query->from($db->quoteName('#__content_types'));
-		// [Interpretation 8254] Where Counseling_type alias is found
+		// [Interpretation 8266] Where Counseling_type alias is found
 		$query->where( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.counseling_type') );
 		$db->setQuery($query);
-		// [Interpretation 8261] Execute query to see if alias is found
+		// [Interpretation 8273] Execute query to see if alias is found
 		$db->execute();
 		$counseling_type_found = $db->getNumRows();
-		// [Interpretation 8267] Now check if there were any rows
+		// [Interpretation 8279] Now check if there were any rows
 		if ($counseling_type_found)
 		{
-			// [Interpretation 8273] Since there are load the needed  counseling_type type ids
+			// [Interpretation 8285] Since there are load the needed  counseling_type type ids
 			$counseling_type_ids = $db->loadColumn();
-			// [Interpretation 8281] Remove Counseling_type from the content type table
+			// [Interpretation 8293] Remove Counseling_type from the content type table
 			$counseling_type_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.counseling_type') );
-			// [Interpretation 8287] Create a new query object.
+			// [Interpretation 8300] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__content_types'));
 			$query->where($counseling_type_condition);
 			$db->setQuery($query);
-			// [Interpretation 8297] Execute the query to remove Counseling_type items
+			// [Interpretation 8310] Execute the query to remove Counseling_type items
 			$counseling_type_done = $db->execute();
 			if ($counseling_type_done)
 			{
-				// [Interpretation 8304] If succesfully remove Counseling_type add queued success message.
+				// [Interpretation 8318] If successfully remove Counseling_type add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.counseling_type) type alias was removed from the <b>#__content_type</b> table'));
 			}
 
-			// [Interpretation 8315] Remove Counseling_type items from the contentitem tag map table
+			// [Interpretation 8329] Remove Counseling_type items from the contentitem tag map table
 			$counseling_type_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.counseling_type') );
-			// [Interpretation 8321] Create a new query object.
+			// [Interpretation 8335] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__contentitem_tag_map'));
 			$query->where($counseling_type_condition);
 			$db->setQuery($query);
-			// [Interpretation 8331] Execute the query to remove Counseling_type items
+			// [Interpretation 8345] Execute the query to remove Counseling_type items
 			$counseling_type_done = $db->execute();
 			if ($counseling_type_done)
 			{
-				// [Interpretation 8338] If succesfully remove Counseling_type add queued success message.
+				// [Interpretation 8353] If successfully remove Counseling_type add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.counseling_type) type alias was removed from the <b>#__contentitem_tag_map</b> table'));
 			}
 
-			// [Interpretation 8349] Remove Counseling_type items from the ucm content table
+			// [Interpretation 8364] Remove Counseling_type items from the ucm content table
 			$counseling_type_condition = array( $db->quoteName('core_type_alias') . ' = ' . $db->quote('com_eclinic_portal.counseling_type') );
-			// [Interpretation 8355] Create a new query object.
+			// [Interpretation 8370] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__ucm_content'));
 			$query->where($counseling_type_condition);
 			$db->setQuery($query);
-			// [Interpretation 8365] Execute the query to remove Counseling_type items
+			// [Interpretation 8380] Execute the query to remove Counseling_type items
 			$counseling_type_done = $db->execute();
 			if ($counseling_type_done)
 			{
-				// [Interpretation 8372] If succesfully remove Counseling_type add queued success message.
+				// [Interpretation 8388] If successfully removed Counseling_type add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.counseling_type) type alias was removed from the <b>#__ucm_content</b> table'));
 			}
 
-			// [Interpretation 8383] Make sure that all the Counseling_type items are cleared from DB
+			// [Interpretation 8399] Make sure that all the Counseling_type items are cleared from DB
 			foreach ($counseling_type_ids as $counseling_type_id)
 			{
-				// [Interpretation 8391] Remove Counseling_type items from the ucm base table
+				// [Interpretation 8407] Remove Counseling_type items from the ucm base table
 				$counseling_type_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $counseling_type_id);
-				// [Interpretation 8398] Create a new query object.
+				// [Interpretation 8414] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_base'));
 				$query->where($counseling_type_condition);
 				$db->setQuery($query);
-				// [Interpretation 8408] Execute the query to remove Counseling_type items
+				// [Interpretation 8424] Execute the query to remove Counseling_type items
 				$db->execute();
 
-				// [Interpretation 8414] Remove Counseling_type items from the ucm history table
+				// [Interpretation 8431] Remove Counseling_type items from the ucm history table
 				$counseling_type_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $counseling_type_id);
-				// [Interpretation 8420] Create a new query object.
+				// [Interpretation 8437] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_history'));
 				$query->where($counseling_type_condition);
 				$db->setQuery($query);
-				// [Interpretation 8430] Execute the query to remove Counseling_type items
+				// [Interpretation 8447] Execute the query to remove Counseling_type items
 				$db->execute();
 			}
 		}
 
-		// [Interpretation 8243] Create a new query object.
+		// [Interpretation 8255] Create a new query object.
 		$query = $db->getQuery(true);
-		// [Interpretation 8247] Select id from content type table
+		// [Interpretation 8259] Select id from content type table
 		$query->select($db->quoteName('type_id'));
 		$query->from($db->quoteName('#__content_types'));
-		// [Interpretation 8254] Where Group_health_education_topic alias is found
+		// [Interpretation 8266] Where Group_health_education_topic alias is found
 		$query->where( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.group_health_education_topic') );
 		$db->setQuery($query);
-		// [Interpretation 8261] Execute query to see if alias is found
+		// [Interpretation 8273] Execute query to see if alias is found
 		$db->execute();
 		$group_health_education_topic_found = $db->getNumRows();
-		// [Interpretation 8267] Now check if there were any rows
+		// [Interpretation 8279] Now check if there were any rows
 		if ($group_health_education_topic_found)
 		{
-			// [Interpretation 8273] Since there are load the needed  group_health_education_topic type ids
+			// [Interpretation 8285] Since there are load the needed  group_health_education_topic type ids
 			$group_health_education_topic_ids = $db->loadColumn();
-			// [Interpretation 8281] Remove Group_health_education_topic from the content type table
+			// [Interpretation 8293] Remove Group_health_education_topic from the content type table
 			$group_health_education_topic_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.group_health_education_topic') );
-			// [Interpretation 8287] Create a new query object.
+			// [Interpretation 8300] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__content_types'));
 			$query->where($group_health_education_topic_condition);
 			$db->setQuery($query);
-			// [Interpretation 8297] Execute the query to remove Group_health_education_topic items
+			// [Interpretation 8310] Execute the query to remove Group_health_education_topic items
 			$group_health_education_topic_done = $db->execute();
 			if ($group_health_education_topic_done)
 			{
-				// [Interpretation 8304] If succesfully remove Group_health_education_topic add queued success message.
+				// [Interpretation 8318] If successfully remove Group_health_education_topic add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.group_health_education_topic) type alias was removed from the <b>#__content_type</b> table'));
 			}
 
-			// [Interpretation 8315] Remove Group_health_education_topic items from the contentitem tag map table
+			// [Interpretation 8329] Remove Group_health_education_topic items from the contentitem tag map table
 			$group_health_education_topic_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.group_health_education_topic') );
-			// [Interpretation 8321] Create a new query object.
+			// [Interpretation 8335] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__contentitem_tag_map'));
 			$query->where($group_health_education_topic_condition);
 			$db->setQuery($query);
-			// [Interpretation 8331] Execute the query to remove Group_health_education_topic items
+			// [Interpretation 8345] Execute the query to remove Group_health_education_topic items
 			$group_health_education_topic_done = $db->execute();
 			if ($group_health_education_topic_done)
 			{
-				// [Interpretation 8338] If succesfully remove Group_health_education_topic add queued success message.
+				// [Interpretation 8353] If successfully remove Group_health_education_topic add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.group_health_education_topic) type alias was removed from the <b>#__contentitem_tag_map</b> table'));
 			}
 
-			// [Interpretation 8349] Remove Group_health_education_topic items from the ucm content table
+			// [Interpretation 8364] Remove Group_health_education_topic items from the ucm content table
 			$group_health_education_topic_condition = array( $db->quoteName('core_type_alias') . ' = ' . $db->quote('com_eclinic_portal.group_health_education_topic') );
-			// [Interpretation 8355] Create a new query object.
+			// [Interpretation 8370] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__ucm_content'));
 			$query->where($group_health_education_topic_condition);
 			$db->setQuery($query);
-			// [Interpretation 8365] Execute the query to remove Group_health_education_topic items
+			// [Interpretation 8380] Execute the query to remove Group_health_education_topic items
 			$group_health_education_topic_done = $db->execute();
 			if ($group_health_education_topic_done)
 			{
-				// [Interpretation 8372] If succesfully remove Group_health_education_topic add queued success message.
+				// [Interpretation 8388] If successfully removed Group_health_education_topic add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.group_health_education_topic) type alias was removed from the <b>#__ucm_content</b> table'));
 			}
 
-			// [Interpretation 8383] Make sure that all the Group_health_education_topic items are cleared from DB
+			// [Interpretation 8399] Make sure that all the Group_health_education_topic items are cleared from DB
 			foreach ($group_health_education_topic_ids as $group_health_education_topic_id)
 			{
-				// [Interpretation 8391] Remove Group_health_education_topic items from the ucm base table
+				// [Interpretation 8407] Remove Group_health_education_topic items from the ucm base table
 				$group_health_education_topic_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $group_health_education_topic_id);
-				// [Interpretation 8398] Create a new query object.
+				// [Interpretation 8414] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_base'));
 				$query->where($group_health_education_topic_condition);
 				$db->setQuery($query);
-				// [Interpretation 8408] Execute the query to remove Group_health_education_topic items
+				// [Interpretation 8424] Execute the query to remove Group_health_education_topic items
 				$db->execute();
 
-				// [Interpretation 8414] Remove Group_health_education_topic items from the ucm history table
+				// [Interpretation 8431] Remove Group_health_education_topic items from the ucm history table
 				$group_health_education_topic_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $group_health_education_topic_id);
-				// [Interpretation 8420] Create a new query object.
+				// [Interpretation 8437] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_history'));
 				$query->where($group_health_education_topic_condition);
 				$db->setQuery($query);
-				// [Interpretation 8430] Execute the query to remove Group_health_education_topic items
+				// [Interpretation 8447] Execute the query to remove Group_health_education_topic items
 				$db->execute();
 			}
 		}
 
-		// [Interpretation 8243] Create a new query object.
+		// [Interpretation 8255] Create a new query object.
 		$query = $db->getQuery(true);
-		// [Interpretation 8247] Select id from content type table
+		// [Interpretation 8259] Select id from content type table
 		$query->select($db->quoteName('type_id'));
 		$query->from($db->quoteName('#__content_types'));
-		// [Interpretation 8254] Where Individual_health_education_topic alias is found
+		// [Interpretation 8266] Where Individual_health_education_topic alias is found
 		$query->where( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.individual_health_education_topic') );
 		$db->setQuery($query);
-		// [Interpretation 8261] Execute query to see if alias is found
+		// [Interpretation 8273] Execute query to see if alias is found
 		$db->execute();
 		$individual_health_education_topic_found = $db->getNumRows();
-		// [Interpretation 8267] Now check if there were any rows
+		// [Interpretation 8279] Now check if there were any rows
 		if ($individual_health_education_topic_found)
 		{
-			// [Interpretation 8273] Since there are load the needed  individual_health_education_topic type ids
+			// [Interpretation 8285] Since there are load the needed  individual_health_education_topic type ids
 			$individual_health_education_topic_ids = $db->loadColumn();
-			// [Interpretation 8281] Remove Individual_health_education_topic from the content type table
+			// [Interpretation 8293] Remove Individual_health_education_topic from the content type table
 			$individual_health_education_topic_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.individual_health_education_topic') );
-			// [Interpretation 8287] Create a new query object.
+			// [Interpretation 8300] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__content_types'));
 			$query->where($individual_health_education_topic_condition);
 			$db->setQuery($query);
-			// [Interpretation 8297] Execute the query to remove Individual_health_education_topic items
+			// [Interpretation 8310] Execute the query to remove Individual_health_education_topic items
 			$individual_health_education_topic_done = $db->execute();
 			if ($individual_health_education_topic_done)
 			{
-				// [Interpretation 8304] If succesfully remove Individual_health_education_topic add queued success message.
+				// [Interpretation 8318] If successfully remove Individual_health_education_topic add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.individual_health_education_topic) type alias was removed from the <b>#__content_type</b> table'));
 			}
 
-			// [Interpretation 8315] Remove Individual_health_education_topic items from the contentitem tag map table
+			// [Interpretation 8329] Remove Individual_health_education_topic items from the contentitem tag map table
 			$individual_health_education_topic_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.individual_health_education_topic') );
-			// [Interpretation 8321] Create a new query object.
+			// [Interpretation 8335] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__contentitem_tag_map'));
 			$query->where($individual_health_education_topic_condition);
 			$db->setQuery($query);
-			// [Interpretation 8331] Execute the query to remove Individual_health_education_topic items
+			// [Interpretation 8345] Execute the query to remove Individual_health_education_topic items
 			$individual_health_education_topic_done = $db->execute();
 			if ($individual_health_education_topic_done)
 			{
-				// [Interpretation 8338] If succesfully remove Individual_health_education_topic add queued success message.
+				// [Interpretation 8353] If successfully remove Individual_health_education_topic add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.individual_health_education_topic) type alias was removed from the <b>#__contentitem_tag_map</b> table'));
 			}
 
-			// [Interpretation 8349] Remove Individual_health_education_topic items from the ucm content table
+			// [Interpretation 8364] Remove Individual_health_education_topic items from the ucm content table
 			$individual_health_education_topic_condition = array( $db->quoteName('core_type_alias') . ' = ' . $db->quote('com_eclinic_portal.individual_health_education_topic') );
-			// [Interpretation 8355] Create a new query object.
+			// [Interpretation 8370] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__ucm_content'));
 			$query->where($individual_health_education_topic_condition);
 			$db->setQuery($query);
-			// [Interpretation 8365] Execute the query to remove Individual_health_education_topic items
+			// [Interpretation 8380] Execute the query to remove Individual_health_education_topic items
 			$individual_health_education_topic_done = $db->execute();
 			if ($individual_health_education_topic_done)
 			{
-				// [Interpretation 8372] If succesfully remove Individual_health_education_topic add queued success message.
+				// [Interpretation 8388] If successfully removed Individual_health_education_topic add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.individual_health_education_topic) type alias was removed from the <b>#__ucm_content</b> table'));
 			}
 
-			// [Interpretation 8383] Make sure that all the Individual_health_education_topic items are cleared from DB
+			// [Interpretation 8399] Make sure that all the Individual_health_education_topic items are cleared from DB
 			foreach ($individual_health_education_topic_ids as $individual_health_education_topic_id)
 			{
-				// [Interpretation 8391] Remove Individual_health_education_topic items from the ucm base table
+				// [Interpretation 8407] Remove Individual_health_education_topic items from the ucm base table
 				$individual_health_education_topic_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $individual_health_education_topic_id);
-				// [Interpretation 8398] Create a new query object.
+				// [Interpretation 8414] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_base'));
 				$query->where($individual_health_education_topic_condition);
 				$db->setQuery($query);
-				// [Interpretation 8408] Execute the query to remove Individual_health_education_topic items
+				// [Interpretation 8424] Execute the query to remove Individual_health_education_topic items
 				$db->execute();
 
-				// [Interpretation 8414] Remove Individual_health_education_topic items from the ucm history table
+				// [Interpretation 8431] Remove Individual_health_education_topic items from the ucm history table
 				$individual_health_education_topic_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $individual_health_education_topic_id);
-				// [Interpretation 8420] Create a new query object.
+				// [Interpretation 8437] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_history'));
 				$query->where($individual_health_education_topic_condition);
 				$db->setQuery($query);
-				// [Interpretation 8430] Execute the query to remove Individual_health_education_topic items
+				// [Interpretation 8447] Execute the query to remove Individual_health_education_topic items
 				$db->execute();
 			}
 		}
 
-		// [Interpretation 8243] Create a new query object.
+		// [Interpretation 8255] Create a new query object.
 		$query = $db->getQuery(true);
-		// [Interpretation 8247] Select id from content type table
+		// [Interpretation 8259] Select id from content type table
 		$query->select($db->quoteName('type_id'));
 		$query->from($db->quoteName('#__content_types'));
-		// [Interpretation 8254] Where Individual_health_education alias is found
+		// [Interpretation 8266] Where Individual_health_education alias is found
 		$query->where( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.individual_health_education') );
 		$db->setQuery($query);
-		// [Interpretation 8261] Execute query to see if alias is found
+		// [Interpretation 8273] Execute query to see if alias is found
 		$db->execute();
 		$individual_health_education_found = $db->getNumRows();
-		// [Interpretation 8267] Now check if there were any rows
+		// [Interpretation 8279] Now check if there were any rows
 		if ($individual_health_education_found)
 		{
-			// [Interpretation 8273] Since there are load the needed  individual_health_education type ids
+			// [Interpretation 8285] Since there are load the needed  individual_health_education type ids
 			$individual_health_education_ids = $db->loadColumn();
-			// [Interpretation 8281] Remove Individual_health_education from the content type table
+			// [Interpretation 8293] Remove Individual_health_education from the content type table
 			$individual_health_education_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.individual_health_education') );
-			// [Interpretation 8287] Create a new query object.
+			// [Interpretation 8300] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__content_types'));
 			$query->where($individual_health_education_condition);
 			$db->setQuery($query);
-			// [Interpretation 8297] Execute the query to remove Individual_health_education items
+			// [Interpretation 8310] Execute the query to remove Individual_health_education items
 			$individual_health_education_done = $db->execute();
 			if ($individual_health_education_done)
 			{
-				// [Interpretation 8304] If succesfully remove Individual_health_education add queued success message.
+				// [Interpretation 8318] If successfully remove Individual_health_education add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.individual_health_education) type alias was removed from the <b>#__content_type</b> table'));
 			}
 
-			// [Interpretation 8315] Remove Individual_health_education items from the contentitem tag map table
+			// [Interpretation 8329] Remove Individual_health_education items from the contentitem tag map table
 			$individual_health_education_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.individual_health_education') );
-			// [Interpretation 8321] Create a new query object.
+			// [Interpretation 8335] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__contentitem_tag_map'));
 			$query->where($individual_health_education_condition);
 			$db->setQuery($query);
-			// [Interpretation 8331] Execute the query to remove Individual_health_education items
+			// [Interpretation 8345] Execute the query to remove Individual_health_education items
 			$individual_health_education_done = $db->execute();
 			if ($individual_health_education_done)
 			{
-				// [Interpretation 8338] If succesfully remove Individual_health_education add queued success message.
+				// [Interpretation 8353] If successfully remove Individual_health_education add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.individual_health_education) type alias was removed from the <b>#__contentitem_tag_map</b> table'));
 			}
 
-			// [Interpretation 8349] Remove Individual_health_education items from the ucm content table
+			// [Interpretation 8364] Remove Individual_health_education items from the ucm content table
 			$individual_health_education_condition = array( $db->quoteName('core_type_alias') . ' = ' . $db->quote('com_eclinic_portal.individual_health_education') );
-			// [Interpretation 8355] Create a new query object.
+			// [Interpretation 8370] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__ucm_content'));
 			$query->where($individual_health_education_condition);
 			$db->setQuery($query);
-			// [Interpretation 8365] Execute the query to remove Individual_health_education items
+			// [Interpretation 8380] Execute the query to remove Individual_health_education items
 			$individual_health_education_done = $db->execute();
 			if ($individual_health_education_done)
 			{
-				// [Interpretation 8372] If succesfully remove Individual_health_education add queued success message.
+				// [Interpretation 8388] If successfully removed Individual_health_education add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.individual_health_education) type alias was removed from the <b>#__ucm_content</b> table'));
 			}
 
-			// [Interpretation 8383] Make sure that all the Individual_health_education items are cleared from DB
+			// [Interpretation 8399] Make sure that all the Individual_health_education items are cleared from DB
 			foreach ($individual_health_education_ids as $individual_health_education_id)
 			{
-				// [Interpretation 8391] Remove Individual_health_education items from the ucm base table
+				// [Interpretation 8407] Remove Individual_health_education items from the ucm base table
 				$individual_health_education_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $individual_health_education_id);
-				// [Interpretation 8398] Create a new query object.
+				// [Interpretation 8414] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_base'));
 				$query->where($individual_health_education_condition);
 				$db->setQuery($query);
-				// [Interpretation 8408] Execute the query to remove Individual_health_education items
+				// [Interpretation 8424] Execute the query to remove Individual_health_education items
 				$db->execute();
 
-				// [Interpretation 8414] Remove Individual_health_education items from the ucm history table
+				// [Interpretation 8431] Remove Individual_health_education items from the ucm history table
 				$individual_health_education_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $individual_health_education_id);
-				// [Interpretation 8420] Create a new query object.
+				// [Interpretation 8437] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_history'));
 				$query->where($individual_health_education_condition);
 				$db->setQuery($query);
-				// [Interpretation 8430] Execute the query to remove Individual_health_education items
+				// [Interpretation 8447] Execute the query to remove Individual_health_education items
 				$db->execute();
 			}
 		}
 
-		// [Interpretation 8243] Create a new query object.
+		// [Interpretation 8255] Create a new query object.
 		$query = $db->getQuery(true);
-		// [Interpretation 8247] Select id from content type table
+		// [Interpretation 8259] Select id from content type table
 		$query->select($db->quoteName('type_id'));
 		$query->from($db->quoteName('#__content_types'));
-		// [Interpretation 8254] Where Group_health_education alias is found
+		// [Interpretation 8266] Where Group_health_education alias is found
 		$query->where( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.group_health_education') );
 		$db->setQuery($query);
-		// [Interpretation 8261] Execute query to see if alias is found
+		// [Interpretation 8273] Execute query to see if alias is found
 		$db->execute();
 		$group_health_education_found = $db->getNumRows();
-		// [Interpretation 8267] Now check if there were any rows
+		// [Interpretation 8279] Now check if there were any rows
 		if ($group_health_education_found)
 		{
-			// [Interpretation 8273] Since there are load the needed  group_health_education type ids
+			// [Interpretation 8285] Since there are load the needed  group_health_education type ids
 			$group_health_education_ids = $db->loadColumn();
-			// [Interpretation 8281] Remove Group_health_education from the content type table
+			// [Interpretation 8293] Remove Group_health_education from the content type table
 			$group_health_education_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.group_health_education') );
-			// [Interpretation 8287] Create a new query object.
+			// [Interpretation 8300] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__content_types'));
 			$query->where($group_health_education_condition);
 			$db->setQuery($query);
-			// [Interpretation 8297] Execute the query to remove Group_health_education items
+			// [Interpretation 8310] Execute the query to remove Group_health_education items
 			$group_health_education_done = $db->execute();
 			if ($group_health_education_done)
 			{
-				// [Interpretation 8304] If succesfully remove Group_health_education add queued success message.
+				// [Interpretation 8318] If successfully remove Group_health_education add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.group_health_education) type alias was removed from the <b>#__content_type</b> table'));
 			}
 
-			// [Interpretation 8315] Remove Group_health_education items from the contentitem tag map table
+			// [Interpretation 8329] Remove Group_health_education items from the contentitem tag map table
 			$group_health_education_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.group_health_education') );
-			// [Interpretation 8321] Create a new query object.
+			// [Interpretation 8335] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__contentitem_tag_map'));
 			$query->where($group_health_education_condition);
 			$db->setQuery($query);
-			// [Interpretation 8331] Execute the query to remove Group_health_education items
+			// [Interpretation 8345] Execute the query to remove Group_health_education items
 			$group_health_education_done = $db->execute();
 			if ($group_health_education_done)
 			{
-				// [Interpretation 8338] If succesfully remove Group_health_education add queued success message.
+				// [Interpretation 8353] If successfully remove Group_health_education add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.group_health_education) type alias was removed from the <b>#__contentitem_tag_map</b> table'));
 			}
 
-			// [Interpretation 8349] Remove Group_health_education items from the ucm content table
+			// [Interpretation 8364] Remove Group_health_education items from the ucm content table
 			$group_health_education_condition = array( $db->quoteName('core_type_alias') . ' = ' . $db->quote('com_eclinic_portal.group_health_education') );
-			// [Interpretation 8355] Create a new query object.
+			// [Interpretation 8370] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__ucm_content'));
 			$query->where($group_health_education_condition);
 			$db->setQuery($query);
-			// [Interpretation 8365] Execute the query to remove Group_health_education items
+			// [Interpretation 8380] Execute the query to remove Group_health_education items
 			$group_health_education_done = $db->execute();
 			if ($group_health_education_done)
 			{
-				// [Interpretation 8372] If succesfully remove Group_health_education add queued success message.
+				// [Interpretation 8388] If successfully removed Group_health_education add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.group_health_education) type alias was removed from the <b>#__ucm_content</b> table'));
 			}
 
-			// [Interpretation 8383] Make sure that all the Group_health_education items are cleared from DB
+			// [Interpretation 8399] Make sure that all the Group_health_education items are cleared from DB
 			foreach ($group_health_education_ids as $group_health_education_id)
 			{
-				// [Interpretation 8391] Remove Group_health_education items from the ucm base table
+				// [Interpretation 8407] Remove Group_health_education items from the ucm base table
 				$group_health_education_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $group_health_education_id);
-				// [Interpretation 8398] Create a new query object.
+				// [Interpretation 8414] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_base'));
 				$query->where($group_health_education_condition);
 				$db->setQuery($query);
-				// [Interpretation 8408] Execute the query to remove Group_health_education items
+				// [Interpretation 8424] Execute the query to remove Group_health_education items
 				$db->execute();
 
-				// [Interpretation 8414] Remove Group_health_education items from the ucm history table
+				// [Interpretation 8431] Remove Group_health_education items from the ucm history table
 				$group_health_education_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $group_health_education_id);
-				// [Interpretation 8420] Create a new query object.
+				// [Interpretation 8437] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_history'));
 				$query->where($group_health_education_condition);
 				$db->setQuery($query);
-				// [Interpretation 8430] Execute the query to remove Group_health_education items
+				// [Interpretation 8447] Execute the query to remove Group_health_education items
 				$db->execute();
 			}
 		}
 
-		// [Interpretation 8243] Create a new query object.
+		// [Interpretation 8255] Create a new query object.
 		$query = $db->getQuery(true);
-		// [Interpretation 8247] Select id from content type table
+		// [Interpretation 8259] Select id from content type table
 		$query->select($db->quoteName('type_id'));
 		$query->from($db->quoteName('#__content_types'));
-		// [Interpretation 8254] Where Foetal_engagement alias is found
+		// [Interpretation 8266] Where Foetal_engagement alias is found
 		$query->where( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.foetal_engagement') );
 		$db->setQuery($query);
-		// [Interpretation 8261] Execute query to see if alias is found
+		// [Interpretation 8273] Execute query to see if alias is found
 		$db->execute();
 		$foetal_engagement_found = $db->getNumRows();
-		// [Interpretation 8267] Now check if there were any rows
+		// [Interpretation 8279] Now check if there were any rows
 		if ($foetal_engagement_found)
 		{
-			// [Interpretation 8273] Since there are load the needed  foetal_engagement type ids
+			// [Interpretation 8285] Since there are load the needed  foetal_engagement type ids
 			$foetal_engagement_ids = $db->loadColumn();
-			// [Interpretation 8281] Remove Foetal_engagement from the content type table
+			// [Interpretation 8293] Remove Foetal_engagement from the content type table
 			$foetal_engagement_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.foetal_engagement') );
-			// [Interpretation 8287] Create a new query object.
+			// [Interpretation 8300] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__content_types'));
 			$query->where($foetal_engagement_condition);
 			$db->setQuery($query);
-			// [Interpretation 8297] Execute the query to remove Foetal_engagement items
+			// [Interpretation 8310] Execute the query to remove Foetal_engagement items
 			$foetal_engagement_done = $db->execute();
 			if ($foetal_engagement_done)
 			{
-				// [Interpretation 8304] If succesfully remove Foetal_engagement add queued success message.
+				// [Interpretation 8318] If successfully remove Foetal_engagement add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.foetal_engagement) type alias was removed from the <b>#__content_type</b> table'));
 			}
 
-			// [Interpretation 8315] Remove Foetal_engagement items from the contentitem tag map table
+			// [Interpretation 8329] Remove Foetal_engagement items from the contentitem tag map table
 			$foetal_engagement_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.foetal_engagement') );
-			// [Interpretation 8321] Create a new query object.
+			// [Interpretation 8335] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__contentitem_tag_map'));
 			$query->where($foetal_engagement_condition);
 			$db->setQuery($query);
-			// [Interpretation 8331] Execute the query to remove Foetal_engagement items
+			// [Interpretation 8345] Execute the query to remove Foetal_engagement items
 			$foetal_engagement_done = $db->execute();
 			if ($foetal_engagement_done)
 			{
-				// [Interpretation 8338] If succesfully remove Foetal_engagement add queued success message.
+				// [Interpretation 8353] If successfully remove Foetal_engagement add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.foetal_engagement) type alias was removed from the <b>#__contentitem_tag_map</b> table'));
 			}
 
-			// [Interpretation 8349] Remove Foetal_engagement items from the ucm content table
+			// [Interpretation 8364] Remove Foetal_engagement items from the ucm content table
 			$foetal_engagement_condition = array( $db->quoteName('core_type_alias') . ' = ' . $db->quote('com_eclinic_portal.foetal_engagement') );
-			// [Interpretation 8355] Create a new query object.
+			// [Interpretation 8370] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__ucm_content'));
 			$query->where($foetal_engagement_condition);
 			$db->setQuery($query);
-			// [Interpretation 8365] Execute the query to remove Foetal_engagement items
+			// [Interpretation 8380] Execute the query to remove Foetal_engagement items
 			$foetal_engagement_done = $db->execute();
 			if ($foetal_engagement_done)
 			{
-				// [Interpretation 8372] If succesfully remove Foetal_engagement add queued success message.
+				// [Interpretation 8388] If successfully removed Foetal_engagement add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.foetal_engagement) type alias was removed from the <b>#__ucm_content</b> table'));
 			}
 
-			// [Interpretation 8383] Make sure that all the Foetal_engagement items are cleared from DB
+			// [Interpretation 8399] Make sure that all the Foetal_engagement items are cleared from DB
 			foreach ($foetal_engagement_ids as $foetal_engagement_id)
 			{
-				// [Interpretation 8391] Remove Foetal_engagement items from the ucm base table
+				// [Interpretation 8407] Remove Foetal_engagement items from the ucm base table
 				$foetal_engagement_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $foetal_engagement_id);
-				// [Interpretation 8398] Create a new query object.
+				// [Interpretation 8414] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_base'));
 				$query->where($foetal_engagement_condition);
 				$db->setQuery($query);
-				// [Interpretation 8408] Execute the query to remove Foetal_engagement items
+				// [Interpretation 8424] Execute the query to remove Foetal_engagement items
 				$db->execute();
 
-				// [Interpretation 8414] Remove Foetal_engagement items from the ucm history table
+				// [Interpretation 8431] Remove Foetal_engagement items from the ucm history table
 				$foetal_engagement_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $foetal_engagement_id);
-				// [Interpretation 8420] Create a new query object.
+				// [Interpretation 8437] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_history'));
 				$query->where($foetal_engagement_condition);
 				$db->setQuery($query);
-				// [Interpretation 8430] Execute the query to remove Foetal_engagement items
+				// [Interpretation 8447] Execute the query to remove Foetal_engagement items
 				$db->execute();
 			}
 		}
 
-		// [Interpretation 8243] Create a new query object.
+		// [Interpretation 8255] Create a new query object.
 		$query = $db->getQuery(true);
-		// [Interpretation 8247] Select id from content type table
+		// [Interpretation 8259] Select id from content type table
 		$query->select($db->quoteName('type_id'));
 		$query->from($db->quoteName('#__content_types'));
-		// [Interpretation 8254] Where Administration_part alias is found
+		// [Interpretation 8266] Where Administration_part alias is found
 		$query->where( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.administration_part') );
 		$db->setQuery($query);
-		// [Interpretation 8261] Execute query to see if alias is found
+		// [Interpretation 8273] Execute query to see if alias is found
 		$db->execute();
 		$administration_part_found = $db->getNumRows();
-		// [Interpretation 8267] Now check if there were any rows
+		// [Interpretation 8279] Now check if there were any rows
 		if ($administration_part_found)
 		{
-			// [Interpretation 8273] Since there are load the needed  administration_part type ids
+			// [Interpretation 8285] Since there are load the needed  administration_part type ids
 			$administration_part_ids = $db->loadColumn();
-			// [Interpretation 8281] Remove Administration_part from the content type table
+			// [Interpretation 8293] Remove Administration_part from the content type table
 			$administration_part_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.administration_part') );
-			// [Interpretation 8287] Create a new query object.
+			// [Interpretation 8300] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__content_types'));
 			$query->where($administration_part_condition);
 			$db->setQuery($query);
-			// [Interpretation 8297] Execute the query to remove Administration_part items
+			// [Interpretation 8310] Execute the query to remove Administration_part items
 			$administration_part_done = $db->execute();
 			if ($administration_part_done)
 			{
-				// [Interpretation 8304] If succesfully remove Administration_part add queued success message.
+				// [Interpretation 8318] If successfully remove Administration_part add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.administration_part) type alias was removed from the <b>#__content_type</b> table'));
 			}
 
-			// [Interpretation 8315] Remove Administration_part items from the contentitem tag map table
+			// [Interpretation 8329] Remove Administration_part items from the contentitem tag map table
 			$administration_part_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.administration_part') );
-			// [Interpretation 8321] Create a new query object.
+			// [Interpretation 8335] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__contentitem_tag_map'));
 			$query->where($administration_part_condition);
 			$db->setQuery($query);
-			// [Interpretation 8331] Execute the query to remove Administration_part items
+			// [Interpretation 8345] Execute the query to remove Administration_part items
 			$administration_part_done = $db->execute();
 			if ($administration_part_done)
 			{
-				// [Interpretation 8338] If succesfully remove Administration_part add queued success message.
+				// [Interpretation 8353] If successfully remove Administration_part add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.administration_part) type alias was removed from the <b>#__contentitem_tag_map</b> table'));
 			}
 
-			// [Interpretation 8349] Remove Administration_part items from the ucm content table
+			// [Interpretation 8364] Remove Administration_part items from the ucm content table
 			$administration_part_condition = array( $db->quoteName('core_type_alias') . ' = ' . $db->quote('com_eclinic_portal.administration_part') );
-			// [Interpretation 8355] Create a new query object.
+			// [Interpretation 8370] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__ucm_content'));
 			$query->where($administration_part_condition);
 			$db->setQuery($query);
-			// [Interpretation 8365] Execute the query to remove Administration_part items
+			// [Interpretation 8380] Execute the query to remove Administration_part items
 			$administration_part_done = $db->execute();
 			if ($administration_part_done)
 			{
-				// [Interpretation 8372] If succesfully remove Administration_part add queued success message.
+				// [Interpretation 8388] If successfully removed Administration_part add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.administration_part) type alias was removed from the <b>#__ucm_content</b> table'));
 			}
 
-			// [Interpretation 8383] Make sure that all the Administration_part items are cleared from DB
+			// [Interpretation 8399] Make sure that all the Administration_part items are cleared from DB
 			foreach ($administration_part_ids as $administration_part_id)
 			{
-				// [Interpretation 8391] Remove Administration_part items from the ucm base table
+				// [Interpretation 8407] Remove Administration_part items from the ucm base table
 				$administration_part_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $administration_part_id);
-				// [Interpretation 8398] Create a new query object.
+				// [Interpretation 8414] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_base'));
 				$query->where($administration_part_condition);
 				$db->setQuery($query);
-				// [Interpretation 8408] Execute the query to remove Administration_part items
+				// [Interpretation 8424] Execute the query to remove Administration_part items
 				$db->execute();
 
-				// [Interpretation 8414] Remove Administration_part items from the ucm history table
+				// [Interpretation 8431] Remove Administration_part items from the ucm history table
 				$administration_part_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $administration_part_id);
-				// [Interpretation 8420] Create a new query object.
+				// [Interpretation 8437] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_history'));
 				$query->where($administration_part_condition);
 				$db->setQuery($query);
-				// [Interpretation 8430] Execute the query to remove Administration_part items
+				// [Interpretation 8447] Execute the query to remove Administration_part items
 				$db->execute();
 			}
 		}
 
-		// [Interpretation 8243] Create a new query object.
+		// [Interpretation 8255] Create a new query object.
 		$query = $db->getQuery(true);
-		// [Interpretation 8247] Select id from content type table
+		// [Interpretation 8259] Select id from content type table
 		$query->select($db->quoteName('type_id'));
 		$query->from($db->quoteName('#__content_types'));
-		// [Interpretation 8254] Where Planning_type alias is found
+		// [Interpretation 8266] Where Planning_type alias is found
 		$query->where( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.planning_type') );
 		$db->setQuery($query);
-		// [Interpretation 8261] Execute query to see if alias is found
+		// [Interpretation 8273] Execute query to see if alias is found
 		$db->execute();
 		$planning_type_found = $db->getNumRows();
-		// [Interpretation 8267] Now check if there were any rows
+		// [Interpretation 8279] Now check if there were any rows
 		if ($planning_type_found)
 		{
-			// [Interpretation 8273] Since there are load the needed  planning_type type ids
+			// [Interpretation 8285] Since there are load the needed  planning_type type ids
 			$planning_type_ids = $db->loadColumn();
-			// [Interpretation 8281] Remove Planning_type from the content type table
+			// [Interpretation 8293] Remove Planning_type from the content type table
 			$planning_type_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.planning_type') );
-			// [Interpretation 8287] Create a new query object.
+			// [Interpretation 8300] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__content_types'));
 			$query->where($planning_type_condition);
 			$db->setQuery($query);
-			// [Interpretation 8297] Execute the query to remove Planning_type items
+			// [Interpretation 8310] Execute the query to remove Planning_type items
 			$planning_type_done = $db->execute();
 			if ($planning_type_done)
 			{
-				// [Interpretation 8304] If succesfully remove Planning_type add queued success message.
+				// [Interpretation 8318] If successfully remove Planning_type add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.planning_type) type alias was removed from the <b>#__content_type</b> table'));
 			}
 
-			// [Interpretation 8315] Remove Planning_type items from the contentitem tag map table
+			// [Interpretation 8329] Remove Planning_type items from the contentitem tag map table
 			$planning_type_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.planning_type') );
-			// [Interpretation 8321] Create a new query object.
+			// [Interpretation 8335] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__contentitem_tag_map'));
 			$query->where($planning_type_condition);
 			$db->setQuery($query);
-			// [Interpretation 8331] Execute the query to remove Planning_type items
+			// [Interpretation 8345] Execute the query to remove Planning_type items
 			$planning_type_done = $db->execute();
 			if ($planning_type_done)
 			{
-				// [Interpretation 8338] If succesfully remove Planning_type add queued success message.
+				// [Interpretation 8353] If successfully remove Planning_type add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.planning_type) type alias was removed from the <b>#__contentitem_tag_map</b> table'));
 			}
 
-			// [Interpretation 8349] Remove Planning_type items from the ucm content table
+			// [Interpretation 8364] Remove Planning_type items from the ucm content table
 			$planning_type_condition = array( $db->quoteName('core_type_alias') . ' = ' . $db->quote('com_eclinic_portal.planning_type') );
-			// [Interpretation 8355] Create a new query object.
+			// [Interpretation 8370] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__ucm_content'));
 			$query->where($planning_type_condition);
 			$db->setQuery($query);
-			// [Interpretation 8365] Execute the query to remove Planning_type items
+			// [Interpretation 8380] Execute the query to remove Planning_type items
 			$planning_type_done = $db->execute();
 			if ($planning_type_done)
 			{
-				// [Interpretation 8372] If succesfully remove Planning_type add queued success message.
+				// [Interpretation 8388] If successfully removed Planning_type add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.planning_type) type alias was removed from the <b>#__ucm_content</b> table'));
 			}
 
-			// [Interpretation 8383] Make sure that all the Planning_type items are cleared from DB
+			// [Interpretation 8399] Make sure that all the Planning_type items are cleared from DB
 			foreach ($planning_type_ids as $planning_type_id)
 			{
-				// [Interpretation 8391] Remove Planning_type items from the ucm base table
+				// [Interpretation 8407] Remove Planning_type items from the ucm base table
 				$planning_type_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $planning_type_id);
-				// [Interpretation 8398] Create a new query object.
+				// [Interpretation 8414] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_base'));
 				$query->where($planning_type_condition);
 				$db->setQuery($query);
-				// [Interpretation 8408] Execute the query to remove Planning_type items
+				// [Interpretation 8424] Execute the query to remove Planning_type items
 				$db->execute();
 
-				// [Interpretation 8414] Remove Planning_type items from the ucm history table
+				// [Interpretation 8431] Remove Planning_type items from the ucm history table
 				$planning_type_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $planning_type_id);
-				// [Interpretation 8420] Create a new query object.
+				// [Interpretation 8437] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_history'));
 				$query->where($planning_type_condition);
 				$db->setQuery($query);
-				// [Interpretation 8430] Execute the query to remove Planning_type items
+				// [Interpretation 8447] Execute the query to remove Planning_type items
 				$db->execute();
 			}
 		}
 
-		// [Interpretation 8243] Create a new query object.
+		// [Interpretation 8255] Create a new query object.
 		$query = $db->getQuery(true);
-		// [Interpretation 8247] Select id from content type table
+		// [Interpretation 8259] Select id from content type table
 		$query->select($db->quoteName('type_id'));
 		$query->from($db->quoteName('#__content_types'));
-		// [Interpretation 8254] Where Immunisation_type alias is found
+		// [Interpretation 8266] Where Immunisation_type alias is found
 		$query->where( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.immunisation_type') );
 		$db->setQuery($query);
-		// [Interpretation 8261] Execute query to see if alias is found
+		// [Interpretation 8273] Execute query to see if alias is found
 		$db->execute();
 		$immunisation_type_found = $db->getNumRows();
-		// [Interpretation 8267] Now check if there were any rows
+		// [Interpretation 8279] Now check if there were any rows
 		if ($immunisation_type_found)
 		{
-			// [Interpretation 8273] Since there are load the needed  immunisation_type type ids
+			// [Interpretation 8285] Since there are load the needed  immunisation_type type ids
 			$immunisation_type_ids = $db->loadColumn();
-			// [Interpretation 8281] Remove Immunisation_type from the content type table
+			// [Interpretation 8293] Remove Immunisation_type from the content type table
 			$immunisation_type_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.immunisation_type') );
-			// [Interpretation 8287] Create a new query object.
+			// [Interpretation 8300] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__content_types'));
 			$query->where($immunisation_type_condition);
 			$db->setQuery($query);
-			// [Interpretation 8297] Execute the query to remove Immunisation_type items
+			// [Interpretation 8310] Execute the query to remove Immunisation_type items
 			$immunisation_type_done = $db->execute();
 			if ($immunisation_type_done)
 			{
-				// [Interpretation 8304] If succesfully remove Immunisation_type add queued success message.
+				// [Interpretation 8318] If successfully remove Immunisation_type add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.immunisation_type) type alias was removed from the <b>#__content_type</b> table'));
 			}
 
-			// [Interpretation 8315] Remove Immunisation_type items from the contentitem tag map table
+			// [Interpretation 8329] Remove Immunisation_type items from the contentitem tag map table
 			$immunisation_type_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.immunisation_type') );
-			// [Interpretation 8321] Create a new query object.
+			// [Interpretation 8335] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__contentitem_tag_map'));
 			$query->where($immunisation_type_condition);
 			$db->setQuery($query);
-			// [Interpretation 8331] Execute the query to remove Immunisation_type items
+			// [Interpretation 8345] Execute the query to remove Immunisation_type items
 			$immunisation_type_done = $db->execute();
 			if ($immunisation_type_done)
 			{
-				// [Interpretation 8338] If succesfully remove Immunisation_type add queued success message.
+				// [Interpretation 8353] If successfully remove Immunisation_type add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.immunisation_type) type alias was removed from the <b>#__contentitem_tag_map</b> table'));
 			}
 
-			// [Interpretation 8349] Remove Immunisation_type items from the ucm content table
+			// [Interpretation 8364] Remove Immunisation_type items from the ucm content table
 			$immunisation_type_condition = array( $db->quoteName('core_type_alias') . ' = ' . $db->quote('com_eclinic_portal.immunisation_type') );
-			// [Interpretation 8355] Create a new query object.
+			// [Interpretation 8370] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__ucm_content'));
 			$query->where($immunisation_type_condition);
 			$db->setQuery($query);
-			// [Interpretation 8365] Execute the query to remove Immunisation_type items
+			// [Interpretation 8380] Execute the query to remove Immunisation_type items
 			$immunisation_type_done = $db->execute();
 			if ($immunisation_type_done)
 			{
-				// [Interpretation 8372] If succesfully remove Immunisation_type add queued success message.
+				// [Interpretation 8388] If successfully removed Immunisation_type add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.immunisation_type) type alias was removed from the <b>#__ucm_content</b> table'));
 			}
 
-			// [Interpretation 8383] Make sure that all the Immunisation_type items are cleared from DB
+			// [Interpretation 8399] Make sure that all the Immunisation_type items are cleared from DB
 			foreach ($immunisation_type_ids as $immunisation_type_id)
 			{
-				// [Interpretation 8391] Remove Immunisation_type items from the ucm base table
+				// [Interpretation 8407] Remove Immunisation_type items from the ucm base table
 				$immunisation_type_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $immunisation_type_id);
-				// [Interpretation 8398] Create a new query object.
+				// [Interpretation 8414] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_base'));
 				$query->where($immunisation_type_condition);
 				$db->setQuery($query);
-				// [Interpretation 8408] Execute the query to remove Immunisation_type items
+				// [Interpretation 8424] Execute the query to remove Immunisation_type items
 				$db->execute();
 
-				// [Interpretation 8414] Remove Immunisation_type items from the ucm history table
+				// [Interpretation 8431] Remove Immunisation_type items from the ucm history table
 				$immunisation_type_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $immunisation_type_id);
-				// [Interpretation 8420] Create a new query object.
+				// [Interpretation 8437] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_history'));
 				$query->where($immunisation_type_condition);
 				$db->setQuery($query);
-				// [Interpretation 8430] Execute the query to remove Immunisation_type items
+				// [Interpretation 8447] Execute the query to remove Immunisation_type items
 				$db->execute();
 			}
 		}
 
-		// [Interpretation 8243] Create a new query object.
+		// [Interpretation 8255] Create a new query object.
 		$query = $db->getQuery(true);
-		// [Interpretation 8247] Select id from content type table
+		// [Interpretation 8259] Select id from content type table
 		$query->select($db->quoteName('type_id'));
 		$query->from($db->quoteName('#__content_types'));
-		// [Interpretation 8254] Where Foetal_lie alias is found
+		// [Interpretation 8266] Where Foetal_lie alias is found
 		$query->where( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.foetal_lie') );
 		$db->setQuery($query);
-		// [Interpretation 8261] Execute query to see if alias is found
+		// [Interpretation 8273] Execute query to see if alias is found
 		$db->execute();
 		$foetal_lie_found = $db->getNumRows();
-		// [Interpretation 8267] Now check if there were any rows
+		// [Interpretation 8279] Now check if there were any rows
 		if ($foetal_lie_found)
 		{
-			// [Interpretation 8273] Since there are load the needed  foetal_lie type ids
+			// [Interpretation 8285] Since there are load the needed  foetal_lie type ids
 			$foetal_lie_ids = $db->loadColumn();
-			// [Interpretation 8281] Remove Foetal_lie from the content type table
+			// [Interpretation 8293] Remove Foetal_lie from the content type table
 			$foetal_lie_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.foetal_lie') );
-			// [Interpretation 8287] Create a new query object.
+			// [Interpretation 8300] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__content_types'));
 			$query->where($foetal_lie_condition);
 			$db->setQuery($query);
-			// [Interpretation 8297] Execute the query to remove Foetal_lie items
+			// [Interpretation 8310] Execute the query to remove Foetal_lie items
 			$foetal_lie_done = $db->execute();
 			if ($foetal_lie_done)
 			{
-				// [Interpretation 8304] If succesfully remove Foetal_lie add queued success message.
+				// [Interpretation 8318] If successfully remove Foetal_lie add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.foetal_lie) type alias was removed from the <b>#__content_type</b> table'));
 			}
 
-			// [Interpretation 8315] Remove Foetal_lie items from the contentitem tag map table
+			// [Interpretation 8329] Remove Foetal_lie items from the contentitem tag map table
 			$foetal_lie_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.foetal_lie') );
-			// [Interpretation 8321] Create a new query object.
+			// [Interpretation 8335] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__contentitem_tag_map'));
 			$query->where($foetal_lie_condition);
 			$db->setQuery($query);
-			// [Interpretation 8331] Execute the query to remove Foetal_lie items
+			// [Interpretation 8345] Execute the query to remove Foetal_lie items
 			$foetal_lie_done = $db->execute();
 			if ($foetal_lie_done)
 			{
-				// [Interpretation 8338] If succesfully remove Foetal_lie add queued success message.
+				// [Interpretation 8353] If successfully remove Foetal_lie add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.foetal_lie) type alias was removed from the <b>#__contentitem_tag_map</b> table'));
 			}
 
-			// [Interpretation 8349] Remove Foetal_lie items from the ucm content table
+			// [Interpretation 8364] Remove Foetal_lie items from the ucm content table
 			$foetal_lie_condition = array( $db->quoteName('core_type_alias') . ' = ' . $db->quote('com_eclinic_portal.foetal_lie') );
-			// [Interpretation 8355] Create a new query object.
+			// [Interpretation 8370] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__ucm_content'));
 			$query->where($foetal_lie_condition);
 			$db->setQuery($query);
-			// [Interpretation 8365] Execute the query to remove Foetal_lie items
+			// [Interpretation 8380] Execute the query to remove Foetal_lie items
 			$foetal_lie_done = $db->execute();
 			if ($foetal_lie_done)
 			{
-				// [Interpretation 8372] If succesfully remove Foetal_lie add queued success message.
+				// [Interpretation 8388] If successfully removed Foetal_lie add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.foetal_lie) type alias was removed from the <b>#__ucm_content</b> table'));
 			}
 
-			// [Interpretation 8383] Make sure that all the Foetal_lie items are cleared from DB
+			// [Interpretation 8399] Make sure that all the Foetal_lie items are cleared from DB
 			foreach ($foetal_lie_ids as $foetal_lie_id)
 			{
-				// [Interpretation 8391] Remove Foetal_lie items from the ucm base table
+				// [Interpretation 8407] Remove Foetal_lie items from the ucm base table
 				$foetal_lie_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $foetal_lie_id);
-				// [Interpretation 8398] Create a new query object.
+				// [Interpretation 8414] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_base'));
 				$query->where($foetal_lie_condition);
 				$db->setQuery($query);
-				// [Interpretation 8408] Execute the query to remove Foetal_lie items
+				// [Interpretation 8424] Execute the query to remove Foetal_lie items
 				$db->execute();
 
-				// [Interpretation 8414] Remove Foetal_lie items from the ucm history table
+				// [Interpretation 8431] Remove Foetal_lie items from the ucm history table
 				$foetal_lie_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $foetal_lie_id);
-				// [Interpretation 8420] Create a new query object.
+				// [Interpretation 8437] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_history'));
 				$query->where($foetal_lie_condition);
 				$db->setQuery($query);
-				// [Interpretation 8430] Execute the query to remove Foetal_lie items
+				// [Interpretation 8447] Execute the query to remove Foetal_lie items
 				$db->execute();
 			}
 		}
 
-		// [Interpretation 8243] Create a new query object.
+		// [Interpretation 8255] Create a new query object.
 		$query = $db->getQuery(true);
-		// [Interpretation 8247] Select id from content type table
+		// [Interpretation 8259] Select id from content type table
 		$query->select($db->quoteName('type_id'));
 		$query->from($db->quoteName('#__content_types'));
-		// [Interpretation 8254] Where Foetal_presentation alias is found
+		// [Interpretation 8266] Where Foetal_presentation alias is found
 		$query->where( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.foetal_presentation') );
 		$db->setQuery($query);
-		// [Interpretation 8261] Execute query to see if alias is found
+		// [Interpretation 8273] Execute query to see if alias is found
 		$db->execute();
 		$foetal_presentation_found = $db->getNumRows();
-		// [Interpretation 8267] Now check if there were any rows
+		// [Interpretation 8279] Now check if there were any rows
 		if ($foetal_presentation_found)
 		{
-			// [Interpretation 8273] Since there are load the needed  foetal_presentation type ids
+			// [Interpretation 8285] Since there are load the needed  foetal_presentation type ids
 			$foetal_presentation_ids = $db->loadColumn();
-			// [Interpretation 8281] Remove Foetal_presentation from the content type table
+			// [Interpretation 8293] Remove Foetal_presentation from the content type table
 			$foetal_presentation_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.foetal_presentation') );
-			// [Interpretation 8287] Create a new query object.
+			// [Interpretation 8300] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__content_types'));
 			$query->where($foetal_presentation_condition);
 			$db->setQuery($query);
-			// [Interpretation 8297] Execute the query to remove Foetal_presentation items
+			// [Interpretation 8310] Execute the query to remove Foetal_presentation items
 			$foetal_presentation_done = $db->execute();
 			if ($foetal_presentation_done)
 			{
-				// [Interpretation 8304] If succesfully remove Foetal_presentation add queued success message.
+				// [Interpretation 8318] If successfully remove Foetal_presentation add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.foetal_presentation) type alias was removed from the <b>#__content_type</b> table'));
 			}
 
-			// [Interpretation 8315] Remove Foetal_presentation items from the contentitem tag map table
+			// [Interpretation 8329] Remove Foetal_presentation items from the contentitem tag map table
 			$foetal_presentation_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.foetal_presentation') );
-			// [Interpretation 8321] Create a new query object.
+			// [Interpretation 8335] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__contentitem_tag_map'));
 			$query->where($foetal_presentation_condition);
 			$db->setQuery($query);
-			// [Interpretation 8331] Execute the query to remove Foetal_presentation items
+			// [Interpretation 8345] Execute the query to remove Foetal_presentation items
 			$foetal_presentation_done = $db->execute();
 			if ($foetal_presentation_done)
 			{
-				// [Interpretation 8338] If succesfully remove Foetal_presentation add queued success message.
+				// [Interpretation 8353] If successfully remove Foetal_presentation add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.foetal_presentation) type alias was removed from the <b>#__contentitem_tag_map</b> table'));
 			}
 
-			// [Interpretation 8349] Remove Foetal_presentation items from the ucm content table
+			// [Interpretation 8364] Remove Foetal_presentation items from the ucm content table
 			$foetal_presentation_condition = array( $db->quoteName('core_type_alias') . ' = ' . $db->quote('com_eclinic_portal.foetal_presentation') );
-			// [Interpretation 8355] Create a new query object.
+			// [Interpretation 8370] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__ucm_content'));
 			$query->where($foetal_presentation_condition);
 			$db->setQuery($query);
-			// [Interpretation 8365] Execute the query to remove Foetal_presentation items
+			// [Interpretation 8380] Execute the query to remove Foetal_presentation items
 			$foetal_presentation_done = $db->execute();
 			if ($foetal_presentation_done)
 			{
-				// [Interpretation 8372] If succesfully remove Foetal_presentation add queued success message.
+				// [Interpretation 8388] If successfully removed Foetal_presentation add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.foetal_presentation) type alias was removed from the <b>#__ucm_content</b> table'));
 			}
 
-			// [Interpretation 8383] Make sure that all the Foetal_presentation items are cleared from DB
+			// [Interpretation 8399] Make sure that all the Foetal_presentation items are cleared from DB
 			foreach ($foetal_presentation_ids as $foetal_presentation_id)
 			{
-				// [Interpretation 8391] Remove Foetal_presentation items from the ucm base table
+				// [Interpretation 8407] Remove Foetal_presentation items from the ucm base table
 				$foetal_presentation_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $foetal_presentation_id);
-				// [Interpretation 8398] Create a new query object.
+				// [Interpretation 8414] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_base'));
 				$query->where($foetal_presentation_condition);
 				$db->setQuery($query);
-				// [Interpretation 8408] Execute the query to remove Foetal_presentation items
+				// [Interpretation 8424] Execute the query to remove Foetal_presentation items
 				$db->execute();
 
-				// [Interpretation 8414] Remove Foetal_presentation items from the ucm history table
+				// [Interpretation 8431] Remove Foetal_presentation items from the ucm history table
 				$foetal_presentation_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $foetal_presentation_id);
-				// [Interpretation 8420] Create a new query object.
+				// [Interpretation 8437] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_history'));
 				$query->where($foetal_presentation_condition);
 				$db->setQuery($query);
-				// [Interpretation 8430] Execute the query to remove Foetal_presentation items
+				// [Interpretation 8447] Execute the query to remove Foetal_presentation items
 				$db->execute();
 			}
 		}
 
-		// [Interpretation 8243] Create a new query object.
+		// [Interpretation 8255] Create a new query object.
 		$query = $db->getQuery(true);
-		// [Interpretation 8247] Select id from content type table
+		// [Interpretation 8259] Select id from content type table
 		$query->select($db->quoteName('type_id'));
 		$query->from($db->quoteName('#__content_types'));
-		// [Interpretation 8254] Where Nonpay_reason alias is found
+		// [Interpretation 8266] Where Nonpay_reason alias is found
 		$query->where( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.nonpay_reason') );
 		$db->setQuery($query);
-		// [Interpretation 8261] Execute query to see if alias is found
+		// [Interpretation 8273] Execute query to see if alias is found
 		$db->execute();
 		$nonpay_reason_found = $db->getNumRows();
-		// [Interpretation 8267] Now check if there were any rows
+		// [Interpretation 8279] Now check if there were any rows
 		if ($nonpay_reason_found)
 		{
-			// [Interpretation 8273] Since there are load the needed  nonpay_reason type ids
+			// [Interpretation 8285] Since there are load the needed  nonpay_reason type ids
 			$nonpay_reason_ids = $db->loadColumn();
-			// [Interpretation 8281] Remove Nonpay_reason from the content type table
+			// [Interpretation 8293] Remove Nonpay_reason from the content type table
 			$nonpay_reason_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.nonpay_reason') );
-			// [Interpretation 8287] Create a new query object.
+			// [Interpretation 8300] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__content_types'));
 			$query->where($nonpay_reason_condition);
 			$db->setQuery($query);
-			// [Interpretation 8297] Execute the query to remove Nonpay_reason items
+			// [Interpretation 8310] Execute the query to remove Nonpay_reason items
 			$nonpay_reason_done = $db->execute();
 			if ($nonpay_reason_done)
 			{
-				// [Interpretation 8304] If succesfully remove Nonpay_reason add queued success message.
+				// [Interpretation 8318] If successfully remove Nonpay_reason add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.nonpay_reason) type alias was removed from the <b>#__content_type</b> table'));
 			}
 
-			// [Interpretation 8315] Remove Nonpay_reason items from the contentitem tag map table
+			// [Interpretation 8329] Remove Nonpay_reason items from the contentitem tag map table
 			$nonpay_reason_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.nonpay_reason') );
-			// [Interpretation 8321] Create a new query object.
+			// [Interpretation 8335] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__contentitem_tag_map'));
 			$query->where($nonpay_reason_condition);
 			$db->setQuery($query);
-			// [Interpretation 8331] Execute the query to remove Nonpay_reason items
+			// [Interpretation 8345] Execute the query to remove Nonpay_reason items
 			$nonpay_reason_done = $db->execute();
 			if ($nonpay_reason_done)
 			{
-				// [Interpretation 8338] If succesfully remove Nonpay_reason add queued success message.
+				// [Interpretation 8353] If successfully remove Nonpay_reason add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.nonpay_reason) type alias was removed from the <b>#__contentitem_tag_map</b> table'));
 			}
 
-			// [Interpretation 8349] Remove Nonpay_reason items from the ucm content table
+			// [Interpretation 8364] Remove Nonpay_reason items from the ucm content table
 			$nonpay_reason_condition = array( $db->quoteName('core_type_alias') . ' = ' . $db->quote('com_eclinic_portal.nonpay_reason') );
-			// [Interpretation 8355] Create a new query object.
+			// [Interpretation 8370] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__ucm_content'));
 			$query->where($nonpay_reason_condition);
 			$db->setQuery($query);
-			// [Interpretation 8365] Execute the query to remove Nonpay_reason items
+			// [Interpretation 8380] Execute the query to remove Nonpay_reason items
 			$nonpay_reason_done = $db->execute();
 			if ($nonpay_reason_done)
 			{
-				// [Interpretation 8372] If succesfully remove Nonpay_reason add queued success message.
+				// [Interpretation 8388] If successfully removed Nonpay_reason add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.nonpay_reason) type alias was removed from the <b>#__ucm_content</b> table'));
 			}
 
-			// [Interpretation 8383] Make sure that all the Nonpay_reason items are cleared from DB
+			// [Interpretation 8399] Make sure that all the Nonpay_reason items are cleared from DB
 			foreach ($nonpay_reason_ids as $nonpay_reason_id)
 			{
-				// [Interpretation 8391] Remove Nonpay_reason items from the ucm base table
+				// [Interpretation 8407] Remove Nonpay_reason items from the ucm base table
 				$nonpay_reason_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $nonpay_reason_id);
-				// [Interpretation 8398] Create a new query object.
+				// [Interpretation 8414] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_base'));
 				$query->where($nonpay_reason_condition);
 				$db->setQuery($query);
-				// [Interpretation 8408] Execute the query to remove Nonpay_reason items
+				// [Interpretation 8424] Execute the query to remove Nonpay_reason items
 				$db->execute();
 
-				// [Interpretation 8414] Remove Nonpay_reason items from the ucm history table
+				// [Interpretation 8431] Remove Nonpay_reason items from the ucm history table
 				$nonpay_reason_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $nonpay_reason_id);
-				// [Interpretation 8420] Create a new query object.
+				// [Interpretation 8437] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_history'));
 				$query->where($nonpay_reason_condition);
 				$db->setQuery($query);
-				// [Interpretation 8430] Execute the query to remove Nonpay_reason items
+				// [Interpretation 8447] Execute the query to remove Nonpay_reason items
 				$db->execute();
 			}
 		}
 
-		// [Interpretation 8243] Create a new query object.
+		// [Interpretation 8255] Create a new query object.
 		$query = $db->getQuery(true);
-		// [Interpretation 8247] Select id from content type table
+		// [Interpretation 8259] Select id from content type table
 		$query->select($db->quoteName('type_id'));
 		$query->from($db->quoteName('#__content_types'));
-		// [Interpretation 8254] Where Immunisation_vaccine_type alias is found
+		// [Interpretation 8266] Where Immunisation_vaccine_type alias is found
 		$query->where( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.immunisation_vaccine_type') );
 		$db->setQuery($query);
-		// [Interpretation 8261] Execute query to see if alias is found
+		// [Interpretation 8273] Execute query to see if alias is found
 		$db->execute();
 		$immunisation_vaccine_type_found = $db->getNumRows();
-		// [Interpretation 8267] Now check if there were any rows
+		// [Interpretation 8279] Now check if there were any rows
 		if ($immunisation_vaccine_type_found)
 		{
-			// [Interpretation 8273] Since there are load the needed  immunisation_vaccine_type type ids
+			// [Interpretation 8285] Since there are load the needed  immunisation_vaccine_type type ids
 			$immunisation_vaccine_type_ids = $db->loadColumn();
-			// [Interpretation 8281] Remove Immunisation_vaccine_type from the content type table
+			// [Interpretation 8293] Remove Immunisation_vaccine_type from the content type table
 			$immunisation_vaccine_type_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.immunisation_vaccine_type') );
-			// [Interpretation 8287] Create a new query object.
+			// [Interpretation 8300] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__content_types'));
 			$query->where($immunisation_vaccine_type_condition);
 			$db->setQuery($query);
-			// [Interpretation 8297] Execute the query to remove Immunisation_vaccine_type items
+			// [Interpretation 8310] Execute the query to remove Immunisation_vaccine_type items
 			$immunisation_vaccine_type_done = $db->execute();
 			if ($immunisation_vaccine_type_done)
 			{
-				// [Interpretation 8304] If succesfully remove Immunisation_vaccine_type add queued success message.
+				// [Interpretation 8318] If successfully remove Immunisation_vaccine_type add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.immunisation_vaccine_type) type alias was removed from the <b>#__content_type</b> table'));
 			}
 
-			// [Interpretation 8315] Remove Immunisation_vaccine_type items from the contentitem tag map table
+			// [Interpretation 8329] Remove Immunisation_vaccine_type items from the contentitem tag map table
 			$immunisation_vaccine_type_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.immunisation_vaccine_type') );
-			// [Interpretation 8321] Create a new query object.
+			// [Interpretation 8335] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__contentitem_tag_map'));
 			$query->where($immunisation_vaccine_type_condition);
 			$db->setQuery($query);
-			// [Interpretation 8331] Execute the query to remove Immunisation_vaccine_type items
+			// [Interpretation 8345] Execute the query to remove Immunisation_vaccine_type items
 			$immunisation_vaccine_type_done = $db->execute();
 			if ($immunisation_vaccine_type_done)
 			{
-				// [Interpretation 8338] If succesfully remove Immunisation_vaccine_type add queued success message.
+				// [Interpretation 8353] If successfully remove Immunisation_vaccine_type add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.immunisation_vaccine_type) type alias was removed from the <b>#__contentitem_tag_map</b> table'));
 			}
 
-			// [Interpretation 8349] Remove Immunisation_vaccine_type items from the ucm content table
+			// [Interpretation 8364] Remove Immunisation_vaccine_type items from the ucm content table
 			$immunisation_vaccine_type_condition = array( $db->quoteName('core_type_alias') . ' = ' . $db->quote('com_eclinic_portal.immunisation_vaccine_type') );
-			// [Interpretation 8355] Create a new query object.
+			// [Interpretation 8370] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__ucm_content'));
 			$query->where($immunisation_vaccine_type_condition);
 			$db->setQuery($query);
-			// [Interpretation 8365] Execute the query to remove Immunisation_vaccine_type items
+			// [Interpretation 8380] Execute the query to remove Immunisation_vaccine_type items
 			$immunisation_vaccine_type_done = $db->execute();
 			if ($immunisation_vaccine_type_done)
 			{
-				// [Interpretation 8372] If succesfully remove Immunisation_vaccine_type add queued success message.
+				// [Interpretation 8388] If successfully removed Immunisation_vaccine_type add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.immunisation_vaccine_type) type alias was removed from the <b>#__ucm_content</b> table'));
 			}
 
-			// [Interpretation 8383] Make sure that all the Immunisation_vaccine_type items are cleared from DB
+			// [Interpretation 8399] Make sure that all the Immunisation_vaccine_type items are cleared from DB
 			foreach ($immunisation_vaccine_type_ids as $immunisation_vaccine_type_id)
 			{
-				// [Interpretation 8391] Remove Immunisation_vaccine_type items from the ucm base table
+				// [Interpretation 8407] Remove Immunisation_vaccine_type items from the ucm base table
 				$immunisation_vaccine_type_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $immunisation_vaccine_type_id);
-				// [Interpretation 8398] Create a new query object.
+				// [Interpretation 8414] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_base'));
 				$query->where($immunisation_vaccine_type_condition);
 				$db->setQuery($query);
-				// [Interpretation 8408] Execute the query to remove Immunisation_vaccine_type items
+				// [Interpretation 8424] Execute the query to remove Immunisation_vaccine_type items
 				$db->execute();
 
-				// [Interpretation 8414] Remove Immunisation_vaccine_type items from the ucm history table
+				// [Interpretation 8431] Remove Immunisation_vaccine_type items from the ucm history table
 				$immunisation_vaccine_type_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $immunisation_vaccine_type_id);
-				// [Interpretation 8420] Create a new query object.
+				// [Interpretation 8437] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_history'));
 				$query->where($immunisation_vaccine_type_condition);
 				$db->setQuery($query);
-				// [Interpretation 8430] Execute the query to remove Immunisation_vaccine_type items
+				// [Interpretation 8447] Execute the query to remove Immunisation_vaccine_type items
 				$db->execute();
 			}
 		}
 
-		// [Interpretation 8243] Create a new query object.
+		// [Interpretation 8255] Create a new query object.
 		$query = $db->getQuery(true);
-		// [Interpretation 8247] Select id from content type table
+		// [Interpretation 8259] Select id from content type table
 		$query->select($db->quoteName('type_id'));
 		$query->from($db->quoteName('#__content_types'));
-		// [Interpretation 8254] Where Payment_amount alias is found
+		// [Interpretation 8266] Where Payment_amount alias is found
 		$query->where( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.payment_amount') );
 		$db->setQuery($query);
-		// [Interpretation 8261] Execute query to see if alias is found
+		// [Interpretation 8273] Execute query to see if alias is found
 		$db->execute();
 		$payment_amount_found = $db->getNumRows();
-		// [Interpretation 8267] Now check if there were any rows
+		// [Interpretation 8279] Now check if there were any rows
 		if ($payment_amount_found)
 		{
-			// [Interpretation 8273] Since there are load the needed  payment_amount type ids
+			// [Interpretation 8285] Since there are load the needed  payment_amount type ids
 			$payment_amount_ids = $db->loadColumn();
-			// [Interpretation 8281] Remove Payment_amount from the content type table
+			// [Interpretation 8293] Remove Payment_amount from the content type table
 			$payment_amount_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.payment_amount') );
-			// [Interpretation 8287] Create a new query object.
+			// [Interpretation 8300] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__content_types'));
 			$query->where($payment_amount_condition);
 			$db->setQuery($query);
-			// [Interpretation 8297] Execute the query to remove Payment_amount items
+			// [Interpretation 8310] Execute the query to remove Payment_amount items
 			$payment_amount_done = $db->execute();
 			if ($payment_amount_done)
 			{
-				// [Interpretation 8304] If succesfully remove Payment_amount add queued success message.
+				// [Interpretation 8318] If successfully remove Payment_amount add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.payment_amount) type alias was removed from the <b>#__content_type</b> table'));
 			}
 
-			// [Interpretation 8315] Remove Payment_amount items from the contentitem tag map table
+			// [Interpretation 8329] Remove Payment_amount items from the contentitem tag map table
 			$payment_amount_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.payment_amount') );
-			// [Interpretation 8321] Create a new query object.
+			// [Interpretation 8335] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__contentitem_tag_map'));
 			$query->where($payment_amount_condition);
 			$db->setQuery($query);
-			// [Interpretation 8331] Execute the query to remove Payment_amount items
+			// [Interpretation 8345] Execute the query to remove Payment_amount items
 			$payment_amount_done = $db->execute();
 			if ($payment_amount_done)
 			{
-				// [Interpretation 8338] If succesfully remove Payment_amount add queued success message.
+				// [Interpretation 8353] If successfully remove Payment_amount add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.payment_amount) type alias was removed from the <b>#__contentitem_tag_map</b> table'));
 			}
 
-			// [Interpretation 8349] Remove Payment_amount items from the ucm content table
+			// [Interpretation 8364] Remove Payment_amount items from the ucm content table
 			$payment_amount_condition = array( $db->quoteName('core_type_alias') . ' = ' . $db->quote('com_eclinic_portal.payment_amount') );
-			// [Interpretation 8355] Create a new query object.
+			// [Interpretation 8370] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__ucm_content'));
 			$query->where($payment_amount_condition);
 			$db->setQuery($query);
-			// [Interpretation 8365] Execute the query to remove Payment_amount items
+			// [Interpretation 8380] Execute the query to remove Payment_amount items
 			$payment_amount_done = $db->execute();
 			if ($payment_amount_done)
 			{
-				// [Interpretation 8372] If succesfully remove Payment_amount add queued success message.
+				// [Interpretation 8388] If successfully removed Payment_amount add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.payment_amount) type alias was removed from the <b>#__ucm_content</b> table'));
 			}
 
-			// [Interpretation 8383] Make sure that all the Payment_amount items are cleared from DB
+			// [Interpretation 8399] Make sure that all the Payment_amount items are cleared from DB
 			foreach ($payment_amount_ids as $payment_amount_id)
 			{
-				// [Interpretation 8391] Remove Payment_amount items from the ucm base table
+				// [Interpretation 8407] Remove Payment_amount items from the ucm base table
 				$payment_amount_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $payment_amount_id);
-				// [Interpretation 8398] Create a new query object.
+				// [Interpretation 8414] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_base'));
 				$query->where($payment_amount_condition);
 				$db->setQuery($query);
-				// [Interpretation 8408] Execute the query to remove Payment_amount items
+				// [Interpretation 8424] Execute the query to remove Payment_amount items
 				$db->execute();
 
-				// [Interpretation 8414] Remove Payment_amount items from the ucm history table
+				// [Interpretation 8431] Remove Payment_amount items from the ucm history table
 				$payment_amount_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $payment_amount_id);
-				// [Interpretation 8420] Create a new query object.
+				// [Interpretation 8437] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_history'));
 				$query->where($payment_amount_condition);
 				$db->setQuery($query);
-				// [Interpretation 8430] Execute the query to remove Payment_amount items
+				// [Interpretation 8447] Execute the query to remove Payment_amount items
 				$db->execute();
 			}
 		}
 
-		// [Interpretation 8243] Create a new query object.
+		// [Interpretation 8255] Create a new query object.
 		$query = $db->getQuery(true);
-		// [Interpretation 8247] Select id from content type table
+		// [Interpretation 8259] Select id from content type table
 		$query->select($db->quoteName('type_id'));
 		$query->from($db->quoteName('#__content_types'));
-		// [Interpretation 8254] Where Diagnosis_type alias is found
+		// [Interpretation 8266] Where Diagnosis_type alias is found
 		$query->where( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.diagnosis_type') );
 		$db->setQuery($query);
-		// [Interpretation 8261] Execute query to see if alias is found
+		// [Interpretation 8273] Execute query to see if alias is found
 		$db->execute();
 		$diagnosis_type_found = $db->getNumRows();
-		// [Interpretation 8267] Now check if there were any rows
+		// [Interpretation 8279] Now check if there were any rows
 		if ($diagnosis_type_found)
 		{
-			// [Interpretation 8273] Since there are load the needed  diagnosis_type type ids
+			// [Interpretation 8285] Since there are load the needed  diagnosis_type type ids
 			$diagnosis_type_ids = $db->loadColumn();
-			// [Interpretation 8281] Remove Diagnosis_type from the content type table
+			// [Interpretation 8293] Remove Diagnosis_type from the content type table
 			$diagnosis_type_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.diagnosis_type') );
-			// [Interpretation 8287] Create a new query object.
+			// [Interpretation 8300] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__content_types'));
 			$query->where($diagnosis_type_condition);
 			$db->setQuery($query);
-			// [Interpretation 8297] Execute the query to remove Diagnosis_type items
+			// [Interpretation 8310] Execute the query to remove Diagnosis_type items
 			$diagnosis_type_done = $db->execute();
 			if ($diagnosis_type_done)
 			{
-				// [Interpretation 8304] If succesfully remove Diagnosis_type add queued success message.
+				// [Interpretation 8318] If successfully remove Diagnosis_type add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.diagnosis_type) type alias was removed from the <b>#__content_type</b> table'));
 			}
 
-			// [Interpretation 8315] Remove Diagnosis_type items from the contentitem tag map table
+			// [Interpretation 8329] Remove Diagnosis_type items from the contentitem tag map table
 			$diagnosis_type_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.diagnosis_type') );
-			// [Interpretation 8321] Create a new query object.
+			// [Interpretation 8335] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__contentitem_tag_map'));
 			$query->where($diagnosis_type_condition);
 			$db->setQuery($query);
-			// [Interpretation 8331] Execute the query to remove Diagnosis_type items
+			// [Interpretation 8345] Execute the query to remove Diagnosis_type items
 			$diagnosis_type_done = $db->execute();
 			if ($diagnosis_type_done)
 			{
-				// [Interpretation 8338] If succesfully remove Diagnosis_type add queued success message.
+				// [Interpretation 8353] If successfully remove Diagnosis_type add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.diagnosis_type) type alias was removed from the <b>#__contentitem_tag_map</b> table'));
 			}
 
-			// [Interpretation 8349] Remove Diagnosis_type items from the ucm content table
+			// [Interpretation 8364] Remove Diagnosis_type items from the ucm content table
 			$diagnosis_type_condition = array( $db->quoteName('core_type_alias') . ' = ' . $db->quote('com_eclinic_portal.diagnosis_type') );
-			// [Interpretation 8355] Create a new query object.
+			// [Interpretation 8370] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__ucm_content'));
 			$query->where($diagnosis_type_condition);
 			$db->setQuery($query);
-			// [Interpretation 8365] Execute the query to remove Diagnosis_type items
+			// [Interpretation 8380] Execute the query to remove Diagnosis_type items
 			$diagnosis_type_done = $db->execute();
 			if ($diagnosis_type_done)
 			{
-				// [Interpretation 8372] If succesfully remove Diagnosis_type add queued success message.
+				// [Interpretation 8388] If successfully removed Diagnosis_type add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.diagnosis_type) type alias was removed from the <b>#__ucm_content</b> table'));
 			}
 
-			// [Interpretation 8383] Make sure that all the Diagnosis_type items are cleared from DB
+			// [Interpretation 8399] Make sure that all the Diagnosis_type items are cleared from DB
 			foreach ($diagnosis_type_ids as $diagnosis_type_id)
 			{
-				// [Interpretation 8391] Remove Diagnosis_type items from the ucm base table
+				// [Interpretation 8407] Remove Diagnosis_type items from the ucm base table
 				$diagnosis_type_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $diagnosis_type_id);
-				// [Interpretation 8398] Create a new query object.
+				// [Interpretation 8414] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_base'));
 				$query->where($diagnosis_type_condition);
 				$db->setQuery($query);
-				// [Interpretation 8408] Execute the query to remove Diagnosis_type items
+				// [Interpretation 8424] Execute the query to remove Diagnosis_type items
 				$db->execute();
 
-				// [Interpretation 8414] Remove Diagnosis_type items from the ucm history table
+				// [Interpretation 8431] Remove Diagnosis_type items from the ucm history table
 				$diagnosis_type_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $diagnosis_type_id);
-				// [Interpretation 8420] Create a new query object.
+				// [Interpretation 8437] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_history'));
 				$query->where($diagnosis_type_condition);
 				$db->setQuery($query);
-				// [Interpretation 8430] Execute the query to remove Diagnosis_type items
+				// [Interpretation 8447] Execute the query to remove Diagnosis_type items
 				$db->execute();
 			}
 		}
 
-		// [Interpretation 8243] Create a new query object.
+		// [Interpretation 8255] Create a new query object.
 		$query = $db->getQuery(true);
-		// [Interpretation 8247] Select id from content type table
+		// [Interpretation 8259] Select id from content type table
 		$query->select($db->quoteName('type_id'));
 		$query->from($db->quoteName('#__content_types'));
-		// [Interpretation 8254] Where Payment_type alias is found
+		// [Interpretation 8266] Where Payment_type alias is found
 		$query->where( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.payment_type') );
 		$db->setQuery($query);
-		// [Interpretation 8261] Execute query to see if alias is found
+		// [Interpretation 8273] Execute query to see if alias is found
 		$db->execute();
 		$payment_type_found = $db->getNumRows();
-		// [Interpretation 8267] Now check if there were any rows
+		// [Interpretation 8279] Now check if there were any rows
 		if ($payment_type_found)
 		{
-			// [Interpretation 8273] Since there are load the needed  payment_type type ids
+			// [Interpretation 8285] Since there are load the needed  payment_type type ids
 			$payment_type_ids = $db->loadColumn();
-			// [Interpretation 8281] Remove Payment_type from the content type table
+			// [Interpretation 8293] Remove Payment_type from the content type table
 			$payment_type_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.payment_type') );
-			// [Interpretation 8287] Create a new query object.
+			// [Interpretation 8300] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__content_types'));
 			$query->where($payment_type_condition);
 			$db->setQuery($query);
-			// [Interpretation 8297] Execute the query to remove Payment_type items
+			// [Interpretation 8310] Execute the query to remove Payment_type items
 			$payment_type_done = $db->execute();
 			if ($payment_type_done)
 			{
-				// [Interpretation 8304] If succesfully remove Payment_type add queued success message.
+				// [Interpretation 8318] If successfully remove Payment_type add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.payment_type) type alias was removed from the <b>#__content_type</b> table'));
 			}
 
-			// [Interpretation 8315] Remove Payment_type items from the contentitem tag map table
+			// [Interpretation 8329] Remove Payment_type items from the contentitem tag map table
 			$payment_type_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.payment_type') );
-			// [Interpretation 8321] Create a new query object.
+			// [Interpretation 8335] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__contentitem_tag_map'));
 			$query->where($payment_type_condition);
 			$db->setQuery($query);
-			// [Interpretation 8331] Execute the query to remove Payment_type items
+			// [Interpretation 8345] Execute the query to remove Payment_type items
 			$payment_type_done = $db->execute();
 			if ($payment_type_done)
 			{
-				// [Interpretation 8338] If succesfully remove Payment_type add queued success message.
+				// [Interpretation 8353] If successfully remove Payment_type add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.payment_type) type alias was removed from the <b>#__contentitem_tag_map</b> table'));
 			}
 
-			// [Interpretation 8349] Remove Payment_type items from the ucm content table
+			// [Interpretation 8364] Remove Payment_type items from the ucm content table
 			$payment_type_condition = array( $db->quoteName('core_type_alias') . ' = ' . $db->quote('com_eclinic_portal.payment_type') );
-			// [Interpretation 8355] Create a new query object.
+			// [Interpretation 8370] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__ucm_content'));
 			$query->where($payment_type_condition);
 			$db->setQuery($query);
-			// [Interpretation 8365] Execute the query to remove Payment_type items
+			// [Interpretation 8380] Execute the query to remove Payment_type items
 			$payment_type_done = $db->execute();
 			if ($payment_type_done)
 			{
-				// [Interpretation 8372] If succesfully remove Payment_type add queued success message.
+				// [Interpretation 8388] If successfully removed Payment_type add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.payment_type) type alias was removed from the <b>#__ucm_content</b> table'));
 			}
 
-			// [Interpretation 8383] Make sure that all the Payment_type items are cleared from DB
+			// [Interpretation 8399] Make sure that all the Payment_type items are cleared from DB
 			foreach ($payment_type_ids as $payment_type_id)
 			{
-				// [Interpretation 8391] Remove Payment_type items from the ucm base table
+				// [Interpretation 8407] Remove Payment_type items from the ucm base table
 				$payment_type_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $payment_type_id);
-				// [Interpretation 8398] Create a new query object.
+				// [Interpretation 8414] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_base'));
 				$query->where($payment_type_condition);
 				$db->setQuery($query);
-				// [Interpretation 8408] Execute the query to remove Payment_type items
+				// [Interpretation 8424] Execute the query to remove Payment_type items
 				$db->execute();
 
-				// [Interpretation 8414] Remove Payment_type items from the ucm history table
+				// [Interpretation 8431] Remove Payment_type items from the ucm history table
 				$payment_type_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $payment_type_id);
-				// [Interpretation 8420] Create a new query object.
+				// [Interpretation 8437] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_history'));
 				$query->where($payment_type_condition);
 				$db->setQuery($query);
-				// [Interpretation 8430] Execute the query to remove Payment_type items
+				// [Interpretation 8447] Execute the query to remove Payment_type items
 				$db->execute();
 			}
 		}
 
-		// [Interpretation 8243] Create a new query object.
+		// [Interpretation 8255] Create a new query object.
 		$query = $db->getQuery(true);
-		// [Interpretation 8247] Select id from content type table
+		// [Interpretation 8259] Select id from content type table
 		$query->select($db->quoteName('type_id'));
 		$query->from($db->quoteName('#__content_types'));
-		// [Interpretation 8254] Where Medication alias is found
+		// [Interpretation 8266] Where Medication alias is found
 		$query->where( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.medication') );
 		$db->setQuery($query);
-		// [Interpretation 8261] Execute query to see if alias is found
+		// [Interpretation 8273] Execute query to see if alias is found
 		$db->execute();
 		$medication_found = $db->getNumRows();
-		// [Interpretation 8267] Now check if there were any rows
+		// [Interpretation 8279] Now check if there were any rows
 		if ($medication_found)
 		{
-			// [Interpretation 8273] Since there are load the needed  medication type ids
+			// [Interpretation 8285] Since there are load the needed  medication type ids
 			$medication_ids = $db->loadColumn();
-			// [Interpretation 8281] Remove Medication from the content type table
+			// [Interpretation 8293] Remove Medication from the content type table
 			$medication_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.medication') );
-			// [Interpretation 8287] Create a new query object.
+			// [Interpretation 8300] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__content_types'));
 			$query->where($medication_condition);
 			$db->setQuery($query);
-			// [Interpretation 8297] Execute the query to remove Medication items
+			// [Interpretation 8310] Execute the query to remove Medication items
 			$medication_done = $db->execute();
 			if ($medication_done)
 			{
-				// [Interpretation 8304] If succesfully remove Medication add queued success message.
+				// [Interpretation 8318] If successfully remove Medication add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.medication) type alias was removed from the <b>#__content_type</b> table'));
 			}
 
-			// [Interpretation 8315] Remove Medication items from the contentitem tag map table
+			// [Interpretation 8329] Remove Medication items from the contentitem tag map table
 			$medication_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.medication') );
-			// [Interpretation 8321] Create a new query object.
+			// [Interpretation 8335] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__contentitem_tag_map'));
 			$query->where($medication_condition);
 			$db->setQuery($query);
-			// [Interpretation 8331] Execute the query to remove Medication items
+			// [Interpretation 8345] Execute the query to remove Medication items
 			$medication_done = $db->execute();
 			if ($medication_done)
 			{
-				// [Interpretation 8338] If succesfully remove Medication add queued success message.
+				// [Interpretation 8353] If successfully remove Medication add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.medication) type alias was removed from the <b>#__contentitem_tag_map</b> table'));
 			}
 
-			// [Interpretation 8349] Remove Medication items from the ucm content table
+			// [Interpretation 8364] Remove Medication items from the ucm content table
 			$medication_condition = array( $db->quoteName('core_type_alias') . ' = ' . $db->quote('com_eclinic_portal.medication') );
-			// [Interpretation 8355] Create a new query object.
+			// [Interpretation 8370] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__ucm_content'));
 			$query->where($medication_condition);
 			$db->setQuery($query);
-			// [Interpretation 8365] Execute the query to remove Medication items
+			// [Interpretation 8380] Execute the query to remove Medication items
 			$medication_done = $db->execute();
 			if ($medication_done)
 			{
-				// [Interpretation 8372] If succesfully remove Medication add queued success message.
+				// [Interpretation 8388] If successfully removed Medication add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.medication) type alias was removed from the <b>#__ucm_content</b> table'));
 			}
 
-			// [Interpretation 8383] Make sure that all the Medication items are cleared from DB
+			// [Interpretation 8399] Make sure that all the Medication items are cleared from DB
 			foreach ($medication_ids as $medication_id)
 			{
-				// [Interpretation 8391] Remove Medication items from the ucm base table
+				// [Interpretation 8407] Remove Medication items from the ucm base table
 				$medication_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $medication_id);
-				// [Interpretation 8398] Create a new query object.
+				// [Interpretation 8414] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_base'));
 				$query->where($medication_condition);
 				$db->setQuery($query);
-				// [Interpretation 8408] Execute the query to remove Medication items
+				// [Interpretation 8424] Execute the query to remove Medication items
 				$db->execute();
 
-				// [Interpretation 8414] Remove Medication items from the ucm history table
+				// [Interpretation 8431] Remove Medication items from the ucm history table
 				$medication_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $medication_id);
-				// [Interpretation 8420] Create a new query object.
+				// [Interpretation 8437] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_history'));
 				$query->where($medication_condition);
 				$db->setQuery($query);
-				// [Interpretation 8430] Execute the query to remove Medication items
+				// [Interpretation 8447] Execute the query to remove Medication items
 				$db->execute();
 			}
 		}
 
-		// [Interpretation 8243] Create a new query object.
+		// [Interpretation 8255] Create a new query object.
 		$query = $db->getQuery(true);
-		// [Interpretation 8247] Select id from content type table
+		// [Interpretation 8259] Select id from content type table
 		$query->select($db->quoteName('type_id'));
 		$query->from($db->quoteName('#__content_types'));
-		// [Interpretation 8254] Where Site alias is found
+		// [Interpretation 8266] Where Site alias is found
 		$query->where( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.site') );
 		$db->setQuery($query);
-		// [Interpretation 8261] Execute query to see if alias is found
+		// [Interpretation 8273] Execute query to see if alias is found
 		$db->execute();
 		$site_found = $db->getNumRows();
-		// [Interpretation 8267] Now check if there were any rows
+		// [Interpretation 8279] Now check if there were any rows
 		if ($site_found)
 		{
-			// [Interpretation 8273] Since there are load the needed  site type ids
+			// [Interpretation 8285] Since there are load the needed  site type ids
 			$site_ids = $db->loadColumn();
-			// [Interpretation 8281] Remove Site from the content type table
+			// [Interpretation 8293] Remove Site from the content type table
 			$site_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.site') );
-			// [Interpretation 8287] Create a new query object.
+			// [Interpretation 8300] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__content_types'));
 			$query->where($site_condition);
 			$db->setQuery($query);
-			// [Interpretation 8297] Execute the query to remove Site items
+			// [Interpretation 8310] Execute the query to remove Site items
 			$site_done = $db->execute();
 			if ($site_done)
 			{
-				// [Interpretation 8304] If succesfully remove Site add queued success message.
+				// [Interpretation 8318] If successfully remove Site add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.site) type alias was removed from the <b>#__content_type</b> table'));
 			}
 
-			// [Interpretation 8315] Remove Site items from the contentitem tag map table
+			// [Interpretation 8329] Remove Site items from the contentitem tag map table
 			$site_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.site') );
-			// [Interpretation 8321] Create a new query object.
+			// [Interpretation 8335] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__contentitem_tag_map'));
 			$query->where($site_condition);
 			$db->setQuery($query);
-			// [Interpretation 8331] Execute the query to remove Site items
+			// [Interpretation 8345] Execute the query to remove Site items
 			$site_done = $db->execute();
 			if ($site_done)
 			{
-				// [Interpretation 8338] If succesfully remove Site add queued success message.
+				// [Interpretation 8353] If successfully remove Site add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.site) type alias was removed from the <b>#__contentitem_tag_map</b> table'));
 			}
 
-			// [Interpretation 8349] Remove Site items from the ucm content table
+			// [Interpretation 8364] Remove Site items from the ucm content table
 			$site_condition = array( $db->quoteName('core_type_alias') . ' = ' . $db->quote('com_eclinic_portal.site') );
-			// [Interpretation 8355] Create a new query object.
+			// [Interpretation 8370] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__ucm_content'));
 			$query->where($site_condition);
 			$db->setQuery($query);
-			// [Interpretation 8365] Execute the query to remove Site items
+			// [Interpretation 8380] Execute the query to remove Site items
 			$site_done = $db->execute();
 			if ($site_done)
 			{
-				// [Interpretation 8372] If succesfully remove Site add queued success message.
+				// [Interpretation 8388] If successfully removed Site add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.site) type alias was removed from the <b>#__ucm_content</b> table'));
 			}
 
-			// [Interpretation 8383] Make sure that all the Site items are cleared from DB
+			// [Interpretation 8399] Make sure that all the Site items are cleared from DB
 			foreach ($site_ids as $site_id)
 			{
-				// [Interpretation 8391] Remove Site items from the ucm base table
+				// [Interpretation 8407] Remove Site items from the ucm base table
 				$site_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $site_id);
-				// [Interpretation 8398] Create a new query object.
+				// [Interpretation 8414] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_base'));
 				$query->where($site_condition);
 				$db->setQuery($query);
-				// [Interpretation 8408] Execute the query to remove Site items
+				// [Interpretation 8424] Execute the query to remove Site items
 				$db->execute();
 
-				// [Interpretation 8414] Remove Site items from the ucm history table
+				// [Interpretation 8431] Remove Site items from the ucm history table
 				$site_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $site_id);
-				// [Interpretation 8420] Create a new query object.
+				// [Interpretation 8437] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_history'));
 				$query->where($site_condition);
 				$db->setQuery($query);
-				// [Interpretation 8430] Execute the query to remove Site items
+				// [Interpretation 8447] Execute the query to remove Site items
 				$db->execute();
 			}
 		}
 
-		// [Interpretation 8243] Create a new query object.
+		// [Interpretation 8255] Create a new query object.
 		$query = $db->getQuery(true);
-		// [Interpretation 8247] Select id from content type table
+		// [Interpretation 8259] Select id from content type table
 		$query->select($db->quoteName('type_id'));
 		$query->from($db->quoteName('#__content_types'));
-		// [Interpretation 8254] Where Referral alias is found
+		// [Interpretation 8266] Where Referral alias is found
 		$query->where( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.referral') );
 		$db->setQuery($query);
-		// [Interpretation 8261] Execute query to see if alias is found
+		// [Interpretation 8273] Execute query to see if alias is found
 		$db->execute();
 		$referral_found = $db->getNumRows();
-		// [Interpretation 8267] Now check if there were any rows
+		// [Interpretation 8279] Now check if there were any rows
 		if ($referral_found)
 		{
-			// [Interpretation 8273] Since there are load the needed  referral type ids
+			// [Interpretation 8285] Since there are load the needed  referral type ids
 			$referral_ids = $db->loadColumn();
-			// [Interpretation 8281] Remove Referral from the content type table
+			// [Interpretation 8293] Remove Referral from the content type table
 			$referral_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.referral') );
-			// [Interpretation 8287] Create a new query object.
+			// [Interpretation 8300] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__content_types'));
 			$query->where($referral_condition);
 			$db->setQuery($query);
-			// [Interpretation 8297] Execute the query to remove Referral items
+			// [Interpretation 8310] Execute the query to remove Referral items
 			$referral_done = $db->execute();
 			if ($referral_done)
 			{
-				// [Interpretation 8304] If succesfully remove Referral add queued success message.
+				// [Interpretation 8318] If successfully remove Referral add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.referral) type alias was removed from the <b>#__content_type</b> table'));
 			}
 
-			// [Interpretation 8315] Remove Referral items from the contentitem tag map table
+			// [Interpretation 8329] Remove Referral items from the contentitem tag map table
 			$referral_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.referral') );
-			// [Interpretation 8321] Create a new query object.
+			// [Interpretation 8335] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__contentitem_tag_map'));
 			$query->where($referral_condition);
 			$db->setQuery($query);
-			// [Interpretation 8331] Execute the query to remove Referral items
+			// [Interpretation 8345] Execute the query to remove Referral items
 			$referral_done = $db->execute();
 			if ($referral_done)
 			{
-				// [Interpretation 8338] If succesfully remove Referral add queued success message.
+				// [Interpretation 8353] If successfully remove Referral add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.referral) type alias was removed from the <b>#__contentitem_tag_map</b> table'));
 			}
 
-			// [Interpretation 8349] Remove Referral items from the ucm content table
+			// [Interpretation 8364] Remove Referral items from the ucm content table
 			$referral_condition = array( $db->quoteName('core_type_alias') . ' = ' . $db->quote('com_eclinic_portal.referral') );
-			// [Interpretation 8355] Create a new query object.
+			// [Interpretation 8370] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__ucm_content'));
 			$query->where($referral_condition);
 			$db->setQuery($query);
-			// [Interpretation 8365] Execute the query to remove Referral items
+			// [Interpretation 8380] Execute the query to remove Referral items
 			$referral_done = $db->execute();
 			if ($referral_done)
 			{
-				// [Interpretation 8372] If succesfully remove Referral add queued success message.
+				// [Interpretation 8388] If successfully removed Referral add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.referral) type alias was removed from the <b>#__ucm_content</b> table'));
 			}
 
-			// [Interpretation 8383] Make sure that all the Referral items are cleared from DB
+			// [Interpretation 8399] Make sure that all the Referral items are cleared from DB
 			foreach ($referral_ids as $referral_id)
 			{
-				// [Interpretation 8391] Remove Referral items from the ucm base table
+				// [Interpretation 8407] Remove Referral items from the ucm base table
 				$referral_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $referral_id);
-				// [Interpretation 8398] Create a new query object.
+				// [Interpretation 8414] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_base'));
 				$query->where($referral_condition);
 				$db->setQuery($query);
-				// [Interpretation 8408] Execute the query to remove Referral items
+				// [Interpretation 8424] Execute the query to remove Referral items
 				$db->execute();
 
-				// [Interpretation 8414] Remove Referral items from the ucm history table
+				// [Interpretation 8431] Remove Referral items from the ucm history table
 				$referral_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $referral_id);
-				// [Interpretation 8420] Create a new query object.
+				// [Interpretation 8437] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_history'));
 				$query->where($referral_condition);
 				$db->setQuery($query);
-				// [Interpretation 8430] Execute the query to remove Referral items
+				// [Interpretation 8447] Execute the query to remove Referral items
 				$db->execute();
 			}
 		}
 
-		// [Interpretation 8243] Create a new query object.
+		// [Interpretation 8255] Create a new query object.
 		$query = $db->getQuery(true);
-		// [Interpretation 8247] Select id from content type table
+		// [Interpretation 8259] Select id from content type table
 		$query->select($db->quoteName('type_id'));
 		$query->from($db->quoteName('#__content_types'));
-		// [Interpretation 8254] Where Clinic alias is found
+		// [Interpretation 8266] Where Clinic alias is found
 		$query->where( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.clinic') );
 		$db->setQuery($query);
-		// [Interpretation 8261] Execute query to see if alias is found
+		// [Interpretation 8273] Execute query to see if alias is found
 		$db->execute();
 		$clinic_found = $db->getNumRows();
-		// [Interpretation 8267] Now check if there were any rows
+		// [Interpretation 8279] Now check if there were any rows
 		if ($clinic_found)
 		{
-			// [Interpretation 8273] Since there are load the needed  clinic type ids
+			// [Interpretation 8285] Since there are load the needed  clinic type ids
 			$clinic_ids = $db->loadColumn();
-			// [Interpretation 8281] Remove Clinic from the content type table
+			// [Interpretation 8293] Remove Clinic from the content type table
 			$clinic_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.clinic') );
-			// [Interpretation 8287] Create a new query object.
+			// [Interpretation 8300] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__content_types'));
 			$query->where($clinic_condition);
 			$db->setQuery($query);
-			// [Interpretation 8297] Execute the query to remove Clinic items
+			// [Interpretation 8310] Execute the query to remove Clinic items
 			$clinic_done = $db->execute();
 			if ($clinic_done)
 			{
-				// [Interpretation 8304] If succesfully remove Clinic add queued success message.
+				// [Interpretation 8318] If successfully remove Clinic add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.clinic) type alias was removed from the <b>#__content_type</b> table'));
 			}
 
-			// [Interpretation 8315] Remove Clinic items from the contentitem tag map table
+			// [Interpretation 8329] Remove Clinic items from the contentitem tag map table
 			$clinic_condition = array( $db->quoteName('type_alias') . ' = '. $db->quote('com_eclinic_portal.clinic') );
-			// [Interpretation 8321] Create a new query object.
+			// [Interpretation 8335] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__contentitem_tag_map'));
 			$query->where($clinic_condition);
 			$db->setQuery($query);
-			// [Interpretation 8331] Execute the query to remove Clinic items
+			// [Interpretation 8345] Execute the query to remove Clinic items
 			$clinic_done = $db->execute();
 			if ($clinic_done)
 			{
-				// [Interpretation 8338] If succesfully remove Clinic add queued success message.
+				// [Interpretation 8353] If successfully remove Clinic add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.clinic) type alias was removed from the <b>#__contentitem_tag_map</b> table'));
 			}
 
-			// [Interpretation 8349] Remove Clinic items from the ucm content table
+			// [Interpretation 8364] Remove Clinic items from the ucm content table
 			$clinic_condition = array( $db->quoteName('core_type_alias') . ' = ' . $db->quote('com_eclinic_portal.clinic') );
-			// [Interpretation 8355] Create a new query object.
+			// [Interpretation 8370] Create a new query object.
 			$query = $db->getQuery(true);
 			$query->delete($db->quoteName('#__ucm_content'));
 			$query->where($clinic_condition);
 			$db->setQuery($query);
-			// [Interpretation 8365] Execute the query to remove Clinic items
+			// [Interpretation 8380] Execute the query to remove Clinic items
 			$clinic_done = $db->execute();
 			if ($clinic_done)
 			{
-				// [Interpretation 8372] If succesfully remove Clinic add queued success message.
+				// [Interpretation 8388] If successfully removed Clinic add queued success message.
 				$app->enqueueMessage(JText::_('The (com_eclinic_portal.clinic) type alias was removed from the <b>#__ucm_content</b> table'));
 			}
 
-			// [Interpretation 8383] Make sure that all the Clinic items are cleared from DB
+			// [Interpretation 8399] Make sure that all the Clinic items are cleared from DB
 			foreach ($clinic_ids as $clinic_id)
 			{
-				// [Interpretation 8391] Remove Clinic items from the ucm base table
+				// [Interpretation 8407] Remove Clinic items from the ucm base table
 				$clinic_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $clinic_id);
-				// [Interpretation 8398] Create a new query object.
+				// [Interpretation 8414] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_base'));
 				$query->where($clinic_condition);
 				$db->setQuery($query);
-				// [Interpretation 8408] Execute the query to remove Clinic items
+				// [Interpretation 8424] Execute the query to remove Clinic items
 				$db->execute();
 
-				// [Interpretation 8414] Remove Clinic items from the ucm history table
+				// [Interpretation 8431] Remove Clinic items from the ucm history table
 				$clinic_condition = array( $db->quoteName('ucm_type_id') . ' = ' . $clinic_id);
-				// [Interpretation 8420] Create a new query object.
+				// [Interpretation 8437] Create a new query object.
 				$query = $db->getQuery(true);
 				$query->delete($db->quoteName('#__ucm_history'));
 				$query->where($clinic_condition);
 				$db->setQuery($query);
-				// [Interpretation 8430] Execute the query to remove Clinic items
+				// [Interpretation 8447] Execute the query to remove Clinic items
 				$db->execute();
 			}
 		}
 
-		// [Interpretation 8440] If All related items was removed queued success message.
+		// [Interpretation 8458] If All related items was removed queued success message.
 		$app->enqueueMessage(JText::_('All related items was removed from the <b>#__ucm_base</b> table'));
 		$app->enqueueMessage(JText::_('All related items was removed from the <b>#__ucm_history</b> table'));
 
-		// [Interpretation 8449] Remove eclinic_portal assets from the assets table
+		// [Interpretation 8467] Remove eclinic_portal assets from the assets table
 		$eclinic_portal_condition = array( $db->quoteName('name') . ' LIKE ' . $db->quote('com_eclinic_portal%') );
 
-		// [Interpretation 8455] Create a new query object.
+		// [Interpretation 8473] Create a new query object.
 		$query = $db->getQuery(true);
 		$query->delete($db->quoteName('#__assets'));
 		$query->where($eclinic_portal_condition);
@@ -2910,7 +2910,7 @@ class com_eclinic_portalInstallerScript
 		$clinic_done = $db->execute();
 		if ($clinic_done)
 		{
-			// [Interpretation 8468] If succesfully remove eclinic_portal add queued success message.
+			// [Interpretation 8486] If successfully removed eclinic_portal add queued success message.
 			$app->enqueueMessage(JText::_('All related items was removed from the <b>#__assets</b> table'));
 		}
 
@@ -2986,16 +2986,16 @@ class com_eclinic_portalInstallerScript
 	{
 		// get application
 		$app = JFactory::getApplication();
-		// [Interpretation 8492] We check if we have dynamic folders to copy
+		// [Interpretation 8670] We check if we have dynamic folders to copy
 		$this->setDynamicF0ld3rs($app, $parent);
 		// set the default component settings
 		if ($type === 'install')
 		{
 
-			// [Interpretation 7794] Get The Database object
+			// [Interpretation 7801] Get The Database object
 			$db = JFactory::getDbo();
 
-			// [Interpretation 7803] Create the payment content type object.
+			// [Interpretation 7810] Create the payment content type object.
 			$payment = new stdClass();
 			$payment->type_title = 'Eclinic_portal Payment';
 			$payment->type_alias = 'com_eclinic_portal.payment';
@@ -3004,10 +3004,10 @@ class com_eclinic_portalInstallerScript
 			$payment->router = 'Eclinic_portalHelperRoute::getPaymentRoute';
 			$payment->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/payment.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering","patient","payment_type","nonpay_reason"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "payment_type","targetTable": "#__eclinic_portal_payment_type","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "nonpay_reason","targetTable": "#__eclinic_portal_nonpay_reason","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			$payment_Inserted = $db->insertObject('#__content_types', $payment);
 
-			// [Interpretation 7803] Create the general_medical_check_up content type object.
+			// [Interpretation 7810] Create the general_medical_check_up content type object.
 			$general_medical_check_up = new stdClass();
 			$general_medical_check_up->type_title = 'Eclinic_portal General_medical_check_up';
 			$general_medical_check_up->type_alias = 'com_eclinic_portal.general_medical_check_up';
@@ -3016,10 +3016,10 @@ class com_eclinic_portalInstallerScript
 			$general_medical_check_up->router = 'Eclinic_portalHelperRoute::getGeneral_medical_check_upRoute';
 			$general_medical_check_up->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/general_medical_check_up.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering","patient","bp_diastolic_one","bp_systolic_one","pulse","bp_diastolic_two","bp_systolic_two","diagnosis","referral"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "diagnosis","targetTable": "#__eclinic_portal_diagnosis_type","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "referral","targetTable": "#__eclinic_portal_referral","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			$general_medical_check_up_Inserted = $db->insertObject('#__content_types', $general_medical_check_up);
 
-			// [Interpretation 7803] Create the antenatal_care content type object.
+			// [Interpretation 7810] Create the antenatal_care content type object.
 			$antenatal_care = new stdClass();
 			$antenatal_care->type_title = 'Eclinic_portal Antenatal_care';
 			$antenatal_care->type_alias = 'com_eclinic_portal.antenatal_care';
@@ -3028,10 +3028,10 @@ class com_eclinic_portalInstallerScript
 			$antenatal_care->router = 'Eclinic_portalHelperRoute::getAntenatal_careRoute';
 			$antenatal_care->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/antenatal_care.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering","patient","foetal_lie","foetal_presentation","foetal_engagement","foetal_heart_rate","caesarean_sections","normal_births","still_births","miscarriages","live_births","pregnancies_excl"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "foetal_lie","targetTable": "#__eclinic_portal_foetal_lie","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "foetal_presentation","targetTable": "#__eclinic_portal_foetal_presentation","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "foetal_engagement","targetTable": "#__eclinic_portal_foetal_engagement","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			$antenatal_care_Inserted = $db->insertObject('#__content_types', $antenatal_care);
 
-			// [Interpretation 7803] Create the immunisation content type object.
+			// [Interpretation 7810] Create the immunisation content type object.
 			$immunisation = new stdClass();
 			$immunisation->type_title = 'Eclinic_portal Immunisation';
 			$immunisation->type_alias = 'com_eclinic_portal.immunisation';
@@ -3040,10 +3040,10 @@ class com_eclinic_portalInstallerScript
 			$immunisation->router = 'Eclinic_portalHelperRoute::getImmunisationRoute';
 			$immunisation->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/immunisation.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering","patient"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			$immunisation_Inserted = $db->insertObject('#__content_types', $immunisation);
 
-			// [Interpretation 7803] Create the vmmc content type object.
+			// [Interpretation 7810] Create the vmmc content type object.
 			$vmmc = new stdClass();
 			$vmmc->type_title = 'Eclinic_portal Vmmc';
 			$vmmc->type_alias = 'com_eclinic_portal.vmmc';
@@ -3052,10 +3052,10 @@ class com_eclinic_portalInstallerScript
 			$vmmc->router = 'Eclinic_portalHelperRoute::getVmmcRoute';
 			$vmmc->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/vmmc.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering","patient"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			$vmmc_Inserted = $db->insertObject('#__content_types', $vmmc);
 
-			// [Interpretation 7803] Create the prostate_and_testicular_cancer content type object.
+			// [Interpretation 7810] Create the prostate_and_testicular_cancer content type object.
 			$prostate_and_testicular_cancer = new stdClass();
 			$prostate_and_testicular_cancer->type_title = 'Eclinic_portal Prostate_and_testicular_cancer';
 			$prostate_and_testicular_cancer->type_alias = 'com_eclinic_portal.prostate_and_testicular_cancer';
@@ -3064,10 +3064,10 @@ class com_eclinic_portalInstallerScript
 			$prostate_and_testicular_cancer->router = 'Eclinic_portalHelperRoute::getProstate_and_testicular_cancerRoute';
 			$prostate_and_testicular_cancer->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/prostate_and_testicular_cancer.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering","patient"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			$prostate_and_testicular_cancer_Inserted = $db->insertObject('#__content_types', $prostate_and_testicular_cancer);
 
-			// [Interpretation 7803] Create the tuberculosis content type object.
+			// [Interpretation 7810] Create the tuberculosis content type object.
 			$tuberculosis = new stdClass();
 			$tuberculosis->type_title = 'Eclinic_portal Tuberculosis';
 			$tuberculosis->type_alias = 'com_eclinic_portal.tuberculosis';
@@ -3076,10 +3076,10 @@ class com_eclinic_portalInstallerScript
 			$tuberculosis->router = 'Eclinic_portalHelperRoute::getTuberculosisRoute';
 			$tuberculosis->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/tuberculosis.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering","patient"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			$tuberculosis_Inserted = $db->insertObject('#__content_types', $tuberculosis);
 
-			// [Interpretation 7803] Create the hiv_counseling_and_testing content type object.
+			// [Interpretation 7810] Create the hiv_counseling_and_testing content type object.
 			$hiv_counseling_and_testing = new stdClass();
 			$hiv_counseling_and_testing->type_title = 'Eclinic_portal Hiv_counseling_and_testing';
 			$hiv_counseling_and_testing->type_alias = 'com_eclinic_portal.hiv_counseling_and_testing';
@@ -3088,10 +3088,10 @@ class com_eclinic_portalInstallerScript
 			$hiv_counseling_and_testing->router = 'Eclinic_portalHelperRoute::getHiv_counseling_and_testingRoute';
 			$hiv_counseling_and_testing->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/hiv_counseling_and_testing.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering","patient","testing_reason"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "testing_reason","targetTable": "#__eclinic_portal_testing_reason","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			$hiv_counseling_and_testing_Inserted = $db->insertObject('#__content_types', $hiv_counseling_and_testing);
 
-			// [Interpretation 7803] Create the family_planning content type object.
+			// [Interpretation 7810] Create the family_planning content type object.
 			$family_planning = new stdClass();
 			$family_planning->type_title = 'Eclinic_portal Family_planning';
 			$family_planning->type_alias = 'com_eclinic_portal.family_planning';
@@ -3100,10 +3100,10 @@ class com_eclinic_portalInstallerScript
 			$family_planning->router = 'Eclinic_portalHelperRoute::getFamily_planningRoute';
 			$family_planning->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/family_planning.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering","patient","diagnosis"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "diagnosis","targetTable": "#__eclinic_portal_planning_type","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			$family_planning_Inserted = $db->insertObject('#__content_types', $family_planning);
 
-			// [Interpretation 7803] Create the cervical_cancer content type object.
+			// [Interpretation 7810] Create the cervical_cancer content type object.
 			$cervical_cancer = new stdClass();
 			$cervical_cancer->type_title = 'Eclinic_portal Cervical_cancer';
 			$cervical_cancer->type_alias = 'com_eclinic_portal.cervical_cancer';
@@ -3112,10 +3112,10 @@ class com_eclinic_portalInstallerScript
 			$cervical_cancer->router = 'Eclinic_portalHelperRoute::getCervical_cancerRoute';
 			$cervical_cancer->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/cervical_cancer.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering","patient"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			$cervical_cancer_Inserted = $db->insertObject('#__content_types', $cervical_cancer);
 
-			// [Interpretation 7803] Create the breast_cancer content type object.
+			// [Interpretation 7810] Create the breast_cancer content type object.
 			$breast_cancer = new stdClass();
 			$breast_cancer->type_title = 'Eclinic_portal Breast_cancer';
 			$breast_cancer->type_alias = 'com_eclinic_portal.breast_cancer';
@@ -3124,10 +3124,10 @@ class com_eclinic_portalInstallerScript
 			$breast_cancer->router = 'Eclinic_portalHelperRoute::getBreast_cancerRoute';
 			$breast_cancer->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/breast_cancer.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering","patient","bc_preg_freq"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			$breast_cancer_Inserted = $db->insertObject('#__content_types', $breast_cancer);
 
-			// [Interpretation 7803] Create the test content type object.
+			// [Interpretation 7810] Create the test content type object.
 			$test = new stdClass();
 			$test->type_title = 'Eclinic_portal Test';
 			$test->type_alias = 'com_eclinic_portal.test';
@@ -3136,10 +3136,10 @@ class com_eclinic_portalInstallerScript
 			$test->router = 'Eclinic_portalHelperRoute::getTestRoute';
 			$test->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/test.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering","patient","glucose_first_reading","glucose_second_reading","haemoglobin_reading","cholesterol_reading"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			$test_Inserted = $db->insertObject('#__content_types', $test);
 
-			// [Interpretation 7803] Create the testing_reason content type object.
+			// [Interpretation 7810] Create the testing_reason content type object.
 			$testing_reason = new stdClass();
 			$testing_reason->type_title = 'Eclinic_portal Testing_reason';
 			$testing_reason->type_alias = 'com_eclinic_portal.testing_reason';
@@ -3148,10 +3148,10 @@ class com_eclinic_portalInstallerScript
 			$testing_reason->router = 'Eclinic_portalHelperRoute::getTesting_reasonRoute';
 			$testing_reason->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/testing_reason.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			$testing_reason_Inserted = $db->insertObject('#__content_types', $testing_reason);
 
-			// [Interpretation 7803] Create the counseling_type content type object.
+			// [Interpretation 7810] Create the counseling_type content type object.
 			$counseling_type = new stdClass();
 			$counseling_type->type_title = 'Eclinic_portal Counseling_type';
 			$counseling_type->type_alias = 'com_eclinic_portal.counseling_type';
@@ -3160,10 +3160,10 @@ class com_eclinic_portalInstallerScript
 			$counseling_type->router = 'Eclinic_portalHelperRoute::getCounseling_typeRoute';
 			$counseling_type->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/counseling_type.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			$counseling_type_Inserted = $db->insertObject('#__content_types', $counseling_type);
 
-			// [Interpretation 7803] Create the group_health_education_topic content type object.
+			// [Interpretation 7810] Create the group_health_education_topic content type object.
 			$group_health_education_topic = new stdClass();
 			$group_health_education_topic->type_title = 'Eclinic_portal Group_health_education_topic';
 			$group_health_education_topic->type_alias = 'com_eclinic_portal.group_health_education_topic';
@@ -3172,10 +3172,10 @@ class com_eclinic_portalInstallerScript
 			$group_health_education_topic->router = 'Eclinic_portalHelperRoute::getGroup_health_education_topicRoute';
 			$group_health_education_topic->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/group_health_education_topic.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			$group_health_education_topic_Inserted = $db->insertObject('#__content_types', $group_health_education_topic);
 
-			// [Interpretation 7803] Create the individual_health_education_topic content type object.
+			// [Interpretation 7810] Create the individual_health_education_topic content type object.
 			$individual_health_education_topic = new stdClass();
 			$individual_health_education_topic->type_title = 'Eclinic_portal Individual_health_education_topic';
 			$individual_health_education_topic->type_alias = 'com_eclinic_portal.individual_health_education_topic';
@@ -3184,10 +3184,10 @@ class com_eclinic_portalInstallerScript
 			$individual_health_education_topic->router = 'Eclinic_portalHelperRoute::getIndividual_health_education_topicRoute';
 			$individual_health_education_topic->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/individual_health_education_topic.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			$individual_health_education_topic_Inserted = $db->insertObject('#__content_types', $individual_health_education_topic);
 
-			// [Interpretation 7803] Create the individual_health_education content type object.
+			// [Interpretation 7810] Create the individual_health_education content type object.
 			$individual_health_education = new stdClass();
 			$individual_health_education->type_title = 'Eclinic_portal Individual_health_education';
 			$individual_health_education->type_alias = 'com_eclinic_portal.individual_health_education';
@@ -3196,10 +3196,10 @@ class com_eclinic_portalInstallerScript
 			$individual_health_education->router = 'Eclinic_portalHelperRoute::getIndividual_health_educationRoute';
 			$individual_health_education->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/individual_health_education.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering","individual_health_edu","patient"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "individual_health_edu","targetTable": "#__eclinic_portal_individual_health_education_topic","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			$individual_health_education_Inserted = $db->insertObject('#__content_types', $individual_health_education);
 
-			// [Interpretation 7803] Create the group_health_education content type object.
+			// [Interpretation 7810] Create the group_health_education content type object.
 			$group_health_education = new stdClass();
 			$group_health_education->type_title = 'Eclinic_portal Group_health_education';
 			$group_health_education->type_alias = 'com_eclinic_portal.group_health_education';
@@ -3208,10 +3208,10 @@ class com_eclinic_portalInstallerScript
 			$group_health_education->router = 'Eclinic_portalHelperRoute::getGroup_health_educationRoute';
 			$group_health_education->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/group_health_education.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering","patient","group_health_edu"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "group_health_edu","targetTable": "#__eclinic_portal_group_health_education_topic","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			$group_health_education_Inserted = $db->insertObject('#__content_types', $group_health_education);
 
-			// [Interpretation 7803] Create the foetal_engagement content type object.
+			// [Interpretation 7810] Create the foetal_engagement content type object.
 			$foetal_engagement = new stdClass();
 			$foetal_engagement->type_title = 'Eclinic_portal Foetal_engagement';
 			$foetal_engagement->type_alias = 'com_eclinic_portal.foetal_engagement';
@@ -3220,10 +3220,10 @@ class com_eclinic_portalInstallerScript
 			$foetal_engagement->router = 'Eclinic_portalHelperRoute::getFoetal_engagementRoute';
 			$foetal_engagement->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/foetal_engagement.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			$foetal_engagement_Inserted = $db->insertObject('#__content_types', $foetal_engagement);
 
-			// [Interpretation 7803] Create the administration_part content type object.
+			// [Interpretation 7810] Create the administration_part content type object.
 			$administration_part = new stdClass();
 			$administration_part->type_title = 'Eclinic_portal Administration_part';
 			$administration_part->type_alias = 'com_eclinic_portal.administration_part';
@@ -3232,10 +3232,10 @@ class com_eclinic_portalInstallerScript
 			$administration_part->router = 'Eclinic_portalHelperRoute::getAdministration_partRoute';
 			$administration_part->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/administration_part.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			$administration_part_Inserted = $db->insertObject('#__content_types', $administration_part);
 
-			// [Interpretation 7803] Create the planning_type content type object.
+			// [Interpretation 7810] Create the planning_type content type object.
 			$planning_type = new stdClass();
 			$planning_type->type_title = 'Eclinic_portal Planning_type';
 			$planning_type->type_alias = 'com_eclinic_portal.planning_type';
@@ -3244,10 +3244,10 @@ class com_eclinic_portalInstallerScript
 			$planning_type->router = 'Eclinic_portalHelperRoute::getPlanning_typeRoute';
 			$planning_type->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/planning_type.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			$planning_type_Inserted = $db->insertObject('#__content_types', $planning_type);
 
-			// [Interpretation 7803] Create the immunisation_type content type object.
+			// [Interpretation 7810] Create the immunisation_type content type object.
 			$immunisation_type = new stdClass();
 			$immunisation_type->type_title = 'Eclinic_portal Immunisation_type';
 			$immunisation_type->type_alias = 'com_eclinic_portal.immunisation_type';
@@ -3256,10 +3256,10 @@ class com_eclinic_portalInstallerScript
 			$immunisation_type->router = 'Eclinic_portalHelperRoute::getImmunisation_typeRoute';
 			$immunisation_type->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/immunisation_type.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			$immunisation_type_Inserted = $db->insertObject('#__content_types', $immunisation_type);
 
-			// [Interpretation 7803] Create the foetal_lie content type object.
+			// [Interpretation 7810] Create the foetal_lie content type object.
 			$foetal_lie = new stdClass();
 			$foetal_lie->type_title = 'Eclinic_portal Foetal_lie';
 			$foetal_lie->type_alias = 'com_eclinic_portal.foetal_lie';
@@ -3268,10 +3268,10 @@ class com_eclinic_portalInstallerScript
 			$foetal_lie->router = 'Eclinic_portalHelperRoute::getFoetal_lieRoute';
 			$foetal_lie->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/foetal_lie.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			$foetal_lie_Inserted = $db->insertObject('#__content_types', $foetal_lie);
 
-			// [Interpretation 7803] Create the foetal_presentation content type object.
+			// [Interpretation 7810] Create the foetal_presentation content type object.
 			$foetal_presentation = new stdClass();
 			$foetal_presentation->type_title = 'Eclinic_portal Foetal_presentation';
 			$foetal_presentation->type_alias = 'com_eclinic_portal.foetal_presentation';
@@ -3280,10 +3280,10 @@ class com_eclinic_portalInstallerScript
 			$foetal_presentation->router = 'Eclinic_portalHelperRoute::getFoetal_presentationRoute';
 			$foetal_presentation->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/foetal_presentation.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			$foetal_presentation_Inserted = $db->insertObject('#__content_types', $foetal_presentation);
 
-			// [Interpretation 7803] Create the nonpay_reason content type object.
+			// [Interpretation 7810] Create the nonpay_reason content type object.
 			$nonpay_reason = new stdClass();
 			$nonpay_reason->type_title = 'Eclinic_portal Nonpay_reason';
 			$nonpay_reason->type_alias = 'com_eclinic_portal.nonpay_reason';
@@ -3292,10 +3292,10 @@ class com_eclinic_portalInstallerScript
 			$nonpay_reason->router = 'Eclinic_portalHelperRoute::getNonpay_reasonRoute';
 			$nonpay_reason->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/nonpay_reason.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			$nonpay_reason_Inserted = $db->insertObject('#__content_types', $nonpay_reason);
 
-			// [Interpretation 7803] Create the immunisation_vaccine_type content type object.
+			// [Interpretation 7810] Create the immunisation_vaccine_type content type object.
 			$immunisation_vaccine_type = new stdClass();
 			$immunisation_vaccine_type->type_title = 'Eclinic_portal Immunisation_vaccine_type';
 			$immunisation_vaccine_type->type_alias = 'com_eclinic_portal.immunisation_vaccine_type';
@@ -3304,10 +3304,10 @@ class com_eclinic_portalInstallerScript
 			$immunisation_vaccine_type->router = 'Eclinic_portalHelperRoute::getImmunisation_vaccine_typeRoute';
 			$immunisation_vaccine_type->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/immunisation_vaccine_type.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			$immunisation_vaccine_type_Inserted = $db->insertObject('#__content_types', $immunisation_vaccine_type);
 
-			// [Interpretation 7803] Create the payment_amount content type object.
+			// [Interpretation 7810] Create the payment_amount content type object.
 			$payment_amount = new stdClass();
 			$payment_amount->type_title = 'Eclinic_portal Payment_amount';
 			$payment_amount->type_alias = 'com_eclinic_portal.payment_amount';
@@ -3316,10 +3316,10 @@ class com_eclinic_portalInstallerScript
 			$payment_amount->router = 'Eclinic_portalHelperRoute::getPayment_amountRoute';
 			$payment_amount->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/payment_amount.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			$payment_amount_Inserted = $db->insertObject('#__content_types', $payment_amount);
 
-			// [Interpretation 7803] Create the diagnosis_type content type object.
+			// [Interpretation 7810] Create the diagnosis_type content type object.
 			$diagnosis_type = new stdClass();
 			$diagnosis_type->type_title = 'Eclinic_portal Diagnosis_type';
 			$diagnosis_type->type_alias = 'com_eclinic_portal.diagnosis_type';
@@ -3328,10 +3328,10 @@ class com_eclinic_portalInstallerScript
 			$diagnosis_type->router = 'Eclinic_portalHelperRoute::getDiagnosis_typeRoute';
 			$diagnosis_type->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/diagnosis_type.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			$diagnosis_type_Inserted = $db->insertObject('#__content_types', $diagnosis_type);
 
-			// [Interpretation 7803] Create the payment_type content type object.
+			// [Interpretation 7810] Create the payment_type content type object.
 			$payment_type = new stdClass();
 			$payment_type->type_title = 'Eclinic_portal Payment_type';
 			$payment_type->type_alias = 'com_eclinic_portal.payment_type';
@@ -3340,10 +3340,10 @@ class com_eclinic_portalInstallerScript
 			$payment_type->router = 'Eclinic_portalHelperRoute::getPayment_typeRoute';
 			$payment_type->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/payment_type.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			$payment_type_Inserted = $db->insertObject('#__content_types', $payment_type);
 
-			// [Interpretation 7803] Create the medication content type object.
+			// [Interpretation 7810] Create the medication content type object.
 			$medication = new stdClass();
 			$medication->type_title = 'Eclinic_portal Medication';
 			$medication->type_alias = 'com_eclinic_portal.medication';
@@ -3352,10 +3352,10 @@ class com_eclinic_portalInstallerScript
 			$medication->router = 'Eclinic_portalHelperRoute::getMedicationRoute';
 			$medication->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/medication.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			$medication_Inserted = $db->insertObject('#__content_types', $medication);
 
-			// [Interpretation 7803] Create the site content type object.
+			// [Interpretation 7810] Create the site content type object.
 			$site = new stdClass();
 			$site->type_title = 'Eclinic_portal Site';
 			$site->type_alias = 'com_eclinic_portal.site';
@@ -3364,10 +3364,10 @@ class com_eclinic_portalInstallerScript
 			$site->router = 'Eclinic_portalHelperRoute::getSiteRoute';
 			$site->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/site.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			$site_Inserted = $db->insertObject('#__content_types', $site);
 
-			// [Interpretation 7803] Create the referral content type object.
+			// [Interpretation 7810] Create the referral content type object.
 			$referral = new stdClass();
 			$referral->type_title = 'Eclinic_portal Referral';
 			$referral->type_alias = 'com_eclinic_portal.referral';
@@ -3376,10 +3376,10 @@ class com_eclinic_portalInstallerScript
 			$referral->router = 'Eclinic_portalHelperRoute::getReferralRoute';
 			$referral->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/referral.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			$referral_Inserted = $db->insertObject('#__content_types', $referral);
 
-			// [Interpretation 7803] Create the clinic content type object.
+			// [Interpretation 7810] Create the clinic content type object.
 			$clinic = new stdClass();
 			$clinic->type_title = 'Eclinic_portal Clinic';
 			$clinic->type_alias = 'com_eclinic_portal.clinic';
@@ -3388,17 +3388,17 @@ class com_eclinic_portalInstallerScript
 			$clinic->router = 'Eclinic_portalHelperRoute::getClinicRoute';
 			$clinic->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/clinic.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			$clinic_Inserted = $db->insertObject('#__content_types', $clinic);
 
 
-			// [Interpretation 7927] Install the global extenstion params.
+			// [Interpretation 7934] Install the global extenstion params.
 			$query = $db->getQuery(true);
-			// [Interpretation 7940] Field to update.
+			// [Interpretation 7947] Field to update.
 			$fields = array(
 				$db->quoteName('params') . ' = ' . $db->quote('{"autorName":"Oh Martin","autorEmail":"oh.martin@vdm.io","check_in":"-1 day","save_history":"1","history_limit":"10"}'),
 			);
-			// [Interpretation 7947] Condition.
+			// [Interpretation 7954] Condition.
 			$conditions = array(
 				$db->quoteName('element') . ' = ' . $db->quote('com_eclinic_portal')
 			);
@@ -3414,10 +3414,10 @@ class com_eclinic_portalInstallerScript
 		if ($type === 'update')
 		{
 
-			// [Interpretation 7794] Get The Database object
+			// [Interpretation 7801] Get The Database object
 			$db = JFactory::getDbo();
 
-			// [Interpretation 7803] Create the payment content type object.
+			// [Interpretation 7810] Create the payment content type object.
 			$payment = new stdClass();
 			$payment->type_title = 'Eclinic_portal Payment';
 			$payment->type_alias = 'com_eclinic_portal.payment';
@@ -3426,7 +3426,7 @@ class com_eclinic_portalInstallerScript
 			$payment->router = 'Eclinic_portalHelperRoute::getPaymentRoute';
 			$payment->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/payment.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering","patient","payment_type","nonpay_reason"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "payment_type","targetTable": "#__eclinic_portal_payment_type","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "nonpay_reason","targetTable": "#__eclinic_portal_nonpay_reason","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7816] Check if payment type is already in content_type DB.
+			// [Interpretation 7823] Check if payment type is already in content_type DB.
 			$payment_id = null;
 			$query = $db->getQuery(true);
 			$query->select($db->quoteName(array('type_id')));
@@ -3435,7 +3435,7 @@ class com_eclinic_portalInstallerScript
 			$db->setQuery($query);
 			$db->execute();
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			if ($db->getNumRows())
 			{
 				$payment->type_id = $db->loadResult();
@@ -3446,7 +3446,7 @@ class com_eclinic_portalInstallerScript
 				$payment_Inserted = $db->insertObject('#__content_types', $payment);
 			}
 
-			// [Interpretation 7803] Create the general_medical_check_up content type object.
+			// [Interpretation 7810] Create the general_medical_check_up content type object.
 			$general_medical_check_up = new stdClass();
 			$general_medical_check_up->type_title = 'Eclinic_portal General_medical_check_up';
 			$general_medical_check_up->type_alias = 'com_eclinic_portal.general_medical_check_up';
@@ -3455,7 +3455,7 @@ class com_eclinic_portalInstallerScript
 			$general_medical_check_up->router = 'Eclinic_portalHelperRoute::getGeneral_medical_check_upRoute';
 			$general_medical_check_up->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/general_medical_check_up.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering","patient","bp_diastolic_one","bp_systolic_one","pulse","bp_diastolic_two","bp_systolic_two","diagnosis","referral"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "diagnosis","targetTable": "#__eclinic_portal_diagnosis_type","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "referral","targetTable": "#__eclinic_portal_referral","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7816] Check if general_medical_check_up type is already in content_type DB.
+			// [Interpretation 7823] Check if general_medical_check_up type is already in content_type DB.
 			$general_medical_check_up_id = null;
 			$query = $db->getQuery(true);
 			$query->select($db->quoteName(array('type_id')));
@@ -3464,7 +3464,7 @@ class com_eclinic_portalInstallerScript
 			$db->setQuery($query);
 			$db->execute();
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			if ($db->getNumRows())
 			{
 				$general_medical_check_up->type_id = $db->loadResult();
@@ -3475,7 +3475,7 @@ class com_eclinic_portalInstallerScript
 				$general_medical_check_up_Inserted = $db->insertObject('#__content_types', $general_medical_check_up);
 			}
 
-			// [Interpretation 7803] Create the antenatal_care content type object.
+			// [Interpretation 7810] Create the antenatal_care content type object.
 			$antenatal_care = new stdClass();
 			$antenatal_care->type_title = 'Eclinic_portal Antenatal_care';
 			$antenatal_care->type_alias = 'com_eclinic_portal.antenatal_care';
@@ -3484,7 +3484,7 @@ class com_eclinic_portalInstallerScript
 			$antenatal_care->router = 'Eclinic_portalHelperRoute::getAntenatal_careRoute';
 			$antenatal_care->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/antenatal_care.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering","patient","foetal_lie","foetal_presentation","foetal_engagement","foetal_heart_rate","caesarean_sections","normal_births","still_births","miscarriages","live_births","pregnancies_excl"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "foetal_lie","targetTable": "#__eclinic_portal_foetal_lie","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "foetal_presentation","targetTable": "#__eclinic_portal_foetal_presentation","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "foetal_engagement","targetTable": "#__eclinic_portal_foetal_engagement","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7816] Check if antenatal_care type is already in content_type DB.
+			// [Interpretation 7823] Check if antenatal_care type is already in content_type DB.
 			$antenatal_care_id = null;
 			$query = $db->getQuery(true);
 			$query->select($db->quoteName(array('type_id')));
@@ -3493,7 +3493,7 @@ class com_eclinic_portalInstallerScript
 			$db->setQuery($query);
 			$db->execute();
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			if ($db->getNumRows())
 			{
 				$antenatal_care->type_id = $db->loadResult();
@@ -3504,7 +3504,7 @@ class com_eclinic_portalInstallerScript
 				$antenatal_care_Inserted = $db->insertObject('#__content_types', $antenatal_care);
 			}
 
-			// [Interpretation 7803] Create the immunisation content type object.
+			// [Interpretation 7810] Create the immunisation content type object.
 			$immunisation = new stdClass();
 			$immunisation->type_title = 'Eclinic_portal Immunisation';
 			$immunisation->type_alias = 'com_eclinic_portal.immunisation';
@@ -3513,7 +3513,7 @@ class com_eclinic_portalInstallerScript
 			$immunisation->router = 'Eclinic_portalHelperRoute::getImmunisationRoute';
 			$immunisation->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/immunisation.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering","patient"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7816] Check if immunisation type is already in content_type DB.
+			// [Interpretation 7823] Check if immunisation type is already in content_type DB.
 			$immunisation_id = null;
 			$query = $db->getQuery(true);
 			$query->select($db->quoteName(array('type_id')));
@@ -3522,7 +3522,7 @@ class com_eclinic_portalInstallerScript
 			$db->setQuery($query);
 			$db->execute();
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			if ($db->getNumRows())
 			{
 				$immunisation->type_id = $db->loadResult();
@@ -3533,7 +3533,7 @@ class com_eclinic_portalInstallerScript
 				$immunisation_Inserted = $db->insertObject('#__content_types', $immunisation);
 			}
 
-			// [Interpretation 7803] Create the vmmc content type object.
+			// [Interpretation 7810] Create the vmmc content type object.
 			$vmmc = new stdClass();
 			$vmmc->type_title = 'Eclinic_portal Vmmc';
 			$vmmc->type_alias = 'com_eclinic_portal.vmmc';
@@ -3542,7 +3542,7 @@ class com_eclinic_portalInstallerScript
 			$vmmc->router = 'Eclinic_portalHelperRoute::getVmmcRoute';
 			$vmmc->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/vmmc.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering","patient"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7816] Check if vmmc type is already in content_type DB.
+			// [Interpretation 7823] Check if vmmc type is already in content_type DB.
 			$vmmc_id = null;
 			$query = $db->getQuery(true);
 			$query->select($db->quoteName(array('type_id')));
@@ -3551,7 +3551,7 @@ class com_eclinic_portalInstallerScript
 			$db->setQuery($query);
 			$db->execute();
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			if ($db->getNumRows())
 			{
 				$vmmc->type_id = $db->loadResult();
@@ -3562,7 +3562,7 @@ class com_eclinic_portalInstallerScript
 				$vmmc_Inserted = $db->insertObject('#__content_types', $vmmc);
 			}
 
-			// [Interpretation 7803] Create the prostate_and_testicular_cancer content type object.
+			// [Interpretation 7810] Create the prostate_and_testicular_cancer content type object.
 			$prostate_and_testicular_cancer = new stdClass();
 			$prostate_and_testicular_cancer->type_title = 'Eclinic_portal Prostate_and_testicular_cancer';
 			$prostate_and_testicular_cancer->type_alias = 'com_eclinic_portal.prostate_and_testicular_cancer';
@@ -3571,7 +3571,7 @@ class com_eclinic_portalInstallerScript
 			$prostate_and_testicular_cancer->router = 'Eclinic_portalHelperRoute::getProstate_and_testicular_cancerRoute';
 			$prostate_and_testicular_cancer->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/prostate_and_testicular_cancer.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering","patient"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7816] Check if prostate_and_testicular_cancer type is already in content_type DB.
+			// [Interpretation 7823] Check if prostate_and_testicular_cancer type is already in content_type DB.
 			$prostate_and_testicular_cancer_id = null;
 			$query = $db->getQuery(true);
 			$query->select($db->quoteName(array('type_id')));
@@ -3580,7 +3580,7 @@ class com_eclinic_portalInstallerScript
 			$db->setQuery($query);
 			$db->execute();
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			if ($db->getNumRows())
 			{
 				$prostate_and_testicular_cancer->type_id = $db->loadResult();
@@ -3591,7 +3591,7 @@ class com_eclinic_portalInstallerScript
 				$prostate_and_testicular_cancer_Inserted = $db->insertObject('#__content_types', $prostate_and_testicular_cancer);
 			}
 
-			// [Interpretation 7803] Create the tuberculosis content type object.
+			// [Interpretation 7810] Create the tuberculosis content type object.
 			$tuberculosis = new stdClass();
 			$tuberculosis->type_title = 'Eclinic_portal Tuberculosis';
 			$tuberculosis->type_alias = 'com_eclinic_portal.tuberculosis';
@@ -3600,7 +3600,7 @@ class com_eclinic_portalInstallerScript
 			$tuberculosis->router = 'Eclinic_portalHelperRoute::getTuberculosisRoute';
 			$tuberculosis->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/tuberculosis.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering","patient"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7816] Check if tuberculosis type is already in content_type DB.
+			// [Interpretation 7823] Check if tuberculosis type is already in content_type DB.
 			$tuberculosis_id = null;
 			$query = $db->getQuery(true);
 			$query->select($db->quoteName(array('type_id')));
@@ -3609,7 +3609,7 @@ class com_eclinic_portalInstallerScript
 			$db->setQuery($query);
 			$db->execute();
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			if ($db->getNumRows())
 			{
 				$tuberculosis->type_id = $db->loadResult();
@@ -3620,7 +3620,7 @@ class com_eclinic_portalInstallerScript
 				$tuberculosis_Inserted = $db->insertObject('#__content_types', $tuberculosis);
 			}
 
-			// [Interpretation 7803] Create the hiv_counseling_and_testing content type object.
+			// [Interpretation 7810] Create the hiv_counseling_and_testing content type object.
 			$hiv_counseling_and_testing = new stdClass();
 			$hiv_counseling_and_testing->type_title = 'Eclinic_portal Hiv_counseling_and_testing';
 			$hiv_counseling_and_testing->type_alias = 'com_eclinic_portal.hiv_counseling_and_testing';
@@ -3629,7 +3629,7 @@ class com_eclinic_portalInstallerScript
 			$hiv_counseling_and_testing->router = 'Eclinic_portalHelperRoute::getHiv_counseling_and_testingRoute';
 			$hiv_counseling_and_testing->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/hiv_counseling_and_testing.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering","patient","testing_reason"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "testing_reason","targetTable": "#__eclinic_portal_testing_reason","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7816] Check if hiv_counseling_and_testing type is already in content_type DB.
+			// [Interpretation 7823] Check if hiv_counseling_and_testing type is already in content_type DB.
 			$hiv_counseling_and_testing_id = null;
 			$query = $db->getQuery(true);
 			$query->select($db->quoteName(array('type_id')));
@@ -3638,7 +3638,7 @@ class com_eclinic_portalInstallerScript
 			$db->setQuery($query);
 			$db->execute();
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			if ($db->getNumRows())
 			{
 				$hiv_counseling_and_testing->type_id = $db->loadResult();
@@ -3649,7 +3649,7 @@ class com_eclinic_portalInstallerScript
 				$hiv_counseling_and_testing_Inserted = $db->insertObject('#__content_types', $hiv_counseling_and_testing);
 			}
 
-			// [Interpretation 7803] Create the family_planning content type object.
+			// [Interpretation 7810] Create the family_planning content type object.
 			$family_planning = new stdClass();
 			$family_planning->type_title = 'Eclinic_portal Family_planning';
 			$family_planning->type_alias = 'com_eclinic_portal.family_planning';
@@ -3658,7 +3658,7 @@ class com_eclinic_portalInstallerScript
 			$family_planning->router = 'Eclinic_portalHelperRoute::getFamily_planningRoute';
 			$family_planning->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/family_planning.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering","patient","diagnosis"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "diagnosis","targetTable": "#__eclinic_portal_planning_type","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7816] Check if family_planning type is already in content_type DB.
+			// [Interpretation 7823] Check if family_planning type is already in content_type DB.
 			$family_planning_id = null;
 			$query = $db->getQuery(true);
 			$query->select($db->quoteName(array('type_id')));
@@ -3667,7 +3667,7 @@ class com_eclinic_portalInstallerScript
 			$db->setQuery($query);
 			$db->execute();
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			if ($db->getNumRows())
 			{
 				$family_planning->type_id = $db->loadResult();
@@ -3678,7 +3678,7 @@ class com_eclinic_portalInstallerScript
 				$family_planning_Inserted = $db->insertObject('#__content_types', $family_planning);
 			}
 
-			// [Interpretation 7803] Create the cervical_cancer content type object.
+			// [Interpretation 7810] Create the cervical_cancer content type object.
 			$cervical_cancer = new stdClass();
 			$cervical_cancer->type_title = 'Eclinic_portal Cervical_cancer';
 			$cervical_cancer->type_alias = 'com_eclinic_portal.cervical_cancer';
@@ -3687,7 +3687,7 @@ class com_eclinic_portalInstallerScript
 			$cervical_cancer->router = 'Eclinic_portalHelperRoute::getCervical_cancerRoute';
 			$cervical_cancer->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/cervical_cancer.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering","patient"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7816] Check if cervical_cancer type is already in content_type DB.
+			// [Interpretation 7823] Check if cervical_cancer type is already in content_type DB.
 			$cervical_cancer_id = null;
 			$query = $db->getQuery(true);
 			$query->select($db->quoteName(array('type_id')));
@@ -3696,7 +3696,7 @@ class com_eclinic_portalInstallerScript
 			$db->setQuery($query);
 			$db->execute();
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			if ($db->getNumRows())
 			{
 				$cervical_cancer->type_id = $db->loadResult();
@@ -3707,7 +3707,7 @@ class com_eclinic_portalInstallerScript
 				$cervical_cancer_Inserted = $db->insertObject('#__content_types', $cervical_cancer);
 			}
 
-			// [Interpretation 7803] Create the breast_cancer content type object.
+			// [Interpretation 7810] Create the breast_cancer content type object.
 			$breast_cancer = new stdClass();
 			$breast_cancer->type_title = 'Eclinic_portal Breast_cancer';
 			$breast_cancer->type_alias = 'com_eclinic_portal.breast_cancer';
@@ -3716,7 +3716,7 @@ class com_eclinic_portalInstallerScript
 			$breast_cancer->router = 'Eclinic_portalHelperRoute::getBreast_cancerRoute';
 			$breast_cancer->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/breast_cancer.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering","patient","bc_preg_freq"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7816] Check if breast_cancer type is already in content_type DB.
+			// [Interpretation 7823] Check if breast_cancer type is already in content_type DB.
 			$breast_cancer_id = null;
 			$query = $db->getQuery(true);
 			$query->select($db->quoteName(array('type_id')));
@@ -3725,7 +3725,7 @@ class com_eclinic_portalInstallerScript
 			$db->setQuery($query);
 			$db->execute();
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			if ($db->getNumRows())
 			{
 				$breast_cancer->type_id = $db->loadResult();
@@ -3736,7 +3736,7 @@ class com_eclinic_portalInstallerScript
 				$breast_cancer_Inserted = $db->insertObject('#__content_types', $breast_cancer);
 			}
 
-			// [Interpretation 7803] Create the test content type object.
+			// [Interpretation 7810] Create the test content type object.
 			$test = new stdClass();
 			$test->type_title = 'Eclinic_portal Test';
 			$test->type_alias = 'com_eclinic_portal.test';
@@ -3745,7 +3745,7 @@ class com_eclinic_portalInstallerScript
 			$test->router = 'Eclinic_portalHelperRoute::getTestRoute';
 			$test->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/test.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering","patient","glucose_first_reading","glucose_second_reading","haemoglobin_reading","cholesterol_reading"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7816] Check if test type is already in content_type DB.
+			// [Interpretation 7823] Check if test type is already in content_type DB.
 			$test_id = null;
 			$query = $db->getQuery(true);
 			$query->select($db->quoteName(array('type_id')));
@@ -3754,7 +3754,7 @@ class com_eclinic_portalInstallerScript
 			$db->setQuery($query);
 			$db->execute();
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			if ($db->getNumRows())
 			{
 				$test->type_id = $db->loadResult();
@@ -3765,7 +3765,7 @@ class com_eclinic_portalInstallerScript
 				$test_Inserted = $db->insertObject('#__content_types', $test);
 			}
 
-			// [Interpretation 7803] Create the testing_reason content type object.
+			// [Interpretation 7810] Create the testing_reason content type object.
 			$testing_reason = new stdClass();
 			$testing_reason->type_title = 'Eclinic_portal Testing_reason';
 			$testing_reason->type_alias = 'com_eclinic_portal.testing_reason';
@@ -3774,7 +3774,7 @@ class com_eclinic_portalInstallerScript
 			$testing_reason->router = 'Eclinic_portalHelperRoute::getTesting_reasonRoute';
 			$testing_reason->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/testing_reason.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7816] Check if testing_reason type is already in content_type DB.
+			// [Interpretation 7823] Check if testing_reason type is already in content_type DB.
 			$testing_reason_id = null;
 			$query = $db->getQuery(true);
 			$query->select($db->quoteName(array('type_id')));
@@ -3783,7 +3783,7 @@ class com_eclinic_portalInstallerScript
 			$db->setQuery($query);
 			$db->execute();
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			if ($db->getNumRows())
 			{
 				$testing_reason->type_id = $db->loadResult();
@@ -3794,7 +3794,7 @@ class com_eclinic_portalInstallerScript
 				$testing_reason_Inserted = $db->insertObject('#__content_types', $testing_reason);
 			}
 
-			// [Interpretation 7803] Create the counseling_type content type object.
+			// [Interpretation 7810] Create the counseling_type content type object.
 			$counseling_type = new stdClass();
 			$counseling_type->type_title = 'Eclinic_portal Counseling_type';
 			$counseling_type->type_alias = 'com_eclinic_portal.counseling_type';
@@ -3803,7 +3803,7 @@ class com_eclinic_portalInstallerScript
 			$counseling_type->router = 'Eclinic_portalHelperRoute::getCounseling_typeRoute';
 			$counseling_type->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/counseling_type.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7816] Check if counseling_type type is already in content_type DB.
+			// [Interpretation 7823] Check if counseling_type type is already in content_type DB.
 			$counseling_type_id = null;
 			$query = $db->getQuery(true);
 			$query->select($db->quoteName(array('type_id')));
@@ -3812,7 +3812,7 @@ class com_eclinic_portalInstallerScript
 			$db->setQuery($query);
 			$db->execute();
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			if ($db->getNumRows())
 			{
 				$counseling_type->type_id = $db->loadResult();
@@ -3823,7 +3823,7 @@ class com_eclinic_portalInstallerScript
 				$counseling_type_Inserted = $db->insertObject('#__content_types', $counseling_type);
 			}
 
-			// [Interpretation 7803] Create the group_health_education_topic content type object.
+			// [Interpretation 7810] Create the group_health_education_topic content type object.
 			$group_health_education_topic = new stdClass();
 			$group_health_education_topic->type_title = 'Eclinic_portal Group_health_education_topic';
 			$group_health_education_topic->type_alias = 'com_eclinic_portal.group_health_education_topic';
@@ -3832,7 +3832,7 @@ class com_eclinic_portalInstallerScript
 			$group_health_education_topic->router = 'Eclinic_portalHelperRoute::getGroup_health_education_topicRoute';
 			$group_health_education_topic->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/group_health_education_topic.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7816] Check if group_health_education_topic type is already in content_type DB.
+			// [Interpretation 7823] Check if group_health_education_topic type is already in content_type DB.
 			$group_health_education_topic_id = null;
 			$query = $db->getQuery(true);
 			$query->select($db->quoteName(array('type_id')));
@@ -3841,7 +3841,7 @@ class com_eclinic_portalInstallerScript
 			$db->setQuery($query);
 			$db->execute();
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			if ($db->getNumRows())
 			{
 				$group_health_education_topic->type_id = $db->loadResult();
@@ -3852,7 +3852,7 @@ class com_eclinic_portalInstallerScript
 				$group_health_education_topic_Inserted = $db->insertObject('#__content_types', $group_health_education_topic);
 			}
 
-			// [Interpretation 7803] Create the individual_health_education_topic content type object.
+			// [Interpretation 7810] Create the individual_health_education_topic content type object.
 			$individual_health_education_topic = new stdClass();
 			$individual_health_education_topic->type_title = 'Eclinic_portal Individual_health_education_topic';
 			$individual_health_education_topic->type_alias = 'com_eclinic_portal.individual_health_education_topic';
@@ -3861,7 +3861,7 @@ class com_eclinic_portalInstallerScript
 			$individual_health_education_topic->router = 'Eclinic_portalHelperRoute::getIndividual_health_education_topicRoute';
 			$individual_health_education_topic->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/individual_health_education_topic.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7816] Check if individual_health_education_topic type is already in content_type DB.
+			// [Interpretation 7823] Check if individual_health_education_topic type is already in content_type DB.
 			$individual_health_education_topic_id = null;
 			$query = $db->getQuery(true);
 			$query->select($db->quoteName(array('type_id')));
@@ -3870,7 +3870,7 @@ class com_eclinic_portalInstallerScript
 			$db->setQuery($query);
 			$db->execute();
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			if ($db->getNumRows())
 			{
 				$individual_health_education_topic->type_id = $db->loadResult();
@@ -3881,7 +3881,7 @@ class com_eclinic_portalInstallerScript
 				$individual_health_education_topic_Inserted = $db->insertObject('#__content_types', $individual_health_education_topic);
 			}
 
-			// [Interpretation 7803] Create the individual_health_education content type object.
+			// [Interpretation 7810] Create the individual_health_education content type object.
 			$individual_health_education = new stdClass();
 			$individual_health_education->type_title = 'Eclinic_portal Individual_health_education';
 			$individual_health_education->type_alias = 'com_eclinic_portal.individual_health_education';
@@ -3890,7 +3890,7 @@ class com_eclinic_portalInstallerScript
 			$individual_health_education->router = 'Eclinic_portalHelperRoute::getIndividual_health_educationRoute';
 			$individual_health_education->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/individual_health_education.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering","individual_health_edu","patient"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "individual_health_edu","targetTable": "#__eclinic_portal_individual_health_education_topic","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7816] Check if individual_health_education type is already in content_type DB.
+			// [Interpretation 7823] Check if individual_health_education type is already in content_type DB.
 			$individual_health_education_id = null;
 			$query = $db->getQuery(true);
 			$query->select($db->quoteName(array('type_id')));
@@ -3899,7 +3899,7 @@ class com_eclinic_portalInstallerScript
 			$db->setQuery($query);
 			$db->execute();
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			if ($db->getNumRows())
 			{
 				$individual_health_education->type_id = $db->loadResult();
@@ -3910,7 +3910,7 @@ class com_eclinic_portalInstallerScript
 				$individual_health_education_Inserted = $db->insertObject('#__content_types', $individual_health_education);
 			}
 
-			// [Interpretation 7803] Create the group_health_education content type object.
+			// [Interpretation 7810] Create the group_health_education content type object.
 			$group_health_education = new stdClass();
 			$group_health_education->type_title = 'Eclinic_portal Group_health_education';
 			$group_health_education->type_alias = 'com_eclinic_portal.group_health_education';
@@ -3919,7 +3919,7 @@ class com_eclinic_portalInstallerScript
 			$group_health_education->router = 'Eclinic_portalHelperRoute::getGroup_health_educationRoute';
 			$group_health_education->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/group_health_education.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering","patient","group_health_edu"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "group_health_edu","targetTable": "#__eclinic_portal_group_health_education_topic","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7816] Check if group_health_education type is already in content_type DB.
+			// [Interpretation 7823] Check if group_health_education type is already in content_type DB.
 			$group_health_education_id = null;
 			$query = $db->getQuery(true);
 			$query->select($db->quoteName(array('type_id')));
@@ -3928,7 +3928,7 @@ class com_eclinic_portalInstallerScript
 			$db->setQuery($query);
 			$db->execute();
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			if ($db->getNumRows())
 			{
 				$group_health_education->type_id = $db->loadResult();
@@ -3939,7 +3939,7 @@ class com_eclinic_portalInstallerScript
 				$group_health_education_Inserted = $db->insertObject('#__content_types', $group_health_education);
 			}
 
-			// [Interpretation 7803] Create the foetal_engagement content type object.
+			// [Interpretation 7810] Create the foetal_engagement content type object.
 			$foetal_engagement = new stdClass();
 			$foetal_engagement->type_title = 'Eclinic_portal Foetal_engagement';
 			$foetal_engagement->type_alias = 'com_eclinic_portal.foetal_engagement';
@@ -3948,7 +3948,7 @@ class com_eclinic_portalInstallerScript
 			$foetal_engagement->router = 'Eclinic_portalHelperRoute::getFoetal_engagementRoute';
 			$foetal_engagement->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/foetal_engagement.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7816] Check if foetal_engagement type is already in content_type DB.
+			// [Interpretation 7823] Check if foetal_engagement type is already in content_type DB.
 			$foetal_engagement_id = null;
 			$query = $db->getQuery(true);
 			$query->select($db->quoteName(array('type_id')));
@@ -3957,7 +3957,7 @@ class com_eclinic_portalInstallerScript
 			$db->setQuery($query);
 			$db->execute();
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			if ($db->getNumRows())
 			{
 				$foetal_engagement->type_id = $db->loadResult();
@@ -3968,7 +3968,7 @@ class com_eclinic_portalInstallerScript
 				$foetal_engagement_Inserted = $db->insertObject('#__content_types', $foetal_engagement);
 			}
 
-			// [Interpretation 7803] Create the administration_part content type object.
+			// [Interpretation 7810] Create the administration_part content type object.
 			$administration_part = new stdClass();
 			$administration_part->type_title = 'Eclinic_portal Administration_part';
 			$administration_part->type_alias = 'com_eclinic_portal.administration_part';
@@ -3977,7 +3977,7 @@ class com_eclinic_portalInstallerScript
 			$administration_part->router = 'Eclinic_portalHelperRoute::getAdministration_partRoute';
 			$administration_part->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/administration_part.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7816] Check if administration_part type is already in content_type DB.
+			// [Interpretation 7823] Check if administration_part type is already in content_type DB.
 			$administration_part_id = null;
 			$query = $db->getQuery(true);
 			$query->select($db->quoteName(array('type_id')));
@@ -3986,7 +3986,7 @@ class com_eclinic_portalInstallerScript
 			$db->setQuery($query);
 			$db->execute();
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			if ($db->getNumRows())
 			{
 				$administration_part->type_id = $db->loadResult();
@@ -3997,7 +3997,7 @@ class com_eclinic_portalInstallerScript
 				$administration_part_Inserted = $db->insertObject('#__content_types', $administration_part);
 			}
 
-			// [Interpretation 7803] Create the planning_type content type object.
+			// [Interpretation 7810] Create the planning_type content type object.
 			$planning_type = new stdClass();
 			$planning_type->type_title = 'Eclinic_portal Planning_type';
 			$planning_type->type_alias = 'com_eclinic_portal.planning_type';
@@ -4006,7 +4006,7 @@ class com_eclinic_portalInstallerScript
 			$planning_type->router = 'Eclinic_portalHelperRoute::getPlanning_typeRoute';
 			$planning_type->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/planning_type.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7816] Check if planning_type type is already in content_type DB.
+			// [Interpretation 7823] Check if planning_type type is already in content_type DB.
 			$planning_type_id = null;
 			$query = $db->getQuery(true);
 			$query->select($db->quoteName(array('type_id')));
@@ -4015,7 +4015,7 @@ class com_eclinic_portalInstallerScript
 			$db->setQuery($query);
 			$db->execute();
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			if ($db->getNumRows())
 			{
 				$planning_type->type_id = $db->loadResult();
@@ -4026,7 +4026,7 @@ class com_eclinic_portalInstallerScript
 				$planning_type_Inserted = $db->insertObject('#__content_types', $planning_type);
 			}
 
-			// [Interpretation 7803] Create the immunisation_type content type object.
+			// [Interpretation 7810] Create the immunisation_type content type object.
 			$immunisation_type = new stdClass();
 			$immunisation_type->type_title = 'Eclinic_portal Immunisation_type';
 			$immunisation_type->type_alias = 'com_eclinic_portal.immunisation_type';
@@ -4035,7 +4035,7 @@ class com_eclinic_portalInstallerScript
 			$immunisation_type->router = 'Eclinic_portalHelperRoute::getImmunisation_typeRoute';
 			$immunisation_type->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/immunisation_type.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7816] Check if immunisation_type type is already in content_type DB.
+			// [Interpretation 7823] Check if immunisation_type type is already in content_type DB.
 			$immunisation_type_id = null;
 			$query = $db->getQuery(true);
 			$query->select($db->quoteName(array('type_id')));
@@ -4044,7 +4044,7 @@ class com_eclinic_portalInstallerScript
 			$db->setQuery($query);
 			$db->execute();
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			if ($db->getNumRows())
 			{
 				$immunisation_type->type_id = $db->loadResult();
@@ -4055,7 +4055,7 @@ class com_eclinic_portalInstallerScript
 				$immunisation_type_Inserted = $db->insertObject('#__content_types', $immunisation_type);
 			}
 
-			// [Interpretation 7803] Create the foetal_lie content type object.
+			// [Interpretation 7810] Create the foetal_lie content type object.
 			$foetal_lie = new stdClass();
 			$foetal_lie->type_title = 'Eclinic_portal Foetal_lie';
 			$foetal_lie->type_alias = 'com_eclinic_portal.foetal_lie';
@@ -4064,7 +4064,7 @@ class com_eclinic_portalInstallerScript
 			$foetal_lie->router = 'Eclinic_portalHelperRoute::getFoetal_lieRoute';
 			$foetal_lie->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/foetal_lie.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7816] Check if foetal_lie type is already in content_type DB.
+			// [Interpretation 7823] Check if foetal_lie type is already in content_type DB.
 			$foetal_lie_id = null;
 			$query = $db->getQuery(true);
 			$query->select($db->quoteName(array('type_id')));
@@ -4073,7 +4073,7 @@ class com_eclinic_portalInstallerScript
 			$db->setQuery($query);
 			$db->execute();
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			if ($db->getNumRows())
 			{
 				$foetal_lie->type_id = $db->loadResult();
@@ -4084,7 +4084,7 @@ class com_eclinic_portalInstallerScript
 				$foetal_lie_Inserted = $db->insertObject('#__content_types', $foetal_lie);
 			}
 
-			// [Interpretation 7803] Create the foetal_presentation content type object.
+			// [Interpretation 7810] Create the foetal_presentation content type object.
 			$foetal_presentation = new stdClass();
 			$foetal_presentation->type_title = 'Eclinic_portal Foetal_presentation';
 			$foetal_presentation->type_alias = 'com_eclinic_portal.foetal_presentation';
@@ -4093,7 +4093,7 @@ class com_eclinic_portalInstallerScript
 			$foetal_presentation->router = 'Eclinic_portalHelperRoute::getFoetal_presentationRoute';
 			$foetal_presentation->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/foetal_presentation.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7816] Check if foetal_presentation type is already in content_type DB.
+			// [Interpretation 7823] Check if foetal_presentation type is already in content_type DB.
 			$foetal_presentation_id = null;
 			$query = $db->getQuery(true);
 			$query->select($db->quoteName(array('type_id')));
@@ -4102,7 +4102,7 @@ class com_eclinic_portalInstallerScript
 			$db->setQuery($query);
 			$db->execute();
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			if ($db->getNumRows())
 			{
 				$foetal_presentation->type_id = $db->loadResult();
@@ -4113,7 +4113,7 @@ class com_eclinic_portalInstallerScript
 				$foetal_presentation_Inserted = $db->insertObject('#__content_types', $foetal_presentation);
 			}
 
-			// [Interpretation 7803] Create the nonpay_reason content type object.
+			// [Interpretation 7810] Create the nonpay_reason content type object.
 			$nonpay_reason = new stdClass();
 			$nonpay_reason->type_title = 'Eclinic_portal Nonpay_reason';
 			$nonpay_reason->type_alias = 'com_eclinic_portal.nonpay_reason';
@@ -4122,7 +4122,7 @@ class com_eclinic_portalInstallerScript
 			$nonpay_reason->router = 'Eclinic_portalHelperRoute::getNonpay_reasonRoute';
 			$nonpay_reason->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/nonpay_reason.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7816] Check if nonpay_reason type is already in content_type DB.
+			// [Interpretation 7823] Check if nonpay_reason type is already in content_type DB.
 			$nonpay_reason_id = null;
 			$query = $db->getQuery(true);
 			$query->select($db->quoteName(array('type_id')));
@@ -4131,7 +4131,7 @@ class com_eclinic_portalInstallerScript
 			$db->setQuery($query);
 			$db->execute();
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			if ($db->getNumRows())
 			{
 				$nonpay_reason->type_id = $db->loadResult();
@@ -4142,7 +4142,7 @@ class com_eclinic_portalInstallerScript
 				$nonpay_reason_Inserted = $db->insertObject('#__content_types', $nonpay_reason);
 			}
 
-			// [Interpretation 7803] Create the immunisation_vaccine_type content type object.
+			// [Interpretation 7810] Create the immunisation_vaccine_type content type object.
 			$immunisation_vaccine_type = new stdClass();
 			$immunisation_vaccine_type->type_title = 'Eclinic_portal Immunisation_vaccine_type';
 			$immunisation_vaccine_type->type_alias = 'com_eclinic_portal.immunisation_vaccine_type';
@@ -4151,7 +4151,7 @@ class com_eclinic_portalInstallerScript
 			$immunisation_vaccine_type->router = 'Eclinic_portalHelperRoute::getImmunisation_vaccine_typeRoute';
 			$immunisation_vaccine_type->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/immunisation_vaccine_type.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7816] Check if immunisation_vaccine_type type is already in content_type DB.
+			// [Interpretation 7823] Check if immunisation_vaccine_type type is already in content_type DB.
 			$immunisation_vaccine_type_id = null;
 			$query = $db->getQuery(true);
 			$query->select($db->quoteName(array('type_id')));
@@ -4160,7 +4160,7 @@ class com_eclinic_portalInstallerScript
 			$db->setQuery($query);
 			$db->execute();
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			if ($db->getNumRows())
 			{
 				$immunisation_vaccine_type->type_id = $db->loadResult();
@@ -4171,7 +4171,7 @@ class com_eclinic_portalInstallerScript
 				$immunisation_vaccine_type_Inserted = $db->insertObject('#__content_types', $immunisation_vaccine_type);
 			}
 
-			// [Interpretation 7803] Create the payment_amount content type object.
+			// [Interpretation 7810] Create the payment_amount content type object.
 			$payment_amount = new stdClass();
 			$payment_amount->type_title = 'Eclinic_portal Payment_amount';
 			$payment_amount->type_alias = 'com_eclinic_portal.payment_amount';
@@ -4180,7 +4180,7 @@ class com_eclinic_portalInstallerScript
 			$payment_amount->router = 'Eclinic_portalHelperRoute::getPayment_amountRoute';
 			$payment_amount->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/payment_amount.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7816] Check if payment_amount type is already in content_type DB.
+			// [Interpretation 7823] Check if payment_amount type is already in content_type DB.
 			$payment_amount_id = null;
 			$query = $db->getQuery(true);
 			$query->select($db->quoteName(array('type_id')));
@@ -4189,7 +4189,7 @@ class com_eclinic_portalInstallerScript
 			$db->setQuery($query);
 			$db->execute();
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			if ($db->getNumRows())
 			{
 				$payment_amount->type_id = $db->loadResult();
@@ -4200,7 +4200,7 @@ class com_eclinic_portalInstallerScript
 				$payment_amount_Inserted = $db->insertObject('#__content_types', $payment_amount);
 			}
 
-			// [Interpretation 7803] Create the diagnosis_type content type object.
+			// [Interpretation 7810] Create the diagnosis_type content type object.
 			$diagnosis_type = new stdClass();
 			$diagnosis_type->type_title = 'Eclinic_portal Diagnosis_type';
 			$diagnosis_type->type_alias = 'com_eclinic_portal.diagnosis_type';
@@ -4209,7 +4209,7 @@ class com_eclinic_portalInstallerScript
 			$diagnosis_type->router = 'Eclinic_portalHelperRoute::getDiagnosis_typeRoute';
 			$diagnosis_type->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/diagnosis_type.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7816] Check if diagnosis_type type is already in content_type DB.
+			// [Interpretation 7823] Check if diagnosis_type type is already in content_type DB.
 			$diagnosis_type_id = null;
 			$query = $db->getQuery(true);
 			$query->select($db->quoteName(array('type_id')));
@@ -4218,7 +4218,7 @@ class com_eclinic_portalInstallerScript
 			$db->setQuery($query);
 			$db->execute();
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			if ($db->getNumRows())
 			{
 				$diagnosis_type->type_id = $db->loadResult();
@@ -4229,7 +4229,7 @@ class com_eclinic_portalInstallerScript
 				$diagnosis_type_Inserted = $db->insertObject('#__content_types', $diagnosis_type);
 			}
 
-			// [Interpretation 7803] Create the payment_type content type object.
+			// [Interpretation 7810] Create the payment_type content type object.
 			$payment_type = new stdClass();
 			$payment_type->type_title = 'Eclinic_portal Payment_type';
 			$payment_type->type_alias = 'com_eclinic_portal.payment_type';
@@ -4238,7 +4238,7 @@ class com_eclinic_portalInstallerScript
 			$payment_type->router = 'Eclinic_portalHelperRoute::getPayment_typeRoute';
 			$payment_type->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/payment_type.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7816] Check if payment_type type is already in content_type DB.
+			// [Interpretation 7823] Check if payment_type type is already in content_type DB.
 			$payment_type_id = null;
 			$query = $db->getQuery(true);
 			$query->select($db->quoteName(array('type_id')));
@@ -4247,7 +4247,7 @@ class com_eclinic_portalInstallerScript
 			$db->setQuery($query);
 			$db->execute();
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			if ($db->getNumRows())
 			{
 				$payment_type->type_id = $db->loadResult();
@@ -4258,7 +4258,7 @@ class com_eclinic_portalInstallerScript
 				$payment_type_Inserted = $db->insertObject('#__content_types', $payment_type);
 			}
 
-			// [Interpretation 7803] Create the medication content type object.
+			// [Interpretation 7810] Create the medication content type object.
 			$medication = new stdClass();
 			$medication->type_title = 'Eclinic_portal Medication';
 			$medication->type_alias = 'com_eclinic_portal.medication';
@@ -4267,7 +4267,7 @@ class com_eclinic_portalInstallerScript
 			$medication->router = 'Eclinic_portalHelperRoute::getMedicationRoute';
 			$medication->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/medication.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7816] Check if medication type is already in content_type DB.
+			// [Interpretation 7823] Check if medication type is already in content_type DB.
 			$medication_id = null;
 			$query = $db->getQuery(true);
 			$query->select($db->quoteName(array('type_id')));
@@ -4276,7 +4276,7 @@ class com_eclinic_portalInstallerScript
 			$db->setQuery($query);
 			$db->execute();
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			if ($db->getNumRows())
 			{
 				$medication->type_id = $db->loadResult();
@@ -4287,7 +4287,7 @@ class com_eclinic_portalInstallerScript
 				$medication_Inserted = $db->insertObject('#__content_types', $medication);
 			}
 
-			// [Interpretation 7803] Create the site content type object.
+			// [Interpretation 7810] Create the site content type object.
 			$site = new stdClass();
 			$site->type_title = 'Eclinic_portal Site';
 			$site->type_alias = 'com_eclinic_portal.site';
@@ -4296,7 +4296,7 @@ class com_eclinic_portalInstallerScript
 			$site->router = 'Eclinic_portalHelperRoute::getSiteRoute';
 			$site->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/site.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7816] Check if site type is already in content_type DB.
+			// [Interpretation 7823] Check if site type is already in content_type DB.
 			$site_id = null;
 			$query = $db->getQuery(true);
 			$query->select($db->quoteName(array('type_id')));
@@ -4305,7 +4305,7 @@ class com_eclinic_portalInstallerScript
 			$db->setQuery($query);
 			$db->execute();
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			if ($db->getNumRows())
 			{
 				$site->type_id = $db->loadResult();
@@ -4316,7 +4316,7 @@ class com_eclinic_portalInstallerScript
 				$site_Inserted = $db->insertObject('#__content_types', $site);
 			}
 
-			// [Interpretation 7803] Create the referral content type object.
+			// [Interpretation 7810] Create the referral content type object.
 			$referral = new stdClass();
 			$referral->type_title = 'Eclinic_portal Referral';
 			$referral->type_alias = 'com_eclinic_portal.referral';
@@ -4325,7 +4325,7 @@ class com_eclinic_portalInstallerScript
 			$referral->router = 'Eclinic_portalHelperRoute::getReferralRoute';
 			$referral->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/referral.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7816] Check if referral type is already in content_type DB.
+			// [Interpretation 7823] Check if referral type is already in content_type DB.
 			$referral_id = null;
 			$query = $db->getQuery(true);
 			$query->select($db->quoteName(array('type_id')));
@@ -4334,7 +4334,7 @@ class com_eclinic_portalInstallerScript
 			$db->setQuery($query);
 			$db->execute();
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			if ($db->getNumRows())
 			{
 				$referral->type_id = $db->loadResult();
@@ -4345,7 +4345,7 @@ class com_eclinic_portalInstallerScript
 				$referral_Inserted = $db->insertObject('#__content_types', $referral);
 			}
 
-			// [Interpretation 7803] Create the clinic content type object.
+			// [Interpretation 7810] Create the clinic content type object.
 			$clinic = new stdClass();
 			$clinic->type_title = 'Eclinic_portal Clinic';
 			$clinic->type_alias = 'com_eclinic_portal.clinic';
@@ -4354,7 +4354,7 @@ class com_eclinic_portalInstallerScript
 			$clinic->router = 'Eclinic_portalHelperRoute::getClinicRoute';
 			$clinic->content_history_options = '{"formFile": "administrator/components/com_eclinic_portal/models/forms/clinic.xml","hideFields": ["asset_id","checked_out","checked_out_time","version"],"ignoreChanges": ["modified_by","modified","checked_out","checked_out_time","version","hits"],"convertToInt": ["published","ordering"],"displayLookup": [{"sourceColumn": "created_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"},{"sourceColumn": "access","targetTable": "#__viewlevels","targetColumn": "id","displayColumn": "title"},{"sourceColumn": "modified_by","targetTable": "#__users","targetColumn": "id","displayColumn": "name"}]}';
 
-			// [Interpretation 7816] Check if clinic type is already in content_type DB.
+			// [Interpretation 7823] Check if clinic type is already in content_type DB.
 			$clinic_id = null;
 			$query = $db->getQuery(true);
 			$query->select($db->quoteName(array('type_id')));
@@ -4363,7 +4363,7 @@ class com_eclinic_portalInstallerScript
 			$db->setQuery($query);
 			$db->execute();
 
-			// [Interpretation 7836] Set the object into the content types table.
+			// [Interpretation 7843] Set the object into the content types table.
 			if ($db->getNumRows())
 			{
 				$clinic->type_id = $db->loadResult();
@@ -4378,7 +4378,7 @@ class com_eclinic_portalInstallerScript
 			echo '<a target="_blank" href="https://vdm.io" title="eClinic Portal">
 				<img src="components/com_eclinic_portal/assets/images/vdm-component.png"/>
 				</a>
-				<h3>Upgrade to Version 1.0.0 Was Successful! Let us know if anything is not working as expected.</h3>';
+				<h3>Upgrade to Version 1.0.4 Was Successful! Let us know if anything is not working as expected.</h3>';
 		}
 		return true;
 	}
@@ -4491,25 +4491,25 @@ class com_eclinic_portalInstallerScript
 	 */
 	protected function setDynamicF0ld3rs($app, $parent)
 	{
-		// [Interpretation 8519] get the instalation path
+		// [Interpretation 8697] get the instalation path
 		$installer = $parent->getParent();
 		$installPath = $installer->getPath('source');
-		// [Interpretation 8524] get all the folders
+		// [Interpretation 8702] get all the folders
 		$folders = JFolder::folders($installPath);
-		// [Interpretation 8528] check if we have folders we may want to copy
+		// [Interpretation 8706] check if we have folders we may want to copy
 		$doNotCopy = array('media','admin','site'); // Joomla already deals with these
 		if (count((array) $folders) > 1)
 		{
 			foreach ($folders as $folder)
 			{
-				// [Interpretation 8536] Only copy if not a standard folders
+				// [Interpretation 8714] Only copy if not a standard folders
 				if (!in_array($folder, $doNotCopy))
 				{
-					// [Interpretation 8540] set the source path
+					// [Interpretation 8718] set the source path
 					$src = $installPath.'/'.$folder;
-					// [Interpretation 8543] set the destination path
+					// [Interpretation 8721] set the destination path
 					$dest = JPATH_ROOT.'/'.$folder;
-					// [Interpretation 8546] now try to copy the folder
+					// [Interpretation 8724] now try to copy the folder
 					if (!JFolder::copy($src, $dest, '', true))
 					{
 						$app->enqueueMessage('Could not copy '.$folder.' folder into place, please make sure destination is writable!', 'error');

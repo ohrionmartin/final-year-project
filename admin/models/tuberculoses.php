@@ -3,8 +3,8 @@
 				Vast Development Method 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.0.0
-	@build			3rd December, 2020
+	@version		1.0.4
+	@build			11th December, 2020
 	@created		13th August, 2020
 	@package		eClinic Portal
 	@subpackage		tuberculoses.php
@@ -35,6 +35,7 @@ class Eclinic_portalModelTuberculoses extends JModelList
 			$config['filter_fields'] = array(
 				'a.id','id',
 				'a.published','published',
+				'a.access','access',
 				'a.ordering','ordering',
 				'a.created_by','created_by',
 				'a.modified_by','modified_by',
@@ -44,11 +45,17 @@ class Eclinic_portalModelTuberculoses extends JModelList
 
 		parent::__construct($config);
 	}
-	
+
 	/**
 	 * Method to auto-populate the model state.
 	 *
+	 * Note. Calling getState in this method will result in recursion.
+	 *
+	 * @param   string  $ordering   An optional ordering field.
+	 * @param   string  $direction  An optional direction (asc|desc).
+	 *
 	 * @return  void
+	 *
 	 */
 	protected function populateState($ordering = null, $direction = null)
 	{
@@ -59,26 +66,38 @@ class Eclinic_portalModelTuberculoses extends JModelList
 		{
 			$this->context .= '.' . $layout;
 		}
-		$patient = $this->getUserStateFromRequest($this->context . '.filter.patient', 'filter_patient');
-		$this->setState('filter.patient', $patient);
-        
-		$sorting = $this->getUserStateFromRequest($this->context . '.filter.sorting', 'filter_sorting', 0, 'int');
-		$this->setState('filter.sorting', $sorting);
-        
+
+		// [Interpretation 21141] Check if the form was submitted
+		$formSubmited = $app->input->post->get('form_submited');
+
 		$access = $this->getUserStateFromRequest($this->context . '.filter.access', 'filter_access', 0, 'int');
-		$this->setState('filter.access', $access);
-        
-		$search = $this->getUserStateFromRequest($this->context . '.filter.search', 'filter_search');
-		$this->setState('filter.search', $search);
+		if ($formSubmited)
+		{
+			$access = $app->input->post->get('access');
+			$this->setState('filter.access', $access);
+		}
 
 		$published = $this->getUserStateFromRequest($this->context . '.filter.published', 'filter_published', '');
 		$this->setState('filter.published', $published);
-        
+
 		$created_by = $this->getUserStateFromRequest($this->context . '.filter.created_by', 'filter_created_by', '');
 		$this->setState('filter.created_by', $created_by);
 
 		$created = $this->getUserStateFromRequest($this->context . '.filter.created', 'filter_created');
 		$this->setState('filter.created', $created);
+
+		$sorting = $this->getUserStateFromRequest($this->context . '.filter.sorting', 'filter_sorting', 0, 'int');
+		$this->setState('filter.sorting', $sorting);
+
+		$search = $this->getUserStateFromRequest($this->context . '.filter.search', 'filter_search');
+		$this->setState('filter.search', $search);
+
+		$patient = $this->getUserStateFromRequest($this->context . '.filter.patient', 'filter_patient');
+		if ($formSubmited)
+		{
+			$patient = $app->input->post->get('patient');
+			$this->setState('filter.patient', $patient);
+		}
 
 		// List state information.
 		parent::populateState($ordering, $direction);
@@ -91,46 +110,46 @@ class Eclinic_portalModelTuberculoses extends JModelList
 	 */
 	public function getItems()
 	{
-		// [Interpretation 20178] check in items
+		// [Interpretation 21363] check in items
 		$this->checkInNow();
 
 		// load parent items
 		$items = parent::getItems();
 
-		// [Interpretation 21022] set selection value to a translatable value
+		// [Interpretation 22354] set selection value to a translatable value
 		if (Eclinic_portalHelper::checkArray($items))
 		{
 			foreach ($items as $nr => &$item)
 			{
-				// [Interpretation 21036] convert recurring_night_sweats
+				// [Interpretation 22368] convert recurring_night_sweats
 				$item->recurring_night_sweats = $this->selectionTranslation($item->recurring_night_sweats, 'recurring_night_sweats');
-				// [Interpretation 21036] convert tb_fever
+				// [Interpretation 22368] convert tb_fever
 				$item->tb_fever = $this->selectionTranslation($item->tb_fever, 'tb_fever');
-				// [Interpretation 21036] convert persistent_cough
+				// [Interpretation 22368] convert persistent_cough
 				$item->persistent_cough = $this->selectionTranslation($item->persistent_cough, 'persistent_cough');
-				// [Interpretation 21036] convert blood_streaked_sputum
+				// [Interpretation 22368] convert blood_streaked_sputum
 				$item->blood_streaked_sputum = $this->selectionTranslation($item->blood_streaked_sputum, 'blood_streaked_sputum');
-				// [Interpretation 21036] convert unusual_tiredness
+				// [Interpretation 22368] convert unusual_tiredness
 				$item->unusual_tiredness = $this->selectionTranslation($item->unusual_tiredness, 'unusual_tiredness');
-				// [Interpretation 21036] convert pain_in_chest
+				// [Interpretation 22368] convert pain_in_chest
 				$item->pain_in_chest = $this->selectionTranslation($item->pain_in_chest, 'pain_in_chest');
-				// [Interpretation 21036] convert shortness_of_breath
+				// [Interpretation 22368] convert shortness_of_breath
 				$item->shortness_of_breath = $this->selectionTranslation($item->shortness_of_breath, 'shortness_of_breath');
-				// [Interpretation 21036] convert diagnosed_with_disease
+				// [Interpretation 22368] convert diagnosed_with_disease
 				$item->diagnosed_with_disease = $this->selectionTranslation($item->diagnosed_with_disease, 'diagnosed_with_disease');
-				// [Interpretation 21036] convert tb_exposed
+				// [Interpretation 22368] convert tb_exposed
 				$item->tb_exposed = $this->selectionTranslation($item->tb_exposed, 'tb_exposed');
-				// [Interpretation 21036] convert tb_treatment
+				// [Interpretation 22368] convert tb_treatment
 				$item->tb_treatment = $this->selectionTranslation($item->tb_treatment, 'tb_treatment');
-				// [Interpretation 21036] convert sputum_collection_one
+				// [Interpretation 22368] convert sputum_collection_one
 				$item->sputum_collection_one = $this->selectionTranslation($item->sputum_collection_one, 'sputum_collection_one');
-				// [Interpretation 21036] convert sputum_result_one
+				// [Interpretation 22368] convert sputum_result_one
 				$item->sputum_result_one = $this->selectionTranslation($item->sputum_result_one, 'sputum_result_one');
-				// [Interpretation 21036] convert referred_second_sputum
+				// [Interpretation 22368] convert referred_second_sputum
 				$item->referred_second_sputum = $this->selectionTranslation($item->referred_second_sputum, 'referred_second_sputum');
-				// [Interpretation 21036] convert sputum_result_two
+				// [Interpretation 22368] convert sputum_result_two
 				$item->sputum_result_two = $this->selectionTranslation($item->sputum_result_two, 'sputum_result_two');
-				// [Interpretation 21036] convert weight_loss_wdieting
+				// [Interpretation 22368] convert weight_loss_wdieting
 				$item->weight_loss_wdieting = $this->selectionTranslation($item->weight_loss_wdieting, 'weight_loss_wdieting');
 			}
 		}
@@ -147,7 +166,7 @@ class Eclinic_portalModelTuberculoses extends JModelList
 	 */
 	public function selectionTranslation($value,$name)
 	{
-		// [Interpretation 21076] Array of recurring_night_sweats language strings
+		// [Interpretation 22408] Array of recurring_night_sweats language strings
 		if ($name === 'recurring_night_sweats')
 		{
 			$recurring_night_sweatsArray = array(
@@ -155,13 +174,13 @@ class Eclinic_portalModelTuberculoses extends JModelList
 				1 => 'COM_ECLINIC_PORTAL_TUBERCULOSIS_NO',
 				2 => 'COM_ECLINIC_PORTAL_TUBERCULOSIS_UNCERTAIN'
 			);
-			// [Interpretation 21113] Now check if value is found in this array
+			// [Interpretation 22445] Now check if value is found in this array
 			if (isset($recurring_night_sweatsArray[$value]) && Eclinic_portalHelper::checkString($recurring_night_sweatsArray[$value]))
 			{
 				return $recurring_night_sweatsArray[$value];
 			}
 		}
-		// [Interpretation 21076] Array of tb_fever language strings
+		// [Interpretation 22408] Array of tb_fever language strings
 		if ($name === 'tb_fever')
 		{
 			$tb_feverArray = array(
@@ -169,13 +188,13 @@ class Eclinic_portalModelTuberculoses extends JModelList
 				1 => 'COM_ECLINIC_PORTAL_TUBERCULOSIS_NO',
 				2 => 'COM_ECLINIC_PORTAL_TUBERCULOSIS_UNCERTAIN'
 			);
-			// [Interpretation 21113] Now check if value is found in this array
+			// [Interpretation 22445] Now check if value is found in this array
 			if (isset($tb_feverArray[$value]) && Eclinic_portalHelper::checkString($tb_feverArray[$value]))
 			{
 				return $tb_feverArray[$value];
 			}
 		}
-		// [Interpretation 21076] Array of persistent_cough language strings
+		// [Interpretation 22408] Array of persistent_cough language strings
 		if ($name === 'persistent_cough')
 		{
 			$persistent_coughArray = array(
@@ -183,13 +202,13 @@ class Eclinic_portalModelTuberculoses extends JModelList
 				1 => 'COM_ECLINIC_PORTAL_TUBERCULOSIS_NO',
 				2 => 'COM_ECLINIC_PORTAL_TUBERCULOSIS_UNCERTAIN'
 			);
-			// [Interpretation 21113] Now check if value is found in this array
+			// [Interpretation 22445] Now check if value is found in this array
 			if (isset($persistent_coughArray[$value]) && Eclinic_portalHelper::checkString($persistent_coughArray[$value]))
 			{
 				return $persistent_coughArray[$value];
 			}
 		}
-		// [Interpretation 21076] Array of blood_streaked_sputum language strings
+		// [Interpretation 22408] Array of blood_streaked_sputum language strings
 		if ($name === 'blood_streaked_sputum')
 		{
 			$blood_streaked_sputumArray = array(
@@ -197,13 +216,13 @@ class Eclinic_portalModelTuberculoses extends JModelList
 				1 => 'COM_ECLINIC_PORTAL_TUBERCULOSIS_NO',
 				2 => 'COM_ECLINIC_PORTAL_TUBERCULOSIS_UNCERTAIN'
 			);
-			// [Interpretation 21113] Now check if value is found in this array
+			// [Interpretation 22445] Now check if value is found in this array
 			if (isset($blood_streaked_sputumArray[$value]) && Eclinic_portalHelper::checkString($blood_streaked_sputumArray[$value]))
 			{
 				return $blood_streaked_sputumArray[$value];
 			}
 		}
-		// [Interpretation 21076] Array of unusual_tiredness language strings
+		// [Interpretation 22408] Array of unusual_tiredness language strings
 		if ($name === 'unusual_tiredness')
 		{
 			$unusual_tirednessArray = array(
@@ -211,13 +230,13 @@ class Eclinic_portalModelTuberculoses extends JModelList
 				1 => 'COM_ECLINIC_PORTAL_TUBERCULOSIS_NO',
 				2 => 'COM_ECLINIC_PORTAL_TUBERCULOSIS_UNCERTAIN'
 			);
-			// [Interpretation 21113] Now check if value is found in this array
+			// [Interpretation 22445] Now check if value is found in this array
 			if (isset($unusual_tirednessArray[$value]) && Eclinic_portalHelper::checkString($unusual_tirednessArray[$value]))
 			{
 				return $unusual_tirednessArray[$value];
 			}
 		}
-		// [Interpretation 21076] Array of pain_in_chest language strings
+		// [Interpretation 22408] Array of pain_in_chest language strings
 		if ($name === 'pain_in_chest')
 		{
 			$pain_in_chestArray = array(
@@ -225,13 +244,13 @@ class Eclinic_portalModelTuberculoses extends JModelList
 				1 => 'COM_ECLINIC_PORTAL_TUBERCULOSIS_NO',
 				2 => 'COM_ECLINIC_PORTAL_TUBERCULOSIS_UNCERTAIN'
 			);
-			// [Interpretation 21113] Now check if value is found in this array
+			// [Interpretation 22445] Now check if value is found in this array
 			if (isset($pain_in_chestArray[$value]) && Eclinic_portalHelper::checkString($pain_in_chestArray[$value]))
 			{
 				return $pain_in_chestArray[$value];
 			}
 		}
-		// [Interpretation 21076] Array of shortness_of_breath language strings
+		// [Interpretation 22408] Array of shortness_of_breath language strings
 		if ($name === 'shortness_of_breath')
 		{
 			$shortness_of_breathArray = array(
@@ -239,26 +258,26 @@ class Eclinic_portalModelTuberculoses extends JModelList
 				1 => 'COM_ECLINIC_PORTAL_TUBERCULOSIS_NO',
 				2 => 'COM_ECLINIC_PORTAL_TUBERCULOSIS_UNCERTAIN'
 			);
-			// [Interpretation 21113] Now check if value is found in this array
+			// [Interpretation 22445] Now check if value is found in this array
 			if (isset($shortness_of_breathArray[$value]) && Eclinic_portalHelper::checkString($shortness_of_breathArray[$value]))
 			{
 				return $shortness_of_breathArray[$value];
 			}
 		}
-		// [Interpretation 21076] Array of diagnosed_with_disease language strings
+		// [Interpretation 22408] Array of diagnosed_with_disease language strings
 		if ($name === 'diagnosed_with_disease')
 		{
 			$diagnosed_with_diseaseArray = array(
 				0 => 'COM_ECLINIC_PORTAL_TUBERCULOSIS_YES',
 				1 => 'COM_ECLINIC_PORTAL_TUBERCULOSIS_NO'
 			);
-			// [Interpretation 21113] Now check if value is found in this array
+			// [Interpretation 22445] Now check if value is found in this array
 			if (isset($diagnosed_with_diseaseArray[$value]) && Eclinic_portalHelper::checkString($diagnosed_with_diseaseArray[$value]))
 			{
 				return $diagnosed_with_diseaseArray[$value];
 			}
 		}
-		// [Interpretation 21076] Array of tb_exposed language strings
+		// [Interpretation 22408] Array of tb_exposed language strings
 		if ($name === 'tb_exposed')
 		{
 			$tb_exposedArray = array(
@@ -266,39 +285,39 @@ class Eclinic_portalModelTuberculoses extends JModelList
 				1 => 'COM_ECLINIC_PORTAL_TUBERCULOSIS_NO',
 				2 => 'COM_ECLINIC_PORTAL_TUBERCULOSIS_UNCERTAIN'
 			);
-			// [Interpretation 21113] Now check if value is found in this array
+			// [Interpretation 22445] Now check if value is found in this array
 			if (isset($tb_exposedArray[$value]) && Eclinic_portalHelper::checkString($tb_exposedArray[$value]))
 			{
 				return $tb_exposedArray[$value];
 			}
 		}
-		// [Interpretation 21076] Array of tb_treatment language strings
+		// [Interpretation 22408] Array of tb_treatment language strings
 		if ($name === 'tb_treatment')
 		{
 			$tb_treatmentArray = array(
 				0 => 'COM_ECLINIC_PORTAL_TUBERCULOSIS_YES',
 				1 => 'COM_ECLINIC_PORTAL_TUBERCULOSIS_NO'
 			);
-			// [Interpretation 21113] Now check if value is found in this array
+			// [Interpretation 22445] Now check if value is found in this array
 			if (isset($tb_treatmentArray[$value]) && Eclinic_portalHelper::checkString($tb_treatmentArray[$value]))
 			{
 				return $tb_treatmentArray[$value];
 			}
 		}
-		// [Interpretation 21076] Array of sputum_collection_one language strings
+		// [Interpretation 22408] Array of sputum_collection_one language strings
 		if ($name === 'sputum_collection_one')
 		{
 			$sputum_collection_oneArray = array(
 				0 => 'COM_ECLINIC_PORTAL_TUBERCULOSIS_YES',
 				1 => 'COM_ECLINIC_PORTAL_TUBERCULOSIS_NO'
 			);
-			// [Interpretation 21113] Now check if value is found in this array
+			// [Interpretation 22445] Now check if value is found in this array
 			if (isset($sputum_collection_oneArray[$value]) && Eclinic_portalHelper::checkString($sputum_collection_oneArray[$value]))
 			{
 				return $sputum_collection_oneArray[$value];
 			}
 		}
-		// [Interpretation 21076] Array of sputum_result_one language strings
+		// [Interpretation 22408] Array of sputum_result_one language strings
 		if ($name === 'sputum_result_one')
 		{
 			$sputum_result_oneArray = array(
@@ -306,26 +325,26 @@ class Eclinic_portalModelTuberculoses extends JModelList
 				1 => 'COM_ECLINIC_PORTAL_TUBERCULOSIS_NEGATIVE',
 				2 => 'COM_ECLINIC_PORTAL_TUBERCULOSIS_INCONCLUSIVE'
 			);
-			// [Interpretation 21113] Now check if value is found in this array
+			// [Interpretation 22445] Now check if value is found in this array
 			if (isset($sputum_result_oneArray[$value]) && Eclinic_portalHelper::checkString($sputum_result_oneArray[$value]))
 			{
 				return $sputum_result_oneArray[$value];
 			}
 		}
-		// [Interpretation 21076] Array of referred_second_sputum language strings
+		// [Interpretation 22408] Array of referred_second_sputum language strings
 		if ($name === 'referred_second_sputum')
 		{
 			$referred_second_sputumArray = array(
 				0 => 'COM_ECLINIC_PORTAL_TUBERCULOSIS_YES',
 				1 => 'COM_ECLINIC_PORTAL_TUBERCULOSIS_NO'
 			);
-			// [Interpretation 21113] Now check if value is found in this array
+			// [Interpretation 22445] Now check if value is found in this array
 			if (isset($referred_second_sputumArray[$value]) && Eclinic_portalHelper::checkString($referred_second_sputumArray[$value]))
 			{
 				return $referred_second_sputumArray[$value];
 			}
 		}
-		// [Interpretation 21076] Array of sputum_result_two language strings
+		// [Interpretation 22408] Array of sputum_result_two language strings
 		if ($name === 'sputum_result_two')
 		{
 			$sputum_result_twoArray = array(
@@ -333,13 +352,13 @@ class Eclinic_portalModelTuberculoses extends JModelList
 				1 => 'COM_ECLINIC_PORTAL_TUBERCULOSIS_NEGATIVE',
 				2 => 'COM_ECLINIC_PORTAL_TUBERCULOSIS_INCONCLUSIVE'
 			);
-			// [Interpretation 21113] Now check if value is found in this array
+			// [Interpretation 22445] Now check if value is found in this array
 			if (isset($sputum_result_twoArray[$value]) && Eclinic_portalHelper::checkString($sputum_result_twoArray[$value]))
 			{
 				return $sputum_result_twoArray[$value];
 			}
 		}
-		// [Interpretation 21076] Array of weight_loss_wdieting language strings
+		// [Interpretation 22408] Array of weight_loss_wdieting language strings
 		if ($name === 'weight_loss_wdieting')
 		{
 			$weight_loss_wdietingArray = array(
@@ -347,7 +366,7 @@ class Eclinic_portalModelTuberculoses extends JModelList
 				1 => 'COM_ECLINIC_PORTAL_TUBERCULOSIS_NO',
 				2 => 'COM_ECLINIC_PORTAL_TUBERCULOSIS_UNCERTAIN'
 			);
-			// [Interpretation 21113] Now check if value is found in this array
+			// [Interpretation 22445] Now check if value is found in this array
 			if (isset($weight_loss_wdietingArray[$value]) && Eclinic_portalHelper::checkString($weight_loss_wdietingArray[$value]))
 			{
 				return $weight_loss_wdietingArray[$value];
@@ -363,19 +382,19 @@ class Eclinic_portalModelTuberculoses extends JModelList
 	 */
 	protected function getListQuery()
 	{
-		// [Interpretation 15042] Get the user object.
+		// [Interpretation 15534] Get the user object.
 		$user = JFactory::getUser();
-		// [Interpretation 15044] Create a new query object.
+		// [Interpretation 15536] Create a new query object.
 		$db = JFactory::getDBO();
 		$query = $db->getQuery(true);
 
-		// [Interpretation 15049] Select some fields
+		// [Interpretation 15541] Select some fields
 		$query->select('a.*');
 
-		// [Interpretation 15059] From the eclinic_portal_item table
+		// [Interpretation 15551] From the eclinic_portal_item table
 		$query->from($db->quoteName('#__eclinic_portal_tuberculosis', 'a'));
 
-		// [Interpretation 15078] Filter by published state
+		// [Interpretation 15570] Filter by published state
 		$published = $this->getState('filter.published');
 		if (is_numeric($published))
 		{
@@ -386,21 +405,29 @@ class Eclinic_portalModelTuberculoses extends JModelList
 			$query->where('(a.published = 0 OR a.published = 1)');
 		}
 
-		// [Interpretation 15098] Join over the asset groups.
+		// [Interpretation 15590] Join over the asset groups.
 		$query->select('ag.title AS access_level');
 		$query->join('LEFT', '#__viewlevels AS ag ON ag.id = a.access');
-		// [Interpretation 15104] Filter by access level.
-		if ($access = $this->getState('filter.access'))
+		// [Interpretation 15604] Filter by access level.
+		$_access = $this->getState('filter.access');
+		if ($_access && is_numeric($_access))
 		{
-			$query->where('a.access = ' . (int) $access);
+			$query->where('a.access = ' . (int) $_access);
 		}
-		// [Interpretation 15112] Implement View Level Access
+		elseif (Eclinic_portalHelper::checkArray($_access))
+		{
+			// [Interpretation 15619] Secure the array for the query
+			$_access = ArrayHelper::toInteger($_access);
+			// [Interpretation 15624] Filter by the Access Array.
+			$query->where('a.access IN (' . implode(',', $_access) . ')');
+		}
+		// [Interpretation 15630] Implement View Level Access
 		if (!$user->authorise('core.options', 'com_eclinic_portal'))
 		{
 			$groups = implode(',', $user->getAuthorisedViewLevels());
 			$query->where('a.access IN (' . $groups . ')');
 		}
-		// [Interpretation 15322] Filter by search.
+		// [Interpretation 15791] Filter by search.
 		$search = $this->getState('filter.search');
 		if (!empty($search))
 		{
@@ -415,15 +442,27 @@ class Eclinic_portalModelTuberculoses extends JModelList
 			}
 		}
 
-		// [Interpretation 15454] Filter by Patient.
-		if ($patient = $this->getState('filter.patient'))
+		// [Interpretation 15921] Filter by Patient.
+		$_patient = $this->getState('filter.patient');
+		if (is_numeric($_patient))
 		{
-			$query->where('a.patient = ' . $db->quote($db->escape($patient)));
+			if (is_float($_patient))
+			{
+				$query->where('a.patient = ' . (float) $_patient);
+			}
+			else
+			{
+				$query->where('a.patient = ' . (int) $_patient);
+			}
+		}
+		elseif (Eclinic_portalHelper::checkString($_patient))
+		{
+			$query->where('a.patient = ' . $db->quote($db->escape($_patient)));
 		}
 
-		// [Interpretation 15220] Add the list ordering clause.
+		// [Interpretation 15738] Add the list ordering clause.
 		$orderCol = $this->state->get('list.ordering', 'a.id');
-		$orderDirn = $this->state->get('list.direction', 'asc');
+		$orderDirn = $this->state->get('list.direction', 'desc');
 		if ($orderCol != '')
 		{
 			$query->order($db->escape($orderCol . ' ' . $orderDirn));
@@ -442,72 +481,72 @@ class Eclinic_portalModelTuberculoses extends JModelList
 	 */
 	public function getExportData($pks, $user = null)
 	{
-		// [Interpretation 14499] setup the query
+		// [Interpretation 14988] setup the query
 		if (($pks_size = Eclinic_portalHelper::checkArray($pks)) !== false || 'bulk' === $pks)
 		{
-			// [Interpretation 14505] Set a value to know this is export method. (USE IN CUSTOM CODE TO ALTER OUTCOME)
+			// [Interpretation 14995] Set a value to know this is export method. (USE IN CUSTOM CODE TO ALTER OUTCOME)
 			$_export = true;
-			// [Interpretation 14510] Get the user object if not set.
+			// [Interpretation 15000] Get the user object if not set.
 			if (!isset($user) || !Eclinic_portalHelper::checkObject($user))
 			{
 				$user = JFactory::getUser();
 			}
-			// [Interpretation 14518] Create a new query object.
+			// [Interpretation 15008] Create a new query object.
 			$db = JFactory::getDBO();
 			$query = $db->getQuery(true);
 
-			// [Interpretation 14524] Select some fields
+			// [Interpretation 15014] Select some fields
 			$query->select('a.*');
 
-			// [Interpretation 14528] From the eclinic_portal_tuberculosis table
+			// [Interpretation 15018] From the eclinic_portal_tuberculosis table
 			$query->from($db->quoteName('#__eclinic_portal_tuberculosis', 'a'));
-			// [Interpretation 14535] The bulk export path
+			// [Interpretation 15025] The bulk export path
 			if ('bulk' === $pks)
 			{
 				$query->where('a.id > 0');
 			}
-			// [Interpretation 14544] A large array of ID's will not work out well
+			// [Interpretation 15034] A large array of ID's will not work out well
 			elseif ($pks_size > 500)
 			{
-				// [Interpretation 14549] Use lowest ID
+				// [Interpretation 15039] Use lowest ID
 				$query->where('a.id >= ' . (int) min($pks));
-				// [Interpretation 14553] Use highest ID
+				// [Interpretation 15043] Use highest ID
 				$query->where('a.id <= ' . (int) max($pks));
 			}
-			// [Interpretation 14559] The normal default path
+			// [Interpretation 15049] The normal default path
 			else
 			{
 				$query->where('a.id IN (' . implode(',',$pks) . ')');
 			}
-			// [Interpretation 14611] Implement View Level Access
+			// [Interpretation 15101] Implement View Level Access
 			if (!$user->authorise('core.options', 'com_eclinic_portal'))
 			{
 				$groups = implode(',', $user->getAuthorisedViewLevels());
 				$query->where('a.access IN (' . $groups . ')');
 			}
 
-			// [Interpretation 14652] Order the results by ordering
+			// [Interpretation 15142] Order the results by ordering
 			$query->order('a.ordering  ASC');
 
-			// [Interpretation 14658] Load the items
+			// [Interpretation 15148] Load the items
 			$db->setQuery($query);
 			$db->execute();
 			if ($db->getNumRows())
 			{
 				$items = $db->loadObjectList();
 
-				// [Interpretation 20714] Set values to display correctly.
+				// [Interpretation 21901] Set values to display correctly.
 				if (Eclinic_portalHelper::checkArray($items))
 				{
 					foreach ($items as $nr => &$item)
 					{
-						// [Interpretation 20856] unset the values we don't want exported.
+						// [Interpretation 22043] unset the values we don't want exported.
 						unset($item->asset_id);
 						unset($item->checked_out);
 						unset($item->checked_out_time);
 					}
 				}
-				// [Interpretation 20871] Add headers to items array.
+				// [Interpretation 22058] Add headers to items array.
 				$headers = $this->getExImPortHeaders();
 				if (Eclinic_portalHelper::checkObject($headers))
 				{
@@ -554,10 +593,22 @@ class Eclinic_portalModelTuberculoses extends JModelList
 	 */
 	protected function getStoreId($id = '')
 	{
-		// [Interpretation 19559] Compile the store id.
+		// [Interpretation 20600] Compile the store id.
 		$id .= ':' . $this->getState('filter.id');
 		$id .= ':' . $this->getState('filter.search');
 		$id .= ':' . $this->getState('filter.published');
+		// [Interpretation 20765] Check if the value is an array
+		$_access = $this->getState('filter.access');
+		if (Eclinic_portalHelper::checkArray($_access))
+		{
+			$id .= ':' . implode(':', $_access);
+		}
+		// [Interpretation 20780] Check if this is only an number or string
+		elseif (is_numeric($_access)
+		 || Eclinic_portalHelper::checkString($_access))
+		{
+			$id .= ':' . $_access;
+		}
 		$id .= ':' . $this->getState('filter.ordering');
 		$id .= ':' . $this->getState('filter.created_by');
 		$id .= ':' . $this->getState('filter.modified_by');
@@ -574,15 +625,15 @@ class Eclinic_portalModelTuberculoses extends JModelList
 	 */
 	protected function checkInNow()
 	{
-		// [Interpretation 20196] Get set check in time
+		// [Interpretation 21381] Get set check in time
 		$time = JComponentHelper::getParams('com_eclinic_portal')->get('check_in');
 
 		if ($time)
 		{
 
-			// [Interpretation 20204] Get a db connection.
+			// [Interpretation 21389] Get a db connection.
 			$db = JFactory::getDbo();
-			// [Interpretation 20207] reset query
+			// [Interpretation 21392] reset query
 			$query = $db->getQuery(true);
 			$query->select('*');
 			$query->from($db->quoteName('#__eclinic_portal_tuberculosis'));
@@ -590,24 +641,24 @@ class Eclinic_portalModelTuberculoses extends JModelList
 			$db->execute();
 			if ($db->getNumRows())
 			{
-				// [Interpretation 20218] Get Yesterdays date
+				// [Interpretation 21403] Get Yesterdays date
 				$date = JFactory::getDate()->modify($time)->toSql();
-				// [Interpretation 20222] reset query
+				// [Interpretation 21407] reset query
 				$query = $db->getQuery(true);
 
-				// [Interpretation 20226] Fields to update.
+				// [Interpretation 21411] Fields to update.
 				$fields = array(
 					$db->quoteName('checked_out_time') . '=\'0000-00-00 00:00:00\'',
 					$db->quoteName('checked_out') . '=0'
 				);
 
-				// [Interpretation 20235] Conditions for which records should be updated.
+				// [Interpretation 21420] Conditions for which records should be updated.
 				$conditions = array(
 					$db->quoteName('checked_out') . '!=0', 
 					$db->quoteName('checked_out_time') . '<\''.$date.'\''
 				);
 
-				// [Interpretation 20244] Check table
+				// [Interpretation 21429] Check table
 				$query->update($db->quoteName('#__eclinic_portal_tuberculosis'))->set($fields)->where($conditions); 
 
 				$db->setQuery($query);

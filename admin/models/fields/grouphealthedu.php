@@ -3,8 +3,8 @@
 				Vast Development Method 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.0.0
-	@build			3rd December, 2020
+	@version		1.0.4
+	@build			11th December, 2020
 	@created		13th August, 2020
 	@package		eClinic Portal
 	@subpackage		grouphealthedu.php
@@ -46,62 +46,62 @@ class JFormFieldGrouphealthedu extends JFormFieldList
 	 */
 	protected function getInput()
 	{
-		// [Fields 5375] see if we should add buttons
+		// [Fields 6000] see if we should add buttons
 		$set_button = $this->getAttribute('button');
-		// [Fields 5379] get html
+		// [Fields 6004] get html
 		$html = parent::getInput();
-		// [Fields 5382] if true set button
+		// [Fields 6007] if true set button
 		if ($set_button === 'true')
 		{
 			$button = array();
 			$script = array();
 			$button_code_name = $this->getAttribute('name');
-			// [Fields 5390] get the input from url
+			// [Fields 6015] get the input from url
 			$app = JFactory::getApplication();
 			$jinput = $app->input;
-			// [Fields 5394] get the view name & id
+			// [Fields 6019] get the view name & id
 			$values = $jinput->getArray(array(
 				'id' => 'int',
 				'view' => 'word'
 			));
-			// [Fields 5401] check if new item
+			// [Fields 6026] check if new item
 			$ref = '';
 			$refJ = '';
 			if (!is_null($values['id']) && strlen($values['view']))
 			{
-				// [Fields 5410] only load referral if not new item.
+				// [Fields 6035] only load referral if not new item.
 				$ref = '&amp;ref=' . $values['view'] . '&amp;refid=' . $values['id'];
 				$refJ = '&ref=' . $values['view'] . '&refid=' . $values['id'];
-				// [Fields 5416] get the return value.
+				// [Fields 6041] get the return value.
 				$_uri = (string) JUri::getInstance();
 				$_return = urlencode(base64_encode($_uri));
-				// [Fields 5422] load return value.
+				// [Fields 6047] load return value.
 				$ref .= '&amp;return=' . $_return;
 				$refJ .= '&return=' . $_return;
 			}
-			// [Fields 5455] get button label
+			// [Fields 6080] get button label
 			$button_label = trim($button_code_name);
 			$button_label = preg_replace('/_+/', ' ', $button_label);
 			$button_label = preg_replace('/\s+/', ' ', $button_label);
 			$button_label = preg_replace("/[^A-Za-z ]/", '', $button_label);
 			$button_label = ucfirst(strtolower($button_label));
-			// [Fields 5467] get user object
+			// [Fields 6092] get user object
 			$user = JFactory::getUser();
-			// [Fields 5470] only add if user allowed to create group_health_education_topic
+			// [Fields 6095] only add if user allowed to create group_health_education_topic
 			if ($user->authorise('core.create', 'com_eclinic_portal') && $app->isAdmin()) // TODO for now only in admin area.
 			{
-				// [Fields 5494] build Create button
+				// [Fields 6119] build Create button
 				$button[] = '<a id="'.$button_code_name.'Create" class="btn btn-small btn-success hasTooltip" title="'.JText::sprintf('COM_ECLINIC_PORTAL_CREATE_NEW_S', $button_label).'" style="border-radius: 0px 4px 4px 0px; padding: 4px 4px 4px 7px;"
 					href="index.php?option=com_eclinic_portal&amp;view=group_health_education_topic&amp;layout=edit'.$ref.'" >
 					<span class="icon-new icon-white"></span></a>';
 			}
-			// [Fields 5506] only add if user allowed to edit group_health_education_topic
+			// [Fields 6131] only add if user allowed to edit group_health_education_topic
 			if ($user->authorise('core.edit', 'com_eclinic_portal') && $app->isAdmin()) // TODO for now only in admin area.
 			{
-				// [Fields 5530] build edit button
+				// [Fields 6155] build edit button
 				$button[] = '<a id="'.$button_code_name.'Edit" class="btn btn-small hasTooltip" title="'.JText::sprintf('COM_ECLINIC_PORTAL_EDIT_S', $button_label).'" style="display: none; padding: 4px 4px 4px 7px;" href="#" >
 					<span class="icon-edit"></span></a>';
-				// [Fields 5538] build script
+				// [Fields 6163] build script
 				$script[] = "
 					jQuery(document).ready(function() {
 						jQuery('#adminForm').on('change', '#jform_".$button_code_name."',function (e) {
@@ -128,13 +128,13 @@ class JFormFieldGrouphealthedu extends JFormFieldList
 						}
 					}";
 			}
-			// [Fields 5581] check if button was created for group_health_education_topic field.
+			// [Fields 6206] check if button was created for group_health_education_topic field.
 			if (is_array($button) && count($button) > 0)
 			{
-				// [Fields 5587] Load the needed script.
+				// [Fields 6212] Load the needed script.
 				$document = JFactory::getDocument();
 				$document->addScriptDeclaration(implode(' ',$script));
-				// [Fields 5593] return the button attached to input field.
+				// [Fields 6218] return the button attached to input field.
 				return '<div class="input-append">' .$html . implode('',$button).'</div>';
 			}
 		}

@@ -3,8 +3,8 @@
 				Vast Development Method 
 /-------------------------------------------------------------------------------------------------------/
 
-	@version		1.0.0
-	@build			3rd December, 2020
+	@version		1.0.4
+	@build			11th December, 2020
 	@created		13th August, 2020
 	@package		eClinic Portal
 	@subpackage		edit.php
@@ -114,7 +114,7 @@ $componentParams = $this->params; // will be removed just use $this->params inst
 
 <script type="text/javascript">
 
-// [Interpretation 15693] #jform_payment_category listeners for payment_category_vvvvvvv function
+// [Interpretation 16290] #jform_payment_category listeners for payment_category_vvvvvvv function
 jQuery('#jform_payment_category').on('keyup',function()
 {
 	var payment_category_vvvvvvv = jQuery("#jform_payment_category").val();
@@ -129,7 +129,7 @@ jQuery('#adminForm').on('change', '#jform_payment_category',function (e)
 
 });
 
-// [Interpretation 15693] #jform_payment_amount listeners for payment_amount_vvvvvvw function
+// [Interpretation 16290] #jform_payment_amount listeners for payment_amount_vvvvvvw function
 jQuery('#jform_payment_amount').on('keyup',function()
 {
 	var payment_amount_vvvvvvw = jQuery("#jform_payment_amount").val();
